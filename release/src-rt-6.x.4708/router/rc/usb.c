@@ -481,11 +481,11 @@ int mount_r(char *mnt_dev, char *mnt_dir, char *type)
 
 #ifdef TCONFIG_HFS
 			if (ret != 0 && strncmp(type, "hfs", "") == 0) {
-				ret = eval("mount", "-o", "noatime,nodev", mnt_dev, mnt_dir);
+				ret = eval("mount", "-o", "noatime,nodev", "-o", "force", mnt_dev, mnt_dir);
 			}
 
 			if (ret != 0 && strncmp(type, "hfsplus", "") == 0) {
-				ret = eval("mount", "-o", "noatime,nodev", mnt_dev, mnt_dir);
+				ret = eval("mount", "-o", "noatime,nodev", "-o", "force", mnt_dev, mnt_dir);
 			}
 #endif
 

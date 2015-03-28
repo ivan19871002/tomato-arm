@@ -105,6 +105,9 @@ void start_usb(void)
 		/* mount usb device filesystem */
         	mount(USBFS, "/proc/bus/usb", USBFS, MS_MGC_VAL, NULL);
 
+		if (get_model() == MODEL_WS880) {
+			led(LED_USB,LED_ON);
+		}
 #ifdef LINUX26
 		i = do_led(LED_USB, LED_PROBE);
 		if (i != 255) {
@@ -335,6 +338,9 @@ void stop_usb(void)
 	modprobe_r("ledtrig-usbdev");
 	led(LED_USB, LED_OFF);
 #endif
+	if (get_model() == MODEL_WS880) {
+		led(LED_USB,LED_OFF);
+	}
 
 	// only unload core modules if usb is disabled
 	if (disabled) {

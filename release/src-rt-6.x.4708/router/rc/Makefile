@@ -39,7 +39,6 @@ OBJS += bcmutils.o
 endif
 
 #ifeq ($(CONFIG_BCMWL6),y)
-OBJS += blink_2g.o
 OBJS += blink_5g.o
 #endif
 

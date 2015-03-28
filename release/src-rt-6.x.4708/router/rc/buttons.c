@@ -207,8 +207,10 @@ int buttons_main(int argc, char *argv[])
 	case MODEL_D1800H:
 		reset_mask = 1 << 5;
 		break;
+	case MODEL_R6250:
+	case MODEL_R6300v2:
 	case MODEL_R7000:
-//		reset_mask = 1 << 6; // this make a reboot loop - shibby
+		reset_mask = 1 << 6;
 		ses_mask = 1 << 5;
 		ses_led = LED_AOSS;
 		break;
@@ -352,7 +354,7 @@ int buttons_main(int argc, char *argv[])
 			cprintf("reset count = %d\n", count);
 #else
 			if (count >= 3) {
-				eval("mtd-erase", "-d", "nvram");
+				eval("mtd-erase2", "nvram");
 				//nvram_set("restore_defaults", "1");
 				//nvram_commit();
 				sync();

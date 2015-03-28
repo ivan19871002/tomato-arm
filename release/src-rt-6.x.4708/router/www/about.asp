@@ -131,6 +131,7 @@ Linux kernel <% version(2); %> and Broadcom Wireless Driver <% version(3); %><br
 - SD-idle tool integration for kernel 2.6<br>
 <!-- USB-BEGIN -->
 - 3G Modem support (big thanks for @LDevil)<br>
+- 4G/LTE Modem support<br>
 <!-- USB-END -->
 <!-- LINUX26-END -->
 <!-- SNMP-BEGIN -->
@@ -221,7 +222,7 @@ Linux kernel <% version(2); %> and Broadcom Wireless Driver <% version(3); %><br
 <br>
 
 <!-- OPENVPN-BEGIN -->
-<b>TomatoVPN feature:</b>
+<b>TomatoVPN feature:</b><br>
 - OpenVPN integration and GUI<br>
 <i>Copyright (C) 2010 Keith Moyer</i><br>
 <a href='mailto:tomatovpn@keithmoyer.com'>tomatovpn@keithmoyer.com</a><br>
@@ -232,6 +233,14 @@ Linux kernel <% version(2); %> and Broadcom Wireless Driver <% version(3); %><br
 <br>
 <!-- OPENVPN-END -->
 <!-- VPN-END -->
+
+<!-- NGINX-BEGIN -->
+<b>Tomato-hyzoom feature:</b><br>
+- MySQL Server integration and GUI<br>
+<i>Copyright (C) 2014 Bao Weiquan, Hyzoom</i><br>
+<a href='mailto:bwq518@gmail.com'>bwq518@gmail.com</a><br>
+<br>
+<!-- NGINX-END -->
 
 <b>"Victek/PrinceAMD/Phykris/Shibby" feature:</b><br>
 - Revised IP/MAC Bandwidth Limiter<br>

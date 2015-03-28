@@ -39,6 +39,7 @@ int get_wan_proto(void)
 		"pppoe",
 		"pptp",
 		"ppp3g",
+		"lte",
 		NULL
 	};
 	int i;
@@ -138,6 +139,7 @@ int using_dhcpc(void)
 {
 	switch (get_wan_proto()) {
 	case WP_DHCP:
+	case WP_LTE:
 		return 1;
 	case WP_L2TP:
 	case WP_PPTP:
@@ -248,6 +250,12 @@ int check_wanup(void)
 		if (get_model() == MODEL_WS880) {
 			led(LED_WHITE,LED_OFF);
 		}
+		if (get_model() == MODEL_R6250) {
+			led(LED_WHITE,LED_OFF);
+		}
+		if (get_model() == MODEL_R6300v2) {
+			led(LED_WHITE,LED_OFF);
+		}
 		 return 0;
 	}
 
@@ -309,7 +317,12 @@ int check_wanup(void)
 	//	led(LED_5G,LED_ON);
 
 	}
-
+	if (get_model() == MODEL_R6250) {
+		led(LED_WHITE,up);
+	}
+	if (get_model() == MODEL_R6300v2) {
+		led(LED_WHITE,up);
+	}
 	return up;
 }
 
@@ -428,7 +441,9 @@ const wanface_list_t *get_wanfaces(void)
 				iface = nvram_safe_get("wan_iface");
 				if (!(*iface)) iface = "ppp+";
 			}
-			else {
+			else if (proto == WP_LTE) {
+				iface = nvram_safe_get("wan_4g");
+			} else {
 				iface = nvram_safe_get("wan_ifname");
 			}
 			strlcpy(wanfaces.iface[wanfaces.count].ip, ip, sizeof(wanfaces.iface[0].ip));
@@ -551,14 +566,19 @@ void set_radio(int on, int unit)
 	n = on ? (WL_RADIO_SW_DISABLE << 16) : ((WL_RADIO_SW_DISABLE << 16) | 1);
 	wl_ioctl(nvram_safe_get(wl_nvname("ifname", unit, 0)), WLC_SET_RADIO, &n, sizeof(n));
 	if (!on) {
-		led(LED_WLAN, 0);
-		led(LED_DIAG, 0);
+		if (unit == 0) led(LED_WLAN, LED_OFF);
+		else led(LED_5G, LED_OFF);
+	} else {
+		if (unit == 0) led(LED_WLAN, LED_ON);
+		else led(LED_5G, LED_ON);
 	}
 #else
 	n = on ? 0 : WL_RADIO_SW_DISABLE;
 	wl_ioctl(nvram_safe_get(wl_nvname("ifname", unit, 0)), WLC_SET_RADIO, &n, sizeof(n));
 	if (!on) {
-		led(LED_DIAG, 0);
+		led(LED_WLAN, LED_OFF);
+	} else {
+		led(LED_WLAN, LED_ON);
 	}
 #endif
 	if (get_model() == MODEL_WS880) {

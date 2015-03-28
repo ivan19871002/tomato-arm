@@ -572,6 +572,11 @@ static int init_vlan_ports(void)
 		break;
 #endif
 #ifdef CONFIG_BCMWL6A
+	case MODEL_R6250:
+	case MODEL_R6300v2:
+		dirty |= check_nv("vlan1ports", "3 2 1 0 5*");
+		dirty |= check_nv("vlan2ports", "4 5");
+		break;
 	case MODEL_RTAC56U:
 	case MODEL_DIR868L:
 		dirty |= check_nv("vlan1ports", "0 1 2 3 5*");
@@ -753,6 +758,15 @@ static void check_bootnv(void)
 	case MODEL_L600N:
 	case MODEL_DIR620C1:
 		dirty |= check_nv("vlan2hwname", "et0");
+		break;
+#endif
+#ifdef CONFIG_BCMWL6
+	case MODEL_R7000:
+	case MODEL_R6250:
+	case MODEL_R6300v2:
+		nvram_unset("et1macaddr");
+		dirty |= check_nv("wl0_ifname", "eth1");
+		dirty |= check_nv("wl1_ifname", "eth2");
 		break;
 #endif
 
@@ -1491,9 +1505,15 @@ static int init_nvram(void)
 			nvram_set("wl_country_code", "SG");
 		}
 		break;
+	case MODEL_R6250:
+	case MODEL_R6300v2:
 	case MODEL_R7000:
 		mfr = "Netgear";
-		name = "R7000";
+		if(nvram_match("board_id", "U12H245T00_NETGEAR")) //R6250
+			name = "R6250";
+		else
+			name = model == MODEL_R7000 ? "R7000" : "R6300v2"; //R7000 or R6300v2
+
 		features = SUP_SES | SUP_80211N | SUP_1000ET | SUP_80211AC;
 #ifdef TCONFIG_USB
 		nvram_set("usb_uhci", "-1");
@@ -1503,18 +1523,25 @@ static int init_nvram(void)
 			nvram_set("vlan2hwname", "et0");
 			nvram_set("lan_ifname", "br0");
 			nvram_set("landevs", "vlan1 wl0 wl1");
-			nvram_set("lan_ifnames", "vlan1 eth2 eth3");
+			nvram_set("lan_ifnames", "vlan1 eth1 eth2");
 			nvram_set("wan_ifnames", "vlan2");
 			nvram_set("wan_ifnameX", "vlan2");
 			nvram_set("wandevs", "vlan2");
-			nvram_set("wl_ifnames", "eth2 eth3");
-			nvram_set("wl_ifname", "eth2");
-			nvram_set("wl0_ifname", "eth2");
-			nvram_set("wl1_ifname", "eth3");
+			nvram_set("wl_ifnames", "eth1 eth2");
+			nvram_set("wl_ifname", "eth1");
+			nvram_set("wl0_ifname", "eth1");
+			nvram_set("wl1_ifname", "eth2");
 
-			// fix WL mac`s
+			//disable second *fake* LAN interface
+			nvram_unset("et1macaddr");
+
+			// fix WL mac for 2,4G
 			nvram_set("pci/1/1/macaddr", nvram_safe_get("et0macaddr"));
-			nvram_set("pci/2/1/macaddr", nvram_safe_get("et1macaddr"));
+
+			// fix WL mac for 5G
+			strcpy(s, nvram_safe_get("pci/1/1/macaddr"));
+			inc_mac(s, +1);
+			nvram_set("pci/2/1/macaddr", s);
 
 			// usb3.0 settings
 			nvram_set("usb_usb3", "1");
@@ -1529,6 +1556,7 @@ static int init_nvram(void)
 			nvram_set("wl1_nctrlsb", "lower");
 			nvram_set("wl_country", "SG");
 			nvram_set("wl_country_code", "SG");
+			nvram_set("blink_wl", "1");
 
 			// bcm4360ac_defaults - fix problem of loading driver failed with code 21
 			nvram_set("pci/1/1/aa2g", "7");

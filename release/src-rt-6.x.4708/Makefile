@@ -153,9 +153,11 @@ endif
 ifeq ($(ASUS_TRX),DLINK)
 	ctools/trx_asus -i image/linux-lzma.trx -r DIR868L,3.0.0.4,image/tomato-DIR868L-$(V1)$(V2)-$(current_BUILD_DESC).trx
 endif
-# for R7000
+# for R7000, R6300v2, R6250
 ifeq ($(ASUS_TRX),NETGEAR)
 	ctools/trx_asus -i image/linux-lzma.trx -r R7000,3.0.0.4,image/tomato-R7000-$(V1)$(V2)-$(current_BUILD_DESC).trx
+	ctools/trx_asus -i image/linux-lzma.trx -r R6300v2,3.0.0.4,image/tomato-R6300v2-$(V1)$(V2)-$(current_BUILD_DESC).trx
+	ctools/trx_asus -i image/linux-lzma.trx -r R6250,3.0.0.4,image/tomato-R6250-$(V1)$(V2)-$(current_BUILD_DESC).trx
 endif
 # for WS880
 ifeq ($(ASUS_TRX),HUAWEI)
@@ -174,7 +176,7 @@ ifneq ($(NETGEAR_CHK),0)
 	cd image && touch rootfs
 	cd image && $(WNRTOOL)/packet -k linux-lzma.trx -f rootfs -b $(BOARD_FILE) -ok kernel_image \
 		-oall kernel_rootfs_image -or rootfs_image -i $(FW_FILE) && rm -f rootfs && \
-		cp kernel_rootfs_image.chk tomato-R7000-$(current_TOMATO_VER).$(V1)$(V2)-$(current_BUILD_DESC).chk
+		cp kernel_rootfs_image.chk tomato-$(NETGEAR_CHK)-$(current_TOMATO_VER).$(V1)$(V2)-$(current_BUILD_DESC).chk
 	@echo "Cleanup ...."
 	@rm -rf image/linux-lzma.trx image/*image.chk
 endif
@@ -268,7 +270,7 @@ what:
 # JFFSv1 | NO_JFFS
 # NO_CIFS, NO_SSH, NO_ZEBRA, NO_SAMBA, NO_HTTPS, NO_XXTP, NO_LIBOPT
 # SAMBA3, OPENVPN, IPV6SUPP, EBTABLES, NTFS, UFSD, MEDIASRV, BBEXTRAS, USBEXTRAS, BCM57, SLIM, NOCAT, NGINX, CTF
-# NFS BTCLIENT BTGUI TR_EXTRAS SNMP SDHC HFS UPS DNSCRYPT PPTPD TOR IPSEC RAID MICROSD USBAP NO_USBAPP
+# NFS BTCLIENT BTGUI TR_EXTRAS SNMP SDHC HFS UPS DNSCRYPT PPTPD TOR IPSEC RAID MICROSD USBAP NO_USBAPP NANO
 
 define RouterOptions
 	@( \
@@ -436,6 +438,10 @@ define RouterOptions
 	if [ "$(UPS)" = "y" ]; then \
 		sed -i "/TCONFIG_UPS/d" $(1); \
 		echo "TCONFIG_UPS=y" >>$(1); \
+	fi; \
+	if [ "$(NANO)" = "y" ]; then \
+		sed -i "/TCONFIG_NANO/d" $(1); \
+		echo "TCONFIG_NANO=y" >>$(1); \
 	fi; \
 	if [ "$(DNSCRYPT)" = "y" ]; then \
 		sed -i "/TCONFIG_DNSCRYPT/d" $(1); \
@@ -854,10 +860,10 @@ endif
 
 ## targets
 e:
-	@$(MAKE) bin NTFS=y BBEXTRAS=y USBEXTRAS=y EBTABLES=y IPV6SUPP=y MEDIASRV=y  B=E BUILD_DESC="$(VPN)" USB="USB" PPTPD=y OPENVPN=y DNSSEC=y
+	@$(MAKE) bin NTFS=y BBEXTRAS=y USBEXTRAS=y EBTABLES=y IPV6SUPP=y MEDIASRV=y  B=E BUILD_DESC="$(VPN)" USB="USB" PPTPD=y OPENVPN=y DNSSEC=y SNMP=y
 
 z:
-	@$(MAKE) bin OPENVPN=y NTFS=y BBEXTRAS=y USBEXTRAS=y EBTABLES=y MEDIASRV=y IPV6SUPP=y B=E BUILD_DESC="AIO" USB="USB" NOCAT=y BTCLIENT=y TR_EXTRAS=y DNSCRYPT=y UPS=y PPTPD=y DNSSEC=y TINC=y
+	@$(MAKE) bin OPENVPN=y NTFS=y BBEXTRAS=y USBEXTRAS=y EBTABLES=y MEDIASRV=y IPV6SUPP=y B=E BUILD_DESC="AIO" USB="USB" NOCAT=y BTCLIENT=y TR_EXTRAS=y DNSCRYPT=y UPS=y PPTPD=y DNSSEC=y TINC=y SNMP=y RAID=y NFS=y NANO=y
 
 ac68e:
 	@$(MAKE) e ARM=y NVRAM_64K=y NAND=y BCMSMP=y ASUS_TRX="ASUS" UFSD="ASUS" CTF=y GRO=y
@@ -872,7 +878,7 @@ n18z:
 	@$(MAKE) z ARM=y NVRAM_64K=y NAND=y ARMCPUSMP="up" ASUS_TRX="ASUS" UFSD="ASUS" CTF=y GRO=y NGINX=y
 
 dir868l:
-	@$(MAKE) bin ARM=y NVRAM_SIZE=32 NAND=y BCMSMP=y ASUS_TRX="DLINK" UFSD="ASUS" CTF=y GRO=y NTFS=y BBEXTRAS=y USBEXTRAS=y EBTABLES=y IPV6SUPP=y MEDIASRV=y B=E BUILD_DESC="special" USB="USB" PPTPD=y DNSSEC=y DNSCRYPT=y UPS=y NO_SSH=y
+	@$(MAKE) bin ARM=y NVRAM_SIZE=32 NAND=y BCMSMP=y ASUS_TRX="DLINK" UFSD="ASUS" CTF=y GRO=y NTFS=y BBEXTRAS=y USBEXTRAS=y EBTABLES=y IPV6SUPP=y MEDIASRV=y B=E BUILD_DESC="special" USB="USB" DNSSEC=y DNSCRYPT=y UPS=y NO_SSH=y
 
 r7000e:
 	@$(MAKE) e ARM=y NVRAM_64K=y NAND=y BCMSMP=y ASUS_TRX="NETGEAR" UFSD="ASUS" CTF=y GRO=y
@@ -883,11 +889,17 @@ r7000z:
 r7000init:
 	@$(MAKE) bin ARM=y NVRAM_64K=y NAND=y BCMSMP=y B=E IPV6SUPP=y OPENVPN=y BUILD_DESC="initial" NETGEAR_CHK="R7000" CTF=y BOARDID_FILE="compatible_r7000.txt" FW_CFG_FILE="ambitCfg-r7000.h"
 
+r6250init:
+	@$(MAKE) bin ARM=y NVRAM_64K=y NAND=y BCMSMP=y B=E IPV6SUPP=y OPENVPN=y BUILD_DESC="initial" NETGEAR_CHK="R6250" CTF=y BOARDID_FILE="compatible_r6250.txt" FW_CFG_FILE="ambitCfg-r6250.h"
+
+r6300v2init:
+	@$(MAKE) bin ARM=y NVRAM_64K=y NAND=y BCMSMP=y B=E IPV6SUPP=y OPENVPN=y BUILD_DESC="initial" NETGEAR_CHK="R6300v2" CTF=y BOARDID_FILE="compatible_r6300v2.txt" FW_CFG_FILE="ambitCfg-r6300v2.h"
+
 ws880e:
-	@$(MAKE) e ARM=y NVRAM_64K=y NAND=y BCMSMP=y ASUS_TRX="HUAWEI" UFSD="ASUS" CTF=y GRO=y HFS=y
+	@$(MAKE) e ARM=y NVRAM_64K=y NAND=y BCMSMP=y ASUS_TRX="HUAWEI" UFSD="ASUS" CTF=y GRO=y
 
 ws880z:
-	@$(MAKE) z ARM=y NVRAM_64K=y NAND=y BCMSMP=y ASUS_TRX="HUAWEI" UFSD="ASUS" CTF=y GRO=y HFS=y TOR=y
+	@$(MAKE) z ARM=y NVRAM_64K=y NAND=y BCMSMP=y ASUS_TRX="HUAWEI" UFSD="ASUS" CTF=y GRO=y NGINX=y
 
 setprofile:
 	echo '#ifndef TOMATO_PROFILE' > router/shared/tomato_profile.h

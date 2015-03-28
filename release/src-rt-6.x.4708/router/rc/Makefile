@@ -38,6 +38,7 @@ OBJS += bcmutils.o
 endif
 
 #ifeq ($(CONFIG_BCMWL6),y)
+OBJS += blink_2g.o
 OBJS += blink_5g.o
 #endif
 
@@ -129,6 +130,7 @@ endif
 	@cd $(INSTALLDIR)/sbin && ln -sf rc hotplug
 	@cd $(INSTALLDIR)/sbin && ln -sf rc service
 	@cd $(INSTALLDIR)/sbin && ln -sf rc buttons
+	@cd $(INSTALLDIR)/sbin && ln -sf rc blink_2g
 	@cd $(INSTALLDIR)/sbin && ln -sf rc blink_5g
 	@cd $(INSTALLDIR)/sbin && ln -sf rc rcheck
 	@cd $(INSTALLDIR)/sbin && ln -sf rc radio

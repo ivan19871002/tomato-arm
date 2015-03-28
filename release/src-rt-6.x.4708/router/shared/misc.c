@@ -304,6 +304,10 @@ int check_wanup(void)
 	}
 	if (get_model() == MODEL_WS880) {
 		led(LED_WHITE,up);
+	//	led(LED_BRIDGE,up);
+	//	led(LED_WLAN,up);
+	//	led(LED_5G,LED_ON);
+
 	}
 
 	return up;
@@ -557,6 +561,11 @@ void set_radio(int on, int unit)
 		led(LED_DIAG, 0);
 	}
 #endif
+	if (get_model() == MODEL_WS880) {
+		led(LED_WLAN,on);
+		led(LED_5G,on);
+	}
+
 }
 
 // -----------------------------------------------------------------------------

@@ -2072,6 +2072,8 @@ static int init_nvram(void)
 			nvram_set("wl_ifname", "eth1");
 			nvram_set("wl0_ifname", "eth1");
 			nvram_set("wl1_ifname", "eth2");
+			nvram_set("blink_2g_interface","eth1");
+			nvram_set("blink_5g_interface","eth2");
 
 			// fix WL mac`s
 			strcpy(s, nvram_safe_get("et0macaddr"));
@@ -3203,6 +3205,7 @@ static void sysinit(void)
 	eval("buttons");
 
 #ifdef CONFIG_BCMWL6
+	eval("blink_2g");
 	eval("blink_5g");
 #endif
 

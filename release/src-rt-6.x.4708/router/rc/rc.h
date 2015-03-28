@@ -404,6 +404,7 @@ extern int buttons_main(int argc, char *argv[]);
 
 #ifdef CONFIG_BCMWL6
 // blink_5g.c
+extern int blink_2g_main(int argc, char *argv[]);
 extern int blink_5g_main(int argc, char *argv[]);
 #endif
 

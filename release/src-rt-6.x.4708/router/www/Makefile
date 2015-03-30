@@ -9,7 +9,7 @@ install:
 	rm -rf $(INSTALLDIR)/www
 	mkdir -p $(INSTALLDIR)/www
 
-	cp *.gif *.png *.ico *.html *.php robots.txt $(INSTALLDIR)/www
+	cp *.gif *.png *.ico *.html *.php *.txt $(INSTALLDIR)/www
 
 # squish some of the files by trimming whitespace...
 
@@ -53,7 +53,7 @@ endif
 # Only include the CIFS pages if CIFS is configured in.
 ifneq ($(TCONFIG_CIFS),y)
 	rm -f $(INSTALLDIR)/www/admin-cifs.asp
-	sed -i $(INSTALLDIR)/www/tomato.js -e "/CIFS-BEGIN/,/CIFS-END/d"
+	sed -i $(INSTALLDIR)/www/tomato.asp -e "/CIFS-BEGIN/,/CIFS-END/d"
 	sed -i $(INSTALLDIR)/www/admin-bwm.asp -e "/CIFS-BEGIN/,/CIFS-END/d"
 	sed -i $(INSTALLDIR)/www/nas-media.asp -e "/CIFS-BEGIN/,/CIFS-END/d"
 endif
@@ -61,7 +61,7 @@ endif
 # Only include the JFFS pages if JFFS is configured in.
 ifneq ($(TCONFIG_JFFS2),y)
 	rm -f $(INSTALLDIR)/www/admin-jffs2.asp
-	sed -i $(INSTALLDIR)/www/tomato.js -e "/JFFS2-BEGIN/,/JFFS2-END/d"
+	sed -i $(INSTALLDIR)/www/tomato.asp -e "/JFFS2-BEGIN/,/JFFS2-END/d"
 	sed -i $(INSTALLDIR)/www/admin-bwm.asp -e "/JFFS2-BEGIN/,/JFFS2-END/d"
 	sed -i $(INSTALLDIR)/www/admin-upgrade.asp -e "/JFFS2-BEGIN/,/JFFS2-END/d"
 	sed -i $(INSTALLDIR)/www/nas-media.asp -e "/JFFS2-BEGIN/,/JFFS2-END/d"
@@ -89,17 +89,17 @@ endif
 # Only include the FTP pages if FTP Server is configured in.
 ifneq ($(TCONFIG_FTP),y)
 	rm -f $(INSTALLDIR)/www/nas-ftp.asp
-	sed -i $(INSTALLDIR)/www/tomato.js -e "/FTP-BEGIN/,/FTP-END/d"
+	sed -i $(INSTALLDIR)/www/tomato.asp -e "/FTP-BEGIN/,/FTP-END/d"
 endif
 # Only include the Samba pages if Samba is configured in.
 ifneq ($(TCONFIG_SAMBASRV),y)
 	rm -f $(INSTALLDIR)/www/nas-samba.asp
-	sed -i $(INSTALLDIR)/www/tomato.js -e "/SAMBA-BEGIN/,/SAMBA-END/d"
+	sed -i $(INSTALLDIR)/www/tomato.asp -e "/SAMBA-BEGIN/,/SAMBA-END/d"
 endif
 # Only include the Media Server pages if Media Server is configured in.
 ifneq ($(TCONFIG_MEDIA_SERVER),y)
 	rm -f $(INSTALLDIR)/www/nas-media.asp
-	sed -i $(INSTALLDIR)/www/tomato.js -e "/MEDIA-SRV-BEGIN/,/MEDIA-SRV-END/d"
+	sed -i $(INSTALLDIR)/www/tomato.asp -e "/MEDIA-SRV-BEGIN/,/MEDIA-SRV-END/d"
 endif
 
 # Victek for RAF verion
@@ -108,7 +108,7 @@ ifneq ($(TCONFIG_NOCAT),y)
 	rm -f $(INSTALLDIR)/www/splashd.asp
 	rm -f $(INSTALLDIR)/www/splash.html
 	rm -f $(INSTALLDIR)/www/style.css
-	sed -i $(INSTALLDIR)/www/tomato.js -e "/NOCAT-BEGIN/,/NOCAT-END/d"
+	sed -i $(INSTALLDIR)/www/tomato.asp -e "/NOCAT-BEGIN/,/NOCAT-END/d"
 	sed -i $(INSTALLDIR)/www/about.asp -e "/NOCAT-BEGIN/,/NOCAT-END/d"
 endif
 
@@ -119,7 +119,7 @@ ifneq ($(TCONFIG_NGINX),y)
 	rm -f $(INSTALLDIR)/www/index.html
 	rm -f $(INSTALLDIR)/www/phpinfo.php
 	rm -f $(INSTALLDIR)/www/adminer.php
-	sed -i $(INSTALLDIR)/www/tomato.js -e "/NGINX-BEGIN/,/NGINX-END/d"
+	sed -i $(INSTALLDIR)/www/tomato.asp -e "/NGINX-BEGIN/,/NGINX-END/d"
 	sed -i $(INSTALLDIR)/www/about.asp -e "/NGINX-BEGIN/,/NGINX-END/d"
 endif
 
@@ -150,21 +150,21 @@ endif
 # Only include the Transmission pages if Transmission is configured in.
 ifneq ($(TCONFIG_BT),y)
 	rm -f $(INSTALLDIR)/www/nas-bittorrent.asp
-	sed -i $(INSTALLDIR)/www/tomato.js -e "/BT-BEGIN/,/BT-END/d"
+	sed -i $(INSTALLDIR)/www/tomato.asp -e "/BT-BEGIN/,/BT-END/d"
 	sed -i $(INSTALLDIR)/www/about.asp -e "/BT-BEGIN/,/BT-END/d"
 endif
 
 # Only include the UPS pages if apcupsd is configured in.
 ifneq ($(TCONFIG_UPS),y)
 	rm -f $(INSTALLDIR)/www/nas-ups.asp
-	sed -i $(INSTALLDIR)/www/tomato.js -e "/UPS-BEGIN/,/UPS-END/d"
+	sed -i $(INSTALLDIR)/www/tomato.asp -e "/UPS-BEGIN/,/UPS-END/d"
 	sed -i $(INSTALLDIR)/www/about.asp -e "/UPS-BEGIN/,/UPS-END/d"
 endif
 
 # Only include the TOR pages if tor project is configured in.
 ifneq ($(TCONFIG_TOR),y)
 	rm -f $(INSTALLDIR)/www/advanced-tor.asp
-	sed -i $(INSTALLDIR)/www/tomato.js -e "/TOR-BEGIN/,/TOR-END/d"
+	sed -i $(INSTALLDIR)/www/tomato.asp -e "/TOR-BEGIN/,/TOR-END/d"
 	sed -i $(INSTALLDIR)/www/about.asp -e "/TOR-BEGIN/,/TOR-END/d"
 endif
 
@@ -173,7 +173,7 @@ endif
 # Only include the USB and NAS pages if USB Support is configured in.
 ifneq ($(TCONFIG_USB),y)
 	rm -f $(INSTALLDIR)/www/nas-*.*
-	sed -i $(INSTALLDIR)/www/tomato.js -e "/USB-BEGIN/,/USB-END/d"
+	sed -i $(INSTALLDIR)/www/tomato.asp -e "/USB-BEGIN/,/USB-END/d"
 	sed -i $(INSTALLDIR)/www/admin-buttons.asp -e "/USB-BEGIN/,/USB-END/d"
 	sed -i $(INSTALLDIR)/www/admin-access.asp -e "/USB-BEGIN/,/USB-END/d"
 	sed -i $(INSTALLDIR)/www/about.asp -e "/USB-BEGIN/,/USB-END/d"
@@ -182,7 +182,7 @@ endif
 # Only include the USB and NAS pages if REMOVE_USBAPP is NOT configured in.
 ifeq ($(TCONFIG_REMOVE_USBAPP),y)
 	rm -f $(INSTALLDIR)/www/nas-*.*
-	sed -i $(INSTALLDIR)/www/tomato.js -e "/USB-BEGIN/,/USB-END/d"
+	sed -i $(INSTALLDIR)/www/tomato.asp -e "/USB-BEGIN/,/USB-END/d"
 	sed -i $(INSTALLDIR)/www/admin-buttons.asp -e "/USB-BEGIN/,/USB-END/d"
 	sed -i $(INSTALLDIR)/www/admin-access.asp -e "/USB-BEGIN/,/USB-END/d"
 endif
@@ -209,53 +209,76 @@ endif
 		mv $$F.tmp $$F; \
 	done
 
+	cd $(INSTALLDIR)/www && \
+	for F in $(wildcard *.asp); do \
+		sed -e "s,<script type='text/javascript' src='tomato.js'></script>,<script type='text/javascript' src='tomato.asp'></script>," $$F > $$F.tmp; \
+	mv $$F.tmp $$F; \
+	done
+
+	cd $(INSTALLDIR)/www && \
+	for F in $(wildcard *.asp); do \
+		sed -e "s,bwm-common.js,bwm-common.asp," $$F > $$F.tmp; \
+	mv $$F.tmp $$F; \
+	done
+
+	cd $(INSTALLDIR)/www && \
+	for F in $(wildcard *.asp); do \
+		sed -e "s,bwm-hist.js,bwm-hist.asp," $$F > $$F.tmp; \
+	mv $$F.tmp $$F; \
+	done
+
+	cd $(INSTALLDIR)/www && \
+	for F in $(wildcard *.asp); do \
+		sed -e "s,status-data.jsx,status-data.asp," $$F > $$F.tmp; \
+	mv $$F.tmp $$F; \
+	done
 
 # Only include the vpn pages if OpenVPN is compiled in
 # Remove AES ciphers from the GUI if openssl doesn't have an AES directory
 ifeq ($(TCONFIG_OPENVPN),y)
 	test -d ../openssl/crypto/aes || sed -i $(INSTALLDIR)/www/vpn.js -e "/AES-BEGIN/,/AES-END/d"
-	sed -i $(INSTALLDIR)/www/tomato.js -e "/ VPN-BEGIN/d" -e "/ VPN-END/d"
+	sed -i $(INSTALLDIR)/www/tomato.asp -e "/ VPN-BEGIN/d" -e "/ VPN-END/d"
 	sed -i $(INSTALLDIR)/www/admin-access.asp -e "/ VPN-BEGIN/d" -e "/ VPN-END/d"
 	sed -i $(INSTALLDIR)/www/about.asp -e "/ VPN-BEGIN/d" -e "/ VPN-END/d"
 else
 	rm -f $(INSTALLDIR)/www/vpn-server.asp
 	rm -f $(INSTALLDIR)/www/vpn-client.asp
 	rm -f $(INSTALLDIR)/www/vpn.js
-	sed -i $(INSTALLDIR)/www/tomato.js -e "/ OPENVPN-BEGIN/,/ OPENVPN-END/d"
+	sed -i $(INSTALLDIR)/www/tomato.asp -e "/ OPENVPN-BEGIN/,/ OPENVPN-END/d"
 	sed -i $(INSTALLDIR)/www/about.asp -e "/ OPENVPN-BEGIN/,/ OPENVPN-END/d"
 endif
 
 # Only include the PPTPD pages if PPTPD is compiled in
 ifeq ($(TCONFIG_PPTPD),y)
-	sed -i $(INSTALLDIR)/www/tomato.js -e "/ VPN-BEGIN/d" -e "/ VPN-END/d"
+	sed -i $(INSTALLDIR)/www/tomato.asp -e "/ VPN-BEGIN/d" -e "/ VPN-END/d"
 	sed -i $(INSTALLDIR)/www/admin-access.asp -e "/ VPN-BEGIN/d" -e "/ VPN-END/d"
 	sed -i $(INSTALLDIR)/www/about.asp -e "/ VPN-BEGIN/d" -e "/ VPN-END/d"
 else
 	rm -f $(INSTALLDIR)/www/vpn-pptp-server.asp
 	rm -f $(INSTALLDIR)/www/vpn-pptp-online.asp
 	rm -f $(INSTALLDIR)/www/vpn-pptp.asp
-	sed -i $(INSTALLDIR)/www/tomato.js -e "/ PPTPD-BEGIN/,/ PPTPD-END/d"
+	sed -i $(INSTALLDIR)/www/tomato.asp -e "/ PPTPD-BEGIN/,/ PPTPD-END/d"
 	sed -i $(INSTALLDIR)/www/about.asp -e "/ PPTPD-BEGIN/,/ PPTPD-END/d"
 endif
 
 # Only include the nfs pages if NFS is compiled in
 ifneq ($(TCONFIG_NFS),y)
 	rm -f $(INSTALLDIR)/www/admin-nfs.asp
-	sed -i $(INSTALLDIR)/www/tomato.js -e "/NFS-BEGIN/,/NFS-END/d"
+	sed -i $(INSTALLDIR)/www/tomato.asp -e "/NFS-BEGIN/,/NFS-END/d"
 	sed -i $(INSTALLDIR)/www/about.asp -e "/NFS-BEGIN/,/NFS-END/d"
 endif
 
 # Only include the snmp pages if SNMP is compiled in
 ifneq ($(TCONFIG_SNMP),y)
 	rm -f $(INSTALLDIR)/www/admin-snmp.asp
-	sed -i $(INSTALLDIR)/www/tomato.js -e "/SNMP-BEGIN/,/SNMP-END/d"
+	sed -i $(INSTALLDIR)/www/tomato.asp -e "/SNMP-BEGIN/,/SNMP-END/d"
 	sed -i $(INSTALLDIR)/www/about.asp -e "/SNMP-BEGIN/,/SNMP-END/d"
 endif
 
 # Only include the mmc pages if SDHC is compiled in
 ifneq ($(TCONFIG_SDHC),y)
 	rm -f $(INSTALLDIR)/www/admin-sdhc.asp
-	sed -i $(INSTALLDIR)/www/tomato.js -e "/SDHC-BEGIN/,/SDHC-END/d"
+	sed -i $(INSTALLDIR)/www/tomato.asp -e "/SDHC-BEGIN/,/SDHC-END/d"
 	sed -i $(INSTALLDIR)/www/about.asp -e "/SDHC-BEGIN/,/SDHC-END/d"
 endif
 
@@ -268,7 +291,7 @@ endif
 # Only include the Tinc page if it is compiled in
 ifneq ($(TCONFIG_TINC),y)
 	rm -f $(INSTALLDIR)/www/vpn-tinc.asp
-	sed -i $(INSTALLDIR)/www/tomato.js -e "/TINC-BEGIN/,/TINC-END/d"
+	sed -i $(INSTALLDIR)/www/tomato.asp -e "/TINC-BEGIN/,/TINC-END/d"
 	sed -i $(INSTALLDIR)/www/about.asp -e "/TINC-BEGIN/,/TINC-END/d"
 endif
 

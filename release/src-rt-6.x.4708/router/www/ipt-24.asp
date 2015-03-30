@@ -15,7 +15,7 @@
 <head>
 <meta http-equiv='content-type' content='text/html;charset=utf-8'>
 <meta name='robots' content='noindex,nofollow'>
-<title>[<% ident(); %>] IP Traffic: Last 24 Hours</title>
+<title>[<% ident(); %>] <% translate("IP Traffic"); %>: <% translate("Last 24 Hours"); %></title>
 <link rel='stylesheet' type='text/css' href='tomato.css'>
 <% css(); %>
 <script type='text/javascript' src='tomato.js'></script>
@@ -141,7 +141,7 @@ REMOVE-END */
 }
 
 ref.showState = function() {
-	E('refresh-button').value = this.running ? 'Stop' : 'Start';
+	E('refresh-button').value = this.running ? '<% translate("Stop"); %>' : '<% translate("Start"); %>';
 }
 
 ref.toggleX = function() {
@@ -311,7 +311,7 @@ function verifyFields(focused, quiet) {
 <table id='container' cellspacing=0>
 <tr><td colspan=2 id='header'>
 	<div class='title'>Tomato</div>
-	<div class='version'>Version <% version(); %></div>
+	<div class='version'><% translate("Version"); %> <% version(); %></div>
 </td></tr>
 <tr id='body'><td id='navi'><script type='text/javascript'>navi()</script></td>
 <td id='content'>
@@ -330,9 +330,9 @@ function verifyFields(focused, quiet) {
 	</script>
 
 	<div id='bwm-controls'>
-		<small>(2 minute interval)</small><br>
+		<small>(<% translate("2 minute interval"); %>)</small><br>
 		<br>
-		Hours:&nbsp;
+		<% translate("Hours"); %>:&nbsp;
 			<a href='javascript:switchHours(1);' id='hr1'>1</a>,
 			<a href='javascript:switchHours(2);' id='hr2'>2</a>,
 			<a href='javascript:switchHours(4);' id='hr4'>4</a>,
@@ -340,45 +340,45 @@ function verifyFields(focused, quiet) {
 			<a href='javascript:switchHours(12);' id='hr12'>12</a>,
 			<a href='javascript:switchHours(18);' id='hr18'>18</a>,
 			<a href='javascript:switchHours(24);' id='hr24'>24</a><br>
-		Avg:&nbsp;
-			<a href='javascript:switchAvg(1)' id='avg1'>Off</a>,
+		<% translate("Avg"); %>:&nbsp;
+			<a href='javascript:switchAvg(1)' id='avg1'><% translate("Off"); %></a>,
 			<a href='javascript:switchAvg(2)' id='avg2'>2x</a>,
 			<a href='javascript:switchAvg(4)' id='avg4'>4x</a>,
 			<a href='javascript:switchAvg(6)' id='avg6'>6x</a>,
 			<a href='javascript:switchAvg(8)' id='avg8'>8x</a><br>
-		Max:&nbsp;
-			<a href='javascript:switchScale(0)' id='scale0'>Uniform</a>,
-			<a href='javascript:switchScale(1)' id='scale1'>Per Address</a><br>
-		Display:&nbsp;
-			<a href='javascript:switchDraw(0)' id='draw0'>Solid</a>,
-			<a href='javascript:switchDraw(1)' id='draw1'>Line</a><br>
-		Color:&nbsp; <a href='javascript:switchColor()' id='drawcolor'>-</a><br>
-		<small><a href='javascript:switchColor(1)' id='drawrev'>[reverse]</a></small><br>
+		<% translate("Max"); %>:&nbsp;
+			<a href='javascript:switchScale(0)' id='scale0'><% translate("Uniform"); %></a>,
+			<a href='javascript:switchScale(1)' id='scale1'><% translate("Per Address"); %></a><br>
+		<% translate("Display"); %>:&nbsp;
+			<a href='javascript:switchDraw(0)' id='draw0'><% translate("Solid"); %></a>,
+			<a href='javascript:switchDraw(1)' id='draw1'><% translate("Line"); %></a><br>
+		<% translate("Color"); %>:&nbsp; <a href='javascript:switchColor()' id='drawcolor'>-</a><br>
+		<small><a href='javascript:switchColor(1)' id='drawrev'>[<% translate("reverse"); %>]</a></small><br>
 		<br><br>
-		&nbsp; &raquo; <a href="admin-iptraffic.asp">Configure</a>
+		&nbsp; &raquo; <a href="admin-iptraffic.asp"><% translate("Configure"); %></a>
 	</div>
 
 	<br><br>
 	<table border=0 cellspacing=2 id='txt'>
 	<tr>
-		<td width='8%' align='right' valign='top'><b style='border-bottom:blue 1px solid' id='rx-name'>RX</b></td>
+		<td width='8%' align='right' valign='top'><b style='border-bottom:blue 1px solid' id='rx-name'><% translate("RX"); %></b></td>
 			<td width='15%' align='right' valign='top'><span id='rx-current'></span></td>
-		<td width='8%' align='right' valign='top'><b>Avg</b></td>
+		<td width='8%' align='right' valign='top'><b><% translate("Avg"); %></b></td>
 			<td width='15%' align='right' valign='top' id='rx-avg'></td>
-		<td width='8%' align='right' valign='top'><b>Peak</b></td>
+		<td width='8%' align='right' valign='top'><b><% translate("Peak"); %></b></td>
 			<td width='15%' align='right' valign='top' id='rx-max'></td>
-		<td width='8%' align='right' valign='top'><b>Total</b></td>
+		<td width='8%' align='right' valign='top'><b><% translate("Total"); %></b></td>
 			<td width='14%' align='right' valign='top' id='rx-total'></td>
 		<td>&nbsp;</td>
 	</tr>
 	<tr>
-		<td width='8%' align='right' valign='top'><b style='border-bottom:blue 1px solid' id='tx-name'>TX</b></td>
+		<td width='8%' align='right' valign='top'><b style='border-bottom:blue 1px solid' id='tx-name'><% translate("TX"); %></b></td>
 			<td width='15%' align='right' valign='top'><span id='tx-current'></span></td>
-		<td width='8%' align='right' valign='top'><b>Avg</b></td>
+		<td width='8%' align='right' valign='top'><b><% translate("Avg"); %></b></td>
 			<td width='15%' align='right' valign='top' id='tx-avg'></td>
-		<td width='8%' align='right' valign='top'><b>Peak</b></td>
+		<td width='8%' align='right' valign='top'><b><% translate("Peak"); %></b></td>
 			<td width='15%' align='right' valign='top' id='tx-max'></td>
-		<td width='8%' align='right' valign='top'><b>Total</b></td>
+		<td width='8%' align='right' valign='top'><b><% translate("Total"); %></b></td>
 			<td width='14%' align='right' valign='top' id='tx-total'></td>
 		<td>&nbsp;</td>
 	</tr>
@@ -391,8 +391,8 @@ function verifyFields(focused, quiet) {
 <div>
 <script type='text/javascript'>
 createFieldTable('', [
-	{ title: 'IPs currently on graphic', name: 'f_ipt_addr_shown', type: 'select', options: [[0,'Select']], suffix: ' <small>(Click/select a device from this list to hide it)</small>' },
-	{ title: 'Hidden addresses', name: 'f_ipt_addr_hidden', type: 'select', options: [[0,'Select']], suffix: ' <small>(Click/select to show it again)</small>' }
+	{ title: '<% translate("IPs currently on graphic"); %>', name: 'f_ipt_addr_shown', type: 'select', options: [[0,'<% translate("Select"); %>']], suffix: ' <small>(<% translate("Click/select a device from this list to hide it"); %>)</small>' },
+	{ title: '<% translate("Hidden addresses"); %>', name: 'f_ipt_addr_hidden', type: 'select', options: [[0,'<% translate("Select"); %>']], suffix: ' <small>(<% translate("Click/select to show it again"); %>)</small>' }
 	]);
 </script>
 </div>
@@ -406,10 +406,10 @@ createFieldTable('', [
 
 <script type='text/javascript'>
 if (nvram.cstats_enable != '1') {
-	W('<div class="note-disabled">IP Traffic monitoring disabled.</b><br><br><a href="admin-iptraffic.asp">Enable &raquo;</a><div>');
+	W('<div class="note-disabled"><% translate("IP Traffic monitoring disabled"); %>.</b><br><br><a href="admin-iptraffic.asp"><% translate("Enable"); %> &raquo;</a><div>');
 	E('cstats').style.display = 'none';
 }else {
-	W('<div class="note-warning" style="display:none" id="rbusy">The cstats program is not responding or is busy. Try reloading after a few seconds.</div>');
+	W('<div class="note-warning" style="display:none" id="rbusy"><% translate("The cstats program is not responding or is busy. Try reloading after a few seconds"); %>.</div>');
 }
 </script>
 
@@ -419,7 +419,7 @@ if (nvram.cstats_enable != '1') {
 <tr><td id='footer' colspan=2>
 	<span id='dtime'></span>
 	<img src='spin.gif' id='refresh-spinner' onclick='debugTime=1'>
-	<input type='button' value='Refresh' id='refresh-button' onclick='ref.toggleX()'>
+	<input type='button' value='<% translate("Refresh"); %>' id='refresh-button' onclick='ref.toggleX()'>
 </td></tr>
 </table>
 </form>

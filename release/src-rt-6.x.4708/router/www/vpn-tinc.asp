@@ -15,7 +15,7 @@
 <head>
 <meta http-equiv='content-type' content='text/html;charset=utf-8'>
 <meta name='robots' content='noindex,nofollow'>
-<title>[<% ident(); %>] Tinc Mesh VPN</title>
+<title>[<% ident(); %>] <% translate("Tinc Mesh VPN"); %></title>
 <link rel='stylesheet' type='text/css' href='tomato.css'>
 <link rel='stylesheet' type='text/css' href='color.css'>
 <script type='text/javascript' src='tomato.js'></script>
@@ -58,12 +58,12 @@ textarea
 
 //	<% nvram("tinc_wanup,tinc_name,tinc_devicetype,tinc_mode,tinc_vpn_netmask,tinc_private_rsa,tinc_private_ed25519,tinc_custom,tinc_hosts,tinc_firewall,tinc_manual_firewall,tinc_manual_tinc_up,tinc_tinc_up,tinc_tinc_down,tinc_host_up,tinc_host_down,tinc_subnet_up,tinc_subnet_down"); %>
 
-var tinc_compression = [['0','0 - None'],['1','1 - Fast zlib'],['2','2'],['3','3'],['4','4'],['5','5'],['6','6'],['7','7'],['8','8'],['9','9 - Best zlib'],['10','10 - Fast lzo'],['11','11 - Best lzo']];
+var tinc_compression = [['0','0 - <% translate("None"); %>'],['1','1 - <% translate("Fast zlib"); %>'],['2','2'],['3','3'],['4','4'],['5','5'],['6','6'],['7','7'],['8','8'],['9','9 - <% translate("Best zlib"); %>'],['10','10 - <% translate("Fast lzo"); %>'],['11','11 - <% translate("Best lzo"); %>']];
 var th = new TomatoGrid();
 var cmd = null;
 var cmdresult = '';
 
-tabs = [['config', 'Config'],['hosts', 'Hosts'],['scripts', 'Scripts'],['keys', 'Generate Keys'],['status', 'Status']];
+tabs = [['config', '<% translate("Config"); %>'],['hosts', '<% translate("Hosts"); %>'],['scripts', '<% translate("Scripts"); %>'],['keys', '<% translate("Generate Keys"); %>'],['status', '<% translate("Status"); %>']];
 changed = 0;
 tincup = parseInt ('<% psup("tincd"); %>');
 
@@ -79,7 +79,7 @@ th.setup = function() {
 		{ type: 'textarea', proxy: "_host_ed25519_key" },
 		{ type: 'textarea', proxy: "_host_custom" }
 		]);
-	this.headerSet(['ConnectTo', 'Name', 'Address', 'Port', 'Compression', 'Subnet']);
+	this.headerSet(['<% translate("ConnectTo"); %>', '<% translate("Name"); %>', '<% translate("Address"); %>', '<% translate("Port"); %>', '<% translate("Compression"); %>', '<% translate("Subnet"); %>']);
 	var nv = nvram.tinc_hosts.split('>');
 	for (var i = 0; i < nv.length; ++i) {
 		var t = nv[i].split('<');
@@ -92,7 +92,7 @@ th.setup = function() {
 }
 
 th.dataToView = function(data) {
-	return [(data[0] != '0') ? 'On' : '', data[1], data[2], data[3], data[4] ,data[5] ];
+	return [(data[0] != '0') ? '<% translate("On"); %>' : '', data[1], data[2], data[3], data[4] ,data[5] ];
 }
 
 th.fieldValuesToData = function(row) {
@@ -121,11 +121,11 @@ th.verifyFields = function(row, quiet) {
 	var f = fields.getAll(row);
 
 	if (f[1].value == "") {
-		ferror.set(f[1], "Host Name is required.", quiet); return 0 ; }
+		ferror.set(f[1], "<% translate("Host Name is required"); %>.", quiet); return 0 ; }
 	else {  ferror.clear(f[1]) }
 
 	if (f[0].checked && f[2].value == "") {
-		ferror.set(f[2], "Address must be supplied when ConnectTo is checked.", quiet); return 0 ; }
+		ferror.set(f[2], "<% translate("Address must be supplied when ConnectTo is checked"); %>.", quiet); return 0 ; }
 	else {  ferror.clear(f[2]) }
 
 	if (!f[3].value == "" ) {
@@ -134,17 +134,17 @@ th.verifyFields = function(row, quiet) {
 
 	if(E('_tinc_devicetype').value == 'tun'){
 		if ((!v_subnet(f[5], 1)) && (!v_ip(f[5], 1))) {
-			ferror.set(f[5], "Invalid Subnet or IP address.", quiet); return 0 ; }
+			ferror.set(f[5], "<% translate("Invalid Subnet or IP address"); %>.", quiet); return 0 ; }
 		else {  ferror.clear(f[5]) }
 	}
 	else if (E('_tinc_devicetype').value == 'tap'){
 		if (f[5].value != '') {
-			ferror.set(f[5], "Subnet is left blank when using the TAP Interface Type.", quiet); return 0 ; }
+			ferror.set(f[5], "<% translate("Subnet is left blank when using the TAP Interface Type"); %>.", quiet); return 0 ; }
 		else {  ferror.clear(f[5]) }
 	}
 
 	if (E('_host_ed25519_key').value == "") {
-		ferror.set(E('_host_ed25519_key'), "Ed25519 Public Key is required.", quiet); return 0 ; }
+		ferror.set(E('_host_ed25519_key'), "<% translate("Ed25519 Public Key is required；"); %>.", quiet); return 0 ; }
 	else {  ferror.clear(E('_host_ed25519_key')) }
 
 	return 1;
@@ -208,11 +208,11 @@ function verifyFields(focused, quiet)
 
 	// Element Verification
 	if (E('_tinc_name').value == "" && E('_f_tinc_wanup').checked) {
-		ferror.set(E('_tinc_name'), "Host Name is required when 'Start With WAN' is checked.", quiet); return 0 ; }
+		ferror.set(E('_tinc_name'), "<% translate("Host Name is required when 'Start With WAN' is checked"); %>.", quiet); return 0 ; }
 	else {  ferror.clear(E('_tinc_name')) }
 
 	if (E('_tinc_private_ed25519').value == "" && E('_tinc_custom').value == "" && E('_f_tinc_wanup').checked) {
-		ferror.set(E('_tinc_private_ed25519'), "Ed25519 Private Key is required when 'Start With WAN' is checked.", quiet); return 0 ; }
+		ferror.set(E('_tinc_private_ed25519'), "<% translate("Ed25519 Private Key is required when 'Start With WAN' is checked"); %>.", quiet); return 0 ; }
 	else {  ferror.clear(E('_tinc_private_ed25519')) }
 
 	if (!v_netmask('_tinc_vpn_netmask', quiet)) return 0;
@@ -230,7 +230,7 @@ function verifyFields(focused, quiet)
 	}
 
 	if (!hostdefined && E('_f_tinc_wanup').checked) {
-		ferror.set(E('_tinc_name'), "Host Name \"" + E('_tinc_name').value + "\" must be defined in the hosts area when 'Start With WAN' is checked.", quiet); return 0 ; }
+		ferror.set(E('_tinc_name'), "<% translate("Host Name"); %> \"" + E('_tinc_name').value + "\" <% translate("must be defined in the hosts area when 'Start With WAN' is checked"); %>.", quiet); return 0 ; }
 	else {  ferror.clear(E('_tinc_name')) };
 
 	return 1;
@@ -334,7 +334,7 @@ function updateStatus(type)
 		displayStatus();
 	}
 	cmd.onError = function(x) {
-		cmdresult = 'ERROR: ' + x;
+		cmdresult = '<% translate("ERROR"); %>: ' + x;
 		displayStatus();
 	}
 
@@ -387,7 +387,7 @@ function updateNodes()
 			displayNodes();
 		}
 		cmd.onError = function(x) {
-			cmdresult = 'ERROR: ' + x;
+			cmdresult = '<% translate("ERROR"); %>: ' + x;
 			displayNodes();
 		}
 
@@ -410,7 +410,7 @@ function getVersion()
 		displayVersion();
 	}
 	cmd.onError = function(x) {
-		cmdresult = 'ERROR: ' + x;
+		cmdresult = '<% translate("ERROR"); %>: ' + x;
 		displayVersion();
 	}
 
@@ -445,7 +445,7 @@ function toggle(service, isup)
 		changed = 1;
 
 	if (changed) {
-		if (!confirm("Unsaved changes will be lost. Continue anyway?")) return;
+		if (!confirm("<% translate("Unsaved changes will be lost. Continue anyway"); %>?")) return;
 	}
 
 	E('_' + service + '_button1').disabled = true;
@@ -502,11 +502,11 @@ function earlyInit()
 function toggleVisibility(whichone) {
         if (E('sesdiv_' + whichone).style.display == '') {
                 E('sesdiv_' + whichone).style.display = 'none';
-                E('sesdiv_' + whichone + '_showhide').innerHTML = '(Click here to show)';
+                E('sesdiv_' + whichone + '_showhide').innerHTML = '(<% translate("Click here to show"); %>)';
                 cookie.set('vpn_tinc_' + whichone + '_vis', 0);
         } else {
                 E('sesdiv_' + whichone).style.display='';
-                E('sesdiv_' + whichone + '_showhide').innerHTML = '(Click here to hide)';
+                E('sesdiv_' + whichone + '_showhide').innerHTML = '(<% translate("Click here to hide"); %>)';
                 cookie.set('vpn_tinc_' + whichone + '_vis', 1);
         }
 }
@@ -520,7 +520,7 @@ function toggleVisibility(whichone) {
 <table id='container' cellspacing=0>
 <tr><td colspan=2 id='header'>
 	<div class='title'>Tomato</div>
-	<div class='version'>Version <% version(); %></div>
+	<div class='version'><% translate("Version"); %> <% version(); %></div>
 </td></tr>
 <tr id='body'><td id='navi'><script type='text/javascript'>navi()</script></td>
 <td id='content'>
@@ -532,7 +532,7 @@ function toggleVisibility(whichone) {
 <input type='hidden' name='_service' value=''>
 
 <div class='section-title' style='float:right' id='version'></div>
-<div class='section-title'>Tinc Configuration</div>
+<div class='section-title'><% translate("Tinc Configuration"); %></div>
 
 
 <script type='text/javascript'>
@@ -547,19 +547,19 @@ function toggleVisibility(whichone) {
 	W('<div class=\'section\'>');
 
 	createFieldTable('', [
-		{ title: 'Start With WAN ', name: 'f_tinc_wanup', type: 'checkbox', value: (nvram.tinc_wanup == 1) },
-		{ title: 'Interface Type', name: 'tinc_devicetype', type: 'select', options: [['tun','TUN'],['tap','TAP']], value: nvram.tinc_devicetype },
-		{ title: 'Mode', name: 'tinc_mode', type: 'select', options: [['switch','Switch'],['hub','Hub']], value: nvram.tinc_mode },
-		{ title: 'VPN Netmask', name: 'tinc_vpn_netmask', type: 'text', maxlen: 15, size: 25, value: nvram.tinc_vpn_netmask,  suffix: ' <small>The netmask for the entire VPN network.</small>' },
-		{ title: 'Host Name', name: 'tinc_name', type: 'text', maxlen: 30, size: 25, value: nvram.tinc_name, suffix: ' <small>Must also be defined in the \'Hosts\' area.</small>' },
-		{ title: 'Ed25519 Private Key', name: 'tinc_private_ed25519', type: 'textarea', value: nvram.tinc_private_ed25519 },
-		{ title: 'RSA Private Key *', name: 'tinc_private_rsa', type: 'textarea', value: nvram.tinc_private_rsa },
-		{ title: 'Custom', name: 'tinc_custom', type: 'textarea', value: nvram.tinc_custom }
+		{ title: '<% translate("Start With WAN"); %> ', name: 'f_tinc_wanup', type: 'checkbox', value: (nvram.tinc_wanup == 1) },
+		{ title: '<% translate("Interface Type"); %>', name: 'tinc_devicetype', type: 'select', options: [['tun','TUN'],['tap','TAP']], value: nvram.tinc_devicetype },
+		{ title: '<% translate("Mode"); %>', name: 'tinc_mode', type: 'select', options: [['switch','<% translate("Switch"); %>'],['hub','<% translate("Hub"); %>']], value: nvram.tinc_mode },
+		{ title: '<% translate("VPN Netmask"); %>', name: 'tinc_vpn_netmask', type: 'text', maxlen: 15, size: 25, value: nvram.tinc_vpn_netmask,  suffix: ' <small><% translate("The netmask for the entire VPN network"); %>.</small>' },
+		{ title: '<% translate("Host Name"); %>', name: 'tinc_name', type: 'text', maxlen: 30, size: 25, value: nvram.tinc_name, suffix: ' <small><% translate("Must also be defined in the"); %> \'Hosts\' <% translate("area"); %>.</small>' },
+		{ title: '<% translate("Ed25519 Private Key"); %>', name: 'tinc_private_ed25519', type: 'textarea', value: nvram.tinc_private_ed25519 },
+		{ title: '<% translate("RSA Private Key"); %> *', name: 'tinc_private_rsa', type: 'textarea', value: nvram.tinc_private_rsa },
+		{ title: '<% translate("Custom"); %>', name: 'tinc_custom', type: 'textarea', value: nvram.tinc_custom }
 	]);
 
-	W('<small><b style=\'font-size: 1.5em\'>*</b> Only required to create legacy connections with tinc1.0 nodes.</small>');
+	W('<small><b style=\'font-size: 1.5em\'>*</b> <% translate("Only required to create legacy connections with tinc1.0 nodes"); %>.</small>');
 	W('</div>');
-	W('<input type="button" value="' + (tincup ? 'Stop' : 'Start') + ' Now" onclick="toggle(\'tinc\', tincup)" id="_tinc_button1">');
+	W('<input type="button" value="' + (tincup ? '<% translate("Stop"); %>' : '<% translate("Start"); %>') + ' <% translate("Now"); %>" onclick="toggle(\'tinc\', tincup)" id="_tinc_button1">');
 	W('</div>');
 	// -------- END CONFIG TAB -----------
 
@@ -575,28 +575,28 @@ function toggleVisibility(whichone) {
 	th.setup();
 
 	createFieldTable('', [
-		{ title: 'Ed25519 Public Key', name: 'host_ed25519_key', type: 'textarea' },
-		{ title: 'RSA Public Key *', name: 'host_rsa_key', type: 'textarea' },
-		{ title: 'Custom', name: 'host_custom', type: 'textarea' }
+		{ title: '<% translate("Ed25519 Public Key"); %>', name: 'host_ed25519_key', type: 'textarea' },
+		{ title: '<% translate("RSA Public Key"); %> *', name: 'host_rsa_key', type: 'textarea' },
+		{ title: '<% translate("Custom"); %>', name: 'host_custom', type: 'textarea' }
 	]);
 
-	W('<small><b style=\'font-size: 1.5em\'>*</b> Only required to create legacy connections with tinc1.0 nodes.</small>');
+	W('<small><b style=\'font-size: 1.5em\'>*</b> <% translate("Only required to create legacy connections with tinc1.0 nodes"); %>.</small>');
 	W('</div>');
-	W('<input type="button" value="' + (tincup ? 'Stop' : 'Start') + ' Now" onclick="toggle(\'tinc\', tincup)" id="_tinc_button2">');
+	W('<input type="button" value="' + (tincup ? '<% translate("Stop"); %>' : '<% translate("Start"); %>') + ' <% translate("Now"); %>" onclick="toggle(\'tinc\', tincup)" id="_tinc_button2">');
 
 	W('<br>');
 	W('<br>');
 
-	W('<div class=\'section-title\'>Notes <small><i><a href=\'javascript:toggleVisibility(\"hosts\");\'><span id=\'sesdiv_hosts_showhide\'>(Click here to show)</span></a></i></small></div>');
+	W('<div class=\'section-title\'><% translate("Notes"); %> <small><i><a href=\'javascript:toggleVisibility(\"hosts\");\'><span id=\'sesdiv_hosts_showhide\'>(<% translate("Click here to show"); %>)</span></a></i></small></div>');
 	W('<div class=\'section\' id=\'sesdiv_hosts\' style=\'display:none\'>');
 	W('<ul>');
-	W('<li><b>ConnectTo</b> - Tinc will try to establish a meta-connection to the host. Requires the Address field');
-	W('<li><b>Name</b> - Name of the host. There must be an entry for this host.');
-	W('<li><b>Address</b> <i>(optional)</i> - Must resolve to the external IP address where the host can be reached.');
-	W('<li><b>Port</b> <i>(optional)</i> - The port the host listens on. If empty the default value (655) is used.');
-	W('<li><b>Compression</b> - The level of compression used for UDP packets. Possible values are ');
-	W('0 (off), 1 (fast zlib) and any integer up to 9 (best zlib), 10 (fast lzo) and 11 (best lzo).');
-	W('<li><b>Subnet</b> - The subnet which the host will serve.');
+	W('<li><b><% translate("ConnectTo"); %></b> - <% translate("Tinc will try to establish a meta-connection to the host. Requires the Address field"); %>');
+	W('<li><b><% translate("Name"); %></b> - <% translate("Name of the host. There must be an entry for this host"); %>.');
+	W('<li><b><% translate("Address"); %></b> <i>(<% translate("optional"); %>)</i> - <% translate("Must resolve to the external IP address where the host can be reached"); %>.');
+	W('<li><b><% translate("Port"); %></b> <i>(<% translate("optional"); %>)</i> - <% translate("The port the host listens on. If empty the default value (655) is used"); %>.');
+	W('<li><b><% translate("Compression"); %></b> - <% translate("The level of compression used for UDP packets. Possible values are"); %> ');
+	W('0 (<% translate("off"); %>), 1 (<% translate("fast"); %> zlib) <% translate("and any integer up to 9 (best zlib), 10 (fast lzo) and 11 (best lzo)"); %>.');
+	W('<li><b><% translate("Subnet"); %></b> - <% translate("The subnet which the host will serve"); %>.');
 	W('</ul>');
 	W('</div>');
 
@@ -612,19 +612,19 @@ function toggleVisibility(whichone) {
 	W('<div class=\'section\'>');
 
 	createFieldTable('', [
-		{ title: 'Firewall Rules', name: 'tinc_manual_firewall', type: 'select', options: [['0','Automatic'],['1','Additional'],['2','Manual']], value: nvram.tinc_manual_firewall },
-		{ title: 'Firewall', name: 'tinc_firewall', type: 'textarea', value: nvram.tinc_firewall },
-		{ title: 'tinc-up creation', name: 'tinc_manual_tinc_up', type: 'select', options: [['0','Automatic'],['1','Manual']], value: nvram.tinc_manual_tinc_up },
-		{ title: 'tinc-up', name: 'tinc_tinc_up', type: 'textarea', value: nvram.tinc_tinc_up },
-		{ title: 'tinc-down', name: 'tinc_tinc_down', type: 'textarea', value: nvram.tinc_tinc_down },
-		{ title: 'host-up', name: 'tinc_host_up', type: 'textarea', value: nvram.tinc_host_up },
-		{ title: 'host-down', name: 'tinc_host_down', type: 'textarea', value: nvram.tinc_host_down },
-		{ title: 'subnet-up', name: 'tinc_subnet_up', type: 'textarea', value: nvram.tinc_subnet_up },
-		{ title: 'subnet-down', name: 'tinc_subnet_down', type: 'textarea', value: nvram.tinc_subnet_down }
+		{ title: '<% translate("Firewall Rules"); %>', name: 'tinc_manual_firewall', type: 'select', options: [['0','<% translate("Automatic"); %>'],['1','<% translate("Additional"); %>'],['2','<% translate("Manual"); %>']], value: nvram.tinc_manual_firewall },
+		{ title: '<% translate("Firewall"); %>', name: 'tinc_firewall', type: 'textarea', value: nvram.tinc_firewall },
+		{ title: '<% translate("tinc-up creation"); %>', name: 'tinc_manual_tinc_up', type: 'select', options: [['0','<% translate("Automatic"); %>'],['1','<% translate("Manual"); %>']], value: nvram.tinc_manual_tinc_up },
+		{ title: '<% translate("tinc-up"); %>', name: 'tinc_tinc_up', type: 'textarea', value: nvram.tinc_tinc_up },
+		{ title: '<% translate("tinc-down"); %>', name: 'tinc_tinc_down', type: 'textarea', value: nvram.tinc_tinc_down },
+		{ title: '<% translate("host-up"); %>', name: 'tinc_host_up', type: 'textarea', value: nvram.tinc_host_up },
+		{ title: '<% translate("host-down"); %>', name: 'tinc_host_down', type: 'textarea', value: nvram.tinc_host_down },
+		{ title: '<% translate("subnet-up"); %>', name: 'tinc_subnet_up', type: 'textarea', value: nvram.tinc_subnet_up },
+		{ title: '<% translate("subnet-down"); %>', name: 'tinc_subnet_down', type: 'textarea', value: nvram.tinc_subnet_down }
 	]);
 
 	W('</div>');
-	W('<input type="button" value="' + (tincup ? 'Stop' : 'Start') + ' Now" onclick="toggle(\'tinc\', tincup)" id="_tinc_button3">');
+	W('<input type="button" value="' + (tincup ? '<% translate("Stop"); %>' : '<% translate("Start"); %>') + ' <% translate("Now"); %>" onclick="toggle(\'tinc\', tincup)" id="_tinc_button3">');
 	W('</div>');
 	// -------- END SCRIPTS TAB -----------
 
@@ -635,15 +635,15 @@ function toggleVisibility(whichone) {
 	W('<div class=\'section\'>');
 
 	createFieldTable('', [
-		{ title: 'Ed25519 Private Key', name: 'ed25519_private_key', type: 'textarea', value: "" },
-		{ title: 'Ed25519 Public Key', name: 'ed25519_public_key', type: 'textarea', value: "" },
-		{ title: 'RSA Private Key', name: 'rsa_private_key', type: 'textarea', value: "" },
-		{ title: 'RSA Public Key', name: 'rsa_public_key', type: 'textarea', value: "" }
+		{ title: '<% translate("Ed25519 Private Key"); %>', name: 'ed25519_private_key', type: 'textarea', value: "" },
+		{ title: '<% translate("Ed25519 Public Key"); %>', name: 'ed25519_public_key', type: 'textarea', value: "" },
+		{ title: '<% translate("RSA Private Key"); %>', name: 'rsa_private_key', type: 'textarea', value: "" },
+		{ title: '<% translate("RSA Public Key"); %>', name: 'rsa_public_key', type: 'textarea', value: "" }
         ]);
 
 	W('</div>');
-	W('<div style=\'float:left\'><input type=\'button\' value=\'Generate Keys\' onclick=\'generateKeys()\' id=\'execb\'></div>');
-	W('<div style=\"visibility:hidden;text-align:right\" id=\"generateWait\">Please wait... <img src=\'spin.gif\' style=\"vertical-align:top\"></div>');
+	W('<div style=\'float:left\'><input type=\'button\' value=\'<% translate("Generate Keys"); %>\' onclick=\'generateKeys()\' id=\'execb\'></div>');
+	W('<div style=\"visibility:hidden;text-align:right\" id=\"generateWait\"><% translate("Please wait"); %>... <img src=\'spin.gif\' style=\"vertical-align:top\"></div>');
 	W('</div>');
 
 	// -------- END KEY TAB -----------
@@ -655,23 +655,23 @@ function toggleVisibility(whichone) {
 	W('<br>');
 
 	W('<div class=\'section\'>');
-	W('Tinc is currently '+(!tincup ? 'stopped.' : 'running.')+' ');
-	W('<input type="button" value="' + (tincup ? 'Stop' : 'Start') + ' Now" onclick="toggle(\'tinc\', tincup)" id="_tinc_button4">');
+	W('<% translate("Tinc is currently"); %> '+(!tincup ? '<% translate("stopped"); %>.' : '<% translate("running"); %>.')+' ');
+	W('<input type="button" value="' + (tincup ? '<% translate("Stop"); %>' : '<% translate("Start"); %>') + ' <% translate("Now"); %>" onclick="toggle(\'tinc\', tincup)" id="_tinc_button4">');
 	W('</div>');
 
 
 	W('<div class=\'section\'>');
 
-	W('<div style=\'float:left\'><input type=\'button\' value=\'Edges\' onclick=\'updateStatus(\"edges\")\' id=\'edges\' style=\"width:85px\"></div>');
-	W('<div style=\'float:left\'><input type=\'button\' value=\'Subnets\' onclick=\'updateStatus(\"subnets\")\' id=\'subnets\' style=\"width:85px\"></div>');
-	W('<div style=\'float:left\'><input type=\'button\' value=\'Connections\' onclick=\'updateStatus(\"connections\")\' id=\'connections\' style=\"width:85px\"></div>');
-	W('<div style=\'float:left\'><input type=\'button\' value=\'Nodes\' onclick=\'updateStatus(\"nodes\")\' id=\'nodes\' style=\"width:85px\"></div>');
-	W('<div style=\"visibility:hidden;text-align:right\" id=\"statusWait\">Please wait... <img src=\'spin.gif\' style=\"vertical-align:top\"></div>');
+	W('<div style=\'float:left\'><input type=\'button\' value=\'<% translate("Edges"); %>\' onclick=\'updateStatus(\"edges\")\' id=\'edges\' style=\"width:85px\"></div>');
+	W('<div style=\'float:left\'><input type=\'button\' value=\'<% translate("Subnets"); %>\' onclick=\'updateStatus(\"subnets\")\' id=\'subnets\' style=\"width:85px\"></div>');
+	W('<div style=\'float:left\'><input type=\'button\' value=\'<% translate("Connections"); %>\' onclick=\'updateStatus(\"connections\")\' id=\'connections\' style=\"width:85px\"></div>');
+	W('<div style=\'float:left\'><input type=\'button\' value=\'<% translate("Nodes"); %>\' onclick=\'updateStatus(\"nodes\")\' id=\'nodes\' style=\"width:85px\"></div>');
+	W('<div style=\"visibility:hidden;text-align:right\" id=\"statusWait\"><% translate("Please wait"); %>... <img src=\'spin.gif\' style=\"vertical-align:top\"></div>');
 
 	W('</div>');
 
 	W('<div class=\'section\'>');
-	W('<input type=\'button\' value=\'Info\' onclick=\'updateStatus(\"info\")\' id=\'info\' style=\"width:85px\">');
+	W('<input type=\'button\' value=\'<% translate("Info"); %>\' onclick=\'updateStatus(\"info\")\' id=\'info\' style=\"width:85px\">');
 	W('<select id=\'hostselect\' style=\"width:170px\"></select>');
 	W('</div>');
 
@@ -687,8 +687,8 @@ function toggleVisibility(whichone) {
 </td></tr>
 <tr><td id='footer' colspan=2>
 	<span id='footer-msg'></span>
-	<input type='button' value='Save' id='save-button' onclick='save()'>
-	<input type='button' value='Cancel' id='cancel-button' onclick='reloadPage();'>
+	<input type='button' value='<% translate("Save"); %>' id='save-button' onclick='save()'>
+	<input type='button' value='<% translate("Cancel"); %>' id='cancel-button' onclick='reloadPage();'>
 </td></tr>
 </table>
 </form>

@@ -19,7 +19,7 @@
 <head>
 <meta http-equiv='content-type' content='text/html;charset=utf-8'>
 <meta name='robots' content='noindex,nofollow'>
-<title>[<% ident(); %>] Advanced: VLAN</title>
+<title>[<% ident(); %>] <% translate("Advanced"); %>: VLAN</title>
 <link rel='stylesheet' type='text/css' href='tomato.css'>
 <% css(); %>
 <script type='text/javascript' src='tomato.js'></script>
@@ -424,7 +424,7 @@ REMOVE-END */
   var e = E('footer-msg');
 
   if(vlg.countWan() != 1) {
-    e.innerHTML = 'Cannot proceed: one VID must be assigned to WAN.';
+    e.innerHTML = '<% translate("Cannot proceed: one VID must be assigned to WAN"); %>.';
     e.style.visibility = 'visible';
     setTimeout(
       function() {
@@ -435,7 +435,7 @@ REMOVE-END */
   }
 
   if(vlg.countLan(0) != 1) {
-    e.innerHTML = 'Cannot proceed: one and only one VID must be assigned to the primary LAN (br0).';
+    e.innerHTML = '<% translate("Cannot proceed: one and only one VID must be assigned to the primary LAN"); %> (br0).';
     e.style.visibility = 'visible';
     setTimeout(
       function() {
@@ -446,7 +446,7 @@ REMOVE-END */
   }
 
   if (v.length < 1) {
-    e.innerHTML = 'Cannot proceed without setting a default VID';
+    e.innerHTML = '<% translate("Cannot proceed without setting a default VID"); %>';
     e.style.visibility = 'visible';
     setTimeout(
       function() {
@@ -456,7 +456,7 @@ REMOVE-END */
     return;
   }
 
-  if (confirm("Router must be rebooted to proceed. Commit changes to NVRAM and reboot now?"))
+  if (confirm("<% translate("Router must be rebooted to proceed. Commit changes to NVRAM and reboot now"); %>?"))
     form.submit(fom, 0);
 }
 
@@ -484,7 +484,7 @@ if(port_vlan_supported) { // aka if(supported_hardware) block
     { type: 'checkbox', prefix: '<div class="centered">', suffix: '</div>' },
     { type: 'select', options: [[1, 'none'],[2, 'WAN'],[3, 'LAN (br0)'],[4, 'LAN1 (br1)'],[5, 'LAN2 (br2)'],[6, 'LAN3 (br3)']], prefix: '<div class="centered">', suffix: '</div>' }]);
 
-    this.headerSet(['VLAN', 'VID', 'Port 1', 'Tagged', 'Port 2', 'Tagged', 'Port 3', 'Tagged', 'Port 4', 'Tagged', 'WAN Port', 'Tagged', 'Default', 'Bridge']);
+    this.headerSet(['VLAN', 'VID', '<% translate("Port"); %> 1', '<% translate("Tagged"); %>', '<% translate("Port"); %> 2', '<% translate("Tagged"); %>', '<% translate("Port"); %> 3', '<% translate("Tagged"); %>', '<% translate("Port"); %> 4', '<% translate("Tagged"); %>', 'WAN <% translate("Port"); %>', '<% translate("Tagged"); %>', '<% translate("Default"); %>', '<% translate("Bridge"); %>']);
 
 	vlg.populate();
     vlg.canDelete = false;
@@ -648,7 +648,7 @@ REMOVE-END */
 
     if ((f[COL_P0].checked == 1) && (this.countElem(COL_P0,1)>0)) {
       if (((this.countElem(COL_P0,1) != this.countElem(COL_P0T,1)) || (f[COL_P0T].checked==0))) {
-        ferror.set(f[COL_P0T], 'Port 1 cannot be assigned to more than one VLAN unless frames are tagged on all VLANs Port 1 is member', quiet);
+        ferror.set(f[COL_P0T], '<% translate("Port 1 cannot be assigned to more than one VLAN unless frames are tagged on all VLANs Port 1 is member"); %>', quiet);
         valid=0;
       } else {
         ferror.clear(f[COL_P0T]);
@@ -656,7 +656,7 @@ REMOVE-END */
     }
     if ((f[COL_P1].checked == 1) && (this.countElem(COL_P1,1)>0)) {
       if (((this.countElem(COL_P1,1) != this.countElem(COL_P1T,1)) || (f[COL_P1T].checked==0))) {
-        ferror.set(f[COL_P1T], 'Port 2 cannot be assigned to more than one VLAN unless frames are tagged on all VLANs Port 2 is member', quiet);
+        ferror.set(f[COL_P1T], '<% translate("Port 2 cannot be assigned to more than one VLAN unless frames are tagged on all VLANs Port 2 is member"); %>', quiet);
         valid=0;
       } else {
         ferror.clear(f[COL_P1T]);
@@ -664,7 +664,7 @@ REMOVE-END */
     }
     if ((f[COL_P2].checked == 1) && (this.countElem(COL_P2,1)>0)) {
       if (((this.countElem(COL_P2,1) != this.countElem(COL_P2T,1)) || (f[COL_P2T].checked==0))) {
-        ferror.set(f[COL_P2T], 'Port 3 cannot be assigned to more than one VLAN unless frames are tagged on all VLANs Port 3 is member', quiet);
+        ferror.set(f[COL_P2T], '<% translate("Port 3 cannot be assigned to more than one VLAN unless frames are tagged on all VLANs Port 3 is member"); %>', quiet);
         valid=0;
       } else {
         ferror.clear(f[COL_P2T]);
@@ -672,7 +672,7 @@ REMOVE-END */
     }
     if ((f[COL_P3].checked == 1) && (this.countElem(COL_P3,1)>0)) {
       if (((this.countElem(COL_P3,1) != this.countElem(COL_P3T,1)) || (f[COL_P3T].checked==0))) {
-        ferror.set(f[COL_P3T], 'Port 4 cannot be assigned to more than one VLAN unless frames are tagged on all VLANs Port 4 is member', quiet);
+        ferror.set(f[COL_P3T], '<% translate("Port 4 cannot be assigned to more than one VLAN unless frames are tagged on all VLANs Port 4 is member"); %>', quiet);
         valid=0;
       } else {
         ferror.clear(f[COL_P3T]);
@@ -680,7 +680,7 @@ REMOVE-END */
     }
     if ((f[COL_P4].checked == 1) && (this.countElem(COL_P4,1)>0)) {
       if (((this.countElem(COL_P4,1) != this.countElem(COL_P4T,1)) || (f[COL_P4T].checked==0))) {
-        ferror.set(f[COL_P4T], 'WAN port cannot be assigned to more than one VLAN unless frames are tagged on all VLANs WAN port is member', quiet);
+        ferror.set(f[COL_P4T], '<% translate("WAN port cannot be assigned to more than one VLAN unless frames are tagged on all VLANs WAN port is member"); %>', quiet);
         valid=0;
       } else {
         ferror.clear(f[COL_P4T]);
@@ -693,21 +693,21 @@ REMOVE-END */
     }
 
     if((this.countDefaultVID() > 0) && (f[COL_VID_DEF].checked ==1)) {
-      ferror.set(f[COL_VID_DEF], 'Only one VID can be selected as the default VID', quiet);
+      ferror.set(f[COL_VID_DEF], '<% translate("Only one VID can be selected as the default VID"); %>', quiet);
       valid = 0;
     } else {
       ferror.clear(f[COL_VID_DEF]);
     }
 
     if(this.countVID(f[COL_VID].selectedIndex) > 0) {
-      ferror.set(f[COL_VID], 'Cannot add more than one entry with VID ' + f[0].selectedIndex, quiet);
+      ferror.set(f[COL_VID], '<% translate("Cannot add more than one entry with VID"); %> ' + f[0].selectedIndex, quiet);
       valid = 0;
     } else {
       ferror.clear(f[COL_VID]);
     }
 
     if ((this.countWan() > 0) && (f[COL_BRI].selectedIndex == 1)) {
-      ferror.set(f[COL_BRI],'Only one VID can be used as WAN at any time', quiet);
+      ferror.set(f[COL_BRI],'<% translate("Only one VID can be used as WAN at any time"); %>', quiet);
       valid = 0;
     } else {
       ferror.clear(f[COL_BRI]);
@@ -715,7 +715,7 @@ REMOVE-END */
 
     for(var i=0; i<4; i++) {
       if ((this.countLan(i) > 0) && (f[COL_BRI].selectedIndex == (i+2))) {
-        ferror.set(f[COL_BRI],'One and only one VID can be used for LAN' + ((i==0) ? '' : i ) + ' (br'+i+') at any time', quiet);
+        ferror.set(f[COL_BRI],'<% translate("One and only one VID can be used for LAN"); %>' + ((i==0) ? '' : i ) + ' (br'+i+') at any time', quiet);
         valid = 0;
       } else {
         ferror.clear(f[COL_BRI]);
@@ -901,11 +901,11 @@ function init() {
 function toggleVisibility(whichone) {
 	if (E('sesdiv_' + whichone).style.display == '') {
 		E('sesdiv_' + whichone).style.display = 'none';
-		E('sesdiv_' + whichone + '_showhide').innerHTML = '(Click here to show)';
+		E('sesdiv_' + whichone + '_showhide').innerHTML = '(<% translate("Click here to show"); %>)';
 		cookie.set('advanced_vlan_' + whichone + '_vis', 0);
 	} else {
 		E('sesdiv_' + whichone).style.display='';
-		E('sesdiv_' + whichone + '_showhide').innerHTML = '(Click here to hide)';
+		E('sesdiv_' + whichone + '_showhide').innerHTML = '(<% translate("Click here to hide"); %>)';
 		cookie.set('advanced_vlan_' + whichone + '_vis', 1);
 	}
 }
@@ -925,7 +925,7 @@ function earlyInit() {
 <table id='container' cellspacing=0>
 <tr><td colspan=2 id='header'>
   <div class='title'>Tomato</div>
-  <div class='version'>Version <% version(); %></div>
+  <div class='version'><% translate("Version"); %> <% version(); %></div>
 </td></tr>
 <tr id='body'><td id='navi'><script type='text/javascript'>navi()</script></td>
 <td id='content'>
@@ -992,35 +992,35 @@ function earlyInit() {
 <input type='hidden' name='vlan15vid'>
 
 <div id='sesdiv' style='display:none'>
-<div class='section-title'>VLAN</div>
+<div class='section-title'><% translate("VLAN"); %></div>
 <div class='section'>
   <table class='tomato-grid' cellspacing=1 id='vlan-grid'></table>
 </div>
 
 <!-- / / / -->
 
-<div class='section-title'>VID Offset <small><i><a href='javascript:toggleVisibility("vidmap");'><span id='sesdiv_vidmap_showhide'>(Click here to show)</span></a></i></small></div>
+<div class='section-title'><% translate("VID Offset"); %> <small><i><a href='javascript:toggleVisibility("vidmap");'><span id='sesdiv_vidmap_showhide'>(<% translate("Click here to show"); %>)</span></a></i></small></div>
 <div class='section' id='sesdiv_vidmap' style='display:none'>
 <script type='text/javascript'>
 createFieldTable('', [
-	{ title: 'First 802.1Q VLAN tag', name: 'vlan0tag', type: 'text', maxlen:4, size:6,
+	{ title: '<% translate("First 802.1Q VLAN tag"); %>', name: 'vlan0tag', type: 'text', maxlen:4, size:6,
 		value: fixInt(nvram.vlan0tag, 0, 4080, 0),
-		suffix: ' <small><i>(range: 0 - 4080; must be a multiple of 16; set to 0 to disable)</i></small>' }
+		suffix: ' <small><i>(<% translate("range"); %>: 0 - 4080; <% translate("must be a multiple of 16"); %>; <% translate("set to 0 to disable"); %>)</i></small>' }
 ]);
 </script>
 </div>
 
 <!-- / / / -->
 
-<div class='section-title'>Wireless <small><i><a href='javascript:toggleVisibility("wireless");'><span id='sesdiv_wireless_showhide'>(Click here to show)</span></a></i></small></div>
+<div class='section-title'><% translate("Wireless"); %> <small><i><a href='javascript:toggleVisibility("wireless");'><span id='sesdiv_wireless_showhide'>(<% translate("Click here to show"); %>)</span></a></i></small></div>
 <div class='section' id='sesdiv_wireless' style='display:none'>
 <script type='text/javascript'>
 var f = [];
 for (var uidx = 0; uidx < wl_ifaces.length; ++uidx) {
   var u = wl_fface(uidx);
   f.push(
-    { title: ('Bridge ' + wl_ifaces[uidx][0] + ' to'), name: ('f_bridge_wlan'+u+'_to'), type: 'select', 
-     options: [[0,'LAN (br0)'],[1,'LAN1  (br1)'],[2,'LAN2 (br2)'],[3,'LAN3 (br3)'],[4,'none']], value: 4 } );
+    { title: ('<% translate("Bridge"); %> ' + wl_ifaces[uidx][0] + ' <% translate("to"); %>'), name: ('f_bridge_wlan'+u+'_to'), type: 'select', 
+     options: [[0,'LAN (br0)'],[1,'LAN1  (br1)'],[2,'LAN2 (br2)'],[3,'LAN3 (br3)'],[4,'<% translate("none"); %>']], value: 4 } );
 }
 createFieldTable('',f);
 if(port_vlan_supported) vlg.setup();
@@ -1028,56 +1028,56 @@ if(port_vlan_supported) vlg.setup();
 </div>
 
 <!-- / / / -->
-<div class='section-title'>Trunk VLAN support override (experimental)</div>
+<div class='section-title'><% translate("Trunk VLAN support override (experimental)"); %></div>
 <div class='section'>
 <script type='text/javascript'>
 createFieldTable('', [
-  { title: 'Enable', name: 'f_trunk_vlan_so', type: 'checkbox', value: nvram.trunk_vlan_so == '1' },
+  { title: '<% translate("Enable"); %>', name: 'f_trunk_vlan_so', type: 'checkbox', value: nvram.trunk_vlan_so == '1' },
 ]);
 </script>
 </div>
 
-<div class='section-title'>Notes <small><i><a href='javascript:toggleVisibility("notes");'><span id='sesdiv_notes_showhide'>(Click here to show)</span></a></i></small></div>
+<div class='section-title'><% translate("Notes"); %> <small><i><a href='javascript:toggleVisibility("notes");'><span id='sesdiv_notes_showhide'>(<% translate("Click here to show"); %>)</span></a></i></small></div>
 <div class='section' id='sesdiv_notes' style='display:none'>
 <ul>
-<li><b>VLAN</b> - Unique identifier of a VLAN.</li>
-<li><b>VID</b> - <i>EXPERIMENTAL</i> - Allows overriding 'traditional' VLAN/VID mapping with arbitrary VIDs for each VLAN (set to '0' to use 'regular' VLAN/VID mappings instead). Warning: this hasn't been verified/tested on anything but a Cisco/Linksys E3000 and may not be supported by your particular device/model (<small><b><i>see notes on "VID Offset" below</i></b></small>).</li>
-<li><b>Ports 1-4 &amp; WAN</b> - Which ethernet ports on the router should be members of this VLAN.</li>
-<li><b>Tagged</b> - Enable 802.1Q tagging of ethernet frames on a particular port/VLAN
+<li><b><% translate("VLAN"); %></b> - <% translate("Unique identifier of a VLAN"); %>.</li>
+<li><b><% translate("VID"); %></b> - <i><% translate("EXPERIMENTAL"); %></i> - <% translate("Allows overriding 'traditional' VLAN/VID mapping with arbitrary VIDs for each VLAN"); %> (<% translate("set to '0' to use 'regular' VLAN/VID mappings instead"); %>). <% translate("Warning: this hasn't been verified/tested on anything but a Cisco/Linksys E3000 and may not be supported by your particular device/model"); %> (<small><b><i><% translate("see notes on"); %> "<% translate("VID Offset"); %>" <% translate("below"); %></i></b></small>).</li>
+<li><b><% translate("Ports"); %> 1-4 &amp; WAN</b> - <% translate("Which ethernet ports on the router should be members of this VLAN"); %>.</li>
+<li><b><% translate("Tagged"); %></b> - <% translate("Enable 802.1Q tagging of ethernet frames on a particular port/VLAN"); %>.</li>
 <script type='text/javascript'>
 if(!trunk_vlan_supported)
-  W(' <i><b>(unknown support for this model...contact the developper (Victek))</i></b>');
+  W(' <i><b>(<% translate("unknown support for this model...contact the developper (Victek)"); %>)</i></b>');
 </script>
 </li>
-<li><b>Default</b> - VLAN ID assigned to untagged frames received by the router.</li>
-<li><b>Bridge</b> - Determines if this VLAN ID should be treated as WAN, part of a LAN bridge or just left alone (i.e. member of a 802.1Q trunk, being managed manually via scripts, etc...).</li>
+<li><b><% translate("Default"); %></b> - <% translate("VLAN ID assigned to untagged frames received by the router"); %>.</li>
+<li><b><% translate("Bridge"); %></b> - <% translate("Determines if this VLAN ID should be treated as WAN, part of a LAN bridge or just left alone (i.e. member of a 802.1Q trunk, being managed manually via scripts, etc"); %>...).</li>
 </ul>
 
 <ul>
-<li><b>VID Offset</b> - <i>EXPERIMENTAL</i> - First 802.1Q VLAN tag to be used as <i>base/initial tag/VID</i> for VLAN and VID assignments. This allows using VIDs larger than 15 on (older) devices such as the Linksys WRT54GL v1.1 (in contiguous blocks/ranges with up to 16 VLANs/VIDs). Set to '0' (zero) to disable this feature and VLANs will have the very same/identical value for its VID, as usual (from 0 to 15).</li>
+<li><b><% translate("VID Offset"); %></b> - <i><% translate("EXPERIMENTAL"); %></i> - <% translate("First 802.1Q VLAN tag to be used as"); %> <i><% translate("base/initial tag/VID"); %></i> <% translate("for VLAN and VID assignments. This allows using VIDs larger than 15 on (older) devices such as the Linksys WRT54GL v1.1"); %> (<% translate("in contiguous blocks/ranges with up to 16 VLANs/VIDs"); %>). <% translate("Set to '0' (zero) to disable this feature and VLANs will have the very same/identical value for its VID, as usual (from 0 to 15)"); %>.</li>
 </ul>
 
 <ul>
-<li><b>Wireless</b> - Assignments of wireless interfaces to different LAN briges. You should probably be using and/or check things on <a href=advanced-wlanvifs.asp>Advanced/Virtual Wireless</a> and <a href=basic-network.asp>Basic/Network</a>.</li>
+<li><b<% translate("Wireless"); %></b> - <% translate("Assignments of wireless interfaces to different LAN briges. You should probably be using and/or check things on"); %> <a href=advanced-wlanvifs.asp><% translate("Advanced"); %>/<% translate("Virtual Wireless"); %></a> <% translate("and"); %> <a href=basic-network.asp><% translate("Basic"); %>/<% translate("Network"); %></a>.</li>
 </ul>
 
 <small>
 <ul>
-<li><b>Other relevant notes/hints:</b>
+<li><b><% translate("Other relevant notes/hints"); %>:</b>
 <ul>
-<li>One VID <i>must</i> be assigned to WAN.</li>
-<li>One VID <i>must</i> be selected as the default.</li>
+<li><% translate("One VID"); %> <i><% translate("must"); %></i> <% translate("be assigned to WAN"); %>.</li>
+<li><% translate("One VID"); %> <i><% translate("must"); %></i> <% translate("be selected as the default"); %>.</li>
 <script type='text/javascript'>
 if((trunk_vlan_supported) || (nvram.trunk_vlan_so == '1')) {
-  W('<li>To prevent 802.1Q compatibility issues, avoid using VID "0" as 802.1Q specifies that frames with a tag of "0" do not belong to any VLAN (the tag contains only user priority information).</li>');
-  W('<li>It may be also recommended to avoid using VID "1" as some vendors consider it special/reserved (for management purposes).</li>');
+  W('<li><% translate("To prevent 802.1q compatibility issues, avoid using VID '0' as 802.1q specifies that frames with a tag of '0' do not belong to any VLAN"); %> (<% translate("the tag contains only user priority information"); %>).</li>');
+  W('<li><% translate("It may be also recommended to avoid using VID '1' as some vendors consider it special/reserved (for management purposes)"); %>.</li>');
 }
 </script>
 </ul>
 <br>
 <ul>
-<li>This is an <b>experimental</b> feature and hasn't been tested in anything but a Linksys WRT54GL v1.1 running a Teaman-ND K24 build and a Cisco/Linksys E3000 running a Teaman-RT K26 build.</li>
-<li>There's lots of things that could go wrong, please do think about what you're doing and take a backup before hitting the 'Save' button on this page!</li>
+<li><% translate("This is an"); %> <b><% translate("experimental"); %></b> <% translate("feature and hasn't been tested in anything but a Linksys WRT54GL v1.1 running a Teaman-ND K24 build and a Cisco/Linksys E3000 running a Teaman-RT K26 build"); %>.</li>
+<li><% translate("There's lots of things that could go wrong, please do think about what you're doing and take a backup before hitting the 'Save' button on this page"); %>!</li>
 </ul>
 </ul>
 </div>
@@ -1087,7 +1087,7 @@ if((trunk_vlan_supported) || (nvram.trunk_vlan_so == '1')) {
 </div>
 <script type='text/javascript'>
 if(!port_vlan_supported) 
-  W('<i>This feature is not supported on this router.</i>');
+  W('<i><% translate("This feature is not supported on this router"); %>.</i>');
 else {
   E('sesdiv').style.display = '';
   if(!trunk_vlan_supported)
@@ -1097,8 +1097,8 @@ else {
 </td></tr>
 <tr><td id='footer' colspan=2>
  <span id='footer-msg'></span>
- <input type='button' value='Save' id='save-button' onclick='save()'>
- <input type='button' value='Cancel' id='cancel-button' onclick='javascript:reloadPage();'>
+ <input type='button' value='<% translate("Save"); %>' id='save-button' onclick='save()'>
+ <input type='button' value='<% translate("Cancel"); %>' id='cancel-button' onclick='javascript:reloadPage();'>
 </td></tr>
 </table>
 </form>

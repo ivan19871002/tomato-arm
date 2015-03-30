@@ -16,7 +16,7 @@
 <head>
 <meta http-equiv='content-type' content='text/html;charset=utf-8'>
 <meta name='robots' content='noindex,nofollow'>
-<title>[<% ident(); %>] Web Server Menu</title>
+<title>[<% ident(); %>] <% translate("Web Server Menu"); %></title>
 <link rel='stylesheet' type='text/css' href='tomato.css'>
 <link rel='stylesheet' type='text/css' href='color.css'>
 <script type='text/javascript' src='tomato.js'></script>
@@ -40,7 +40,7 @@ nginxup = parseInt ('<% psup("nginx"); %>');
 function toggle(service, isup)
 {
 	if (changed) {
-		if (!confirm("Unsaved changes will be lost. Continue anyway?")) return;
+		if (!confirm("<% translate("Unsaved changes will be lost. Continue anyway"); %>?")) return;
 	}
 	E('_' + service + '_button').disabled = true;
 	form.submitHidden('/service.cgi', {
@@ -104,23 +104,23 @@ function init()
 <table id='container' cellspacing=0>
 <tr><td colspan=2 id='header'>
 	<div class='title'>Tomato</div>
-	<div class='version'>Version <% version(); %></div>
+	<div class='version'><% translate("Version"); %> <% version(); %></div>
 </td></tr>
 <tr id='body'><td id='navi'><script type='text/javascript'>navi()</script></td>
 <td id='content'>
 <div id='ident'><% ident(); %></div>
 
 <!-- / / / -->
-<div class='section-title'>Status</div>
+<div class='section-title'><% translate("Status"); %></div>
 <div class='section' id='status-section'>
 <script type='text/javascript'>
-	W('NGINX is currently '+(!nginxup ? 'stopped' : 'running')+' ');
-	W('<input type="button" value="' + (nginxup ? 'Stop' : 'Start') + ' Now" onclick="toggle(\'nginxfp\', nginxup)" id="_nginxfp_button">');
+	W('<% translate("NGINX is currently"); %> '+(!nginxup ? '<% translate("stopped"); %>' : '<% translate("running"); %>')+' ');
+	W('<input type="button" value="' + (nginxup ? '<% translate("Stop"); %>' : '<% translate("Start"); %>') + ' <% translate("Now"); %>" onclick="toggle(\'nginxfp\', nginxup)" id="_nginxfp_button">');
 </script>
 <br>
 </div>
 
-<div class='section-title'>Basic Settings</div>
+<div class='section-title'><% translate("Basic Settings"); %></div>
 <div class='section' id='config-section'>
 <form id='_fom' method='post' action='tomato.cgi'>
 <input type='hidden' name='_nextpage' value='web-nginx.asp'>
@@ -136,57 +136,57 @@ function init()
 
 <script type='text/javascript'>
 createFieldTable('', [
-	{ title: 'Enable Server on Start', name: 'f_nginx_enable', type: 'checkbox', value: nvram.nginx_enable == '1'},
-	{ title: 'Enable PHP support', name: 'f_nginx_php', type: 'checkbox', value: nvram.nginx_php == '1' },
-	{ title: 'Run As', name: 'nginx_user', type: 'select',
-		options: [['root','Root'],['nobody','Nobody']], value: nvram.nginx_user },
-	{ title: 'Keep Config Files', name: 'f_nginx_keepconf', type: 'checkbox', value: nvram.nginx_keepconf == '1' },
-	{ title: 'Web Server Port', name: 'nginx_port', type: 'text', maxlen: 5, size: 7, value: fixPort(nvram.nginx_port, 85), suffix: '<small> default: 85</small>' },
-	{ title: 'Upload file size limit', name: 'nginx_upload', type: 'text', maxlen: 5, size: 7, value: nvram.nginx_upload, suffix: '<small> MB</small>'},
-	{ title: 'Allow Remote Access', name: 'f_nginx_remote', type: 'checkbox', value: nvram.nginx_remote == '1' },
-	{ title: 'Web Server Name', name: 'nginx_fqdn', type: 'text', maxlen: 255, size: 20, value: nvram.nginx_fqdn },
-	{ title: 'Server Root Path', name: 'nginx_docroot', type: 'text', maxlen: 255, size: 40, value: nvram.nginx_docroot, suffix: '<small>&nbsp;/index.html / index.htm / index.php</small>' },
-	{ title: 'Server Priority', name: 'nginx_priority', type: 'text', maxlen: 8, size:3, value: nvram.nginx_priority, suffix:'<small> Max. Perfor: -20, Min.Perfor: 19, default: 10</small>' }
+	{ title: '<% translate("Enable Server on Start"); %>', name: 'f_nginx_enable', type: 'checkbox', value: nvram.nginx_enable == '1'},
+	{ title: '<% translate("Enable PHP support"); %>', name: 'f_nginx_php', type: 'checkbox', value: nvram.nginx_php == '1' },
+	{ title: '<% translate("Run As"); %>', name: 'nginx_user', type: 'select',
+		options: [['root','<% translate("Root"); %>'],['nobody','<% translate("Nobody"); %>']], value: nvram.nginx_user },
+	{ title: '<% translate("Keep Config Files"); %>', name: 'f_nginx_keepconf', type: 'checkbox', value: nvram.nginx_keepconf == '1' },
+	{ title: '<% translate("Web Server Port"); %>', name: 'nginx_port', type: 'text', maxlen: 5, size: 7, value: fixPort(nvram.nginx_port, 85), suffix: '<small> <% translate("default"); %>: 85</small>' },
+	{ title: '<% translate("Upload file size limit"); %>', name: 'nginx_upload', type: 'text', maxlen: 5, size: 7, value: nvram.nginx_upload, suffix: '<small> MB</small>'},
+	{ title: '<% translate("Allow Remote Access"); %>', name: 'f_nginx_remote', type: 'checkbox', value: nvram.nginx_remote == '1' },
+	{ title: '<% translate("Web Server Name"); %>', name: 'nginx_fqdn', type: 'text', maxlen: 255, size: 20, value: nvram.nginx_fqdn },
+	{ title: '<% translate("Server Root Path"); %>', name: 'nginx_docroot', type: 'text', maxlen: 255, size: 40, value: nvram.nginx_docroot, suffix: '<small>&nbsp;/index.html / index.htm / index.php</small>' },
+	{ title: '<% translate("Server Priority"); %>', name: 'nginx_priority', type: 'text', maxlen: 8, size:3, value: nvram.nginx_priority, suffix:'<small> <% translate("Max. Perfor"); %>: -20, <% translate("Min.Perfor"); %>: 19, <% translate("default"); %>: 10</small>' }
 ]);
 </script>
 </div>
-<div class='section-title'>Advanced Settings</div>
+<div class='section-title'><% translate("Advanced Settings"); %></div>
 <div class='section'>
 <script type='text/javascript'>
 createFieldTable('', [
-	{ title: '<a href="http://wiki.nginx.org/Configuration" target="_new">NGINX</a><br>HTTP Section<br>Custom configuration', name: 'nginx_httpcustom', type: 'textarea', value: nvram.nginx_httpcustom },
-	{ title: '<a href="http://wiki.nginx.org/Configuration" target="_new">NGINX</a><br>SERVER Section<br>Custom configuration', name: 'nginx_servercustom', type: 'textarea', value: nvram.nginx_servercustom },
-	{ title: '<a href="http://wiki.nginx.org/Configuration" target="_new">NGINX</a><br>Custom configuration', name: 'nginx_custom', type: 'textarea', value: nvram.nginx_custom },
-	{ title: '<a href="http://php.net/manual/en/ini.php" target="_new">PHP</a><br>Custom configuration', name: 'nginx_phpconf', type: 'textarea', value: nvram.nginx_phpconf },
+	{ title: '<a href="http://wiki.nginx.org/Configuration" target="_new"><% translate("NGINX"); %></a><br><% translate("HTTP Section"); %><br><% translate("Custom configuration"); %>', name: 'nginx_httpcustom', type: 'textarea', value: nvram.nginx_httpcustom },
+	{ title: '<a href="http://wiki.nginx.org/Configuration" target="_new"><% translate("NGINX"); %></a><br><% translate("SERVER Section"); %><br><% translate("Custom configuration"); %>', name: 'nginx_servercustom', type: 'textarea', value: nvram.nginx_servercustom },
+	{ title: '<a href="http://wiki.nginx.org/Configuration" target="_new"><% translate("NGINX"); %></a><br><% translate("Custom configuration"); %>', name: 'nginx_custom', type: 'textarea', value: nvram.nginx_custom },
+	{ title: '<a href="http://php.net/manual/en/ini.php" target="_new"><% translate("PHP"); %></a><br><% translate("Custom configuration"); %>', name: 'nginx_phpconf', type: 'textarea', value: nvram.nginx_phpconf },
 	null,
-	{ title: 'Use user config file', name: 'f_nginx_override', type: 'checkbox', value: nvram.nginx_override == '1', suffix: '<small> User config file will be used, some of GUI settings will be ignored</small>' },
-	{ title: 'User config file path', name: 'nginx_overridefile', type: 'text', maxlen: 255, size: 40, value: nvram.nginx_overridefile }
+	{ title: '<% translate("Use user config file"); %>', name: 'f_nginx_override', type: 'checkbox', value: nvram.nginx_override == '1', suffix: '<small> <% translate("User config file will be used, some of GUI settings will be ignored"); %></small>' },
+	{ title: '<% translate("User config file path"); %>', name: 'nginx_overridefile', type: 'text', maxlen: 255, size: 40, value: nvram.nginx_overridefile }
 ]);
 </script>
 </div>
-<div class='section-title'>Notes</div>
+<div class='section-title'><% translate("Notes"); %></div>
 <div class='section'>
 <ul>
-<li><b> Status Button:</b> Quick Start-Stop Service. Enable Web Server must be checked to modify settings.<br>
-<li><b> Enable Server on Start:</b> To activate the Web Server tick and save this screen.<br>
-<li><b> Enable PHP support:</b> To activate the PHP support (php-cgi) tick and save this screen.<br>
-<li><b> Run As:</b> Select user used to start nginx and php-cgi daemon.<br>
-<li><b> Keep Config Files:</b> Have you modified the configuration file manually? Tick this box and changes will be maintained.<br> 
-<li><b> Web Server Port:</b> The Port used by the Web Server to be accessed. Check conflict when the port is used by other services.<br>
-<li><b> Allow remote access:</b> This option will open the Web Server GUI port from the WAN side. Service will be accessed from the internet. <br>
-<li><b> Web Server Name:</b> Name that will appear on top of your Internet Browser.<br>0
-<li><b> Document Root Path:</b> The path in your router where documents are stored.<br>
-<li><b> Examples:<br></b>
-/tmp/mnt/HDD/www as you can find in USB mount path.<br>
-<li><b> NGINX Custom Configuration:</b> You can add other values to nginx.conf to suit your needs.<br>
-<li><b> NGINX HTTP Section Custom Configuration:</b> You can add other values to nginx.conf in declaration of http {} to suit your needs.<br>
-<li><b> NGINX SERVER Section Custom Configuration:</b> You can add other values to nginx.conf in declaration of server {} to suit your needs.<br>
-<li><b> PHP Custom Configuration:</b> You can add other values to php.ini to suit your needs.<br>
-<li><b> Server Priority:</b> Sets the service priority over other processes running on the router.<br><br>
-The operating system kernel has priority -5.<br>
-Never select a lower value than the kernel uses. Do not use the service test page to adjust the<br>
-server performance, it's performance is lower than the definitive media where files will be <br>
-located, i.e; USB Stick, Hard Drive or SSD.<br>
+<li><b> <% translate("Status Button"); %>:</b> <% translate("Quick Start-Stop Service. Enable Web Server must be checked to modify settings"); %>.<br>
+<li><b> <% translate("Enable Server on Start"); %>:</b> <% translate("To activate the Web Server tick and save this screen"); %>.<br>
+<li><b> <% translate("Enable PHP support"); %>:</b> <% translate("To activate the PHP support (php-cgi) tick and save this screen"); %>.<br>
+<li><b> <% translate("Run As"); %>:</b> <% translate("Select user used to start nginx and php-cgi daemon"); %>.<br>
+<li><b> <% translate("Keep Config Files"); %>:</b> <% translate("Have you modified the configuration file manually? Tick this box and changes will be maintained"); %>.<br> 
+<li><b> <% translate("Web Server Port"); %>:</b> <% translate("The Port used by the Web Server to be accessed. Check conflict when the port is used by other services"); %>.<br>
+<li><b> <% translate("Allow remote access"); %>:</b> <% translate("This option will open the Web Server GUI port from the WAN side. Service will be accessed from the internet"); %>. <br>
+<li><b> <% translate("Web Server Name"); %>:</b> <% translate("Name that will appear on top of your Internet Browser"); %>.<br>0
+<li><b> <% translate("Document Root Path"); %>:</b> <% translate("The path in your router where documents are stored"); %>.<br>
+<li><b> <% translate("Examples"); %>:<br></b>
+/tmp/mnt/HDD/www <% translate("as you can find in USB mount path"); %>.<br>
+<li><b> <% translate("NGINX Custom Configuration"); %>:</b> <% translate("You can add other values to nginx.conf to suit your needs"); %>.<br>
+<li><b> <% translate("NGINX HTTP Section Custom Configuration"); %>:</b> <% translate("You can add other values to nginx.conf in declaration of http {} to suit your needs"); %>.<br>
+<li><b> <% translate("NGINX SERVER Section Custom Configuration"); %>:</b> <% translate("You can add other values to nginx.conf in declaration of server {} to suit your needs"); %>.<br>
+<li><b> <% translate("PHP Custom Configuration"); %>:</b> <% translate("You can add other values to php.ini to suit your needs"); %>.<br>
+<li><b> <% translate("Server Priority"); %>:</b> <% translate("Sets the service priority over other processes running on the router"); %>.<br><br>
+<% translate("The operating system kernel has priority"); %> -5.<br>
+<% translate("Never select a lower value than the kernel uses. Do not use the service test page to adjust the server performance"); %>,<br>
+<% translate("it's performance is lower than the definitive media where files will be located"); %> ,<br>
+<% translate("i.e; USB Stick, Hard Drive or SSD"); %>.<br>
 </ul>
 </div>
 </form>
@@ -198,8 +198,8 @@ located, i.e; USB Stick, Hard Drive or SSD.<br>
 <tr><td id='footer' colspan=2>
 <form>
 	<span id='footer-msg'></span>
-	<input type='button' value='Save' id='save-button' onclick='save()'>
-	<input type='button' value='Cancel' id='cancel-button' onclick='javascript:reloadPage();'>
+	<input type='button' value='<% translate("Save"); %>' id='save-button' onclick='save()'>
+	<input type='button' value='<% translate("Cancel"); %>' id='cancel-button' onclick='javascript:reloadPage();'>
 </form>
 </td></tr>
 </table>

@@ -2,7 +2,7 @@
 <head>
 <meta http-equiv='content-type' content='text/html;charset=utf-8'>
 <meta name='robots' content='noindex,nofollow'>
-<title>[<% ident(); %>] Rebooting...</title>
+<title>[<% ident(); %>] <% translate("Rebooting"); %>...</title>
 <script type='text/javascript'>
 var n = 90 + parseInt('0<% nv("wait_time"); %>');
 function tick()
@@ -10,7 +10,7 @@ function tick()
 	var e = document.getElementById('continue');
 	e.value = n--;
 	if (n < 0) {
-		e.value = 'Continue';
+		e.value = '<% translate("Continue"); %>';
 		return;
 	}
 	if (n == 19) e.disabled = false;

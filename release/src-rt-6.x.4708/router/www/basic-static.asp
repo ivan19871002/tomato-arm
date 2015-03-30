@@ -15,7 +15,7 @@
 <head>
 <meta http-equiv='content-type' content='text/html;charset=utf-8'>
 <meta name='robots' content='noindex,nofollow'>
-<title>[<% ident(); %>] Basic: Static DHCP/ARP/IPT</title>
+<title>[<% ident(); %>] <% translate("Basic"); %>: <% translate("Static DHCP/ARP/IPT"); %></title>
 <link rel='stylesheet' type='text/css' href='tomato.css'>
 <% css(); %>
 <script type='text/javascript' src='tomato.js'></script>
@@ -80,11 +80,11 @@ sg.dataToView = function(data) {
 	var v = [];
 	var s = (data[0] == '00:00:00:00:00:00') ? '' : data[0];
 	if (!isMAC0(data[1])) s += '<br>' + data[1];
-	v.push((s == '') ? '<center><small><i>(unset)</i></small></center>' : s);
+	v.push((s == '') ? '<center><small><i>(<% translate("unset"); %>)</i></small></center>' : s);
 
-	v.push((data[2].toString() != '0') ? '<small><i>Enabled</i></small>' : '');
+	v.push((data[2].toString() != '0') ? '<small><i><% translate("Enabled"); %></i></small>' : '');
 	v.push(escapeHTML('' + data[3]));
-	v.push((data[4].toString() != '0') ? '<small><i>Enabled</i></small>' : '');
+	v.push((data[4].toString() != '0') ? '<small><i><% translate("Enabled"); %></i></small>' : '');
 	v.push(escapeHTML('' + data[5]));
 	return v;
 }
@@ -154,7 +154,7 @@ sg.verifyFields = function(row, quiet) {
 
 	for (i = 0; i < 2; ++i) {
 		if (this.existMAC(f[i].value)) {
-			ferror.set(f[i], 'Duplicate MAC address', quiet);
+			ferror.set(f[i], '<% translate("Duplicate MAC address"); %>', quiet);
 			return 0;
 		}
 	}
@@ -162,14 +162,14 @@ sg.verifyFields = function(row, quiet) {
 	if (f[3].value.indexOf('.') == -1) {
 		s = parseInt(f[3].value, 10)
 		if (isNaN(s) || (s <= 0) || (s >= 255)) {
-			ferror.set(f[3], 'Invalid IP address', quiet);
+			ferror.set(f[3], '<% translate("Invalid IP address"); %>', quiet);
 			return 0;
 		}
 		f[3].value = ipp + s;
 	}
 
 	if ((!isMAC0(f[0].value)) && (this.inStatic(f[3].value))) {
-		ferror.set(f[3], 'Duplicate IP address', quiet);
+		ferror.set(f[3], '<% translate("Duplicate IP address"); %>', quiet);
 		return 0;
 	}
 
@@ -181,11 +181,11 @@ REMOVE-END */
 
 	if (s.length > 0) {
 		if (s.search(/^[.a-zA-Z0-9_\- ]+$/) == -1) {
-			ferror.set(f[5], 'Invalid hostname. Only characters "A-Z 0-9 . - _" are allowed.', quiet);
+			ferror.set(f[5], '<% translate("Invalid hostname. Only characters"); %> "A-Z 0-9 . - _" <% translate("are allowed"); %>.', quiet);
 			return 0;
 		}
 		if (this.existName(s)) {
-			ferror.set(f[5], 'Duplicate hostname.', quiet);
+			ferror.set(f[5], '<% translate("Duplicate hostname"); %>.', quiet);
 			return 0;
 		}
 		f[5].value = s;
@@ -193,7 +193,7 @@ REMOVE-END */
 
 	if (isMAC0(f[0].value)) {
 		if (s == '') {
-			s = 'Both MAC address and name fields must not be empty.';
+			s = '<% translate("Both MAC address and name fields must not be empty"); %>.';
 			ferror.set(f[0], s, 1);
 			ferror.set(f[5], s, quiet);
 			return 0;
@@ -258,7 +258,7 @@ sg.setup = function() {
 		{ type: 'checkbox', prefix: '<div class="centered">', suffix: '</div>' },
 		{ type: 'text', maxlen: 50 } ] );
 
-	this.headerSet(['MAC Address', 'Bound to', 'IP Address', 'IPTraffic', 'Hostname']);
+	this.headerSet(['<% translate("MAC Address"); %>', '<% translate("Bound to"); %>', '<% translate("IP Address"); %>', '<% translate("IPTraffic"); %>', '<% translate("Hostname"); %>']);
 
 	var ipt = nvram.cstats_include.split(',');
 	var s = nvram.dhcpd_static.split('>');
@@ -322,11 +322,11 @@ function init()
 function toggleVisibility(whichone) {
 	if(E('sesdiv' + whichone).style.display=='') {
 		E('sesdiv' + whichone).style.display='none';
-		E('sesdiv' + whichone + 'showhide').innerHTML='(Click here to show)';
+		E('sesdiv' + whichone + 'showhide').innerHTML='(<% translate("Click here to show"); %>)';
 		cookie.set('basic_static_' + whichone + '_vis', 0);
 	} else {
 		E('sesdiv' + whichone).style.display='';
-		E('sesdiv' + whichone + 'showhide').innerHTML='(Click here to hide)';
+		E('sesdiv' + whichone + 'showhide').innerHTML='(<% translate("Click here to hide"); %>)';
 		cookie.set('basic_static_' + whichone + '_vis', 1);
 	}
 }
@@ -342,7 +342,7 @@ function verifyFields(focused, quiet) {
 <table id='container' cellspacing=0>
 <tr><td colspan=2 id='header'>
 	<div class='title'>Tomato</div>
-	<div class='version'>Version <% version(); %></div>
+	<div class='version'><% translate("Version"); %> <% version(); %></div>
 </td></tr>
 <tr id='body'><td id='navi'><script type='text/javascript'>navi()</script></td>
 <td id='content'>
@@ -357,38 +357,38 @@ function verifyFields(focused, quiet) {
 <input type='hidden' name='dhcpd_static_only'>
 <input type='hidden' name='cstats_include'>
 
-<div class='section-title'>Static DHCP/ARP/IPT</div>
+<div class='section-title'><% translate("Static DHCP/ARP/IPT"); %></div>
 <div class='section'>
 	<table class='tomato-grid' id='bs-grid'></table>
 </div>
 
 <!-- / / / -->
 
-<div class='section-title'>Options</div>
+<div class='section-title'><% translate("Options"); %></div>
 <div class='section'>
 <script type='text/javascript'>
 createFieldTable('', [
-{ title: 'Ignore DHCP requests from unknown devices', name: 'f_dhcpd_static_only', type: 'checkbox', value: nvram.dhcpd_static_only == '1' }
+{ title: '<% translate("Ignore DHCP requests from unknown devices"); %>', name: 'f_dhcpd_static_only', type: 'checkbox', value: nvram.dhcpd_static_only == '1' }
 ]);
 </script>
 </div>
-<div class='section-title'>Notes <small><i><a href='javascript:toggleVisibility("notes");'><span id='sesdivnotesshowhide'>(Click here to show)</span></a></i></small></div>
+<div class='section-title'><% translate("Notes"); %> <small><i><a href='javascript:toggleVisibility("notes");'><span id='sesdivnotesshowhide'>(<% translate("Click here to show"); %>)</span></a></i></small></div>
 <div class='section' id='sesdivnotes' style='display:none'>
 <ul>
-<li><b>MAC Address</b> - Unique identifier associated to a network interface on this particular device.</li>
-<li><b>Bound to</b> - Enforce static ARP binding of this particular IP/MAC address pair.</li>
-<li><b>IP Address</b> - Network address assigned to this device on the local network.</li>
-<li><b>IPTraffic</b> - Keep track of bandwidth usage for this IP address.</li>
-<li><b>Hostname</b> - Human-readable nickname/label assigned to this device on the network.</li>
+<li><b><% translate("MAC Address"); %></b> - <% translate("Unique identifier associated to a network interface on this particular device"); %>.</li>
+<li><b><% translate("Bound to"); %></b> - <% translate("Enforce static ARP binding of this particular IP/MAC address pair"); %>.</li>
+<li><b><% translate("IP Address"); %></b> - <% translate("Network address assigned to this device on the local network"); %>.</li>
+<li><b><% translate("IPTraffic"); %></b> - <% translate("Keep track of bandwidth usage for this IP address"); %>.</li>
+<li><b><% translate("Hostname"); %></b> - <% translate("Human-readable nickname/label assigned to this device on the network"); %>.</li>
 </ul>
 <small>
 <ul>
-<li><b>Other relevant notes/hints:</b>
+<li><b><% translate("Other relevant notes/hints"); %>:</b>
 <ul>
-<li>To specify multiple hostnames for a device, separate them with spaces.</li>
-<li>To enable/enforce static ARP binding for a particular device, it must have only one MAC associated with that particular IP address (i.e. you can't have two MAC addresses linked to the same hostname/device in the table above).</li>
-<li>When ARP binding is enabled for a particular MAC/IP address pair, that device will always be shown as "active" in the <a href="tools-wol.asp">Wake On LAN</a> table.</li>
-<li>See also the <a href='advanced-dhcpdns.asp'>Advanced DHCP/DNS</a> settings page for more DHCP-related configuration options.</li>
+<li><% translate("To specify multiple hostnames for a device, separate them with spaces"); %>.</li>
+<li><% translate("To enable/enforce static ARP binding for a particular device, it must have only one MAC associated with that particular IP address (i.e. you can't have two MAC addresses linked to the same hostname/device in the table above)"); %>.</li>
+<li><% translate("When ARP binding is enabled for a particular MAC/IP address pair, that device will always be shown as "active" in the"); %> <a href="tools-wol.asp"><% translate("Wake On LAN"); %></a> <% translate("table"); %>.</li>
+<li><% translate("See also the"); %> <a href='advanced-dhcpdns.asp'><% translate("Advanced DHCP/DNS"); %></a> <% translate("settings page for more DHCP-related configuration options"); %>.</li>
 </ul>
 </ul>
 </small>
@@ -400,8 +400,8 @@ createFieldTable('', [
 </td></tr>
 <tr><td id='footer' colspan=2>
 	<span id='footer-msg'></span>
-	<input type='button' value='Save' id='save-button' onclick='save()'>
-	<input type='button' value='Cancel' id='cancel-button' onclick='javascript:reloadPage();'>
+	<input type='button' value='<% translate("Save"); %>' id='save-button' onclick='save()'>
+	<input type='button' value='<% translate("Cancel"); %>' id='cancel-button' onclick='javascript:reloadPage();'>
 </td></tr>
 </table>
 </form>

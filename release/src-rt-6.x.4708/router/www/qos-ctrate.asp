@@ -15,7 +15,7 @@
 <head>
 <meta http-equiv='content-type' content='text/html;charset=utf-8'>
 <meta name='robots' content='noindex,nofollow'>
-<title>[<% ident(); %>] QoS: View Per-Connection Transfer Rates</title>
+<title>[<% ident(); %>] QoS: <% translate("View Per-Connection Transfer Rates"); %></title>
 <link rel='stylesheet' type='text/css' href='tomato.css'>
 <% css(); %>
 <script type='text/javascript' src='tomato.js'></script>
@@ -205,7 +205,7 @@ grid.setName = function(ip, name) {
 				data[cols[j]] = name + ((ip.indexOf(':') != -1) ? '<br>' : ' ') + '<small>(' + ip + ')</small>';
 				row.setRowData(data);
 				if (E('_f_shortcuts').checked)
-					data[cols[j]] = data[cols[j]] + ' <small><a href="javascript:addExcludeList(\'' + ip + '\')" title="Exclude from List">[Hide]</a></small>';
+					data[cols[j]] = data[cols[j]] + ' <small><a href="javascript:addExcludeList(\'' + ip + '\')" title="<% translate("Exclude from List"); %>">[<% translate("Hide"); %>]</a></small>';
 				row.cells[cols[j]].innerHTML = data[cols[j]];
 				row.style.cursor = 'default';
 			}
@@ -215,7 +215,7 @@ grid.setName = function(ip, name) {
 
 grid.setup = function() {
 	this.init('grid', 'sort');
-	this.headerSet(['Proto', 'Source', 'S Port', 'Destination', 'D Port', 'UL Rate', 'DL Rate']);
+	this.headerSet(['<% translate("Proto"); %>', '<% translate("Source"); %>', '<% translate("S Port"); %>', '<% translate("Destination"); %>', '<% translate("D Port"); %>', '<% translate("UL Rate"); %>', '<% translate("DL Rate"); %>']);
 }
 
 var ref = new TomatoRefresh('update.cgi', '', 0, 'qos_ctrate');
@@ -326,9 +326,9 @@ ref.refresh = function(text)
 			}
 			if (E('_f_shortcuts').checked) {
 				if (cache[ip] == null) {
-					b[cols[j]] = b[cols[j]] + ' <small><a href="javascript:addToResolveQueue(\'' + ip + '\')" title="Resolve the hostname of this address">[resolve]</a></small>';
+					b[cols[j]] = b[cols[j]] + ' <small><a href="javascript:addToResolveQueue(\'' + ip + '\')" title="<% translate("Resolve the hostname of this address"); %>">[<% translate("resolve"); %>]</a></small>';
 				}
-				b[cols[j]] = b[cols[j]] + ' <small><a href="javascript:addExcludeList(\'' + ip + '\')" title="Filter out this IP">[hide]</a></small>';
+				b[cols[j]] = b[cols[j]] + ' <small><a href="javascript:addExcludeList(\'' + ip + '\')" title="<% translate("Filter out this IP"); %>">[<% translate("hide"); %>]</a></small>';
 			}
 		}
 
@@ -342,16 +342,16 @@ ref.refresh = function(text)
 	q = null;
 
 	grid.resort();
-	setTimeout(function() { E('loading').style.visibility = 'hidden'; }, 100);
+	setTimeout(function() { E('<% translate("loading"); %>').style.visibility = 'hidden'; }, 100);
 
 	--lock;
 
 	if (resolveCB) resolve();
 
 	if (numconnshown != numconntotal)
-		E('numtotalconn').innerHTML='<small><i>(showing ' + numconnshown + ' out of ' + numconntotal + ' connections)</i></small>';
+		E('numtotalconn').innerHTML='<small><i>(<% translate("showing"); %> ' + numconnshown + ' <% translate("out of"); %> ' + numconntotal + ' <% translate("connections"); %>)</i></small>';
 	else
-		E('numtotalconn').innerHTML='<small><i>(' + numconntotal + ' connections)</i></small>';
+		E('numtotalconn').innerHTML='<small><i>(' + numconntotal + ' <% translate("connections"); %>)</i></small>';
 }
 
 function addExcludeList(address) {
@@ -433,11 +433,11 @@ function dofilter() {
 function toggleVisibility(whichone) {
 	if(E('sesdiv' + whichone).style.display=='') {
 		E('sesdiv' + whichone).style.display='none';
-		E('sesdiv' + whichone + 'showhide').innerHTML='(Click here to show)';
+		E('sesdiv' + whichone + 'showhide').innerHTML='(<% translate("Click here to show"); %>)';
 		cookie.set('qos_ctr_' + whichone + '_vis', 0);
 	} else {
 		E('sesdiv' + whichone).style.display='';
-		E('sesdiv' + whichone + 'showhide').innerHTML='(Click here to hide)';
+		E('sesdiv' + whichone + 'showhide').innerHTML='(<% translate("Click here to hide"); %>)';
 		cookie.set('qos_ctr_' + whichone + '_vis', 1);
 	}
 }
@@ -472,7 +472,7 @@ function verifyFields(focused, quiet) {
 <table id='container' cellspacing=0>
 <tr><td colspan=2 id='header'>
 	<div class='title'>Tomato</div>
-	<div class='version'>Version <% version(); %></div>
+	<div class='version'><% translate("Version"); %> <% version(); %></div>
 </td></tr>
 <tr id='body'><td id='navi'><script type='text/javascript'>navi()</script></td>
 <td id='content'>
@@ -480,28 +480,28 @@ function verifyFields(focused, quiet) {
 
 <!-- / / / -->
 
-<div class='section-title' id='stitle' onclick='document.location="qos-graphs.asp"' style='cursor:pointer'>Transfer Rates: <span id='numtotalconn'></span></div>
+<div class='section-title' id='stitle' onclick='document.location="qos-graphs.asp"' style='cursor:pointer'><% translate("Transfer Rates"); %>: <span id='numtotalconn'></span></div>
 <div class='section'>
 <table id='grid' class='tomato-grid' style="float:left" cellspacing=1></table>
 
-<div id='loading'><br><b>Loading...</b></div>
+<div id='loading'><br><b><% translate("Loading"); %>...</b></div>
 </div>
 
 <!-- / / / -->
 
-<div class='section-title'>Filters: <small><i><a href='javascript:toggleVisibility("filters");'><span id='sesdivfiltersshowhide'>(Toggle Visibility)</span></a></i></small></div>
+<div class='section-title'><% translate("Filters"); %>: <small><i><a href='javascript:toggleVisibility("filters");'><span id='sesdivfiltersshowhide'>(<% translate("Toggle Visibility"); %>)</span></a></i></small></div>
 <div class='section' id='sesdivfilters' style='display:none'>
 <script type='text/javascript'>
 var c;
 c = [];
-c.push({ title: 'Show only these IPs', name: 'f_filter_ip', size: 50, maxlen: 255, type: 'text', suffix: ' <small>(Comma separated list)</small>' });
-c.push({ title: 'Exclude these IPs', name: 'f_filter_ipe', size: 50, maxlen: 255, type: 'text', suffix: ' <small>(Comma separated list)</small>' });
-c.push({ title: 'Exclude gateway traffic', name: 'f_excludegw', type: 'checkbox', value: ((nvram.t_hidelr) == '1' ? 1 : 0) });
-c.push({ title: 'Exclude IPv4 broadcast', name: 'f_excludebcast', type: 'checkbox' });
-c.push({ title: 'Exclude IPv4 multicast', name: 'f_excludemcast', type: 'checkbox' });
-c.push({ title: 'Ignore inactive connections', name: 'f_excludebythreshold', type: 'checkbox' });
-c.push({ title: 'Auto resolve addresses', name: 'f_autoresolve', type: 'checkbox' });
-c.push({ title: 'Show shortcuts', name: 'f_shortcuts', type: 'checkbox' });
+c.push({ title: '<% translate("Show only these IPs"); %>', name: 'f_filter_ip', size: 50, maxlen: 255, type: 'text', suffix: ' <small>(<% translate("Comma separated list"); %>)</small>' });
+c.push({ title: '<% translate("Exclude these IPs"); %>', name: 'f_filter_ipe', size: 50, maxlen: 255, type: 'text', suffix: ' <small>(<% translate("Comma separated list"); %>)</small>' });
+c.push({ title: '<% translate("Exclude gateway traffic"); %>', name: 'f_excludegw', type: 'checkbox', value: ((nvram.t_hidelr) == '1' ? 1 : 0) });
+c.push({ title: '<% translate("Exclude IPv4 broadcast"); %>', name: 'f_excludebcast', type: 'checkbox' });
+c.push({ title: '<% translate("Exclude IPv4 multicast"); %>', name: 'f_excludemcast', type: 'checkbox' });
+c.push({ title: '<% translate("Ignore inactive connections"); %>', name: 'f_excludebythreshold', type: 'checkbox' });
+c.push({ title: '<% translate("Auto resolve addresses"); %>', name: 'f_autoresolve', type: 'checkbox' });
+c.push({ title: '<% translate("Show shortcuts"); %>', name: 'f_shortcuts', type: 'checkbox' });
 createFieldTable('',c);
 </script>
 </div>

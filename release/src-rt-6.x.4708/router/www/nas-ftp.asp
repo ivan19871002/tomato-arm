@@ -10,7 +10,7 @@
 <head>
 <meta http-equiv='content-type' content='text/html;charset=utf-8'>
 <meta name='robots' content='noindex,nofollow'>
-<title>[<% ident(); %>] NAS: FTP Server</title>
+<title>[<% ident(); %>] NAS: <% translate("FTP Server"); %></title>
 <link rel='stylesheet' type='text/css' href='tomato.css'>
 <link rel='stylesheet' type='text/css' href='color.css'>
 <script type='text/javascript' src='tomato.js'></script>
@@ -87,29 +87,29 @@ aftg.verifyFields = function(row, quiet)
 	s = f[0].value.trim().replace(/\s+/g, ' ');
 	if (s.length > 0) {
 		if (s.search(/^[a-zA-Z0-9_\-]+$/) == -1) {
-			ferror.set(f[0], 'Invalid user name. Only characters "A-Z 0-9 - _" are allowed.', quiet);
+			ferror.set(f[0], '<% translate("Invalid user name. Only characters"); %> "A-Z 0-9 - _" <% translate("are allowed"); %>.', quiet);
 			return 0;
 		}
 		if (this.existName(s)) {
-			ferror.set(f[0], 'Duplicate user name.', quiet);
+			ferror.set(f[0], '<% translate("Duplicate user name"); %>.', quiet);
 			return 0;
 		}
 		if (s == 'root' || s == 'admin') {
-			ferror.set(f[0], 'User names "root" and "admin" are not allowed.', quiet);
+			ferror.set(f[0], '<% translate("User names 'root' and 'admin' are not allowed"); %>.', quiet);
 			return 0;
 		}
 		f[0].value = s;
 	}
 
 	if (!v_length(f[1], quiet, 1)) return 0;
-	if (!v_nodelim(f[1], quiet, 'Password', 1)) return 0;
-	if (f[2].value == 'Private') {
+	if (!v_nodelim(f[1], quiet, '<% translate("Password"); %>', 1)) return 0;
+	if (f[2].value == '<% translate("Private"); %>') {
 		f[3].value = '';
 		f[3].disabled = true;
 	}
 	else {
 		f[3].disabled = false;
-		if (!v_nodelim(f[3], quiet, 'Root Directory', 1) || !v_path(f[3], quiet, 0)) return 0;
+		if (!v_nodelim(f[3], quiet, '<% translate("Root Directory"); %>', 1) || !v_path(f[3], quiet, 0)) return 0;
 	}
 
 	return 1;
@@ -132,10 +132,10 @@ aftg.setup = function()
 	this.init('aft-grid', 'sort', 50, [
 		{ type: 'text', maxlen: 50 },
 		{ type: 'password', maxlen: 50, peekaboo: 1 },
-		{ type: 'select', options: [['Read/Write', 'Read/Write'],['Read Only', 'Read Only'],['View Only', 'View Only'],['Private', 'Private']] },
+		{ type: 'select', options: [['Read/Write', '<% translate("Read/Write"); %>'],['Read Only', '<% translate("Read Only"); %>'],['View Only', '<% translate("View Only"); %>'],['Private', '<% translate("Private"); %>']] },
 		{ type: 'text', maxlen: 128 }
 	]);
-	this.headerSet(['User Name', 'Password', 'Access', 'Root Directory*']);
+	this.headerSet(['<% translate("User Name"); %>', '<% translate("Password"); %>', '<% translate("Access"); %>', '<% translate("Root Directory"); %>*']);
 
 	var s = nvram.ftp_users.split('>');
 	for (var i = 0; i < s.length; ++i) {
@@ -235,7 +235,7 @@ function save()
 <table id='container' cellspacing=0>
 <tr><td colspan=2 id='header'>
 	<div class='title'>Tomato</div>
-	<div class='version'>Version <% version(); %></div>
+	<div class='version'><% translate("Version"); %> <% version(); %></div>
 </td></tr>
 <tr id='body'><td id='navi'><script type='text/javascript'>navi()</script></td>
 <td id='content'>
@@ -252,98 +252,98 @@ function save()
 <input type='hidden' name='ftp_sip'>
 <input type='hidden' name='ftp_limit'>
 
-<div class='section-title'>FTP Server Configuration</div>
+<div class='section-title'><% translate("FTP Server Configuration"); %></div>
 <div class='section'>
 <script type='text/javascript'>
 createFieldTable('', [
-	{ title: 'Enable FTP Server', name: 'ftp_enable', type: 'select',
-		options: [['0', 'No'],['1', 'Yes, WAN and LAN'],['2', 'Yes, LAN only']],
+	{ title: '<% translate("Enable FTP Server"); %>', name: 'ftp_enable', type: 'select',
+		options: [['0', '<% translate("No"); %>'],['1', '<% translate("Yes, WAN and LAN"); %>'],['2', '<% translate("Yes, LAN only"); %>']],
 		value: nvram.ftp_enable },
-	{ title: 'FTP Port', indent: 2, name: 'ftp_port', type: 'text', maxlen: 5, size: 7, value: fixPort(nvram.ftp_port, 21) },
-	{ title: 'Allowed Remote<br>Address(es)', indent: 2, name: 'f_ftp_sip', type: 'text', maxlen: 512, size: 64, value: nvram.ftp_sip,
-		suffix: '<br><small>(optional; ex: "1.1.1.1", "1.1.1.0/24", "1.1.1.1 - 2.2.2.2" or "me.example.com")</small>' },
-	{ title: 'Anonymous Users Access', name: 'ftp_anonymous', type: 'select',
-		options: [['0', 'Disabled'],['1', 'Read/Write'],['2', 'Read Only'],['3', 'Write Only']],
+	{ title: '<% translate("FTP Port"); %>', indent: 2, name: 'ftp_port', type: 'text', maxlen: 5, size: 7, value: fixPort(nvram.ftp_port, 21) },
+	{ title: '<% translate("Allowed Remote"); %><br><% translate("Address"); %>(es)', indent: 2, name: 'f_ftp_sip', type: 'text', maxlen: 512, size: 64, value: nvram.ftp_sip,
+		suffix: '<br><small>(<% translate("optional; ex"); %>: "1.1.1.1", "1.1.1.0/24", "1.1.1.1 - 2.2.2.2" <% translate("or"); %> "me.example.com")</small>' },
+	{ title: '<% translate("Anonymous Users Access"); %>', name: 'ftp_anonymous', type: 'select',
+		options: [['0', '<% translate("Disabled"); %>'],['1', '<% translate("Read/Write"); %>'],['2', '<% translate("Read Only"); %>'],['3', '<% translate("Write Only"); %>']],
 		value: nvram.ftp_anonymous },
-	{ title: 'Allow Admin Login*', name: 'f_ftp_super', type: 'checkbox',
-		suffix: ' <small>Allows users to connect with admin account.</small>',
+	{ title: '<% translate("Allow Admin Login"); %>*', name: 'f_ftp_super', type: 'checkbox',
+		suffix: ' <small><% translate("Allows users to connect with admin account"); %>.</small>',
 		value: nvram.ftp_super == 1 },
-	{ title: 'Log FTP requests and responses', name: 'f_log_ftp', type: 'checkbox',
+	{ title: '<% translate("Log FTP requests and responses"); %>', name: 'f_log_ftp', type: 'checkbox',
 		value: nvram.log_ftp == 1 }
 ]);
 </script>
-<small><br>*&nbsp;Avoid using this option when FTP server is enabled for WAN. IT PROVIDES FULL ACCESS TO THE ROUTER FILE SYSTEM!</small>
+<small><br>*&nbsp;<% translate("Avoid using this option when FTP server is enabled for WAN. IT PROVIDES FULL ACCESS TO THE ROUTER FILE SYSTEM"); %>!</small>
 </div>
 
-<div class='section-title'>Directories</div>
+<div class='section-title'><% translate("Directories"); %></div>
 <div class='section'>
 <script type='text/javascript'>
 createFieldTable('', [
-	{ title: 'Anonymous Root Directory*', name: 'ftp_anonroot', type: 'text', maxlen: 256, size: 32, 
-		suffix: ' <small>(for anonymous connections)</small>',
+	{ title: '<% translate("Anonymous Root Directory"); %>*', name: 'ftp_anonroot', type: 'text', maxlen: 256, size: 32, 
+		suffix: ' <small>(<% translate("for anonymous connections"); %>)</small>',
 		value: nvram.ftp_anonroot },
-	{ title: 'Public Root Directory*', name: 'ftp_pubroot', type: 'text', maxlen: 256, size: 32,
-		suffix: ' <small>(for authenticated users access, if not specified for the user)</small>',
+	{ title: '<% translate("Public Root Directory"); %>*', name: 'ftp_pubroot', type: 'text', maxlen: 256, size: 32,
+		suffix: ' <small>(<% translate("for authenticated users access, if not specified for the user"); %>)</small>',
 		value: nvram.ftp_pubroot },
-	{ title: 'Private Root Directory**', name: 'ftp_pvtroot', type: 'text', maxlen: 256, size: 32,
-		suffix: ' <small>(for authenticated users access in private mode)</small>',
+	{ title: '<% translate("Private Root Directory"); %>**', name: 'ftp_pvtroot', type: 'text', maxlen: 256, size: 32,
+		suffix: ' <small>(<% translate("for authenticated users access in private mode"); %>)</small>',
 		value: nvram.ftp_pvtroot },
-	{ title: 'Directory Listings', name: 'ftp_dirlist', type: 'select',
-		options: [['0', 'Enabled'],['1', 'Disabled'],['2', 'Disabled for Anonymous']],
-		suffix: ' <small>(always enabled for Admin)</small>',
+	{ title: '<% translate("Directory Listings"); %>', name: 'ftp_dirlist', type: 'select',
+		options: [['0', '<% translate("Enabled"); %>'],['1', '<% translate("Disabled"); %>'],['2', '<% translate("Disabled for Anonymous"); %>']],
+		suffix: ' <small>(<% translate("always enabled for Admin"); %>)</small>',
 		value: nvram.ftp_dirlist }
 ]);
 </script>
 <small>
-<br>*&nbsp;&nbsp;When no directory is specified, /mnt is used as a root directory.
-<br>**&nbsp;In private mode, the root directory is the directory under the "Private Root Directory" with the name matching the name of the user.
+<br>*&nbsp;&nbsp;<% translate("When no directory is specified"); %>, /mnt <% translate("is used as a root directory"); %>.
+<br>**&nbsp;<% translate("In private mode, the root directory is the directory under the 'Private Root Directory' with the name matching the name of the user"); %>.
 </small>
 </div>
 
-<div class='section-title'>Limits</div>
+<div class='section-title'><% translate("Limits"); %></div>
 <div class='section'>
 <script type='text/javascript'>
 createFieldTable('', [
-	{ title: 'Maximum Users Allowed to Log in', name: 'ftp_max', type: 'text', maxlen: 5, size: 7,
-		suffix: ' <small>(0 - unlimited)</small>',
+	{ title: '<% translate("Maximum Users Allowed to Log in"); %>', name: 'ftp_max', type: 'text', maxlen: 5, size: 7,
+		suffix: ' <small>(0 - <% translate("unlimited"); %>)</small>',
 		value: nvram.ftp_max },
-	{ title: 'Maximum Connections from the same IP', name: 'ftp_ipmax', type: 'text', maxlen: 5, size: 7,
-		suffix: ' <small>(0 - unlimited)</small>',
+	{ title: '<% translate("Maximum Connections from the same IP"); %>', name: 'ftp_ipmax', type: 'text', maxlen: 5, size: 7,
+		suffix: ' <small>(0 - <% translate("unlimited"); %>)</small>',
 		value: nvram.ftp_ipmax },
-	{ title: 'Maximum Bandwidth for Anonymous Users', name: 'ftp_anonrate', type: 'text', maxlen: 5, size: 7,
-		suffix: ' <small>KBytes/sec (0 - unlimited)</small>',
+	{ title: '<% translate("Maximum Bandwidth for Anonymous Users"); %>', name: 'ftp_anonrate', type: 'text', maxlen: 5, size: 7,
+		suffix: ' <small>KBytes/<% translate("sec"); %> (0 - <% translate("unlimited"); %>)</small>',
 		value: nvram.ftp_anonrate },
-	{ title: 'Maximum Bandwidth for Authenticated Users', name: 'ftp_rate', type: 'text', maxlen: 5, size: 7,
-		suffix: ' <small>KBytes/sec (0 - unlimited)</small>',
+	{ title: '<% translate("Maximum Bandwidth for Authenticated Users"); %>', name: 'ftp_rate', type: 'text', maxlen: 5, size: 7,
+		suffix: ' <small>KBytes/<% translate("sec"); %> (0 - <% translate("unlimited"); %>)</small>',
 		value: nvram.ftp_rate },
-	{ title: 'Idle Timeout', name: 'ftp_staytimeout', type: 'text', maxlen: 5, size: 7,
-		suffix: ' <small>seconds (0 - no timeout)</small>',
+	{ title: '<% translate("Idle Timeout"); %>', name: 'ftp_staytimeout', type: 'text', maxlen: 5, size: 7,
+		suffix: ' <small><% translate("seconds"); %> (0 - <% translate("no timeout"); %>)</small>',
 		value: nvram.ftp_staytimeout },
-	{ title: 'Limit Connection Attempts', name: 'f_limit', type: 'checkbox',
+	{ title: '<% translate("Limit Connection Attempts"); %>', name: 'f_limit', type: 'checkbox',
 		value: ftplimit[0] != 0 },
 	{ title: '', indent: 2, multi: [
-		{ name: 'f_limit_hit', type: 'text', maxlen: 4, size: 6, suffix: '&nbsp; <small>every</small> &nbsp;', value: ftplimit[1] },
-		{ name: 'f_limit_sec', type: 'text', maxlen: 4, size: 6, suffix: '&nbsp; <small>seconds</small>', value: ftplimit[2] }
+		{ name: 'f_limit_hit', type: 'text', maxlen: 4, size: 6, suffix: '&nbsp; <small><% translate("every"); %></small> &nbsp;', value: ftplimit[1] },
+		{ name: 'f_limit_sec', type: 'text', maxlen: 4, size: 6, suffix: '&nbsp; <small><% translate("seconds"); %></small>', value: ftplimit[2] }
 	] }
 ]);
 </script>
 </div>
 
-<div class='section-title'>Custom Configuration</div>
+<div class='section-title'><% translate("Custom Configuration"); %></div>
 <div class='section'>
 <script type='text/javascript'>
 createFieldTable('', [
-	{ title: '<a href="http://vsftpd.beasts.org/vsftpd_conf.html" target="_new">Vsftpd</a><br>Custom Configuration', name: 'ftp_custom', type: 'textarea', value: nvram.ftp_custom }
+	{ title: '<a href="http://vsftpd.beasts.org/vsftpd_conf.html" target="_new"><% translate("Vsftpd"); %></a><br><% translate("Custom Configuration"); %>', name: 'ftp_custom', type: 'textarea', value: nvram.ftp_custom }
 ]);
 </script>
 </div>
 
-<div class='section-title'>User Accounts</div>
+<div class='section-title'><% translate("User Accounts"); %></div>
 <div class='section'>
 	<table class='tomato-grid' cellspacing=1 id='aft-grid'></table>
 	<script type='text/javascript'>aftg.setup();</script>
 <small>
-*&nbsp;&nbsp;When no Root Directory is specified for the user, the default "Public Root Directory" is used.
+*&nbsp;&nbsp;<% translate("When no Root Directory is specified for the user, the default 'Public Root Directory' is used"); %>.
 </small>
 </div>
 
@@ -352,8 +352,8 @@ createFieldTable('', [
 </td></tr>
 <tr><td id='footer' colspan=2>
 	<span id='footer-msg'></span>
-	<input type='button' value='Save' id='save-button' onclick='save()'>
-	<input type='button' value='Cancel' id='cancel-button' onclick='javascript:reloadPage();'>
+	<input type='button' value='<% translate("Save"); %>' id='save-button' onclick='save()'>
+	<input type='button' value='<% translate("Cancel"); %>' id='cancel-button' onclick='javascript:reloadPage();'>
 </td></tr>
 </table>
 </form>

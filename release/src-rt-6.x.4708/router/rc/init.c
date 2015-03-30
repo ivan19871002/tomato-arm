@@ -3102,6 +3102,7 @@ static void sysinit(void)
 		"/tmp/etc", "/tmp/var", "/tmp/home", "/tmp/mnt",
 		"/tmp/splashd", //!!Victek
 		"/tmp/share", "/var/webmon", // !!TB
+		"/tmp/lang",
 		"/var/log", "/var/run", "/var/tmp", "/var/lib", "/var/lib/misc",
 		"/var/spool", "/var/spool/cron", "/var/spool/cron/crontabs",
 		"/tmp/var/wwwext", "/tmp/var/wwwext/cgi-bin",	// !!TB - CGI support
@@ -3132,6 +3133,10 @@ static void sysinit(void)
 		closedir(d);
 	}
 	symlink("/proc/mounts", "/etc/mtab");
+
+	//languages
+	//eval("cp", "/www/zh_CN.txt", "/tmp/lang/zh_CN.txt"); //chinese
+	eval("cp", "/www/ru_RU.txt", "/tmp/lang/ru_RU.txt"); //russian
 
 #ifdef TCONFIG_SAMBASRV
 	if ((d = opendir("/usr/codepages")) != NULL) {

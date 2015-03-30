@@ -11,7 +11,7 @@
 <head>
 <meta http-equiv='content-type' content='text/html;charset=utf-8'>
 <meta name='robots' content='noindex,nofollow'>
-<title>[<% ident(); %>] Advanced: LAN Access</title>
+<title>[<% ident(); %>] <% translate("Advanced"); %>: <% translate("LAN Access"); %></title>
 <link rel='stylesheet' type='text/css' href='tomato.css'>
 <% css(); %>
 <script type='text/javascript' src='tomato.js'></script>
@@ -53,7 +53,7 @@ la.setup = function() {
 	{ type: 'select', options: [[0, 'LAN (br0)'],[1, 'LAN1 (br1)'],[2, 'LAN2 (br2)'],[3, 'LAN3 (br3)']], prefix: '<div class="centered">', suffix: '</div>' },
 	{ type: 'text', maxlen: 32 },
 	{ type: 'text', maxlen: 32 }]);
-	this.headerSet(['On', 'Src', 'Src Address', 'Dst', 'Dst Address', 'Description']);
+	this.headerSet(['<% translate("On"); %>', '<% translate("Src"); %>', '<% translate("Src Address"); %>', '<% translate("Dst"); %>', '<% translate("Dst Address"); %>', '<% translate("Description"); %>']);
 
 	var r = nvram.lan_access.split('>');
 	for (var i = 0; i < r.length; ++i) {
@@ -131,7 +131,7 @@ la.verifyFields = function(row, quiet) {
 	}
 
 	if(f[1].selectedIndex == f[3].selectedIndex) {
-		var m = 'Source and Destination interfaces must be different';
+		var m = '<% translate("Source and Destination interfaces must be different"); %>';
 		ferror.set(f[1], m, quiet);
 		ferror.set(f[3], m, quiet);
 		return 0;
@@ -149,7 +149,7 @@ la.verifyFields = function(row, quiet) {
 	ferror.clear(f[4]);
 
 	f[5].value = f[5].value.replace(/>/g, '_');
-	if (!v_nodelim(f[5], quiet, 'Description')) return 0;
+	if (!v_nodelim(f[5], quiet, '<% translate("Description"); %>')) return 0;
 
 	return 1;
 }
@@ -208,11 +208,11 @@ function init() {
 function toggleVisibility(whichone) {
 	if (E('sesdiv_' + whichone).style.display == '') {
 		E('sesdiv_' + whichone).style.display = 'none';
-		E('sesdiv_' + whichone + '_showhide').innerHTML = '(Click here to show)';
+		E('sesdiv_' + whichone + '_showhide').innerHTML = '(<% translate("Click here to show"); %>)';
 		cookie.set('advanced_access_' + whichone + '_vis', 0);
 	} else {
 		E('sesdiv_' + whichone).style.display='';
-		E('sesdiv_' + whichone + '_showhide').innerHTML = '(Click here to hide)';
+		E('sesdiv_' + whichone + '_showhide').innerHTML = '(<% translate("Click here to hide"); %>)';
 		cookie.set('advanced_access_' + whichone + '_vis', 1);
 	}
 }
@@ -224,7 +224,7 @@ function toggleVisibility(whichone) {
 <table id='container' cellspacing=0>
 <tr><td colspan=2 id='header'>
   <div class='title'>Tomato</div>
-  <div class='version'>Version <% version(); %></div>
+  <div class='version'><% translate("Version"); %> <% version(); %></div>
 </td></tr>
 <tr id='body'><td id='navi'><script type='text/javascript'>navi()</script></td>
 <td id='content'>
@@ -234,27 +234,27 @@ function toggleVisibility(whichone) {
 <input type='hidden' name='_service' value='firewall-restart'>
 <input type='hidden' name='lan_access'>
 
-<div class='section-title'>LAN Access</div>
+<div class='section-title'><% translate("LAN Access"); %></div>
 <div class='section'>
   <table class='tomato-grid' cellspacing=1 id='la-grid'></table>
 </div>
 </div>
 
-<div class='section-title'>Notes <small><i><a href='javascript:toggleVisibility("notes");'><span id='sesdiv_notes_showhide'>(Click here to show)</span></a></i></small></div>
+<div class='section-title'><% translate("Notes"); %> <small><i><a href='javascript:toggleVisibility("notes");'><span id='sesdiv_notes_showhide'>(<% translate("Click here to show"); %>)</span></a></i></small></div>
 <div class='section' id='sesdiv_notes' style='display:none'>
 <ul>
-<li><b>Src</b> - Source LAN bridge.</li>
-<li><b>Src Address</b> <i>(optional)</i> - Source address allowed. Ex: "1.2.3.4", "1.2.3.4 - 2.3.4.5", "1.2.3.0/24".</li>
-<li><b>Dst</b> - Destination LAN bridge.</li>
-<li><b>Dst Address</b> <i>(optional)</i> - Destination address inside the LAN.</li>
+<li><b><% translate("Src"); %></b> - <% translate("Source LAN bridge"); %>.</li>
+<li><b><% translate("Src Address"); %></b> <i>(<% translate("optional"); %>)</i> - <% translate("Source address allowed. Ex"); %>: "1.2.3.4", "1.2.3.4 - 2.3.4.5", "1.2.3.0/24".</li>
+<li><b><% translate("Dst"); %></b> - <% translate("Destination LAN bridge"); %>.</li>
+<li><b><% translate("Dst Address"); %></b> <i>(<% translate("optional"); %>)</i> - <% translate("Destination address inside the LAN"); %>.</li>
 </ul>
 </div>
 
 </td></tr>
 <tr><td id='footer' colspan=2>
  <span id='footer-msg'></span>
- <input type='button' value='Save' id='save-button' onclick='save()'>
- <input type='button' value='Cancel' id='cancel-button' onclick='javascript:reloadPage();'>
+ <input type='button' value='<% translate("Save"); %>' id='save-button' onclick='save()'>
+ <input type='button' value='<% translate("Cancel"); %>' id='cancel-button' onclick='javascript:reloadPage();'>
 </td></tr>
 </table>
 </form>

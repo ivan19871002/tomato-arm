@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.0//EN'>
 <!--
 	Tomato GUI
-	Copyright (C) 2006-2010 Jonathan Zarate
+	<% translate("Copyright"); %> (C) 2006-2010 Jonathan Zarate
 	http://www.polarcloud.com/tomato/
 
 	For use with Tomato Firmware only.
@@ -11,7 +11,7 @@
 <head>
 <meta http-equiv='content-type' content='text/html;charset=utf-8'>
 <meta name='robots' content='noindex,nofollow'>
-<title>[<% ident(); %>] About</title>
+<title>[<% ident(); %>] <% translate("About"); %></title>
 <link rel='stylesheet' type='text/css' href='tomato.css'>
 <% css(); %>
 <script type='text/javascript' src='tomato.js'></script>
@@ -77,7 +77,7 @@ function init()
 <table id='container' cellspacing=0>
 <tr><td colspan=2 id='header'>
 	<div class='title'>Tomato</div>
-	<div class='version'>Version <% version(); %></div>
+	<div class='version'><% translate("Version"); %> <% version(); %></div>
 </td></tr>
 <tr id='body'><td id='navi'><script type='text/javascript'>navi()</script></td>
 <td id='content'>
@@ -89,12 +89,12 @@ function init()
 <img src='tux.png' alt='Linux &amp; Tomato' id='tux'>
 </div>
 <div class='about'>
-<b>Tomato Firmware <% version(1); %></b><br>
+<b><%translate("Tomato Firmware"); %>  <% version(1); %></b><br>
 <br>
-Linux kernel <% version(2); %> and Broadcom Wireless Driver <% version(3); %><br>
-<i>Copyright (C) 2013-2014 Tomato-ARM Team</i><br>
+<% translate("Linux kernel"); %> <% version(2); %> <% translate("and Broadcom Wireless Driver"); %> <% version(3); %><br>
+<i><% translate("Copyright"); %> (C) 2013-2014 <% translate("Tomato-ARM Team"); %></i><br>
 <br>
-<b>Tomato-ARM Team:</b><br>
+<b><% translate("Tomato-ARM Team"); %>:</b><br>
 - Michał Rupental (Shibby)<br>
 - Ofer Chen (roadkill)<br>
 - Vicente Soriano (Victek)<br>
@@ -103,167 +103,167 @@ Linux kernel <% version(2); %> and Broadcom Wireless Driver <% version(3); %><br
 <!-- / / / -->
 
 <br>
-<b>TomatoUSB Team features:</b><br>
+<b><% translate("TomatoUSB Team"); %> <% translate("features"); %>:</b><br>
 <!-- USB-BEGIN -->
-- USB support integration and GUI<br>
+- <% translate("USB support integration and GUI"); %><br>
 <!-- USB-END -->
 <!-- IPV6-BEGIN -->
-- IPv6 support<br>
+- <% translate("IPv6 support"); %><br>
 <!-- IPV6-END -->
-- Dual-band and Wireless-N mode<br>
-<i>Copyright (C) 2008-2011 Fedor Kozhevnikov, Ray Van Tassle, Wes Campaigne</i><br>
+- <% translate("Dual-band and Wireless-N mode"); %><br>
+<i><% translate("Copyright"); %> (C) 2008-2011 Fedor Kozhevnikov, Ray Van Tassle, Wes Campaigne</i><br>
 <a href='http://www.tomatousb.org/' target='_new'>http://www.tomatousb.org</a><br>
 <br>
 
 
-<b>"Shibby" features:</b><br>
+<b>"Shibby" <% translate("features"); %>:</b><br>
 <!-- BBT-BEGIN -->
-- Transmission 2.84 integration<br>
+- <% translate("Transmission 2.84 integration"); %><br>
 <!-- BBT-END -->
 <!-- BT-BEGIN -->
-- GUI for Transmission<br>
+- <% translate("GUI for Transmission"); %><br>
 <!-- BT-END -->
 <!-- NFS-BEGIN -->
-- NFS utils integration and GUI<br>
+- <% translate("NFS utils integration and GUI"); %><br>
 <!-- NFS-END -->
-- Custom log file path<br>
+- <% translate("Custom log file path"); %><br>
 <!-- LINUX26-BEGIN -->
-- SD-idle tool integration for kernel 2.6<br>
+- <% translate("SD-idle tool integration for kernel 2.6"); %><br>
 <!-- USB-BEGIN -->
-- 3G Modem support (big thanks for @LDevil)<br>
-- 4G/LTE Modem support<br>
+- <% translate("3G Modem support"); %> (<% translate("big thanks for"); %> @LDevil)<br>
+- <% translate("4G/LTE Modem support"); %><br>
 <!-- USB-END -->
 <!-- LINUX26-END -->
 <!-- SNMP-BEGIN -->
-- SNMP integration and GUI<br>
+- <% translate("SNMP integration and GUI"); %><br>
 <!-- SNMP-END -->
 <!-- UPS-BEGIN -->
-- APCUPSD integration and GUI (implemented by @arrmo)<br>
+- <% translate("APCUPSD integration and GUI"); %> (<% translate("implemented by @arrmo"); %>)<br>
 <!-- UPS-END -->
 <!-- DNSCRYPT-BEGIN -->
-- DNScrypt-proxy 1.4.0 integration and GUI<br>
+- <% translate("DNScrypt-proxy 1.4.0 integration and GUI"); %><br>
 <!-- DNSCRYPT-END -->
 <!-- TOR-BEGIN -->
-- TOR Project integration and GUI<br>
+- <% translate("TOR Project integration and GUI"); %><br>
 <!-- TOR-END -->
-- TomatoAnon project integration and GUI<br>
-- TomatoThemeBase project integration and GUI<br>
-- Ethernet Ports State<br>
-- Extended MOTD (written by @Monter, modified by @Shibby)<br>
-- Webmon Backup Script<br>
-<i>Copyright (C) 2011-2014 Michał Rupental</i><br>
+- <% translate("TomatoAnon project integration and GUI"); %><br>
+- <% translate("TomatoThemeBase project integration and GUI"); %><br>
+- <% translate("Ethernet Ports State"); %><br>
+- <% translate("Extended MOTD"); %> (<% translate("written by @Monter, modified by @Shibby"); %>)<br>
+- <% translate("Webmon Backup Script"); %><br>
+<i><% translate("Copyright"); %> (C) 2011-2014 Michał Rupental</i><br>
 <a href='http://openlinksys.info' target='_new'>http://openlinksys.info</a><br>
 <br>
 
-<b>Tomato-RAF features:</b><br>
-- Extended Sysinfo<br>
+<b>Tomato-RAF <% translate("features"); %>:</b><br>
+- <% translate("Extended Sysinfo"); %><br>
 <!-- NOCAT-BEGIN -->
-- Captive Portal. (Based in NocatSplash)<br>
+-<% translate("Captive Portal. (Based in NocatSplash)"); %> <br>
 <!-- NOCAT-END -->
 <!-- NGINX-BEGIN -->
-- Web Server. (NGinX)<br>
+- <% translate("Web Server"); %>. (NGinX)<br>
 <!-- NGINX-END -->
 <!-- HFS-BEGIN -->
-- HFS / HFS+ filesystem integration<br>
+- <% translate("HFS / HFS+ filesystem integration"); %><br>
 <!-- HFS-END -->
-<i>Copyright (C) 2007-2014 Ofer Chen & Vicente Soriano</i><br>
+<i><% translate("Copyright"); %> (C) 2007-2014 Ofer Chen & Vicente Soriano</i><br>
 <a href='http://victek.is-a-geek.com' target='_new'>http://victek.is-a-geek.com</a><br>
 <br>
 
-<b>"Teaman" features:</b><br>
-- QOS-detailed & ctrate filters<br>
-- Realtime bandwidth monitoring of LAN clients<br>
-- Static ARP binding<br>
-- VLAN administration GUI<br>
-- Multiple LAN support integration and GUI<br>
-- Multiple/virtual SSID support (experimental)<br>
-- UDPxy integration and GUI<br>
+<b>"Teaman" <% translate("features"); %>:</b><br>
+- <% translate("QOS-detailed & ctrate filters"); %><br>
+- <% translate("Realtime bandwidth monitoring of LAN clients"); %><br>
+- <% translate("Static ARP binding"); %><br>
+- <% translate("VLAN administration GUI"); %><br>
+- <% translate("Multiple LAN support integration and GUI"); %><br>
+- <% translate("Multiple/virtual SSID support (experimental)"); %><br>
+- <% translate("UDPxy integration and GUI"); %><br>
 <!-- PPTPD-BEGIN -->
-- PPTP Server integration and GUI<br>
+- <% translate("PPTP Server integration and GUI"); %><br>
 <!-- PPTPD-END -->
-<i>Copyright (C) 2011 Augusto Bott</i><br>
-<a href='http://code.google.com/p/tomato-sdhc-vlan/' target='_new'>Tomato-sdhc-vlan Homepage</a><br>
+<i><% translate("Copyright"); %> (C) 2011 Augusto Bott</i><br>
+<a href='http://code.google.com/p/tomato-sdhc-vlan/' target='_new'>Tomato-sdhc-vlan <% translate("Homepage"); %></a><br>
 <br>
 
-<b>"Lancethepants" features:</b><br>
+<b>"Lancethepants" <% translate("features"); %>:</b><br>
 <!-- DNSSEC-BEGIN -->
-- DNSSEC integration and GUI<br>
+- <% translate("DNSSEC integration and GUI"); %><br>
 <!-- DNSSEC-END -->
 <!-- DNSCRYPT-BEGIN -->
-- DNSCrypt-Proxy selectable/manual resolver<br>
+- <% translate("DNSCrypt-Proxy selectable/manual resolver"); %><br>
 <!-- DNSCRYPT-END -->
 <!-- TINC-BEGIN -->
-- Tinc Daemon integration and GUI<br>
+- <% translate("Tinc Daemon integration and GUI"); %><br>
 <!-- TINC-END -->
-- Comcast DSCP Fix GUI<br>
-<i>Copyright (C) 2014 Lance Fredrickson</i><br>
+- <% translate("Comcast DSCP Fix GUI"); %><br>
+<i><% translate("Copyright"); %> (C) 2014 Lance Fredrickson</i><br>
 <a href='mailto:lancethepants@gmail.com'>lancethepants@gmail.com</a><br>
 <br>
 
-<b>"Toastman" features:</b><br>
-- Configurable QOS class names<br>
-- Comprehensive QOS rule examples set by default<br>
-- GPT support for HDD by Yaniv Hamo<br>
-- Tools-System refresh timer<br>
-<i>Copyright (C) 2011 Toastman</i><br>
-<a href='http://www.linksysinfo.org/index.php?threads/using-qos-tutorial-and-discussion.28349/' target='_new'>Using QoS - Tutorial and discussion</a><br>
+<b>"Toastman" <% translate("features"); %>:</b><br>
+- <% translate("Configurable QOS class names"); %><br>
+- <% translate("Comprehensive QOS rule examples set by default"); %><br>
+- <% translate("GPT support for HDD by Yaniv Hamo"); %><br>
+- <% translate("Tools-System refresh timer"); %><br>
+<i><% translate("Copyright"); %> (C) 2011 Toastman</i><br>
+<a href='http://www.linksysinfo.org/index.php?threads/using-qos-tutorial-and-discussion.28349/' target='_new'><% translate("Using QoS"); %> - <% translate("Tutorial and discussion"); %></a><br>
 <br>
 
 <!-- VPN-BEGIN -->
-<b>"JYAvenard" features:</b><br>
+<b>"JYAvenard" <% translate("features"); %>:</b><br>
 <!-- OPENVPN-BEGIN -->
-- OpenVPN enhancements &amp; username/password only authentication<br>
+- <% translate("OpenVPN enhancements &amp; username/password only authentication"); %><br>
 <!-- OPENVPN-END -->
 <!-- PPTPD-BEGIN -->
-- PPTP VPN Client integration and GUI<br>
+- <% translate("PPTP VPN Client integration and GUI"); %><br>
 <!-- PPTPD-END -->
-<i>Copyright (C) 2010-2012 Jean-Yves Avenard</i><br>
+<i><% translate("Copyright"); %> (C) 2010-2012 Jean-Yves Avenard</i><br>
 <a href='mailto:jean-yves@avenard.org'>jean-yves@avenard.org</a><br>
 <br>
 
 <!-- OPENVPN-BEGIN -->
-<b>TomatoVPN feature:</b><br>
-- OpenVPN integration and GUI<br>
-<i>Copyright (C) 2010 Keith Moyer</i><br>
+<b>TomatoVPN <% translate("feature"); %>:</b><br>
+- <% translate("OpenVPN integration and GUI"); %><br>
+<i><% translate("Copyright"); %> (C) 2010 Keith Moyer</i><br>
 <a href='mailto:tomatovpn@keithmoyer.com'>tomatovpn@keithmoyer.com</a><br>
 <br>
 
-<b>"TomatoEgg" feature:</b><br>
-- Openvpn username/password verify feature and configure GUI.<br>
+<b>"TomatoEgg" <% translate("feature"); %>:</b><br>
+- <% translate("Openvpn username/password verify feature and configure GUI"); %>.<br>
 <br>
 <!-- OPENVPN-END -->
 <!-- VPN-END -->
 
 <!-- NGINX-BEGIN -->
-<b>Tomato-hyzoom feature:</b><br>
-- MySQL Server integration and GUI<br>
-<i>Copyright (C) 2014 Bao Weiquan, Hyzoom</i><br>
+<b>Tomato-hyzoom <% translate("feature"); %>:</b><br>
+- <% translate("MySQL Server integration and GUI"); %><br>
+<i><% translate("Copyright"); %> (C) 2014 Bao Weiquan, Hyzoom</i><br>
 <a href='mailto:bwq518@gmail.com'>bwq518@gmail.com</a><br>
 <br>
 <!-- NGINX-END -->
 
-<b>"Victek/PrinceAMD/Phykris/Shibby" feature:</b><br>
-- Revised IP/MAC Bandwidth Limiter<br>
+<b>"Victek/PrinceAMD/Phykris/Shibby" <% translate("feature"); %>:</b><br>
+- <% translate("Revised IP/MAC Bandwidth Limiter"); %><br>
 <br>
 
-<b>Special thanks:</b><br>
-We want to express our gratitude to all people not mentioned here but contributed with patches, new models additions, bug solving and updates to Tomato firmware.<br>
+<b><% translate("Special thanks"); %>:</b><br>
+<% translate("We want to express our gratitude to all people not mentioned here but contributed with patches, new models additions, bug solving and updates to Tomato firmware"); %>.<br>
 <br>
 
 <hr>
 <br>
-<b>Based on Tomato Firmware v<% version(); %></b><br>
-<i>Copyright (C) 2006-2010 Jonathan Zarate</i><br>
+<b><% translate("Based on Tomato Firmware"); %> v<% version(); %></b><br>
+<i><% translate("Copyright"); %> (C) 2006-2010 Jonathan Zarate</i><br>
 <a href='http://www.polarcloud.com/tomato/' target='_new'>http://www.polarcloud.com/tomato/</a><br>
 <br>
-Built on <% build_time(); %> by Shibby, <a href='http://openlinksys.info' target='_new'>http://openlinksys.info</a><br><br>
+<% translate("Built on"); %> <% build_time(); %> by Shibby, <a href='http://openlinksys.info' target='_new'>http://openlinksys.info</a><br><br>
 <br><br>
 
 <!--
 
-	Please do not remove or change the homepage link or donate button.
+	<% translate("Please do not remove or change the homepage link or donate button"); %>.
 
-	Thanks.
+	<% translate("Thanks"); %>.
 	- Jon
 
 -->
@@ -275,8 +275,7 @@ Built on <% build_time(); %> by Shibby, <a href='http://openlinksys.info' target
 </form>
 
 <div style='border-top:1px solid #e7e7e7;margin:4em 0;padding:2em 0;font-size:12px'>
-<b>Thanks to everyone who risked their routers, tested, reported bugs, made
-suggestions and contributed to this project. ^ _ ^</b><br>
+<b><% translate("Thanks to everyone who risked their routers, tested, reported bugs, made suggestions and contributed to this project"); %>. ^ _ ^</b><br>
 </div>
 
 </div>

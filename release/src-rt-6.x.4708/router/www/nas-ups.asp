@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv='content-type' content='text/html;charset=utf-8'>
 <meta name='robots' content='noindex,nofollow'>
-<title>[<% ident(); %>] NAS: UPS Monitor</title>
+<title>[<% ident(); %>] NAS: <% translate("UPS Monitor"); %></title>
 <link rel='stylesheet' type='text/css' href='tomato.css'>
 <% css(); %>
 <script type='text/javascript' src='tomato.js'></script>
@@ -68,10 +68,10 @@ function clientSideInclude(id, url) {
   }
  var element = document.getElementById(id);
  if (!element) {
-  alert("Bad id " + id + 
-   "passed to clientSideInclude." +
-   "You need a div or span element " +
-   "with this id in your page.");
+  alert("<% translate("Bad id"); %> " + id + 
+   "<% translate("passed to clientSideInclude"); %>." +
+   "<% translate("You need a div or span element"); %> " +
+   "<% translate("with this id in your page"); %>.");
   return;
  }
   if (req) {
@@ -81,11 +81,11 @@ function clientSideInclude(id, url) {
     element.innerHTML = req.responseText;
   } else {
     element.innerHTML =
-   "Sorry, your browser does not support " +
-      "XMLHTTPRequest objects. This page requires " +
-      "Internet Explorer 5 or better for Windows, " +
-      "or Firefox for any system, or Safari. Other " +
-      "compatible browsers may also exist.";
+   "<% translate("Sorry, your browser does not support"); %> " +
+      "<% translate("XMLHTTPRequest objects. This page requires"); %> " +
+      "<% translate("Internet Explorer 5 or better for Windows"); %>, " +
+      "<% translate("or Firefox for any system, or Safari. Other"); %> " +
+      "<% translate("compatible browsers may also exist"); %>.";
   }
 }
 </script>
@@ -95,17 +95,17 @@ function clientSideInclude(id, url) {
 <table id='container' cellspacing=0>
 <tr><td colspan=2 id='header'>
 	<div class='title'>Tomato</div>
-	<div class='version'>Version <% version(); %></div>
+	<div class='version'><% translate("Version"); %> <% version(); %></div>
 </td></tr>
 <tr id='body'><td id='navi' style="height: 188px"><script type='text/javascript'>navi()</script></td>
 <td id='content' style="height: 188px">
 	<div id='ident'><% ident(); %></div>
 	<input type='hidden' name='_nextpage' value='nas-ups.asp'>
-	<div class='section-title'>APC UPS Status</div>
+	<div class='section-title'><% translate("APC UPS Status"); %></div>
 	<div class='section'>
 		<span id="ups-status"></span>
 	</div>
-	<div class='section-title'>APC UPS Response</div>
+	<div class='section-title'><% translate("APC UPS Response"); %></div>
 	<div class='section'>
 		<span id="ups-data"></span>
 	</div>

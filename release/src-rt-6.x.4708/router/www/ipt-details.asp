@@ -15,7 +15,7 @@
 <head>
 <meta http-equiv='content-type' content='text/html;charset=utf-8'>
 <meta name='robots' content='noindex,nofollow'>
-<title>[<% ident(); %>] IP Traffic: Details</title>
+<title>[<% ident(); %>] <% translate("IP Traffic"); %>: <% translate("Details"); %></title>
 <link rel='stylesheet' type='text/css' href='tomato.css'>
 <% css(); %>
 <script type='text/javascript' src='tomato.js'></script>
@@ -203,10 +203,10 @@ grid.populate = function() {
 
 		if (E('_f_shortcuts').checked) {
 			h = h + '<br><small>';
-			h = h + '<a href="javascript:viewQosDetail(' + i + ')" title="View QoS Details">[qosdetails]</a>';
-			h = h + '<a href="javascript:viewQosCTrates(' + i + ')" title="View transfer rates per connection">[qosrates]</a>';
-			h = h + '<a href="javascript:viewIptHistory(' + i + ')" title="View IP Traffic History">[history]</a>';
-			h = h + '<a href="javascript:addExcludeList(' + i + ')" title="Filter out this address">[hide]</a>';
+			h = h + '<a href="javascript:viewQosDetail(' + i + ')" title="<% translate("View QoS Details"); %>">[<% translate("qosdetails"); %>]</a>';
+			h = h + '<a href="javascript:viewQosCTrates(' + i + ')" title="<% translate("View transfer rates per connection"); %>">[<% translate("qosrates"); %>]</a>';
+			h = h + '<a href="javascript:viewIptHistory(' + i + ')" title="<% translate("View IP Traffic History"); %>">[<% translate("history"); %>]</a>';
+			h = h + '<a href="javascript:addExcludeList(' + i + ')" title="<% translate("Filter out this address"); %>">[<% translate("hide"); %>]</a>';
 			h = h + '</small>';
 		}
 
@@ -227,7 +227,7 @@ grid.populate = function() {
 
 	grid.resort();
 	grid.recolor();
-	grid.footerSet([ 'Total ' + ('<small><i>(' + ((hostslisted.length > 0) ? (hostslisted.length + ' hosts') : 'no data') + ')</i></small>'),
+	grid.footerSet([ '<% translate("Total"); %> ' + ('<small><i>(' + ((hostslisted.length > 0) ? (hostslisted.length + ' <% translate("hosts"); %>') : '<% translate("no data"); %>') + ')</i></small>'),
 		rescale((rx/1024).toFixed(2)).toString(),
 		rescale((tx/1024).toFixed(2)).toString(),
 		tcpi.toFixed(0).toString() + '/' + tcpo.toFixed(0).toString(),
@@ -312,7 +312,7 @@ grid.dataToView = function(data) {
 
 grid.setup = function() {
 	this.init('grid', 'sort');
-	this.headerSet(['Host', 'Download (bytes/s)', 'Upload (bytes/s)', 'TCP IN/OUT (pkt/s)', 'UDP IN/OUT (pkt/s)', 'ICMP IN/OUT (pkt/s)', 'TCP Connections', 'UDP Connections']);
+	this.headerSet(['<% translate("Host"); %>', '<% translate("Download"); %> (bytes/s)', '<% translate("Upload"); %> (bytes/s)', 'TCP <% translate("IN/OUT"); %> (pkt/s)', 'UDP <% translate("IN/OUT"); %> (pkt/s)', 'ICMP <% translate("IN/OUT"); %> (pkt/s)', 'TCP <% translate("Connections"); %>', 'UDP <% translate("Connections"); %>']);
 }
 
 function init() {
@@ -429,11 +429,11 @@ function verifyFields(focused, quiet) {
 function toggleVisibility(whichone) {
 	if(E('sesdiv' + whichone).style.display=='') {
 		E('sesdiv' + whichone).style.display='none';
-		E('sesdiv' + whichone + 'showhide').innerHTML='(Click here to show)';
+		E('sesdiv' + whichone + 'showhide').innerHTML='(<% translate("Click here to show"); %>)';
 		cookie.set('ipt_details_' + whichone + '_vis', 0);
 	} else {
 		E('sesdiv' + whichone).style.display='';
-		E('sesdiv' + whichone + 'showhide').innerHTML='(Click here to hide)';
+		E('sesdiv' + whichone + 'showhide').innerHTML='(<% translate("Click here to hide"); %>)';
 		cookie.set('ipt_details_' + whichone + '_vis', 1);
 	}
 }
@@ -446,7 +446,7 @@ function toggleVisibility(whichone) {
 <table id='container' cellspacing=0>
 <tr><td colspan=2 id='header'>
 	<div class='title'>Tomato</div>
-	<div class='version'>Version <% version(); %></div>
+	<div class='version'><% translate("Version"); %> <% version(); %></div>
 </td></tr>
 <tr id='body'><td id='navi'><script type='text/javascript'>navi()</script></td>
 <td id='content'>
@@ -455,30 +455,30 @@ function toggleVisibility(whichone) {
 <div id='cstats'>
 <!-- / / / -->
 
-<div class='section-title'>IP Traffic Details</div>
+<div class='section-title'><% translate("IP Traffic Details"); %></div>
 <div class='section'>
 <table id='grid' class='tomato-grid' style="float:left" cellspacing=1></table>
 
-<div id='loading'><br><b>Loading...</b></div>
+<div id='loading'><br><b><% translate("Loading"); %>...</b></div>
 </div>
 
 <!-- / / / -->
 
-<div class='section-title'>Options <small><i><a href='javascript:toggleVisibility("options");'><span id='sesdivoptionsshowhide'>(Click here to show)</span></a></i></small></div>
+<div class='section-title'><% translate("Options"); %> <small><i><a href='javascript:toggleVisibility("options");'><span id='sesdivoptionsshowhide'>(<% translate("Click here to show"); %>)</span></a></i></small></div>
 <div class='section' id='sesdivoptions' style='display:none'>
 <script type='text/javascript'>
 var c;
 c = [];
-c.push({ title: 'Only these IPs', name: 'f_filter_ip', size: 50, maxlen: 255, type: 'text', suffix: ' <small>(Comma separated list)</small>' });
-c.push({ title: 'Exclude these IPs', name: 'f_filter_ipe', size: 50, maxlen: 255, type: 'text', suffix: ' <small>(Comma separated list)</small>' });
-c.push({ title: 'Scale', name: 'f_scale', type: 'select', options: [['0', 'KB'], ['1', 'MB'], ['2', 'GB']] });
-c.push({ title: 'Ignore inactive hosts', name: 'f_onlyactive', type: 'checkbox' });
-c.push({ title: 'Show hostnames', name: 'f_hostnames', type: 'checkbox' });
-c.push({ title: 'Show shortcuts', name: 'f_shortcuts', type: 'checkbox' });
+c.push({ title: '<% translate("Only these IPs"); %>', name: 'f_filter_ip', size: 50, maxlen: 255, type: 'text', suffix: ' <small>(<% translate("Comma separated list"); %>)</small>' });
+c.push({ title: '<% translate("Exclude these IPs"); %>', name: 'f_filter_ipe', size: 50, maxlen: 255, type: 'text', suffix: ' <small>(<% translate("Comma separated list"); %>)</small>' });
+c.push({ title: '<% translate("Scale"); %>', name: 'f_scale', type: 'select', options: [['0', 'KB'], ['1', 'MB'], ['2', 'GB']] });
+c.push({ title: '<% translate("Ignore inactive hosts"); %>', name: 'f_onlyactive', type: 'checkbox' });
+c.push({ title: '<% translate("Show hostnames"); %>', name: 'f_hostnames', type: 'checkbox' });
+c.push({ title: '<% translate("Show shortcuts"); %>', name: 'f_shortcuts', type: 'checkbox' });
 createFieldTable('',c);
 </script>
 <div style="float:right;text-align:right">
-&raquo; <a href="admin-iptraffic.asp">Configure</a>
+&raquo; <a href="admin-iptraffic.asp"><% translate("Configure"); %></a>
 </div>
 </div>
 

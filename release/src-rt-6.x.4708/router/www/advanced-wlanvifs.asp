@@ -18,7 +18,7 @@
 <head>
 <meta http-equiv='content-type' content='text/html;charset=utf-8'>
 <meta name='robots' content='noindex,nofollow'>
-<title>[<% ident(); %>] Advanced: Virtual Wireless Interfaces</title>
+<title>[<% ident(); %>] <% translate("Advanced"); %>: <% translate("Virtual Wireless Interfaces"); %></title>
 <link rel='stylesheet' type='text/css' href='tomato.css'>
 <% css(); %>
 <script type='text/javascript' src='tomato.js'></script>
@@ -59,9 +59,9 @@ var max_no_vifs = 0;
 
 var wl_modes_available = [];
 
-wmo = {'ap':'Access Point','apwds':'Access Point + WDS','sta':'Wireless Client','wet':'Wireless Ethernet Bridge','wds':'WDS'};
+wmo = {'ap':'<% translate("Access Point"); %>','apwds':'<% translate("Access Point + WDS"); %>','sta':'<% translate("Wireless Client"); %>','wet':'<% translate("Wireless Ethernet Bridge"); %>','wds':'<% translate("WDS"); %>'};
 
-tabs = [['overview', 'Overview']];
+tabs = [['overview', '<% translate("Overview"); %>']];
 
 var xob = null;
 var refresher = [];
@@ -115,7 +115,7 @@ wlg.setup = function() {
 		{ type: 'select', options: [[0,'LAN (br0)'],[1,'LAN1  (br1)'],[2,'LAN2 (br2)'],[3,'LAN3 (br3)'],[4,'none']] }
 	]);
 
-	this.headerSet(['Interface', 'Enabled', 'SSID', 'Mode', 'Bridge']);
+	this.headerSet(['<% translate("Interface"); %>', '<% translate("Enabled"); %>', '<% translate("SSID"); %>', '<% translate("Mode"); %>', '<% translate("Bridge"); %>']);
 
 	wlg.populate();
 
@@ -242,7 +242,7 @@ wlg.dataToView = function(data) {
 			(data[1] == 1) ? 'Yes' : 'No',
 			ssid || '<small><i>(unset)</i></small>',
 			wmo[data[3]] || '<small><i>(unset)</i></small>',
-			['LAN (br0)', 'LAN1 (br1)', 'LAN2 (br2)', 'LAN3 (br3)', 'none' ][data[4]]
+			['LAN (br0)', 'LAN1 (br1)', 'LAN2 (br2)', 'LAN3 (br3)', '<% translate("none"); %>' ][data[4]]
 			]);
 }
 
@@ -335,7 +335,7 @@ wlg.onAdd = function() {
 	verifyFields(null,1);
 
 	var e = E('footer-msg');
-	e.innerHTML = 'After configuring this VIF, review and save your settings on the Overview tab.';
+	e.innerHTML = '<% translate("After configuring this VIF, review and save your settings on the Overview tab"); %>.';
 	e.style.visibility = 'visible';
 /* REMOVE-BEGIN */
 //	setTimeout(
@@ -502,7 +502,7 @@ function init() {
 
 	E('sesdiv').style.display = '';
 	if (uninit < 0) {
-		E('sesdiv').innerHTML = '<i>This feature is not supported on this router.</i>';
+		E('sesdiv').innerHTML = '<i><% translate("This feature is not supported on this router"); %>.</i>';
 		return;
 	}
 
@@ -529,11 +529,11 @@ function init() {
 function toggleVisibility(whichone) {
 	if(E('sesdiv' + whichone).style.display=='') {
 		E('sesdiv' + whichone).style.display='none';
-		E('sesdiv' + whichone + 'showhide').innerHTML='(Click here to show)';
+		E('sesdiv' + whichone + 'showhide').innerHTML='(<% translate("Click here to show"); %>)';
 		cookie.set('adv_wlvifs_' + whichone + '_vis', 0);
 	} else {
 		E('sesdiv' + whichone).style.display='';
-		E('sesdiv' + whichone + 'showhide').innerHTML='(Click here to hide)';
+		E('sesdiv' + whichone + 'showhide').innerHTML='(<% translate("Click here to hide"); %>)';
 		cookie.set('adv_wlvifs_' + whichone + '_vis', 1);
 	}
 }
@@ -558,7 +558,7 @@ function tabSelect(name) {
 	}
 
 	elem.display('overview-tab', (name == 'overview'));
-	E('save-button').value = (name != 'overview') ? 'Overview' : 'Save';
+	E('save-button').value = (name != 'overview') ? '<% translate("Overview"); %>' : '<% translate("Save"); %>';
 
 	for (var i = 1; i < tabs.length; ++i) {
 		if (name == tabs[i][0]) {
@@ -880,7 +880,7 @@ REMOVE-END */
 			case 'mixed':
 			case 'n-only':
 				if (nphy && (a.value == 'tkip') && (sm2.indexOf('wpa') != -1)) {
-					ferror.set(a, 'TKIP encryption is not supported with WPA / WPA2 in N mode.', quiet || !ok);
+					ferror.set(a, '<% translate("TKIP encryption is not supported with WPA / WPA2 in N mode"); %>.', quiet || !ok);
 					ok = 0;
 				}
 				else ferror.clear(a);
@@ -897,11 +897,11 @@ REMOVE-END */
 		if ((wmode == 'sta') || (wmode == 'wet')) {
 			++wlclnt;
 			if (wlclnt > 1) {
-				ferror.set(b, 'Only one wireless interface can be configured in client mode.', quiet || !ok);
+				ferror.set(b, '<% translate("Only one wireless interface can be configured in client mode"); %>.', quiet || !ok);
 				ok = 0;
 			}
 			else if (a.value == 'n-only') {
-				ferror.set(a, 'N-only is not supported in wireless client modes, use Auto.', quiet || !ok);
+				ferror.set(a, '<% translate("N-only is not supported in wireless client modes, use Auto"); %>.', quiet || !ok);
 				ok = 0;
 			}
 		}
@@ -910,7 +910,7 @@ REMOVE-END */
 		ferror.clear(a);
 		if (wl_vis[vidx]._f_wl_wpa_psk == 1) {
 			if ((a.value.length < 8) || ((a.value.length == 64) && (a.value.search(/[^0-9A-Fa-f]/) != -1))) {
-				ferror.set('_wl'+u+'_wpa_psk', 'Invalid pre-shared key. Please enter at least 8 characters or 64 hexadecimal digits.', quiet || !ok);
+				ferror.set('_wl'+u+'_wpa_psk', '<% translate("Invalid pre-shared key. Please enter at least 8 characters or 64 hexadecimal digits"); %>.', quiet || !ok);
 				ok = 0;
 			}
 		}
@@ -918,7 +918,7 @@ REMOVE-END */
 		if (u.toString().indexOf('.') < 0) {
 			// wl channel
 			if (((wmode == 'wds') || (wmode == 'apwds')) && (wl_vis[vidx]._wl_channel == 1) && (E('_wl'+u+'_channel').value == '0')) {
-				ferror.set('_wl'+u+'_channel', 'Fixed wireless channel required in WDS mode.', quiet || !ok);
+				ferror.set('_wl'+u+'_channel', '<% translate("Fixed wireless channel required in WDS mode"); %>.', quiet || !ok);
 				ok = 0;
 			}
 			else ferror.clear('_wl'+u+'_channel');
@@ -980,7 +980,7 @@ REMOVE-END */
 					else if (!isMAC0(a.value)) b = 1;
 			}
 			if (!b) {
-				ferror.set('_f_wl'+u+'_wds_0', 'WDS MAC address required.', quiet || !ok);
+				ferror.set('_f_wl'+u+'_wds_0', '<% translate("WDS MAC address required"); %>.', quiet || !ok);
 				ok = 0;
 			}
 		}
@@ -1331,7 +1331,7 @@ function escapeText(s) {
 <table id='container' cellspacing=0>
 <tr><td colspan=2 id='header'>
   <div class='title'>Tomato</div>
-  <div class='version'>Version <% version(); %></div>
+  <div class='version'><% translate("Version"); %> <% version(); %></div>
 </td></tr>
 <tr id='body'><td id='navi'><script type='text/javascript'>navi()</script></td>
 <td id='content'>
@@ -1357,7 +1357,7 @@ function escapeText(s) {
 <div id='sesdiv' style='display:none'>
 
 <!-- / / / -->
-<div class='section-title'>Virtual Wireless Interfaces</div>
+<div class='section-title'><% translate("Virtual Wireless Interfaces"); %></div>
 <div class='section'>
 
 <script type='text/javascript'>
@@ -1371,15 +1371,15 @@ tabCreate.apply(this, tabs);
 
 <!-- / / / -->
 
-<div class='section-title'>Wireless Interfaces Details <small><i><a href='javascript:toggleVisibility("details");'><span id='sesdivdetailsshowhide'>(Click here to show)</span></a></i></small></div>
+<div class='section-title'><% translate("Wireless Interfaces Details"); %> <small><i><a href='javascript:toggleVisibility("details");'><span id='sesdivdetailsshowhide'>(<% translate("Click here to show"); %>)</span></a></i></small></div>
 <div class='section' id='sesdivdetails' style='display:none'>
 
 <script type='text/javascript'>
 for (var uidx = 0; uidx < wl_ifaces.length; ++uidx) {
 	if (wl_sunit(uidx)<0) {
 		var c = [];
-		c.push({ title: 'Interface', text: 'wl' + wl_fface(uidx) + ' <small>(' + wl_display_ifname(uidx) + ')</small>' });
-		c.push({ title: 'Virtual Interfaces', indent: 2, rid: 'wl' + wl_fface(uidx) + '_vifs',
+		c.push({ title: '<% translate("Interface"); %>', text: 'wl' + wl_fface(uidx) + ' <small>(' + wl_display_ifname(uidx) + ')</small>' });
+		c.push({ title: '<% translate("Virtual Interfaces"); %>', indent: 2, rid: 'wl' + wl_fface(uidx) + '_vifs',
 			text: 'wl' + wl_fface(uidx) + ' ' +  nvram['wl' + wl_fface(uidx) + '_vifs'] + ' <small>(max ' + wl_ifaces[uidx][7] + ')</small>' });
 		createFieldTable('',c);
 	}
@@ -1390,11 +1390,11 @@ for (var uidx = 0; uidx < wl_ifaces.length; ++uidx) {
 <!-- / / / -->
 
 <!-- LINUX24-BEGIN -->
-<div class='section-title'>Options <small><i><a href='javascript:toggleVisibility("options");'><span id='sesdivoptionsshowhide'>(Click here to show)</span></a></i></small></div>
+<div class='section-title'><% translate("Options"); %> <small><i><a href='javascript:toggleVisibility("options");'><span id='sesdivoptionsshowhide'>(<% translate("Click here to show"); %>)</span></a></i></small></div>
 <div class='section' id='sesdivoptions' style='display:none'>
 <script type='text/javascript'>
 createFieldTable('', [
-{ title: 'Use alternate NAS startup sequence', name: 'f_nas_alternate', type: 'checkbox', value: nvram.nas_alternate == '1' }
+{ title: '<% translate("Use alternate NAS startup sequence"); %>', name: 'f_nas_alternate', type: 'checkbox', value: nvram.nas_alternate == '1' }
 ]);
 </script>
 </div>
@@ -1402,31 +1402,31 @@ createFieldTable('', [
 
 <!-- / / / -->
 
-<div class='section-title'>Notes <small><i><a href='javascript:toggleVisibility("notes");'><span id='sesdivnotesshowhide'>(Click here to show)</span></a></i></small></div>
+<div class='section-title'><% translate("Notes"); %> <small><i><a href='javascript:toggleVisibility("notes");'><span id='sesdivnotesshowhide'>(<% translate("Click here to show"); %>)</span></a></i></small></div>
 <div class='section' id='sesdivnotes' style='display:none'>
 
 <ul>
-<li><b>Interface</b> - Wireless VIF name.</li>
-<li><b>Enabled</b> - If this VIF should be active and brought online.</li>
-<li><b>SSID</b> - Wireless Service Set Identifier.</li>
-<li><b>Mode</b> - Interface mode: Access Point, WDS, Wireless Client, etc...</li>
-<li><b>Bridge</b> - Which LAN bridge this VIF should be assigned.</li>
+<li><b><% translate("Interface"); %></b> - <% translate("Wireless VIF name"); %>.</li>
+<li><b><% translate("Enabled"); %></b> - <% translate("If this VIF should be active and brought online"); %>.</li>
+<li><b><% translate("SSID"); %></b> - <% translate("Wireless Service Set Identifier"); %>.</li>
+<li><b><% translate("Mode"); %></b> - <% translate("Interface mode: Access Point, WDS, Wireless Client, etc"); %>...</li>
+<li><b><% translate("Bridge"); %></b> - <% translate("Which LAN bridge this VIF should be assigned"); %>.</li>
 </ul>
 
 <ul>
 <!-- LINUX24-BEGIN -->
-<li><b>Use alternate NAS startup(...)</b> - <i>Only meaningful for K24 builds</i> - Enable this option if you need more than one NAS process running (i.e. to handle WPAx encryption on more than one WLVIF).</li>
+<li><b><% translate("Use alternate NAS startup"); %>(...)</b> - <i><% translate("Only meaningful for K24 builds"); %></i> - <% translate("Enable this option if you need more than one NAS process running"); %> (<% translate("i.e. to handle WPAx encryption on more than one WLVIF"); %>).</li>
 <!-- LINUX24-END -->
 </ul>
 
 <small>
 <ul>
-<li><b>Other relevant notes/hints:</b>
+<li><b><% translate("Other relevant notes/hints"); %>:</b>
 <ul>
-<li>When creating/defining a new wireless VIF, it's MAC address will be shown (incorrectly) as '00:00:00:00:00:00', as it's unknown at that moment (until network is restarted and this page is reloaded).</li>
-<li>When saving changes, the MAC addresses of all defined non-primary wireless VIFs could sometimes be (already) <i>set</i> but might be <i>recreated</i> by the WL driver (so that previously defined/saved settings might need to be updated/changed accordingly on <a href=advanced-mac.asp>Advanced/MAC Address</a> after saving settings and rebooting your router).</li>
-<li>This web interface allows configuring a maximum of 4 VIFs for each physical wireless interface available - up to 3 extra VIFs can be defined in addition to the primary VIF (<i>on devices with multiple VIF capabilities</i>).</li>
-<li>By definition, configuration settings for the <i>primary VIF</i> of any physical wireless interfaces shouldn't be touched here (use the <a href=basic-network.asp>Basic/Network</a> page instead).</li>
+<li><% translate("When creating/defining a new wireless VIF, it's MAC address will be shown (incorrectly) as '00:00:00:00:00:00', as it's unknown at that moment"); %> (<% translate("until network is restarted and this page is reloaded"); %>).</li>
+<li><% translate("When saving changes, the MAC addresses of all defined non-primary wireless VIFs could sometimes be (already)"); %> <i><% translate("set"); %></i> <% translate("but might be"); %> <i><% translate("recreated"); %></i> <% translate("by the WL driver"); %> (<% translate("so that previously defined/saved settings might need to be updated/changed accordingly on"); %> <a href=advanced-mac.asp><% translate("Advanced"); %>/<% translate("MAC Address"); %></a> <% translate("after saving settings and rebooting your router"); %>).</li>
+<li><% translate("This web interface allows configuring a maximum of 4 VIFs for each physical wireless interface available"); %> - <% translate("up to 3 extra VIFs can be defined in addition to the primary VIF"); %> (<i><% translate("on devices with multiple VIF capabilities"); %></i>).</li>
+<li><% translate("By definition, configuration settings for the"); %> <i><% translate("primary VIF"); %></i> <% translate("of any physical wireless interfaces shouldn't be touched here"); %> (<% translate("use the"); %> <a href=basic-network.asp><% translate("Basic"); %>/<% translate("Network"); %></a> <% translate("page instead"); %>).</li>
 </ul>
 </ul>
 </small>
@@ -1447,7 +1447,7 @@ for (var i = 1; i < tabs.length; ++i) {
 
 	W('<div id=\''+t+'-tab-disabled\'>');
 	W('<br>');
-	W('VIF ' + tabs[i][1] + ' is not defined.');
+	W('VIF ' + tabs[i][1] + ' <% translate("is not defined"); %>.');
 	W('</div>');
 
 	W('<div id=\''+t+'-tab\'>');
@@ -1484,22 +1484,22 @@ for (var i = 1; i < tabs.length; ++i) {
 
 	var f = [];
 	f.push (
-		{ title: 'Enable Interface', name: 'f_wl'+u+'_radio', type: 'checkbox',
+		{ title: '<% translate("Enable Interface"); %>', name: 'f_wl'+u+'_radio', type: 'checkbox',
 			value: (eval('nvram["wl'+u+'_radio"]') == '1') && (eval('nvram["wl'+u+'_net_mode"]') != 'disabled') },
-		{ title: 'MAC Address', text: '<a href="advanced-mac.asp">' + (eval('nvram["wl'+u+'_hwaddr"]') || '00:00:00:00:00:00') + '</a>' +
-			' &nbsp; <b id="wl'+u+'_hwaddr_msg" style="visibility:hidden"><small>(warning: WL driver reports BSSID <a href=advanced-mac.asp>' + ((typeof(wl_ifaces[wl_ifidxx(u)]) != 'undefined')? wl_ifaces[wl_ifidxx(u)][9] : '') + '</a>)</small></b>' },
-		{ title: 'Wireless Mode', name: 'f_wl'+u+'_mode', type: 'select',
+		{ title: '<% translate("MAC Address"); %>', text: '<a href="advanced-mac.asp">' + (eval('nvram["wl'+u+'_hwaddr"]') || '00:00:00:00:00:00') + '</a>' +
+			' &nbsp; <b id="wl'+u+'_hwaddr_msg" style="visibility:hidden"><small>(<% translate("warning: WL driver reports BSSID"); %> <a href=advanced-mac.asp>' + ((typeof(wl_ifaces[wl_ifidxx(u)]) != 'undefined')? wl_ifaces[wl_ifidxx(u)][9] : '') + '</a>)</small></b>' },
+		{ title: '<% translate("Wireless Mode"); %>', name: 'f_wl'+u+'_mode', type: 'select',
 			options: wl_modes_available,
 			value: ((eval('nvram["wl'+u+'_mode"]') == 'ap') && (eval('nvram["wl'+u+'_wds_enable"]') == '1')) ? 'apwds' : eval('nvram["wl'+u+'_mode"]'),
-			suffix: ' &nbsp; <b id="wl'+u+'_mode_msg" style="visibility:hidden"><small>(note: you might wish to cross-check settings later on <a href=basic-network.asp>Basic/Network</a>)</small></b>' }
+			suffix: ' &nbsp; <b id="wl'+u+'_mode_msg" style="visibility:hidden"><small>(<% translate("note: you might wish to cross-check settings later on"); %> <a href=basic-network.asp><% translate("Basic"); %>/<% translate("Network"); %></a>)</small></b>' }
 	);
 
 // only if primary VIF
 	if (u.toString().indexOf('.') < 0) {
 		f.push (
-			{ title: 'Radio Band', name: 'f_wl'+u+'_nband', type: 'select', options: bands[uidx],
+			{ title: '<% translate("Radio Band"); %>', name: 'f_wl'+u+'_nband', type: 'select', options: bands[uidx],
 				value: eval('nvram["wl'+u+'_nband"]') || '0' == '0' ? bands[uidx][0][0] : eval('nvram["wl'+u+'_nband"]') },
-			{ title: 'Wireless Network Mode', name: 'wl'+u+'_net_mode', type: 'select',
+			{ title: '<% translate("Wireless Network Mode"); %>', name: 'wl'+u+'_net_mode', type: 'select',
 				value: (eval('nvram["wl'+u+'_net_mode"]') == 'disabled') ? 'mixed' : eval('nvram["wl'+u+'_net_mode"]'),
 				options: [], prefix: '<span id="__wl'+u+'_net_mode">', suffix: '</span>' }
 		);
@@ -1509,18 +1509,18 @@ for (var i = 1; i < tabs.length; ++i) {
 		nvram['wl'+u+'_closed'] = '0';
 
 	f.push (
-		{ title: 'SSID', name: 'wl'+u+'_ssid', type: 'text', maxlen: 32, size: 34, value: eval('nvram["wl'+u+'_ssid"]') },
-		{ title: 'Broadcast', indent: 2, name: 'f_wl'+u+'_bcast', type: 'checkbox', value: (eval('nvram["wl'+u+'_closed"]') == '0') }
+		{ title: '<% translate("SSID"); %>', name: 'wl'+u+'_ssid', type: 'text', maxlen: 32, size: 34, value: eval('nvram["wl'+u+'_ssid"]') },
+		{ title: '<% translate("Broadcast"); %>', indent: 2, name: 'f_wl'+u+'_bcast', type: 'checkbox', value: (eval('nvram["wl'+u+'_closed"]') == '0') }
 	);
 
 // only if primary VIF
 	if (u.toString().indexOf('.') < 0) {
 		f.push (
-			{ title: 'Channel', name: 'wl'+u+'_channel', type: 'select', options: ghz[uidx], prefix: '<span id="__wl'+u+'_channel">', suffix: '</span> <input type="button" id="_f_wl'+u+'_scan" value="Scan" onclick="scanButton('+u+')"> <img src="spin.gif" id="spin'+u+'">',
+			{ title: '<% translate("Channel"); %>', name: 'wl'+u+'_channel', type: 'select', options: ghz[uidx], prefix: '<span id="__wl'+u+'_channel">', suffix: '</span> <input type="button" id="_f_wl'+u+'_scan" value="<% translate("Scan"); %>" onclick="scanButton('+u+')"> <img src="spin.gif" id="spin'+u+'">',
 				value: eval('nvram["wl'+u+'_channel"]') },
-			{ title: 'Channel Width', name: 'wl'+u+'_nbw_cap', type: 'select', options: [['0','20 MHz'],['1','40 MHz']],
+			{ title: '<% translate("Channel Width"); %>', name: 'wl'+u+'_nbw_cap', type: 'select', options: [['0','20 MHz'],['1','40 MHz']],
 				value: eval('nvram["wl'+u+'_nbw_cap"]') },
-			{ title: 'Control Sideband', name: 'f_wl'+u+'_nctrlsb', type: 'select', options: [['lower','Lower'],['upper','Upper']],
+			{ title: '<% translate("Control Sideband"); %>', name: 'f_wl'+u+'_nctrlsb', type: 'select', options: [['lower','<% translate("Lower"); %>'],['upper','<% translate("Upper"); %>']],
 				value: eval('nvram["wl'+u+'_nctrlsb"]') == 'none' ? 'lower' : eval('nvram["wl'+u+'_nctrlsb"]') }
 		);
 	}
@@ -1530,26 +1530,26 @@ for (var i = 1; i < tabs.length; ++i) {
 
 	f.push (
 		null,
-		{ title: 'Security', name: 'wl'+u+'_security_mode', type: 'select',
-			options: [['disabled','Disabled'],['wep','WEP'],['wpa_personal','WPA Personal'],['wpa_enterprise','WPA Enterprise'],['wpa2_personal','WPA2 Personal'],['wpa2_enterprise','WPA2 Enterprise'],['wpaX_personal','WPA / WPA2 Personal'],['wpaX_enterprise','WPA / WPA2 Enterprise'],['radius','Radius']],
+		{ title: '<% translate("Security"); %>', name: 'wl'+u+'_security_mode', type: 'select',
+			options: [['disabled','<% translate("Disabled"); %>'],['wep','<% translate("WEP"); %>'],['wpa_personal','<% translate("WPA Personal"); %>'],['wpa_enterprise','<% translate("WPA Enterprise"); %>'],['wpa2_personal','<% translate("WPA2 Personal"); %>'],['wpa2_enterprise','<% translate("WPA2 Enterprise"); %>'],['wpaX_personal','<% translate("WPA / WPA2 Personal"); %>'],['wpaX_enterprise','<% translate("WPA / WPA2 Enterprise"); %>'],['radius','<% translate("Radius"); %>']],
 			value: eval('nvram["wl'+u+'_security_mode"]') },
-		{ title: 'Encryption', indent: 2, name: 'wl'+u+'_crypto', type: 'select',
-			options: [['tkip','TKIP'],['aes','AES'],['tkip+aes','TKIP / AES']], value: eval('nvram["wl'+u+'_crypto"]') },
-		{ title: 'Shared Key', indent: 2, name: 'wl'+u+'_wpa_psk', type: 'password', maxlen: 64, size: 66, peekaboo: 1,
-			suffix: ' <input type="button" id="_f_wl'+u+'_psk_random1" value="Random" onclick="random_psk(\'_wl'+u+'_wpa_psk\')">',
+		{ title: '<% translate("Encryption"); %>', indent: 2, name: 'wl'+u+'_crypto', type: 'select',
+			options: [['tkip','<% translate("TKIP"); %>'],['aes','<% translate("AES"); %>'],['tkip+aes','<% translate("TKIP / AES"); %>']], value: eval('nvram["wl'+u+'_crypto"]') },
+		{ title: '<% translate("Shared Key"); %>', indent: 2, name: 'wl'+u+'_wpa_psk', type: 'password', maxlen: 64, size: 66, peekaboo: 1,
+			suffix: ' <input type="button" id="_f_wl'+u+'_psk_random1" value="<% translate("Random"); %>" onclick="random_psk(\'_wl'+u+'_wpa_psk\')">',
 			value: eval('nvram["wl'+u+'_wpa_psk"]') },
-		{ title: 'Shared Key', indent: 2, name: 'wl'+u+'_radius_key', type: 'password', maxlen: 80, size: 32, peekaboo: 1,
-			suffix: ' <input type="button" id="_f_wl'+u+'_psk_random2" value="Random" onclick="random_psk(\'_wl'+u+'_radius_key\')">',
+		{ title: '<% translate("Shared Key"); %>', indent: 2, name: 'wl'+u+'_radius_key', type: 'password', maxlen: 80, size: 32, peekaboo: 1,
+			suffix: ' <input type="button" id="_f_wl'+u+'_psk_random2" value="<% translate("Random"); %>" onclick="random_psk(\'_wl'+u+'_radius_key\')">',
 			value: eval('nvram["wl'+u+'_radius_key"]') },
-		{ title: 'Group Key Renewal', indent: 2, name: 'wl'+u+'_wpa_gtk_rekey', type: 'text', maxlen: 4, size: 6, suffix: ' <i>(seconds)</i>',
+		{ title: '<% translate("Group Key Renewal"); %>', indent: 2, name: 'wl'+u+'_wpa_gtk_rekey', type: 'text', maxlen: 4, size: 6, suffix: ' <i>(<% translate("seconds"); %>)</i>',
 			value: eval('nvram["wl'+u+'_wpa_gtk_rekey"]') || '3600' },
-		{ title: 'Radius Server', indent: 2, multi: [
+		{ title: '<% translate("Radius Server"); %>', indent: 2, multi: [
 			{ name: 'wl'+u+'_radius_ipaddr', type: 'text', maxlen: 15, size: 17, value: eval('nvram["wl'+u+'_radius_ipaddr"]') },
 			{ name: 'wl'+u+'_radius_port', type: 'text', maxlen: 5, size: 7, prefix: ' : ', value: eval('nvram["wl'+u+'_radius_port"]') || '1812' } ] },
-		{ title: 'Encryption', indent: 2, name: 'wl'+u+'_wep_bit', type: 'select', options: [['128','128-bits'],['64','64-bits']],
+		{ title: '<% translate("Encryption"); %>', indent: 2, name: 'wl'+u+'_wep_bit', type: 'select', options: [['128','128-bits'],['64','64-bits']],
 			value: eval('nvram["wl'+u+'_wep_bit"]') },
-		{ title: 'Passphrase', indent: 2, name: 'wl'+u+'_passphrase', type: 'text', maxlen: 16, size: 20,
-			suffix: ' <input type="button" id="_f_wl'+u+'_wep_gen" value="Generate" onclick="generate_wep('+u+')"> <input type="button" id="_f_wl'+u+'_wep_random" value="Random" onclick="random_wep('+u+')">',
+		{ title: '<% translate("Passphrase"); %>', indent: 2, name: 'wl'+u+'_passphrase', type: 'text', maxlen: 16, size: 20,
+			suffix: ' <input type="button" id="_f_wl'+u+'_wep_gen" value="<% translate("Generate"); %>" onclick="generate_wep('+u+')"> <input type="button" id="_f_wl'+u+'_wep_random" value="<% translate("Random"); %>" onclick="random_wep('+u+')">',
 			value: eval('nvram["wl'+u+'_passphrase"]') }
 	);
 
@@ -1561,14 +1561,14 @@ for (var i = 1; i < tabs.length; ++i) {
 
 	for (var j = 1; j <= 4; ++j) {
 		f.push(
-			{ title: ('Key ' + j), indent: 2, name: ('wl'+u+'_key' + j), type: 'text', maxlen: 26, size: 34,
+			{ title: ('<% translate("Key"); %> ' + j), indent: 2, name: ('wl'+u+'_key' + j), type: 'text', maxlen: 26, size: 34,
 				suffix: '<input type="radio" onchange="verifyFields(this,1)" onclick="verifyFields(this,1)" name="f_wl'+u+'_wepidx" id="_f_wl'+u+'_wepidx_' + j + '" value="' + j + '"' + ((eval('nvram["wl'+u+'_key"]') == j) ? ' checked>' : '>'),
 				value: nvram['wl'+u+'_key' + j] });
 	}
 
 	f.push(null,
-		{ title: 'WDS', name: 'f_wl'+u+'_lazywds', type: 'select',
-			options: [['0','Link With...'],['1','Automatic']], value: nvram['wl'+u+'_lazywds'] } );
+		{ title: '<% translate("WDS"); %>', name: 'f_wl'+u+'_lazywds', type: 'select',
+			options: [['0','<% translate("Link With"); %>...'],['1',<% translate("Automatic"); %>'']], value: nvram['wl'+u+'_lazywds'] } );
 /* REMOVE-BEGIN */
 //	alert('nvram["wl'+u+'_wds"]=' + eval('nvram["wl'+u+'_wds"]'));
 /* REMOVE-END */
@@ -1582,7 +1582,7 @@ for (var i = 1; i < tabs.length; ++i) {
 //	wds = (nvram['wl'+u+'_wds']).split(/\s+/);
 /* REMOVE-END */
 	for (var k = 0; k < 10; k += 2)	{
-		f.push({ title: (k ? '' : 'MAC Address'), indent: 2, multi: [
+		f.push({ title: (k ? '' : '<% translate("MAC Address"); %>'), indent: 2, multi: [
 			{ name: 'f_wl'+u+'_wds_' + k, type: 'text', maxlen: 17, size: 20, value: wds[k] || '00:00:00:00:00:00' },
 			{ name: 'f_wl'+u+'_wds_' + (k + 1), type: 'text', maxlen: 17, size: 20, value: wds[k + 1] || '00:00:00:00:00:00' } ] } );
 	}
@@ -1606,8 +1606,8 @@ for (var i = 1; i < tabs.length; ++i) {
 </td></tr>
 <tr><td id='footer' colspan=2>
 	<span id='footer-msg'></span>
-	<input type='button' value='Save' id='save-button' onclick='save()'>
-	<input type='button' value='Cancel' id='cancel-button' onclick='cancel()'>
+	<input type='button' value='<% translate("Save"); %>' id='save-button' onclick='save()'>
+	<input type='button' value='<% translate("Cancel"); %>' id='cancel-button' onclick='cancel()'>
 </td></tr>
 </table>
 </form>

@@ -11,7 +11,7 @@
 <head>
 <meta http-equiv='content-type' content='text/html;charset=utf-8'>
 <meta name='robots' content='noindex,nofollow'>
-<title>[<% ident(); %>] Admin: Access</title>
+<title>[<% ident(); %>] <% translate("Admin"); %>: <% translate("Access"); %></title>
 <link rel='stylesheet' type='text/css' href='tomato.css'>
 <link rel='stylesheet' type='text/css' href='color.css' id='guicss'>
 <script type='text/javascript' src='tomato.js'></script>
@@ -38,20 +38,20 @@ sdup = parseInt('<% psup("dropbear"); %>');
 shlimit = nvram.ne_shlimit.split(',');
 if (shlimit.length != 3) shlimit = [0,3,60];
 
-var xmenus = [['Status', 'status'], ['Bandwidth', 'bwm'], ['IP Traffic', 'ipt'], ['Tools', 'tools'], ['Basic', 'basic'],
-	['Advanced', 'advanced'], ['Port Forwarding', 'forward'], ['QoS', 'qos'],
+var xmenus = [['<% translate("Status"); %>', 'status'], ['<% translate("Bandwidth"); %>', 'bwm'], ['<% translate("IP Traffic"); %>', 'ipt'], ['<% translate("Tools"); %>', 'tools'], ['<% translate("Basic"); %>', 'basic'],
+	['<% translate("Advanced"); %>', 'advanced'], ['<% translate("Port Forwarding"); %>', 'forward'], ['<% translate("QoS"); %>', 'qos'],
 /* USB-BEGIN */
-	['USB and NAS', 'nas'],
+	['<% translate("USB and NAS"); %>', 'nas'],
 /* USB-END */
 /* VPN-BEGIN */
-	['VPN Tunneling', 'vpn'],
+	['<% translate("VPN Tunneling"); %>', 'vpn'],
 /* VPN-END */
-	['Administration', 'admin']];
+	['<% translate("Administration"); %>', 'admin']];
 
 function toggle(service, isup)
 {
 	if (changed) {
-		if (!confirm("Unsaved changes will be lost. Continue anyway?")) return;
+		if (!confirm("<% translate("Unsaved changes will be lost. Continue anyway"); %>?")) return;
 	}
 	E('_' + service + '_button').disabled = true;
 	form.submitHidden('service.cgi', {
@@ -89,7 +89,7 @@ function verifyFields(focused, quiet)
 	a = E('_f_http_local');
 	b = E('_f_http_remote').value;
 	if ((a.value != 3) && (b != 0) && (a.value != b)) {
-		ferror.set(a, 'The local http/https must also be enabled when using remote access.', quiet || !ok);
+		ferror.set(a, '<% translate("The local http/https must also be enabled when using remote access"); %>.', quiet || !ok);
 		ok = 0;
 	}
 	else {
@@ -127,7 +127,7 @@ function verifyFields(focused, quiet)
 	}
 	else if (a.value != '') {
         if (a.value.search(/^\s*ssh-(dss|rsa)/) == -1) {
-			ferror.set(a, 'Invalid SSH key.', quiet || !ok);
+			ferror.set(a, '<% translate("Invalid SSH key"); %>.', quiet || !ok);
 			ok = 0;
 		}
 	}
@@ -144,11 +144,11 @@ function verifyFields(focused, quiet)
 	a.value = a.value.trim();
 	b.value = b.value.trim();
 	if (a.value != b.value) {
-		ferror.set(b, 'Both passwords must match.', quiet || !ok);
+		ferror.set(b, '<% translate("Both passwords must match"); %>.', quiet || !ok);
 		ok = 0;
 	}
 	else if (a.value == '') {
-		ferror.set(a, 'Password must not be empty.', quiet || !ok);
+		ferror.set(a, '<% translate("Password must not be empty"); %>.', quiet || !ok);
 		ok = 0;
 	}
 	else {
@@ -169,7 +169,7 @@ function save()
 	fom = E('_fom');
 	a = E('_f_http_local').value * 1;
 	if (a == 0) {
-		if (!confirm('Warning: Web Admin is about to be disabled. If you decide to re-enable Web Admin at a later time, it must be done manually via Telnet, SSH or by performing a hardware reset. Are you sure you want to do this?')) return;
+		if (!confirm('<% translate("Warning: Web Admin is about to be disabled. If you decide to re-enable Web Admin at a later time, it must be done manually via Telnet, SSH or by performing a hardware reset. Are you sure you want to do this"); %>?')) return;
 		fom._nextpage.value = 'about:blank';
 	}
 	fom.http_enable.value = (a & 1) ? 1 : 0;
@@ -249,7 +249,7 @@ function init()
 <table id='container' cellspacing=0>
 <tr><td colspan=2 id='header'>
 	<div class='title'>Tomato</div>
-	<div class='version'>Version <% version(); %></div>
+	<div class='version'><% translate("Version"); %> <% version(); %></div>
 </td></tr>
 <tr id='body'><td id='navi'><script type='text/javascript'>navi()</script></td>
 <td id='content'>
@@ -279,31 +279,34 @@ function init()
 <input type='hidden' name='sshd_forwarding'>
 <input type='hidden' name='web_mx'>
 
-<div class='section-title'>Web Admin</div>
+<div class='section-title'><% translate("Web Admin"); %></div>
 <div class='section'>
 <script type='text/javascript'>
 var m = [
-	{ title: 'Local Access', name: 'f_http_local', type: 'select', options: [[0,'Disabled'],[1,'HTTP'],[2,'HTTPS'],[3,'HTTP &amp; HTTPS']],
+	{ title: '<% translate("Local Access"); %>', name: 'f_http_local', type: 'select', options: [[0,'<% translate("Disabled"); %>'],[1,'HTTP'],[2,'HTTPS'],[3,'HTTP &amp; HTTPS']],
 		value: ((nvram.https_enable != 0) ? 2 : 0) | ((nvram.http_enable != 0) ? 1 : 0) },
-	{ title: 'HTTP Port', indent: 2, name: 'http_lanport', type: 'text', maxlen: 5, size: 7, value: fixPort(nvram.http_lanport, 80) },
-	{ title: 'HTTPS Port', indent: 2, name: 'https_lanport', type: 'text', maxlen: 5, size: 7, value: fixPort(nvram.https_lanport, 443) },
-	{ title: 'SSL Certificate', rid: 'row_sslcert' },
-	{ title: 'Common Name (CN)', indent: 2, name: 'https_crt_cn', type: 'text', maxlen: 64, size: 64, value: nvram.https_crt_cn,
-		suffix: '&nbsp;<small>(optional; space separated)</small>' },
-	{ title: 'Regenerate', indent: 2, name: 'f_https_crt_gen', type: 'checkbox', value: 0 },
-	{ title: 'Save In NVRAM', indent: 2, name: 'f_https_crt_save', type: 'checkbox', value: nvram.https_crt_save == 1 },
-	{ title: 'Remote Access', name: 'f_http_remote', type: 'select', options: [[0,'Disabled'],[1,'HTTP'],[2,'HTTPS']],
+	{ title: '<% translate("HTTP Port"); %>', indent: 2, name: 'http_lanport', type: 'text', maxlen: 5, size: 7, value: fixPort(nvram.http_lanport, 80) },
+	{ title: '<% translate("HTTPS Port"); %>', indent: 2, name: 'https_lanport', type: 'text', maxlen: 5, size: 7, value: fixPort(nvram.https_lanport, 443) },
+	{ title: '<% translate("SSL Certificate"); %>', rid: 'row_sslcert' },
+	{ title: '<% translate("Common Name"); %> (CN)', indent: 2, name: 'https_crt_cn', type: 'text', maxlen: 64, size: 64, value: nvram.https_crt_cn,
+		suffix: '&nbsp;<small>(<% translate("optional"); %>; <% translate("space separated"); %>)</small>' },
+	{ title: '<% translate("Regenerate"); %>', indent: 2, name: 'f_https_crt_gen', type: 'checkbox', value: 0 },
+	{ title: '<% translate("Save In NVRAM"); %>', indent: 2, name: 'f_https_crt_save', type: 'checkbox', value: nvram.https_crt_save == 1 },
+	{ title: '<% translate("Remote Access"); %>', name: 'f_http_remote', type: 'select', options: [[0,'<% translate("Disabled"); %>'],[1,'HTTP'],[2,'HTTPS']],
 		value:  (nvram.remote_management == 1) ? ((nvram.remote_mgt_https == 1) ? 2 : 1) : 0 },
-	{ title: 'Port', indent: 2, name: 'http_wanport', type: 'text', maxlen: 5, size: 7, value:  fixPort(nvram.http_wanport, 8080) },
-	{ title: 'Allow Wireless Access', name: 'f_http_wireless', type: 'checkbox', value:  nvram.web_wl_filter == 0 },
+	{ title: '<% translate("Port"); %>', indent: 2, name: 'http_wanport', type: 'text', maxlen: 5, size: 7, value:  fixPort(nvram.http_wanport, 8080) },
+	{ title: '<% translate("Allow Wireless Access"); %>', name: 'f_http_wireless', type: 'checkbox', value:  nvram.web_wl_filter == 0 },
 	null,
-	{ title: 'Directory with GUI files', name: 'web_dir', type: 'select',
-		options: [['default','Default: /www'], ['jffs', 'Custom: /jffs/www (Experts Only!)'], ['opt', 'Custom: /opt/www (Experts Only!)'], ['tmp', 'Custom: /tmp/www (Experts Only!)']], value: nvram.web_dir, suffix: ' <small>Please be sure of your decision before change this settings!</small>' },
-	{ title: 'Color Scheme', name: 'web_css', type: 'select',
-		options: [['openlinksys','USB Blue - OpenLinksys'],['red','Tomato'],['ext/custom','Custom (ext/custom.css)'], ['online', 'On-line from TTB']], value: nvram.web_css },
-	{ title: 'TTB ID#', indent: 2, name: 'ttb_css', type: 'text', maxlen: 25, size: 30, value: nvram.ttb_css, suffix: ' Theme name from <a href="http://www.tomatothemebase.eu" target="_blanc"><u><i>TTB themes gallery</i></u></a>' },
+	{ title: '<% translate("Language"); %>', name: 'web_lang', type: 'select',
+                options: [['en_EN','<% translate("English"); %>'],['ru_RU','<% translate("Russian"); %>']], value: nvram.web_lang },
 	null,
-	{ title: 'Open Menus' }
+	{ title: '<% translate("Directory with GUI files"); %>', name: 'web_dir', type: 'select',
+		options: [['default','<% translate("Default"); %>: /www'], ['jffs', '<% translate("Custom"); %>: /jffs/www (<% translate("Experts Only"); %>!)'], ['opt', '<% translate("Custom"); %>: /opt/www (<% translate("Experts Only"); %>!)'], ['tmp', '<% translate("Custom"); %>: /tmp/www (<% translate("Experts Only"); %>!)']], value: nvram.web_dir, suffix: ' <small><% translate("Please be sure of your decision before change this settings"); %>!</small>' },
+	{ title: '<% translate("Color Scheme"); %>', name: 'web_css', type: 'select',
+		options: [['openlinksys','USB Blue - OpenLinksys'],['red','Tomato'],['ext/custom','<% translate("Custom"); %> (ext/custom.css)'], ['online', '<% translate("On-line from TTB"); %>']], value: nvram.web_css },
+	{ title: '<% translate("TTB ID"); %>#', indent: 2, name: 'ttb_css', type: 'text', maxlen: 25, size: 30, value: nvram.ttb_css, suffix: ' <% translate("Theme name from"); %> <a href="http://www.tomatothemebase.eu" target="_blanc"><u><i>TTB themes gallery</i></u></a>' },
+	null,
+	{ title: '<% translate("Open Menus"); %>' }
 ];
 
 var webmx = get_config('web_mx', '').toLowerCase();
@@ -316,61 +319,61 @@ createFieldTable('', m);
 </script>
 </div>
 
-<div class='section-title'>SSH Daemon</div>
+<div class='section-title'><% translate("SSH Daemon"); %></div>
 <div class='section'>
 <script type='text/javascript'>
 createFieldTable('', [
-	{ title: 'Enable at Startup', name: 'f_sshd_eas', type: 'checkbox', value: nvram.sshd_eas == 1 },
-	{ title: 'Extended MOTD', name: 'f_sshd_motd', type: 'checkbox', value: nvram.sshd_motd == 1 },
-	{ title: 'Remote Access', name: 'f_sshd_remote', type: 'checkbox', value: nvram.sshd_remote == 1 },
-	{ title: 'Remote Port', indent: 2, name: 'sshd_rport', type: 'text', maxlen: 5, size: 7, value: nvram.sshd_rport },
-	{ title: 'Remote Forwarding', name: 'f_sshd_forwarding', type: 'checkbox', value: nvram.sshd_forwarding == 1 },
-	{ title: 'Port', name: 'sshd_port', type: 'text', maxlen: 5, size: 7, value: nvram.sshd_port },
-	{ title: 'Allow Password Login', name: 'f_sshd_pass', type: 'checkbox', value: nvram.sshd_pass == 1 },
-	{ title: 'Authorized Keys', name: 'sshd_authkeys', type: 'textarea', value: nvram.sshd_authkeys }
+	{ title: '<% translate("Enable at Startup"); %>', name: 'f_sshd_eas', type: 'checkbox', value: nvram.sshd_eas == 1 },
+	{ title: '<% translate("Extended MOTD"); %>', name: 'f_sshd_motd', type: 'checkbox', value: nvram.sshd_motd == 1 },
+	{ title: '<% translate("Remote Access"); %>', name: 'f_sshd_remote', type: 'checkbox', value: nvram.sshd_remote == 1 },
+	{ title: '<% translate("Remote Port"); %>', indent: 2, name: 'sshd_rport', type: 'text', maxlen: 5, size: 7, value: nvram.sshd_rport },
+	{ title: '<% translate("Remote Forwarding"); %>', name: 'f_sshd_forwarding', type: 'checkbox', value: nvram.sshd_forwarding == 1 },
+	{ title: '<% translate("Port"); %>', name: 'sshd_port', type: 'text', maxlen: 5, size: 7, value: nvram.sshd_port },
+	{ title: '<% translate("Allow Password Login"); %>', name: 'f_sshd_pass', type: 'checkbox', value: nvram.sshd_pass == 1 },
+	{ title: '<% translate("Authorized Keys"); %>', name: 'sshd_authkeys', type: 'textarea', value: nvram.sshd_authkeys }
 ]);
-W('<input type="button" value="' + (sdup ? 'Stop' : 'Start') + ' Now" onclick="toggle(\'sshd\', sdup)" id="_sshd_button">');
+W('<input type="button" value="' + (sdup ? '<% translate("Stop"); %>' : '<% translate("Start"); %>') + ' <% translate("Now"); %>" onclick="toggle(\'sshd\', sdup)" id="_sshd_button">');
 </script>
 </div>
 
-<div class='section-title'>Telnet Daemon</div>
+<div class='section-title'><% translate("Telnet Daemon"); %></div>
 <div class='section'>
 <script type='text/javascript'>
 createFieldTable('', [
-	{ title: 'Enable at Startup', name: 'f_telnetd_eas', type: 'checkbox', value: nvram.telnetd_eas == 1 },
-	{ title: 'Port', name: 'telnetd_port', type: 'text', maxlen: 5, size: 7, value: nvram.telnetd_port }
+	{ title: '<% translate("Enable at Startup"); %>', name: 'f_telnetd_eas', type: 'checkbox', value: nvram.telnetd_eas == 1 },
+	{ title: '<% translate("Port"); %>', name: 'telnetd_port', type: 'text', maxlen: 5, size: 7, value: nvram.telnetd_port }
 ]);
-W('<input type="button" value="' + (tdup ? 'Stop' : 'Start') + ' Now" onclick="toggle(\'telnetd\', tdup)" id="_telnetd_button">');
+W('<input type="button" value="' + (tdup ? '<% translate("Stop"); %>' : '<% translate("Start"); %>') + ' <% translate("Now"); %>" onclick="toggle(\'telnetd\', tdup)" id="_telnetd_button">');
 </script>
 </div>
 
-<div class='section-title'>Admin Restrictions</div>
+<div class='section-title'><% translate("Admin Restrictions"); %></div>
 <div class='section'>
 <script type='text/javascript'>
 createFieldTable('', [
-	{ title: 'Allowed Remote<br>IP Address', name: 'f_rmgt_sip', type: 'text', maxlen: 512, size: 64, value: nvram.rmgt_sip,
-		suffix: '<br><small>(optional; ex: "1.1.1.1", "1.1.1.0/24", "1.1.1.1 - 2.2.2.2" or "me.example.com")</small>' },
-	{ title: 'Limit Connection Attempts', multi: [
+	{ title: '<% translate("Allowed Remote"); %><br><% translate("IP Address"); %>', name: 'f_rmgt_sip', type: 'text', maxlen: 512, size: 64, value: nvram.rmgt_sip,
+		suffix: '<br><small>(<% translate("optional"); %>; <% translate("ex"); %>: "1.1.1.1", "1.1.1.0/24", "1.1.1.1 - 2.2.2.2" or "me.example.com")</small>' },
+	{ title: '<% translate("Limit Connection Attempts"); %>', multi: [
 		{ suffix: '&nbsp; SSH &nbsp; / &nbsp;', name: 'f_limit_ssh', type: 'checkbox', value: (shlimit[0] & 1) != 0 },
 		{ suffix: '&nbsp; Telnet &nbsp;', name: 'f_limit_telnet', type: 'checkbox', value: (shlimit[0] & 2) != 0 }
 	] },
 	{ title: '', indent: 2, multi: [
-		{ name: 'f_limit_hit', type: 'text', maxlen: 4, size: 6, suffix: '&nbsp; every &nbsp;', value: shlimit[1] },
-		{ name: 'f_limit_sec', type: 'text', maxlen: 4, size: 6, suffix: '&nbsp; seconds', value: shlimit[2] }
+		{ name: 'f_limit_hit', type: 'text', maxlen: 4, size: 6, suffix: '&nbsp; <% translate("every"); %> &nbsp;', value: shlimit[1] },
+		{ name: 'f_limit_sec', type: 'text', maxlen: 4, size: 6, suffix: '&nbsp; <% translate("seconds"); %>', value: shlimit[2] }
 	] }	
 ]);
 </script>
 </div>
 
-<div class='section-title'>Username / Password</div>
+<div class='section-title'><% translate("Username"); %> / <% translate("Password"); %></div>
 <div class='section'>
 <script type='text/javascript'>
 createFieldTable('', [
-	{ title: 'Username', name: 'http_username', type: 'text', value: nvram.http_username, suffix: '&nbsp;<small>(empty field means "admin")</small>' },
-	{ title: 'Allow web login as "root"', name: 'f_http_root', type: 'checkbox', value: nvram.http_root == 1 },
+	{ title: '<% translate("Username"); %>', name: 'http_username', type: 'text', value: nvram.http_username, suffix: '&nbsp;<small>(<% translate("empty field means"); %> "admin")</small>' },
+	{ title: '<% translate("Allow web login as"); %> "root"', name: 'f_http_root', type: 'checkbox', value: nvram.http_root == 1 },
 	null,
-	{ title: 'Password', name: 'set_password_1', type: 'password', value: '**********' },
-	{ title: '<i>(re-enter to confirm)</i>', indent: 2, name: 'set_password_2', type: 'password', value: '**********' }
+	{ title: '<% translate("Password"); %>', name: 'set_password_1', type: 'password', value: '**********' },
+	{ title: '<i>(<% translate("re-enter to confirm"); %>)</i>', indent: 2, name: 'set_password_2', type: 'password', value: '**********' }
 ]);
 </script>
 </div>
@@ -380,8 +383,8 @@ createFieldTable('', [
 </td></tr>
 <tr><td id='footer' colspan=2>
 	<span id='footer-msg'></span>
-	<input type='button' value='Save' id='save-button' onclick='save()'>
-	<input type='button' value='Cancel' id='cancel-button' onclick='javascript:reloadPage();'>
+	<input type='button' value='<% translate("Save"); %>' id='save-button' onclick='save()'>
+	<input type='button' value='<% translate("Cancel"); %>' id='cancel-button' onclick='javascript:reloadPage();'>
 </td></tr>
 </table>
 </form>

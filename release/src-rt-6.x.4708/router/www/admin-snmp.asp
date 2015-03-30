@@ -10,7 +10,7 @@
 <head>
 <meta http-equiv='content-type' content='text/html;charset=utf-8'>
 <meta name='robots' content='noindex,nofollow'>
-<title>[<% ident(); %>] Admin: SNMP</title>
+<title>[<% ident(); %>] <% translate("Admin"); %>: <% translate("SNMP"); %></title>
 <link rel='stylesheet' type='text/css' href='tomato.css'>
 <link rel='stylesheet' type='text/css' href='color.css'>
 <script type='text/javascript' src='tomato.js'></script>
@@ -66,12 +66,12 @@ function init()
 <table id='container' cellspacing=0>
 <tr><td colspan=2 id='header'>
 <div class='title'>Tomato</div>
-<div class='version'>Version <% version(); %></div>
+<div class='version'><% translate("Version"); %> <% version(); %></div>
 </td></tr>
 <tr id='body'><td id='navi'><script type='text/javascript'>navi()</script></td>
 <td id='content'>
 <div id='ident'><% ident(); %></div>
-<div class='section-title'>SNMP Settings</div>
+<div class='section-title'><% translate("SNMP Settings"); %></div>
 <div class='section' id='config-section'>
 <form id='_fom' method='post' action='tomato.cgi'>
 <input type='hidden' name='_nextpage' value='admin-snmp.asp'>
@@ -81,16 +81,16 @@ function init()
 
 <script type='text/javascript'>
 createFieldTable('', [
-	{ title: 'Enable SNMP', name: 'f_snmp_enable', type: 'checkbox', value: nvram.snmp_enable == '1' },
+	{ title: '<% translate("Enable SNMP"); %>', name: 'f_snmp_enable', type: 'checkbox', value: nvram.snmp_enable == '1' },
 	null,
-	{ title: 'Port', name: 'snmp_port', type: 'text', maxlen: 5, size: 7, value: fixPort(nvram.snmp_port, 161) },
-	{ title: 'Remote access', indent: 2, name: 'f_snmp_remote', type: 'checkbox', value: nvram.snmp_remote == '1' },
-	{ title: 'Allowed Remote<br>IP Address', indent: 2, name: 'snmp_remote_sip', type: 'text', maxlen: 512, size: 64, value: nvram.snmp_remote_sip,
-			suffix: '<br><small>(optional; ex: "1.1.1.1", "1.1.1.0/24", "1.1.1.1 - 2.2.2.2" or "me.example.com")</small>' },
+	{ title: '<% translate("Port"); %>', name: 'snmp_port', type: 'text', maxlen: 5, size: 7, value: fixPort(nvram.snmp_port, 161) },
+	{ title: '<% translate("Remote access"); %>', indent: 2, name: 'f_snmp_remote', type: 'checkbox', value: nvram.snmp_remote == '1' },
+	{ title: '<% translate("Allowed Remote"); %><br><% translate("IP Address"); %>', indent: 2, name: 'snmp_remote_sip', type: 'text', maxlen: 512, size: 64, value: nvram.snmp_remote_sip,
+			suffix: '<br><small>(<% translate("optional; ex"); %>: "1.1.1.1", "1.1.1.0/24", "1.1.1.1 - 2.2.2.2" <% translate("or"); %> "me.example.com")</small>' },
 	null,
-	{ title: 'Location', indent: 2, name: 'snmp_location', type: 'text', maxlen: 40, size: 64, value: nvram.snmp_location },
-	{ title: 'Contact', indent: 2, name: 'snmp_contact', type: 'text', maxlen: 40, size: 64, value: nvram.snmp_contact },
-	{ title: 'RO Community', indent: 2, name: 'snmp_ro', type: 'text', maxlen: 40, size: 64, value: nvram.snmp_ro }
+	{ title: '<% translate("Location"); %>', indent: 2, name: 'snmp_location', type: 'text', maxlen: 40, size: 64, value: nvram.snmp_location },
+	{ title: '<% translate("Contact"); %>', indent: 2, name: 'snmp_contact', type: 'text', maxlen: 40, size: 64, value: nvram.snmp_contact },
+	{ title: '<% translate("RO Community"); %>', indent: 2, name: 'snmp_ro', type: 'text', maxlen: 40, size: 64, value: nvram.snmp_ro }
 ]);
 </script>
 </div>
@@ -100,8 +100,8 @@ createFieldTable('', [
 <tr><td id='footer' colspan=2>
  <form>
  <span id='footer-msg'></span>
- <input type='button' value='Save' id='save-button' onclick='save()'>
- <input type='button' value='Cancel' id='cancel-button' onclick='javascript:reloadPage();'>
+ <input type='button' value='<% translate("Save"); %>' id='save-button' onclick='save()'>
+ <input type='button' value='<% translate("Cancel"); %>' id='cancel-button' onclick='javascript:reloadPage();'>
  </form>
 </div>
 </td></tr>

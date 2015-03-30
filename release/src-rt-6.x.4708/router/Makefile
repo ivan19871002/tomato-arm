@@ -613,10 +613,10 @@ endif
 	@rm -rf $(TARGETDIR)/lib/modules/*/kernel/drivers/net/usb || true
 	@mv $(TARGETDIR)/lib/modules/*/kernel/drivers/media/* $(PLATFORMDIR)/extras/ || true
 	@rm -rf $(TARGETDIR)/lib/modules/*/kernel/drivers/media || true
-	@mv $(TARGETDIR)/lib/modules/*/kernel/drivers/sound/* $(PLATFORMDIR)/extras/ || true
-	@rm -rf $(TARGETDIR)/lib/modules/*/kernel/drivers/sound || true
-	@mv $(TARGETDIR)/lib/modules/*/kernel/sound/* $(PLATFORMDIR)/extras/ || true
-	@rm -rf $(TARGETDIR)/lib/modules/*/kernel/sound || true
+	$(if $(TCONFIG_USB_AUDIO),@cp -f,@mv) $(TARGETDIR)/lib/modules/*/kernel/drivers/sound/* $(PLATFORMDIR)/extras/ || true
+	$(if $(TCONFIG_USB_AUDIO),@ls,@rm -rf) $(TARGETDIR)/lib/modules/*/kernel/drivers/sound || true
+	$(if $(TCONFIG_USB_AUDIO),@cp -f,@mv) $(TARGETDIR)/lib/modules/*/kernel/sound/* $(PLATFORMDIR)/extras/ || true
+	$(if $(TCONFIG_USB_AUDIO),@ls,@rm -rf) $(TARGETDIR)/lib/modules/*/kernel/sound || true
 	@mv $(TARGETDIR)/lib/modules/*/kernel/drivers/input/* $(PLATFORMDIR)/extras/ || true
 	@rm -rf $(TARGETDIR)/lib/modules/*/kernel/drivers/input || true
 	$(if $(TCONFIG_UPS),@cp -f,@mv) $(TARGETDIR)/lib/modules/*/kernel/drivers/hid/* $(PLATFORMDIR)/extras/ || true

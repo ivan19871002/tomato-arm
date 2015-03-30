@@ -511,6 +511,10 @@ define RouterOptions
 		sed -i "/TCONFIG_TINC/d" $(1); \
 		echo "TCONFIG_TINC=y" >>$(1); \
 	fi; \
+	if [ "$(USB_AUDIO)" = "y" ]; then \
+		sed -i "/TCONFIG_USB_AUDIO/d" $(1); \
+		echo "TCONFIG_USB_AUDIO=y" >>$(1); \
+	fi; \
 	)
 endef
 
@@ -801,7 +805,7 @@ define KernelConfig
 		echo "CONFIG_HAVE_LATENCYTOP_SUPPORT=y" >>$(1); \
 		sed -i "/CONFIG_GENERIC_LOCKBREAK/d" $(1); \
 		echo "CONFIG_BROKEN_ON_SMP=y" >>$(1); \
-		sed -i "/CONFIG_TREE_RCU=y/# CONFIG_TREE_RCU is not set/g" >>$(1); \
+		sed -i "/CONFIG_TREE_RCU=y/# CONFIG_TREE_RCU is not set/g" $(1); \
 		echo "CONFIG_TREE_PREEMPT_RCU=y" >>$(1); \
 		echo "# CONFIG_TINY_RCU is not set" >>$(1); \
 		sed -i "/CONFIG_USE_GENERIC_SMP_HELPERS/d" $(1); \
@@ -832,6 +836,15 @@ define KernelConfig
 			echo "CONFIG_BRIDGE_EBT_IP6=m" >>$(1); \
 		fi; \
 	fi; \
+	sed -i "/CONFIG_HFS_FS/d" $(1); \
+	sed -i "/CONFIG_HFSPLUS_FS/d" $(1); \
+	if [ "$(HFS)" = "y" ]; then \
+		echo "CONFIG_HFS_FS=m" >>$(1); \
+		echo "CONFIG_HFSPLUS_FS=m" >>$(1); \
+	else \
+		echo "# CONFIG_HFS_FS is not set" >>$(1); \
+		echo "# CONFIG_HFSPLUS_FS is not set" >>$(1); \
+	fi; \
         sed -i "/CONFIG_NVRAM_64K/d" $(1); \
         if [ "$(NVRAM_64K)" = "y" ]; then \
                 echo "CONFIG_NVRAM_64K=y" >>$(1); \
@@ -840,7 +853,6 @@ define KernelConfig
 	fi \
 	)
 endef
-
 
 bin:
 ifeq ($(B),)
@@ -863,7 +875,7 @@ e:
 	@$(MAKE) bin NTFS=y BBEXTRAS=y USBEXTRAS=y EBTABLES=y IPV6SUPP=y MEDIASRV=y  B=E BUILD_DESC="$(VPN)" USB="USB" PPTPD=y OPENVPN=y DNSSEC=y SNMP=y
 
 z:
-	@$(MAKE) bin OPENVPN=y NTFS=y BBEXTRAS=y USBEXTRAS=y EBTABLES=y MEDIASRV=y IPV6SUPP=y B=E BUILD_DESC="AIO" USB="USB" NOCAT=y BTCLIENT=y TR_EXTRAS=y DNSCRYPT=y UPS=y PPTPD=y DNSSEC=y TINC=y SNMP=y RAID=y NFS=y NANO=y
+	@$(MAKE) bin OPENVPN=y NTFS=y BBEXTRAS=y USBEXTRAS=y EBTABLES=y MEDIASRV=y IPV6SUPP=y B=E BUILD_DESC="AIO" USB="USB" NOCAT=y BTCLIENT=y TR_EXTRAS=y DNSCRYPT=y PPTPD=y DNSSEC=y TINC=y SNMP=y RAID=y NFS=y NANO=y
 
 ac68e:
 	@$(MAKE) e ARM=y NVRAM_64K=y NAND=y BCMSMP=y ASUS_TRX="ASUS" UFSD="ASUS" CTF=y GRO=y
@@ -899,7 +911,7 @@ ws880e:
 	@$(MAKE) e ARM=y NVRAM_64K=y NAND=y BCMSMP=y ASUS_TRX="HUAWEI" UFSD="ASUS" CTF=y GRO=y HFS=y
 
 ws880z:
-	@$(MAKE) z ARM=y NVRAM_64K=y NAND=y BCMSMP=y ASUS_TRX="HUAWEI" UFSD="ASUS" CTF=y GRO=y HFS=y TOR=y NGINX=y SNMP=y
+	@$(MAKE) z ARM=y NVRAM_64K=y NAND=y BCMSMP=y ASUS_TRX="HUAWEI" UFSD="ASUS" CTF=y GRO=y HFS=y TOR=y NGINX=n SNMP=y USB_AUDIO=y
 
 setprofile:
 	echo '#ifndef TOMATO_PROFILE' > router/shared/tomato_profile.h

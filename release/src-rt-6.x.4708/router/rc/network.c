@@ -579,6 +579,13 @@ void restart_wl(void)
 
 	if (is_client)
 		xstart("radio", "join");
+
+	if (get_model() == MODEL_WS880) {
+		if (nvram_match("wl0_radio", "1") || nvram_match("wl1_radio", "1"))
+			led(LED_WLAN, LED_ON);
+		else
+			led(LED_WLAN, LED_OFF);
+	}
 }
 
 #ifdef CONFIG_BCMWL5
@@ -660,12 +667,12 @@ void start_wl(void)
 						if (unit == 0) {
 							led(LED_WLAN, LED_ON);
 							if (nvram_get_int("blink_wl"))
-								eval("blink", ifname, "wlan");
+								eval("blink", ifname, "wlan", "20", "8192");
 						}
 						else{
 							 led(LED_5G, LED_ON);	
 							 if (nvram_get_int("blink_wl"))
-							 	eval("blink", ifname, "5g");
+							 	eval("blink", ifname, "5g", "20", "8192");
 						}					
 					}	
 #endif	// CONFIG_BCMWL5
@@ -686,6 +693,13 @@ void start_wl(void)
 
 	if (is_client)
 		xstart("radio", "join");
+
+	if (get_model() == MODEL_WS880) {
+		if (nvram_match("wl0_radio", "1") || nvram_match("wl1_radio", "1"))
+			led(LED_WLAN, LED_ON);
+		else
+			led(LED_WLAN, LED_OFF);
+	}
 }
 
 #ifdef TCONFIG_IPV6

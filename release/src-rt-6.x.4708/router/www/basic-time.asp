@@ -205,7 +205,7 @@ createFieldTable('', [
 	{ title: '<% translate("Router Time"); %>', text: '<span id="clock"><% time(); %></span>' },
 	null,
 	{ title: '<% translate("Time Zone"); %>', name: 'tm_sel', type: 'select', options: [
-		['custom','<% translate("Show"); %>Custom...'],
+		['custom','<% translate("Custom TZ String"); %>...'],
 		['UTC12','UTC-12:00 Kwajalein'],
 		['UTC11','UTC-11:00 Midway Island, Samoa'],
 		['UTC10','UTC-10:00 Hawaii'],

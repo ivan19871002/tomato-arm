@@ -938,7 +938,7 @@ bridge-install:
 dnsmasq: $(if $(TCONFIG_DNSSEC),nettle,)
 	@$(SEP)
 	@$(MAKE) -C dnsmasq $(PARALLEL_BUILD) \
-	COPTS="$(if $(TCONFIG_DNSSEC),-I$(TOP)/nettle/include -I$(TOP)/gmp -DHAVE_DNSSEC -DHAVE_DNSSEC_STATIC,) \
+	COPTS="$(if $(TCONFIG_DNSSEC),-I$(TOP)/nettle -I$(TOP)/gmp -DHAVE_DNSSEC -DHAVE_DNSSEC_STATIC,) \
 		$(if $(TCONFIG_IPV6),-DUSE_IPV6,-DNO_IPV6) \
 		$(if $(CONFIG_LINUX26),-DUSE_IPSET,-DNO_IPSET) \
 		-DHAVE_BROKEN_RTC -DHAVE_TOMATO $(EXTRACFLAGS) -ffunction-sections -fdata-sections" \

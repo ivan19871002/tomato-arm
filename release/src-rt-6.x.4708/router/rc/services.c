@@ -629,7 +629,9 @@ void start_httpd(void)
 // set www dir
 	if ( nvram_match( "web_dir", "jffs" ) ) { chdir("/jffs/www"); }
 	else if ( nvram_match( "web_dir", "opt" ) ) { chdir("/opt/www"); }
-	else if ( nvram_match( "web_dir", "tmp" ) ) { chdir("/tmp/www");}
+	else if ( nvram_match( "web_dir", "tmp" ) ) { chdir("/tmp/www"); }
+	// Advanced Tomato
+	else if ( nvram_match( "web_dir", "at" ) ) { chdir("/www-at"); }
 	else { chdir("/www"); }
 
 	eval("httpd");

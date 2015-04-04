@@ -301,7 +301,7 @@ var m = [
                 options: [['en_EN','<% translate("English"); %>'],['ru_RU','<% translate("Russian"); %>']], value: nvram.web_lang },
 	null,
 	{ title: '<% translate("Directory with GUI files"); %>', name: 'web_dir', type: 'select',
-		options: [['default','<% translate("Default"); %>: /www'], ['jffs', '<% translate("Custom"); %>: /jffs/www (<% translate("Experts Only"); %>!)'], ['opt', '<% translate("Custom"); %>: /opt/www (<% translate("Experts Only"); %>!)'], ['tmp', '<% translate("Custom"); %>: /tmp/www (<% translate("Experts Only"); %>!)']], value: nvram.web_dir, suffix: ' <small><% translate("Please be sure of your decision before change this settings"); %>!</small>' },
+		options: [['default','<% translate("Default"); %>: /www'], ['at','<% translate("Advanced Tomato"); %>: /www-at'], ['jffs', '<% translate("Custom"); %>: /jffs/www (<% translate("Experts Only"); %>!)'], ['opt', '<% translate("Custom"); %>: /opt/www (<% translate("Experts Only"); %>!)'], ['tmp', '<% translate("Custom"); %>: /tmp/www (<% translate("Experts Only"); %>!)']], value: nvram.web_dir, suffix: ' <small><% translate("Please be sure of your decision before change this settings"); %>!</small>' },
 	{ title: '<% translate("Color Scheme"); %>', name: 'web_css', type: 'select',
 		options: [['openlinksys','USB Blue - OpenLinksys'],['red','Tomato'],['ext/custom','<% translate("Custom"); %> (ext/custom.css)'], ['online', '<% translate("On-line from TTB"); %>']], value: nvram.web_css },
 	{ title: '<% translate("TTB ID"); %>#', indent: 2, name: 'ttb_css', type: 'text', maxlen: 25, size: 30, value: nvram.ttb_css, suffix: ' <% translate("Theme name from"); %> <a href="http://www.tomatothemebase.eu" target="_blanc"><u><i>TTB themes gallery</i></u></a>' },

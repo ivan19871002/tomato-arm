@@ -32,6 +32,8 @@ ln -sf /www/ext/proxy.pac www/wpad.dat
 
 # shibby multilanguage
 ln -sf /tmp/lang www/lang
+# advanced tomato multilanguage
+ln -sf /tmp/lang www-at/lang
 
 # shibby
 mkdir -p -m 0755 nas

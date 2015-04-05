@@ -192,7 +192,7 @@ No part of this file may be used without permission.
 						],
 						suffix: ' <small> (<% translate("start cmd.exe and type chcp to see the current code page"); %>)</small>',
 						value: nvram.smbd_cpage },
-					{ title: 'Samba Custom Configuration', name: 'smbd_custom', type: 'textarea', value: nvram.smbd_custom, style: 'width: 100%; height: 80px;' },
+					{ title: 'Samba <% translate("Custom Configuration"); %>', name: 'smbd_custom', type: 'textarea', value: nvram.smbd_custom, style: 'width: 100%; height: 80px;' },
 					{ title: '<% translate("Auto-share all USB Partitions"); %>', name: 'smbd_autoshare', type: 'select',
 						options: [['0','<% translate("Disabled"); %>'],['1','<% translate("Read Only"); %>'],['2','<% translate("Read / Write"); %>'],['3','<% translate("Hidden Read / Write"); %>']],
 						value: nvram.smbd_autoshare },
@@ -208,7 +208,7 @@ No part of this file may be used without permission.
 			<div class="heading"><% translate("Additional Shares List"); %></div>
 			<div class="content">
 				<table class="line-table" id="ss-grid"></table><br />
-				<small>When no shares are specified and auto-sharing is disabled, <i>/mnt</i> directory is shared in Read Only mode.</small>
+				<small><% translate("When no shares are specified and auto-sharing is disabled"); %>, <i>/mnt</i> <% translate("directory is shared in Read Only mode"); %>.</small>
 			</div>
 		</div>
 

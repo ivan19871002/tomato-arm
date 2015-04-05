@@ -51,7 +51,7 @@ No part of this file may be used without permission.
 			/* LINUX26-END */
 		];
 
-		var dowNames = ['<% translate("Sun"); %>', '<% translate("Mon"); %>', '<% translate("Tue"); %>', '<% translate("Wed"); %>', '<% translate("Thu"); %>', '<% translate("Fri"); %>', '<% translate("Sat"); %>'];
+		var dowNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
 		//
 
@@ -405,7 +405,7 @@ No part of this file may be used without permission.
 		<input type="hidden" name="rruleNN" id="_rrule" value="">
 
 		<div class="box">
-			<div class="heading">Access Restriction &nbsp; (<span class="restrict-id"></span>)</div>
+			<div class="heading"><% translate("Access Restriction"); %> &nbsp; (<span class="restrict-id"></span>)</div>
 			<div class="content">
 				<div id="restriction"></div><br />
 				<script type="text/javascript">
@@ -417,8 +417,8 @@ No part of this file may be used without permission.
 						{ title: '<% translate("Enabled"); %>', name: 'f_enabled', type: 'checkbox', value: rule[1] == '1' },
 						{ title: '<% translate("Description"); %>', name: 'f_desc', type: 'text', maxlen: 32, size: 35, value: rule[9] },
 						{ title: '<% translate("Schedule"); %>', multi: [
-							{ name: 'f_sched_allday', type: 'checkbox', suffix: ' All Day &nbsp; ', value: (rule[2] < 0) || (rule[3] < 0) },
-							{ name: 'f_sched_everyday', type: 'checkbox', suffix: ' Everyday', value: (rule[4] & 0x7F) == 0x7F } ] },
+							{ name: 'f_sched_allday', type: 'checkbox', suffix: ' <% translate("All Day"); %> &nbsp; ', value: (rule[2] < 0) || (rule[3] < 0) },
+							{ name: 'f_sched_everyday', type: 'checkbox', suffix: ' <% translate("Everyday"); %>', value: (rule[4] & 0x7F) == 0x7F } ] },
 						{ title: '<% translate("Time"); %>', indent: 2, multi: [
 							{ name: 'f_sched_begin', type: 'select', options: tm, value: (rule[2] < 0) ? 0 : rule[2], suffix: ' - ' },
 							{ name: 'f_sched_end', type: 'select', options: tm, value: (rule[3] < 0) ? 0 : rule[3] } ] },
@@ -430,11 +430,11 @@ No part of this file may be used without permission.
 							{ name: 'f_sched_thu', type: 'checkbox', suffix: ' Thu &nbsp; ', value: (rule[4] & (1 << 4)) },
 							{ name: 'f_sched_fri', type: 'checkbox', suffix: ' Fri &nbsp; ', value: (rule[4] & (1 << 5)) },
 							{ name: 'f_sched_sat', type: 'checkbox', suffix: ' Sat', value: (rule[4] & (1 << 6)) } ] },
-						{ title: '<% translate("Type"); %>', name: 'f_type', id: 'rt_norm', type: 'radio', suffix: ' Normal Access Restriction', value: (rule[5] != '~') },
+						{ title: '<% translate("Type"); %>', name: 'f_type', id: 'rt_norm', type: 'radio', suffix: ' <% translate("Normal Access Restriction"); %>', value: (rule[5] != '~') },
 						{ title: '', name: 'f_type', id: 'rt_wl', type: 'radio', suffix: ' Disable Wireless', value: (rule[5] == '~') },
 						{ title: '<% translate("Applies To"); %>', name: 'f_comp_all', type: 'select', options: [[0,'<% translate("All Computers / Devices"); %>'],[1,'<% translate("The Following"); %>...'],[2,'<% translate("All Except"); %>...']], value: 0 },
 						{ title: '&nbsp;', text: '<table class="line-table col-sm-9" id="res-comp-grid"></table>' },
-						{ title: '<% translate("Blocked Resources"); %>', name: 'f_block_all', type: 'checkbox', suffix: ' Block All Internet Access', value: 0 },
+						{ title: '<% translate("Blocked Resources"); %>', name: 'f_block_all', type: 'checkbox', suffix: ' <% translate("Block All Internet Access"); %>', value: 0 },
 						{ title: '<% translate("Port / Application"); %>', indent: 2, text: '<table class="line-table col-sm-9" id="res-bp-grid"></table>' },
 						{ title: '<% translate("HTTP Request"); %>', indent: 2, name: 'f_block_http', type: 'textarea', value: rule[7] },
 						{ title: '<% translate("HTTP Requested Files"); %>', indent: 2, multi: [

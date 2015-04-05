@@ -665,7 +665,7 @@ No part of this file may be used without permission.
 			else {
 				s = s.toUpperCase().replace(/[^0-9A-F]/g, '');
 				if (s.length != e.maxLength) {
-					ferror.set(e, '<% translate("Invalid WEP key. Expecting"); %> ' + e.maxLength + ' <% translate("hex or"); %> ' + (e.maxLength >> 1) + ' <% translate("ASCII characters."); %>', quiet);
+					ferror.set(e, '<% translate("Invalid WEP key. Expecting"); %> ' + e.maxLength + ' <% translate("hex or"); %> ' + (e.maxLength >> 1) + ' <% translate("ASCII characters"); %>.', quiet);
 					return 0;
 				}
 			}
@@ -1166,7 +1166,7 @@ No part of this file may be used without permission.
 						case 'mixed':
 						case 'n-only':
 							if ((nphy || acphy) && (a.value == 'tkip') && (sm2.indexOf('wpa') != -1)) {
-								ferror.set(a, '<% translate("TKIP encryption is not supported with WPA / WPA2 in N and AC mode."); %>', quiet || !ok);
+								ferror.set(a, '<% translate("TKIP encryption is not supported with WPA / WPA2 in N and AC mode"); %>.', quiet || !ok);
 								ok = 0;
 							}
 							else ferror.clear(a);
@@ -1180,11 +1180,11 @@ No part of this file may be used without permission.
 					if ((wmode == 'sta') || (wmode == 'wet')) {
 						++wlclnt;
 						if (wlclnt > 1) {
-							ferror.set(b, '<% translate("Only one wireless interface can be configured in client mode."); %>', quiet || !ok);
+							ferror.set(b, '<% translate("Only one wireless interface can be configured in client mode"); %>.', quiet || !ok);
 							ok = 0;
 						}
 						else if (a.value == 'n-only') {
-							ferror.set(a, '<% translate("N-only is not supported in wireless client modes, use Auto."); %>', quiet || !ok);
+							ferror.set(a, '<% translate("N-only is not supported in wireless client modes, use Auto"); %>.', quiet || !ok);
 							ok = 0;
 						}
 					}
@@ -1193,21 +1193,21 @@ No part of this file may be used without permission.
 					ferror.clear(a);
 					if (wl_vis[uidx]._wl_wpa_psk == 1) {
 						if ((a.value.length < 8) || ((a.value.length == 64) && (a.value.search(/[^0-9A-Fa-f]/) != -1))) {
-							ferror.set('_wl'+u+'_wpa_psk', '<% translate("Invalid pre-shared key. Please enter at least 8 characters or 64 hexadecimal digits."); %>', quiet || !ok);
+							ferror.set('_wl'+u+'_wpa_psk', '<% translate("Invalid pre-shared key. Please enter at least 8 characters or 64 hexadecimal digits"); %>.', quiet || !ok);
 							ok = 0;
 						}
 					}
 
 					// wl channel
 					if (((wmode == 'wds') || (wmode == 'apwds')) && (wl_vis[uidx]._wl_channel == 1) && (E('_wl'+u+'_channel').value == '0')) {
-						ferror.set('_wl'+u+'_channel', '<% translate("Fixed wireless channel required in WDS mode."); %>', quiet || !ok);
+						ferror.set('_wl'+u+'_channel', '<% translate("Fixed wireless channel required in WDS mode"); %>.', quiet || !ok);
 						ok = 0;
 					}
 					else ferror.clear('_wl'+u+'_channel');
 
 					if (E('_f_wl'+u+'_mode').value == 'sta') {
 						if ((wan == 'disabled') && (E('_f_wl'+u+'_radio').checked)) {
-							ferror.set('_wan_proto', '<% translate("Wireless Client mode requires a valid WAN setting (usually DHCP)."); %>', quiet || !ok);
+							ferror.set('_wan_proto', '<% translate("Wireless Client mode requires a valid WAN setting (usually DHCP)"); %>.', quiet || !ok);
 							ok = 0;
 						}
 					}
@@ -1291,7 +1291,7 @@ No part of this file may be used without permission.
 							else if (!isMAC0(a.value)) b = 1;
 						}
 						if (!b) {
-							ferror.set('_f_wl'+u+'_wds_0', '<% translate("WDS MAC address required."); %>', quiet || !ok);
+							ferror.set('_f_wl'+u+'_wds_0', '<% translate("WDS MAC address required"); %>.', quiet || !ok);
 							ok = 0;
 						}
 					}

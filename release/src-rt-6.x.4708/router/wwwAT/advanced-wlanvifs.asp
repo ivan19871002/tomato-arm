@@ -42,7 +42,7 @@ LAN Access admin module by Augusto Bott
 
 		var wl_modes_available = [];
 
-		wmo = {'ap':'Access Point','apwds':'Access Point + WDS','sta':'Wireless Client','wet':'Wireless Ethernet Bridge','wds':'WDS'};
+		wmo = {'ap':'<% translate("Access Point"); %>','apwds':'<% translate("Access Point + WDS"); %>','sta':'<% translate("Wireless Client"); %>','wet':'<% translate("Wireless Ethernet Bridge"); %>','wds':'<% translate("WDS"); %>'};
 
 		tabs = [['overview','<% translate("Overview"); %>']];
 
@@ -96,7 +96,7 @@ LAN Access admin module by Augusto Bott
 				{ type: 'select', options: [[0,'LAN (br0)'],[1,'LAN1  (br1)'],[2,'LAN2 (br2)'],[3,'LAN3 (br3)'],[4,'<% translate("none"); %>']] }
 			]);
 
-			this.headerSet(['Interface', 'Enabled', 'SSID', 'Mode','<% translate("Bridge"); %>']);
+			this.headerSet(['<% translate("Interface"); %>', '<% translate("Enabled"); %>', 'SSID', '<% translate("Mode"); %>','<% translate("Bridge"); %>']);
 
 			wlg.populate();
 
@@ -221,8 +221,8 @@ LAN Access admin module by Augusto Bott
 
 			return ([ifname,
 				(data[1] == 1) ? 'Yes' : 'No',
-				ssid || '<small><i>(unset)</i></small>',
-				wmo[data[3]] || '<small><i>(unset)</i></small>',
+				ssid || '<small><i>(<% translate("unset"); %>)</i></small>',
+				wmo[data[3]] || '<small><i>(<% translate("unset"); %>)</i></small>',
 				['LAN (br0)', 'LAN1 (br1)', 'LAN2 (br2)', 'LAN3 (br3)', 'none' ][data[4]]
 			]);
 		}
@@ -316,7 +316,7 @@ LAN Access admin module by Augusto Bott
 			verifyFields(null,1);
 
 			var e = E('footer-msg');
-			e.innerHTML = 'After configuring this VIF, review and save your settings on the Overview tab.';
+			e.innerHTML = '<% translate("After configuring this VIF, review and save your settings on the Overview tab"); %>.';
 			e.style.visibility = 'visible';
 			/* REMOVE-BEGIN */
 			//	setTimeout(
@@ -483,7 +483,7 @@ LAN Access admin module by Augusto Bott
 
 			E('sesdiv').style.display = '';
 			if (uninit < 0) {
-				E('sesdiv').innerHTML = '<i>This feature is not supported on this router.</i>';
+				E('sesdiv').innerHTML = '<i><% translate("This feature is not supported on this router"); %>.</i>';
 				return;
 			}
 
@@ -539,7 +539,7 @@ LAN Access admin module by Augusto Bott
 			}
 
 			elem.display('overview-tab', (name == 'overview'));
-			E('save-button').value = (name != 'overview') ? 'Overview' : 'Save';
+			E('save-button').value = (name != 'overview') ? '<% translate("Overview"); %>' : '<% translate("Save"); %>';
 
 			for (var i = 1; i < tabs.length; ++i) {
 				if (name == tabs[i][0]) {
@@ -862,7 +862,7 @@ LAN Access admin module by Augusto Bott
 						case 'mixed':
 						case 'n-only':
 							if (nphy && (a.value == 'tkip') && (sm2.indexOf('wpa') != -1)) {
-								ferror.set(a, 'TKIP encryption is not supported with WPA / WPA2 in N mode.', quiet || !ok);
+								ferror.set(a, '<% translate("TKIP encryption is not supported with WPA / WPA2 in N mode"); %>.', quiet || !ok);
 								ok = 0;
 							}
 							else ferror.clear(a);
@@ -879,11 +879,11 @@ LAN Access admin module by Augusto Bott
 				if ((wmode == 'sta') || (wmode == 'wet')) {
 					++wlclnt;
 					if (wlclnt > 1) {
-						ferror.set(b, 'Only one wireless interface can be configured in client mode.', quiet || !ok);
+						ferror.set(b, '<% translate("Only one wireless interface can be configured in client mode"); %>.', quiet || !ok);
 						ok = 0;
 					}
 					else if (a.value == 'n-only') {
-						ferror.set(a, 'N-only is not supported in wireless client modes, use Auto.', quiet || !ok);
+						ferror.set(a, '<% translate("N-only is not supported in wireless client modes, use Auto"); %>.', quiet || !ok);
 						ok = 0;
 					}
 				}
@@ -892,7 +892,7 @@ LAN Access admin module by Augusto Bott
 				ferror.clear(a);
 				if (wl_vis[vidx]._f_wl_wpa_psk == 1) {
 					if ((a.value.length < 8) || ((a.value.length == 64) && (a.value.search(/[^0-9A-Fa-f]/) != -1))) {
-						ferror.set('_wl'+u+'_wpa_psk', 'Invalid pre-shared key. Please enter at least 8 characters or 64 hexadecimal digits.', quiet || !ok);
+						ferror.set('_wl'+u+'_wpa_psk', '<% translate("Invalid pre-shared key. Please enter at least 8 characters or 64 hexadecimal digits"); %>.', quiet || !ok);
 						ok = 0;
 					}
 				}
@@ -900,7 +900,7 @@ LAN Access admin module by Augusto Bott
 				if (u.toString().indexOf('.') < 0) {
 					// wl channel
 					if (((wmode == 'wds') || (wmode == 'apwds')) && (wl_vis[vidx]._wl_channel == 1) && (E('_wl'+u+'_channel').value == '0')) {
-						ferror.set('_wl'+u+'_channel', 'Fixed wireless channel required in WDS mode.', quiet || !ok);
+						ferror.set('_wl'+u+'_channel', '<% translate("Fixed wireless channel required in WDS mode"); %>.', quiet || !ok);
 						ok = 0;
 					}
 					else ferror.clear('_wl'+u+'_channel');
@@ -962,7 +962,7 @@ LAN Access admin module by Augusto Bott
 						else if (!isMAC0(a.value)) b = 1;
 					}
 					if (!b) {
-						ferror.set('_f_wl'+u+'_wds_0', 'WDS MAC address required.', quiet || !ok);
+						ferror.set('_f_wl'+u+'_wds_0', '<% translate("WDS MAC address required"); %>.', quiet || !ok);
 						ok = 0;
 					}
 				}
@@ -1197,7 +1197,7 @@ LAN Access admin module by Augusto Bott
 		function do_pre_submit_form(fom) {
 
 			var footermsg = E('footer-msg');
-			footermsg.innerHTML = 'Saving...';
+			footermsg.innerHTML = '<% translate("Saving"); %>...';
 			footermsg.style.visibility = 'visible';
 
 			E('save-button').disabled = 1;
@@ -1291,7 +1291,7 @@ LAN Access admin module by Augusto Bott
 				form.submit(E('_fom'),1);
 			}
 			cmd.onError = function(x) {
-				cmdresult = 'ERROR: ' + x;
+				cmdresult = '<% translate("ERROR"); %>: ' + x;
 				error_pre_submit_form();
 			}
 
@@ -1332,7 +1332,7 @@ LAN Access admin module by Augusto Bott
 			<div id="overview-tab">
 				<table class="line-table" id="wlif-grid"></table><br />
 
-				<h3><a href="javascript:toggleVisibility('details');">Wireless Interfaces Details <span id="sesdivdetailsshowhide"><i class="icon-chevron-up"></i></span></a></h3>
+				<h3><a href="javascript:toggleVisibility('details');"><% translate("Wireless Interfaces Details"); %> <span id="sesdivdetailsshowhide"><i class="icon-chevron-up"></i></span></a></h3>
 				<div class="section fixtables" id="sesdivdetails" style="display:none">
 
 					<script type="text/javascript">
@@ -1364,26 +1364,26 @@ LAN Access admin module by Augusto Bott
 				<div class="section" id="sesdivnotes" style="display:none">
 
 					<ul>
-						<li><b>Interface</b> - Wireless VIF name.</li>
-						<li><b>Enabled</b> - If this VIF should be active and brought online.</li>
-						<li><b>SSID</b> - Wireless Service Set Identifier.</li>
-						<li><b>Mode</b> - Interface mode: Access Point, WDS, Wireless Client, etc...</li>
-						<li><b>Bridge</b> - Which LAN bridge this VIF should be assigned.</li>
+						<li><b><% translate("Interface"); %></b> - <% translate("Wireless VIF name"); %>.</li>
+						<li><b><% translate("Enabled"); %></b> - <% translate("If this VIF should be active and brought online"); %>.</li>
+						<li><b><% translate("SSID"); %></b> - <% translate("Wireless Service Set Identifier"); %>.</li>
+						<li><b><% translate("Mode"); %></b> - <% translate("Interface mode: Access Point, WDS, Wireless Client, etc"); %>...</li>
+						<li><b><% translate("Bridge"); %></b> - <% translate("Which LAN bridge this VIF should be assigned"); %>.</li>
 					</ul>
 
 					<ul>
 						<!-- LINUX24-BEGIN -->
-						<li><b>Use alternate NAS startup(...)</b> - <i>Only meaningful for K24 builds</i> - Enable this option if you need more than one NAS process running (i.e. to handle WPAx encryption on more than one WLVIF).</li>
+						<li><b><% translate("Use alternate NAS startup"); %>(...)</b> - <i><% translate("Only meaningful for K24 builds"); %></i> - <% translate("Enable this option if you need more than one NAS process running (i.e. to handle WPAx encryption on more than one WLVIF)"); %>.</li>
 						<!-- LINUX24-END -->
 					</ul>
 
 					<ul>
-						<li><b>Other relevant notes/hints:</b>
+						<li><b><% translate("Other relevant notes/hints"); %>:</b>
 						<ul>
-							<li>When creating/defining a new wireless VIF, it's MAC address will be shown (incorrectly) as '00:00:00:00:00:00', as it's unknown at that moment (until network is restarted and this page is reloaded).</li>
-							<li>When saving changes, the MAC addresses of all defined non-primary wireless VIFs could sometimes be (already) <i>set</i> but might be <i>recreated</i> by the WL driver (so that previously defined/saved settings might need to be updated/changed accordingly on <a href=advanced-mac.asp>Advanced/MAC Address</a> after saving settings and rebooting your router).</li>
-							<li>This web interface allows configuring a maximum of 4 VIFs for each physical wireless interface available - up to 3 extra VIFs can be defined in addition to the primary VIF (<i>on devices with multiple VIF capabilities</i>).</li>
-							<li>By definition, configuration settings for the <i>primary VIF</i> of any physical wireless interfaces shouldn't be touched here (use the <a class="ajaxload" href="basic-network.asp">Basic/Network</a> page instead).</li>
+							<li><% translate("When creating/defining a new wireless VIF, it's MAC address will be shown (incorrectly) as '00:00:00:00:00:00', as it's unknown at that moment (until network is restarted and this page is reloaded)"); %>.</li>
+							<li><% translate("When saving changes, the MAC addresses of all defined non-primary wireless VIFs could sometimes be (already) <i>set</i> but might be <i>recreated</i> by the WL driver (so that previously defined/saved settings might need to be updated/changed accordingly on"); %> <a class="ajaxload" href=advanced-mac.asp><% translate("Advanced/MAC Address"); %></a> <% translate("after saving settings and rebooting your router)"); %>.</li>
+							<li><% translate("This web interface allows configuring a maximum of 4 VIFs for each physical wireless interface available - up to 3 extra VIFs can be defined in addition to the primary VIF (<i>on devices with multiple VIF capabilities</i>)"); %>.</li>
+							<li><% translate("By definition, configuration settings for the <i>primary VIF</i> of any physical wireless interfaces shouldn't be touched here (use the"); %> <a class="ajaxload" href="basic-network.asp"><% translate("Basic/Network"); %></a> <% translate("page instead)"); %>.</li>
 						</ul>
 					</ul>
 				</div>
@@ -1400,7 +1400,7 @@ LAN Access admin module by Augusto Bott
 
 					htmlOut += ('<div id="'+t+'-tab-disabled">');
 					htmlOut += ('<br>');
-					htmlOut += ('VIF ' + tabs[i][1] + ' is not defined. <br /><br />');
+					htmlOut += ('VIF ' + tabs[i][1] + ' <% translate("is not defined"); %>. <br /><br />');
 					htmlOut += ('</div>');
 
 					htmlOut += ('<div id="'+t+'-tab">');
@@ -1521,7 +1521,7 @@ LAN Access admin module by Augusto Bott
 
 					f.push(null,
 						{ title: '<% translate("WDS"); %>', name: 'f_wl'+u+'_lazywds', type: 'select',
-							options: [['0','Link With...'],['1','<% translate("Automatic"); %>']], value: nvram['wl'+u+'_lazywds'] } );
+							options: [['0','<% translate("Link With"); %>...'],['1','<% translate("Automatic"); %>']], value: nvram['wl'+u+'_lazywds'] } );
 					/* REMOVE-BEGIN */
 					//	alert('nvram["wl'+u+'_wds"]=' + eval('nvram["wl'+u+'_wds"]'));
 					/* REMOVE-END */
@@ -1535,7 +1535,7 @@ LAN Access admin module by Augusto Bott
 					//	wds = (nvram['wl'+u+'_wds']).split(/\s+/);
 					/* REMOVE-END */
 					for (var k = 0; k < 10; k += 2)	{
-						f.push({ title: (k ? '' : 'MAC Address'), indent: 2, multi: [
+						f.push({ title: (k ? '' : '<% translate("MAC Address"); %>'), indent: 2, multi: [
 							{ name: 'f_wl'+u+'_wds_' + k, type: 'text', maxlen: 17, size: 20, value: wds[k] || '00:00:00:00:00:00' },
 							{ name: 'f_wl'+u+'_wds_' + (k + 1), type: 'text', maxlen: 17, size: 20, value: wds[k + 1] || '00:00:00:00:00:00' } ] } );
 					}

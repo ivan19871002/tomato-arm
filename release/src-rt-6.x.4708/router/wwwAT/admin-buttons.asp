@@ -64,10 +64,10 @@ No part of this file may be used without permission.
 					[4,'<% translate("Run Custom Script"); %>']];
 				$('#sesdiv .content').forms([
 					{ title: "<% translate("When Pushed For"); %>..." },
-					{ title: '<% translate("0-2 Seconds"); %>', indent: 2, name: 'sesx_b0', type: 'select', options: a, value: nvram.sesx_b0 || 0 },
-					{ title: '<% translate("4-6 Seconds"); %>', indent: 2, name: 'sesx_b1', type: 'select', options: a, value: nvram.sesx_b1 || 0 },
-					{ title: '<% translate("8-10 Seconds"); %>', indent: 2, name: 'sesx_b2', type: 'select', options: a, value: nvram.sesx_b2 || 0 },
-					{ title: '<% translate("12+ Seconds"); %>', indent: 2, name: 'sesx_b3', type: 'select', options: a, value: nvram.sesx_b3 || 0 },
+					{ title: '0-2 <% translate("Seconds"); %>', indent: 2, name: 'sesx_b0', type: 'select', options: a, value: nvram.sesx_b0 || 0 },
+					{ title: '4-6 <% translate("Seconds"); %>', indent: 2, name: 'sesx_b1', type: 'select', options: a, value: nvram.sesx_b1 || 0 },
+					{ title: '8-10 <% translate("Seconds"); %>', indent: 2, name: 'sesx_b2', type: 'select', options: a, value: nvram.sesx_b2 || 0 },
+					{ title: '12+ <% translate("Seconds"); %>', indent: 2, name: 'sesx_b3', type: 'select', options: a, value: nvram.sesx_b3 || 0 },
 					{ title: '<% translate("Custom Script"); %>', style: 'width: 90%; height: 80px;', indent: 2, name: 'sesx_script', type: 'textarea', value: nvram.sesx_script }
 				]);
 			</script>

@@ -32,7 +32,7 @@ No part of this file may be used without permission.
 				$('.fclock').html('<% translate("a few more seconds"); %>');
 			}
 			else {
-				$('.fclock').html(((ftime > 0) ? 'about ' : '') + ftime + ' second' + ((ftime == 1) ? '' : 's'));
+				$('.fclock').html(((ftime > 0) ? '<% translate("about&nbsp;"); %>' : '') + ftime + ' second' + ((ftime == 1) ? '' : 's'));
 			}
 			if (--ftime >= 0) setTimeout(formatClock, 1000);
 		}

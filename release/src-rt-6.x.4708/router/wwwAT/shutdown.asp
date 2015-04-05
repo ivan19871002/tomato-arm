@@ -13,7 +13,7 @@ No part of this file may be used without permission.
 		<meta name="robots" content="noindex,nofollow">
 		<meta name="viewport" content="width=820">
 
-		<title>[<% ident(); %>] <% translate("Shutting down..."); %></title>
+		<title>[<% ident(); %>] <% translate("Shutting down"); %>...</title>
 		<script type="text/javascript">
 			var n = 16;
 			function tick()
@@ -23,14 +23,14 @@ No part of this file may be used without permission.
 					setTimeout(tick, 1000);
 				}
 				else {
-					document.getElementById('msg').innerHTML = '<% translate("You can now unplug the router."); %>';
+					document.getElementById('msg').innerHTML = '<% translate("You can now unplug the router"); %>.';
 				}
 			}
 		</script>
 	</head>
 	<body style="background:#fff"><table style="width:100%;height:100%">
 			<tr><td style="text-align:center;vertical-align:middle;font:15px sans-serif">
-					<span id="msg"><% translate("Please wait while the router shuts down..."); %> <span id="sptime" style="font-size:80%;background:#eee"></span></span>
+					<span id="msg"><% translate("Please wait while the router shuts down"); %>... <span id="sptime" style="font-size:80%;background:#eee"></span></span>
 				</td></tr>
 		</table>
 		<script type="text/javascript">tick();</script>

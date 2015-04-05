@@ -262,9 +262,9 @@ No part of this file may be used without permission.
 							['*user','<% translate("Custom Path"); %>']], value: loc },
 						{ name: 'f_user', type: 'text', maxlen: 256, size: 60, value: nvram.ms_dbdir }
 					] },
-					{ title: '<% translate("Scan Media at Startup"); %>*', indent: 2, name: 'f_ms_sas', type: 'checkbox', value: nvram.ms_sas == '1', hidden: 1 },
-					{ title: '<% translate("Rescan on the next run"); %>*', indent: 2, name: 'f_ms_rescan', type: 'checkbox', value: 0,
-						suffix: '&nbsp; <small>(<% translate("Media scan may take considerable time to complete"); %>.)</small>' },
+					{ title: '<% translate("Scan Media at Startup"); %> *', indent: 2, name: 'f_ms_sas', type: 'checkbox', value: nvram.ms_sas == '1', hidden: 1 },
+					{ title: '<% translate("Rescan on the next run"); %> *', indent: 2, name: 'f_ms_rescan', type: 'checkbox', value: 0,
+						suffix: '&nbsp; <small>(<% translate("Media scan may take considerable time to complete"); %>)</small>' },
 					{ title: '<% translate("TiVo Support"); %>', name: 'f_ms_tivo', type: 'checkbox', value: nvram.ms_tivo == '1' },
 					{ title: '<% translate("Strictly adhere to DLNA standards"); %>', name: 'f_ms_stdlna', type: 'checkbox', value: nvram.ms_stdlna == '1' }
 				]);

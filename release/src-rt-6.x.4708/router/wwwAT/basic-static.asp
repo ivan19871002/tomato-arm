@@ -349,8 +349,8 @@ No part of this file may be used without permission.
 						<ul>
 							<li><% translate("To specify multiple hostnames for a device, separate them with spaces"); %>.</li>
 							<li><% translate("To enable/enforce static ARP binding for a particular device, it must have only one MAC associated with that particular IP address (i.e. you can't have two MAC addresses linked to the same hostname/device in the table above)"); %>.</li>
-							<li><% translate("When ARP binding is enabled for a particular MAC/IP address pair, that device will always be shown as 'active' in the"); %> <a href="#tools-wol.asp"><% translate("Wake On LAN"); %></a> <% translate("table."); %></li>
-							<li><% translate("See also the"); %> <a href="#advanced-dhcpdns.asp"><% translate("Advanced DHCP/DNS"); %></a> <% translate("settings page for more DHCP-related configuration options"); %>.</li>
+							<li><% translate("When ARP binding is enabled for a particular MAC/IP address pair, that device will always be shown as 'active' in the"); %> <a class="ajaxload" href="tools-wol.asp"><% translate("Wake On LAN"); %></a> <% translate("table."); %></li>
+							<li><% translate("See also the"); %> <a class="ajaxload" href="advanced-dhcpdns.asp"><% translate("Advanced DHCP/DNS"); %></a> <% translate("settings page for more DHCP-related configuration options"); %>.</li>
 						</ul>
 					</ul>
 				</div>

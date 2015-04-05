@@ -106,8 +106,8 @@ No part of this file may be used without permission.
 				$('.section.firewall').forms([
 					{ title: '<% translate("Respond to ICMP ping"); %>', name: 'f_icmp', type: 'checkbox', value: nvram.block_wan == '0' },
 					{ title: '<% translate("Limit PPS"); %>', indent: 2, name: 'f_icmp_limit', type: 'checkbox', value: nvram.block_wan_limit != '0' },
-					{ title: '<% translate("ICMP"); %>', indent: 3, name: 'f_icmp_limit_icmp', type: 'text', maxlen: 3, size: 3, suffix: ' <small> request per second</small>', value: fixInt(nvram.block_wan_limit_icmp || 1, 1, 300, 5) },
-					{ title: '<% translate("Traceroute"); %>', indent: 3, name: 'f_icmp_limit_traceroute', type: 'text', maxlen: 3, size: 3, suffix: ' <small> request per second</small>', value: fixInt(nvram.block_wan_limit_tr || 5, 1, 300, 5) },
+					{ title: '<% translate("ICMP"); %>', indent: 3, name: 'f_icmp_limit_icmp', type: 'text', maxlen: 3, size: 3, suffix: ' <small> <% translate("request per second"); %></small>', value: fixInt(nvram.block_wan_limit_icmp || 1, 1, 300, 5) },
+					{ title: '<% translate("Traceroute"); %>', indent: 3, name: 'f_icmp_limit_traceroute', type: 'text', maxlen: 3, size: 3, suffix: ' <small> <% translate("request per second"); %></small>', value: fixInt(nvram.block_wan_limit_tr || 5, 1, 300, 5) },
 					{ title: '<% translate("Enable SYN cookies"); %>', name: 'f_syncookies', type: 'checkbox', value: nvram.ne_syncookies != '0' },
 					{ title: '<% translate("Enable DSCP Fix"); %>', name: 'f_DSCP_fix_enable', type: 'checkbox', value: nvram.DSCP_fix_enable != '0', suffix: ' <small>Fixes Comcast incorrect DSCP</small>' }
 				]);

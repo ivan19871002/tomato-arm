@@ -16,10 +16,10 @@ No part of this file may be used without permission.
 
 		var classNames = nvram.qos_classnames.split(' ');		// Toastman - configurable class names
 
-		pctListin = [[0, 'No Limit']];
+		pctListin = [[0, '<% translate("No Limit"); %>']];
 		for (i = 1; i <= 100; ++i) pctListin.push([i, i + '%']);
 
-		pctListout = [[0, 'No Limit']];
+		pctListout = [[0, '<% translate("No Limit"); %>']];
 		for (i = 1; i <= 100; ++i) pctListout.push([i, i + '%']);
 
 		function scale(bandwidth, rate, ceil)
@@ -54,7 +54,7 @@ No part of this file may be used without permission.
 			{
 				elem.setInnerHTML(
 					resultsFieldName,
-					'Ceiling must be greater than or equal to rate.');
+					'<% translate("Ceiling must be greater than or equal to rate"); %>.');
 
 				return 0;
 			}
@@ -178,7 +178,7 @@ No part of this file may be used without permission.
 		<input type="hidden" name="ne_vegas">
 
 		<div class="box" data-box="qos-basic-set">
-			<div class="heading">Basic QOS Settings</div>
+			<div class="heading"><% translate("Basic QOS Settings"); %></div>
 			<div class="content qos-settings"></div>
 			<script type="text/javascript">
 
@@ -188,7 +188,7 @@ No part of this file may be used without permission.
 				}
 
 				$('.qos-settings').forms([
-					{ title: 'Enable QoS', name: 'f_qos_enable', type: 'checkbox', value: nvram.qos_enable == '1' },
+					{ title: '<% translate("Enable QoS"); %>', name: 'f_qos_enable', type: 'checkbox', value: nvram.qos_enable == '1' },
 					{ title: '<% translate("Prioritize small packets with these control flags"); %>', multi: [
 						{ suffix: ' ACK &nbsp;', name: 'f_qos_ack', type: 'checkbox', value: nvram.qos_ack == '1' },
 						{ suffix: ' SYN &nbsp;', name: 'f_qos_syn', type: 'checkbox', value: nvram.qos_syn == '1' },
@@ -208,11 +208,11 @@ No part of this file may be used without permission.
 		</div>
 
 		<div class="box" data-box="qos-dsl-set">
-			<div class="heading">Settings for DSL only</div>
+			<div class="heading"><% translate("Settings for DSL only"); %></div>
 			<div class="content qos-dsl"></div>
 			<script type="text/javascript">
 				$('.qos-dsl').forms([
-					{ title: 'DSL Overhead Value - ATM Encapsulation Type', multi:[
+					{ title: '<% translate("DSL Overhead Value - ATM Encapsulation Type"); %>', multi:[
 						{name: 'atm_overhead', type: 'select', options: [['0','<% translate("None"); %>'],['32','32-PPPoE VC-Mux'],['40','40-PPPoE LLC/Snap'],
 							['10','10-PPPoA VC-Mux'],['14','14-PPPoA LLC/Snap'],
 							['8','8-RFC2684/RFC1483 Routed VC-Mux'],['16','16-RFC2684/RFC1483 Routed LLC/Snap'],
@@ -229,7 +229,7 @@ No part of this file may be used without permission.
 			<script type="text/javascript">
 				cc = nvram.qos_orates.split(/[,-]/);
 				f = [];
-				f.push({ title: '<% translate("Max Bandwidth Limit"); %>', name: 'qos_obw', type: 'text', maxlen: 6, size: 8, suffix: ' <small>kbit/s   (Set to measured bandwidth less 15-30%)</small>', value: nvram.qos_obw });
+				f.push({ title: '<% translate("Max Bandwidth Limit"); %>', name: 'qos_obw', type: 'text', maxlen: 6, size: 8, suffix: ' <small>kbit/s   (<% translate("Set to measured bandwidth less 15-30%"); %>)</small>', value: nvram.qos_obw });
 				j = 0;
 				for (i = 0; i < 10; ++i) {
 					x = cc[j++] || 1;
@@ -245,12 +245,12 @@ No part of this file may be used without permission.
 		</div>
 
 		<div class="box" data-box="qos-in-limits">
-			<div class="heading">Inbound Rates / Limits</div>
+			<div class="heading"><% translate("Inbound Rates / Limits"); %></div>
 			<div class="content in-limit"></div>
 			<script type="text/javascript">
 				allRates = nvram.qos_irates.split(',');
 				f = [];
-				f.push({ title: '<% translate("Max Bandwidth Limit"); %>', name: 'qos_ibw', type: 'text', maxlen: 6, size: 8, suffix: ' <small>kbit/s   (Set to measured bandwidth less 15-30%)</small>', value: nvram.qos_ibw });
+				f.push({ title: '<% translate("Max Bandwidth Limit"); %>', name: 'qos_ibw', type: 'text', maxlen: 6, size: 8, suffix: ' <small>kbit/s   (<% translate("Set to measured bandwidth less 15-30%"); %>)</small>', value: nvram.qos_ibw });
 
 				for (i = 0; i < 10; ++i)
 				{
@@ -276,10 +276,10 @@ No part of this file may be used without permission.
 			<script type="text/javascript">
 
 				if ((v = nvram.qos_classnames.match(/^(.+)\s+(.+)\s+(.+)\s+(.+)\s+(.+)\s+(.+)\s+(.+)\s+(.+)\s+(.+)\s+(.+)$/)) == null) {
-					v = ["-","Highest","High","Medium","Low","Lowest","A","B","C","D","E"];
+					v = ["-","<% translate("Highest"); %>","<% translate("High"); %>","<% translate("Medium"); %>","<% translate("Low"); %>","<% translate("Lowest"); %>","A","B","C","D","E"];
 				}
-				titles = ['-','Priority Class 1', 'Priority Class 2', 'Priority Class 3', 'Priority Class 4', 'Priority Class 5', 'Priority Class 6', 'Priority Class 7', 'Priority Class 8', 'Priority Class 9', 'Priority Class 10'];
-				f = [{ title: ' ', text: '<small>(Maximum 10 characters, no spaces)</small>' }];
+				titles = ['-','<% translate("Priority Class"); %> 1', '<% translate("Priority Class"); %> 2', '<% translate("Priority Class"); %> 3', '<% translate("Priority Class"); %> 4', '<% translate("Priority Class"); %> 5', '<% translate("Priority Class"); %> 6', '<% translate("Priority Class"); %> 7', '<% translate("Priority Class"); %> 8', '<% translate("Priority Class"); %> 9', '<% translate("Priority Class"); %> 10'];
+				f = [{ title: ' ', text: '<small>(<% translate("Maximum 10 characters, no spaces"); %>)</small>' }];
 				for (i = 1; i < 11; ++i) {
 					f.push({ title: titles[i], name: ('f_qos_' + (i - 1)),
 						type: 'text', maxlen: 10, size: 15, value: v[i],
@@ -290,7 +290,7 @@ No part of this file may be used without permission.
 		</div>
 
 		<div class="box" data-box="qos-tcp-vegas">
-			<div class="heading">TCP Vegas <small>(Network Congestion Control)</small></div>
+			<div class="heading"><% translate("TCP Vegas"); %> <small>(<% translate("Network Congestion Control"); %>)</small></div>
 			<div class="content tcp-vegas"></div>
 			<script type="text/javascript">
 				/* move me? */

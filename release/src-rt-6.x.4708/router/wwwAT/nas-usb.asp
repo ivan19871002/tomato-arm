@@ -154,9 +154,9 @@ No part of this file may be used without permission.
 								desc = desc + '<br><% translate("Partition"); %> \'' + p[0] + '\'' + (p[3] != '' ? ' ' + p[3] : '') +
 								((p[5] != 0) ? ' (' + doScaleSize(p[5], 0) +
 									((p[1] == 1) ? ' / ' + doScaleSize(p[6], 0) + ' free' : '') +
-									')' : '') + ' <% translate("is"); %> ' +
-								((p[1] != 0) ? '' : '<% translate("not"); %> ') + ((p[3] == '<% translate("swap"); %>') ? '<% translate("active"); %>' : '<% translate("mounted"); %>') +
-								((p[2] != '') ? ' <% translate("on"); %> ' + p[2] : '');
+									')' : '') + ' is ' +
+								((p[1] != 0) ? '' : 'not ') + ((p[3] == '<% translate("swap"); %>') ? 'active' : 'mounted') +
+								((p[2] != '') ? ' on ' + p[2] : '');
 							}
 						}
 					}
@@ -168,7 +168,7 @@ No part of this file may be used without permission.
 		}
 		dg.setup = function() {
 			this.init('dev-grid', 'sort');
-			this.headerSet(['Type', 'Host', 'Description', '<% translate("Mounted?"); %>']);
+			this.headerSet(['<% translate("Type"); %>', '<% translate("Host); %>', '<% translate("Description"); %>', '<% translate("Mounted?"); %>']);
 			this.populate();
 			this.sort(1);
 		}
@@ -327,7 +327,7 @@ No part of this file may be used without permission.
 							suffix: ' <small><% translate("Before disconnecting 3G Modem from USB port, remember to uncheck box. If modem used usbserial module, you have to reboot router before unplug modem"); %>.</small>', value: nvram.usb_3g == 1 },
 						null,
 						/* LINUX26-END */
-						{ title: 'Hotplug script<br><small>(<% translate("called when any USB device is attached or removed"); %>)</small>', name: 'script_usbhotplug', type: 'textarea', value: nvram.script_usbhotplug },
+						{ title: '<% translate("Hotplug script"); %><br><small>(<% translate("called when any USB device is attached or removed"); %>)</small>', name: 'script_usbhotplug', type: 'textarea', value: nvram.script_usbhotplug },
 						{ text: '<small><% translate("Some of the changes will take effect only after a restart"); %>.</small>' }
 					]);
 				</script>

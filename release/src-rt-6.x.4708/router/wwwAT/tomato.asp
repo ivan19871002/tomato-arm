@@ -2479,16 +2479,15 @@ function navi()
 			,'<% translate("BitTorrent Client"); %>':	'nas-bittorrent.asp'
 			/* BT-END */
 		},
-
-		/* NGINX-BEGIN */
 		'<% translate("Web Services"); %>': {	
-			/* FTP-BEGIN */
+		/* FTP-BEGIN */
 			'<% translate("FTP Server"); %>':		'web-ftp.asp',
-			/* FTP-END */
+		/* FTP-END */
+		/* NGINX-BEGIN */
 			'<% translate("Web Server"); %>':		'web-nginx.asp',
 			'<% translate("MySQL Server"); %>':		'web-mysql.asp'
-		},
 		/* NGINX-END */
+		},
 		/* USB-END */
 		/* VPN-BEGIN */
 		'<% translate("VPN Tunneling"); %>': {

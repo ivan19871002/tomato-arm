@@ -49,7 +49,7 @@ function upgrade()
 
 	name = fixFile(fom.file.value);
 	if (name.search(/\.(bin|trx|chk)$/i) == -1) {
-		alert('<% translate("Expecting a '.bin' or '.trx' file"); %>.');
+		alert('<% translate("Expecting a"); %> ".bin" <% translate("or"); %> ".trx" <% translate("file"); %>.');
 		return;
 	}
 	if (!confirm('<% translate("Are you sure you want to upgrade using"); %> ' + name + '?')) return;

@@ -189,6 +189,6 @@ function init()
 </td></tr>
 </table>
 </form>
-<script type='text/javascript'>verifyFields(null, 1);</script>
+<script type='text/javascript'>nfsg.verifyFields(null, 1);</script>
 </body>
 </html>

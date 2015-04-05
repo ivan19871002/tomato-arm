@@ -268,7 +268,7 @@ function v_dscp(e, quiet)
 	if ((e = E(e)) == null) return 0;
 	var v = e.value;
 	if ((!v.match(/^ *(0x)?[0-9A-Fa-f]+ *$/)) || (v < 0) || (v > 63)) {
-		ferror.set(e, '<% translate("Invalid DSCP value. Valid rang"); %>e: 0x00-0x3F', quiet);
+		ferror.set(e, '<% translate("Invalid DSCP value. Valid range"); %>: 0x00-0x3F', quiet);
 		return 0;
 	}
 	e.value = '0x' + (v * 1).hex(2);

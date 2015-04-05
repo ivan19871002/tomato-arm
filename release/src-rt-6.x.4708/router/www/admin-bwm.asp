@@ -58,7 +58,7 @@ function restoreButton()
 	name = fixFile(E('restore-name').value);
 	name = name.toLowerCase();
 	if ((name.length <= 3) || (name.substring(name.length - 3, name.length).toLowerCase() != '.gz')) {
-		alert('<% translate("Incorrect filename. Expecting a '.gz' file"); %>.');
+		alert('<% translate("Incorrect filename. Expecting a"); %> ".gz" <% translate("file"); %>.');
 		return;
 	}
 	if (!confirm('<% translate("Restore data from"); %> ' + name + '?')) return;

@@ -47,7 +47,7 @@ function formatClock()
 		E('fclock').innerHTML = '<% translate("a few more seconds"); %>';
 	}
 	else {
-		E('fclock').innerHTML = ((ftime > 0) ? '<% translate("about"); %> ' : '') + ftime + ' <% translate("second"); %>' + ((ftime == 1) ? '' : 's');
+		E('fclock').innerHTML = ((ftime > 0) ? '<% translate("about&nbsp;"); %>' : '') + ftime + ' <% translate("second"); %>' + ((ftime == 1) ? '' : 's');
 	}
 	if (--ftime >= 0) setTimeout(formatClock, 1000);
 }

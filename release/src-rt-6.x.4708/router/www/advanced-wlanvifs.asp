@@ -1568,7 +1568,7 @@ for (var i = 1; i < tabs.length; ++i) {
 
 	f.push(null,
 		{ title: '<% translate("WDS"); %>', name: 'f_wl'+u+'_lazywds', type: 'select',
-			options: [['0','<% translate("Link With"); %>...'],['1',<% translate("Automatic"); %>'']], value: nvram['wl'+u+'_lazywds'] } );
+			options: [['0','<% translate("Link With"); %>...'],['1','<% translate("Automatic"); %>']], value: nvram['wl'+u+'_lazywds'] } );
 /* REMOVE-BEGIN */
 //	alert('nvram["wl'+u+'_wds"]=' + eval('nvram["wl'+u+'_wds"]'));
 /* REMOVE-END */

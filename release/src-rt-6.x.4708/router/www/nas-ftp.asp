@@ -95,7 +95,7 @@ aftg.verifyFields = function(row, quiet)
 			return 0;
 		}
 		if (s == 'root' || s == 'admin') {
-			ferror.set(f[0], '<% translate("User names 'root' and 'admin' are not allowed"); %>.', quiet);
+			ferror.set(f[0], '<% translate("User names"); %> "root" <% translate("and"); %> "admin" <% translate("are not allowed"); %>.', quiet);
 			return 0;
 		}
 		f[0].value = s;

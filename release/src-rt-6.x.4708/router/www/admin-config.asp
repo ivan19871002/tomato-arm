@@ -53,7 +53,7 @@ function restoreButton()
 	name = fixFile(E('restore-name').value);
 	name = name.toLowerCase();
 	if ((name.indexOf('.cfg') != (name.length - 4)) && (name.indexOf('.cfg.gz') != (name.length - 7))) {
-		alert('<% translate("Incorrect filename. Expecting a '.cfg' file"); %>.');
+		alert('<% translate("Incorrect filename. Expecting a"); %> ".cfg" <% translate("file"); %>.');
 		return;
 	}
 	if (!confirm('<% translate("Are you sure"); %>?')) return;

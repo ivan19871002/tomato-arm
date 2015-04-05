@@ -84,7 +84,7 @@ a = [];
 for (i = 3; i <= 20; ++i) a.push([i, i + ' <% translate("seconds"); %>']);
 createFieldTable('', [
 	{ title: '<% translate("Boot Wait Time"); %> *', name: 'wait_time', type: 'select', options: a, value: fixInt(nvram.wait_time, 3, 20, 3) },
-	{ title: '<% translate("WAN Port Speed"); %> *', name: 'wan_speed', type: 'select', options: [[0,'10Mb <% translate("Full"); %>'],[1,'10Mb <% translate("Half"); %>'],[2,'100Mb <% translate("Full"); %>'],[3,'100Mb <% translate("Half"); %>'],[4,'<% translate("Auto"); %>']], value: nvram.wan_speed },
+	{ title: '<% translate("WAN Port Speed"); %> *', name: 'wan_speed', type: 'select', options: [[0,'10Mb <% translate("Full-Duplex"); %>'],[1,'10Mb <% translate("Half-Duplex"); %>'],[2,'100Mb <% translate("Full-Duplex"); %>'],[3,'100Mb <% translate("Half-Duplex"); %>'],[4,'<% translate("Auto"); %>']], value: nvram.wan_speed },
 	null,
 /* CTF-BEGIN */
 	{ title: 'CTF (<% translate("Cut-Through Forwarding"); %>)', name: 'f_ctf_disable', type: 'checkbox', value: nvram.ctf_disable != '1' },

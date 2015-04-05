@@ -158,7 +158,7 @@ function init()
 <b>Tomato-RAF <% translate("features"); %>:</b><br>
 - <% translate("Extended Sysinfo"); %><br>
 <!-- NOCAT-BEGIN -->
--<% translate("Captive Portal. (Based in NocatSplash)"); %> <br>
+- <% translate("Captive Portal. (Based in NocatSplash)"); %><br>
 <!-- NOCAT-END -->
 <!-- NGINX-BEGIN -->
 - <% translate("Web Server"); %>. (NGinX)<br>
@@ -256,7 +256,7 @@ function init()
 <i><% translate("Copyright"); %> (C) 2006-2010 Jonathan Zarate</i><br>
 <a href='http://www.polarcloud.com/tomato/' target='_new'>http://www.polarcloud.com/tomato/</a><br>
 <br>
-<% translate("Built on"); %> <% build_time(); %> by Shibby, <a href='http://openlinksys.info' target='_new'>http://openlinksys.info</a><br><br>
+<% translate("Built on"); %> <% build_time(); %> by tsynik<br><br>
 <br><br>
 
 <!--

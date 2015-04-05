@@ -231,7 +231,7 @@
 			</p>
 
 			<p>
-				Built on <% build_time(); %> by Jacky, <a href='http://advancedtomato.com/' target='_new'>http://advancedtomato.com/</a>
+				Built on <% build_time(); %> by tsynik
 				<br /><b>Thanks to everyone who risked their routers, tested, reported bugs, made suggestions and contributed to this project. ^ _ ^</b>
 			</p>
 

@@ -805,7 +805,7 @@ define KernelConfig
 		echo "CONFIG_HAVE_LATENCYTOP_SUPPORT=y" >>$(1); \
 		sed -i "/CONFIG_GENERIC_LOCKBREAK/d" $(1); \
 		echo "CONFIG_BROKEN_ON_SMP=y" >>$(1); \
-		sed -i "/CONFIG_TREE_RCU=y/# CONFIG_TREE_RCU is not set/g" $(1); \
+		sed -i "s/CONFIG_TREE_RCU=y/# CONFIG_TREE_RCU is not set/g" $(1); \
 		echo "CONFIG_TREE_PREEMPT_RCU=y" >>$(1); \
 		echo "# CONFIG_TINY_RCU is not set" >>$(1); \
 		sed -i "/CONFIG_USE_GENERIC_SMP_HELPERS/d" $(1); \
@@ -836,23 +836,22 @@ define KernelConfig
 			echo "CONFIG_BRIDGE_EBT_IP6=m" >>$(1); \
 		fi; \
 	fi; \
-	sed -i "/CONFIG_HFS_FS/d" $(1); \
-	sed -i "/CONFIG_HFSPLUS_FS/d" $(1); \
-	if [ "$(HFS)" = "y" ]; then \
-		echo "CONFIG_HFS_FS=m" >>$(1); \
-		echo "CONFIG_HFSPLUS_FS=m" >>$(1); \
-	else \
-		echo "# CONFIG_HFS_FS is not set" >>$(1); \
-		echo "# CONFIG_HFSPLUS_FS is not set" >>$(1); \
-	fi; \
         sed -i "/CONFIG_NVRAM_64K/d" $(1); \
         if [ "$(NVRAM_64K)" = "y" ]; then \
                 echo "CONFIG_NVRAM_64K=y" >>$(1); \
         else \
                 echo "# CONFIG_NVRAM_64K is not set" >>$(1); \
-	fi \
+	fi; \
 	)
 endef
+
+obsolete:
+	@( sed -i "s/# CONFIG_JFFS2_LZO is not set/CONFIG_JFFS2_LZO=y/g" $(1); )
+	@( sed -i "s/# CONFIG_JFFS2_RUBIN is not set/CONFIG_JFFS2_RUBIN=y/g" $(1); )
+	if [ "$(HFS)" = "y" ]; then \
+		sed -i "s/# CONFIG_HFS_FS is not set/CONFIG_HFS_FS=m/g" $(1); \
+		sed -i "s/# CONFIG_HFSPLUS_FS is not set/CONFIG_HFSPLUS_FS=m/g" $(1); \
+	fi; \
 
 bin:
 ifeq ($(B),)

@@ -445,7 +445,7 @@ function toggle(service, isup)
 		changed = 1;
 
 	if (changed) {
-		if (!confirm("<% translate("Unsaved changes will be lost. Continue anyway"); %>?")) return;
+		if (!confirm("<% translate("Unsaved changes will be lost. Continue anyway?"); %>")) return;
 	}
 
 	E('_' + service + '_button1').disabled = true;

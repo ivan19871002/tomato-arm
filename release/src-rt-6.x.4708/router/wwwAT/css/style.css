@@ -265,7 +265,7 @@ small { font-size: 80%; }
 	position: absolute;
 	background: #fff;
 	padding: 0;
-	width: 340px;
+	width: 380px; /* buttons fit */
 	top: 50px;
 	right: 10px;
 	border: 1px solid #EEE;

@@ -320,7 +320,7 @@ function cancelRule()
 
 function removeRule()
 {
-	if (!confirm('<% translate("Delete this rule"); %>?')) return;
+	if (!confirm('<% translate("Delete this rule?"); %>')) return;
 
 	E('delete-button').disabled = 1;
 

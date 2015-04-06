@@ -9,7 +9,7 @@ http://code.google.com/p/tomato-sdhc-vlan/
 
 For use with Tomato Firmware only.
 No part of this file may be used without permission.
---><title><% translate("IP Traffic: Details"); %></title>
+--><title><% translate("IP Traffic Details"); %></title>
 <content><style type="text/css">
 		#grid .co2,
 		#grid .co3,
@@ -190,7 +190,7 @@ No part of this file may be used without permission.
 					h = h + '<a href="javascript:viewQosDetail(' + i + ')" title="<% translate("View QoS Details"); %>">[qosdetails]</a>';
 					h = h + '<a href="javascript:viewQosCTrates(' + i + ')" title="<% translate("View transfer rates per connection"); %>">[qosrates]</a>';
 					h = h + '<a href="javascript:viewIptHistory(' + i + ')" title="<% translate("View IP Traffic History"); %>">[history]</a>';
-					h = h + '<a href="javascript:addExcludeList(' + i + ')" title="<% translate("Filter out this address"); %>">[hide]</a>';
+					h = h + '<a href="javascript:addExcludeList(' + i + ')" title="<% translate("Filter out this address"); %>">[<% translate("hide"); %>]</a>';
 					h = h + '</small>';
 				}
 
@@ -448,7 +448,7 @@ No part of this file may be used without permission.
 	<div class="pull-right refreshier">
 		<script type="text/javascript">$('.refreshier').html(genStdRefresh(1,1,'ref.toggle()'));</script>
 	</div>
-	<a href="admin-iptraffic.asp" class="btn btn-danger ajaxload">Configure <i class="icon-tools"></i></a>
+	<a href="admin-iptraffic.asp" class="btn btn-danger ajaxload"><% translate("Configure"); %> <i class="icon-tools"></i></a>
 
 	<script type="text/javascript">
 		var c;

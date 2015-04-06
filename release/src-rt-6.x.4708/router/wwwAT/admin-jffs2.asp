@@ -42,7 +42,7 @@ No part of this file may be used without permission.
 			if (!verifyFields(null, 0)) return;
 
 			E('format').disabled = 1;
-			if (format) $('.ajaxwrap').prepend('<div class="alert alert-warning icon"><h5><% translate("Warning!"); %></h5><% translate("Formating JFFS partition, please wait"); %> <span class="fclock"><% translate("about 60 seconds"); %></span>...</div>');
+			if (format) $('.ajaxwrap').prepend('<div class="alert alert-warning icon"><h5><% translate("Warning"); %>!</h5><% translate("Formating JFFS partition, please wait"); %> <span class="fclock"><% translate("about 60 seconds"); %></span>...</div>');
 
 			var fom = E('_fom');
 			var on = E('_f_jffs2_on').checked ? 1 : 0;

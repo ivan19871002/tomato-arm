@@ -294,11 +294,11 @@ No part of this file may be used without permission.
 	</script>
 
 	<ul class="nav-tabs" id="tabs">
-		<li><a class="ajaxload" href="tools-ping.asp">Ping</a></li>
-		<li><a class="ajaxload" href="tools-trace.asp">Trace</a></li>
-		<li><a class="ajaxload" href="tools-shell.asp">System Commands</a></li>
-		<li><a class="active">Wireless Survey</a></li>
-		<li><a class="ajaxload" href="tools-wol.asp">WOL</a></li>
+		<li><a class="ajaxload" href="tools-ping.asp"><% translate("Ping"); %></a></li>
+		<li><a class="ajaxload" href="tools-trace.asp"><% translate("Trace"); %></a></li>
+		<li><a class="ajaxload" href="tools-shell.asp"><% translate("System Commands"); %></a></li>
+		<li><a class="active"><% translate("Wireless Survey"); %></a></li>
+		<li><a class="ajaxload" href="tools-wol.asp"><% translate("WOL"); %></a></li>
 	</ul>
 
 	<div class="box">
@@ -321,7 +321,7 @@ No part of this file may be used without permission.
 
 	<script type="text/javascript">
 		if ('<% wlclient(); %>' == '0') {
-			$('#tabs').after('<div class="alert alert-warning icon"><h5><% translate("Warning!"); %></h5> <% translate("Wireless connections to this router may be disrupted while using this tool"); %>. <a class="close"><i class="icon-cancel"></i></a></div>');
+			$('#tabs').after('<div class="alert alert-warning icon"><h5><% translate("Warning"); %>!</h5> <% translate("Wireless connections to this router may be disrupted while using this tool"); %>. <a class="close"><i class="icon-cancel"></i></a></div>');
 		}
 
 		earlyInit();

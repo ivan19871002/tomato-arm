@@ -196,7 +196,7 @@ No part of this file may be used without permission.
 						{ suffix: ' RST &nbsp;', name: 'f_qos_rst', type: 'checkbox', value: nvram.qos_rst == '1' }
 					] },
 					{ title: '<% translate("Prioritize ICMP"); %>', name: 'f_qos_icmp', type: 'checkbox', value: nvram.qos_icmp == '1' },
-					{ title: 'No Ingress QOS for UDP', name: 'f_qos_udp', type: 'checkbox', value: nvram.qos_udp == '1' },
+					{ title: '<% translate("No Ingress QOS for UDP"); %>', name: 'f_qos_udp', type: 'checkbox', value: nvram.qos_udp == '1' },
 					{ title: '<% translate("Reset class when changing settings"); %>', name: 'f_qos_reset', type: 'checkbox', value: nvram.qos_reset == '1' },
 					{ title: '<% translate("Default class"); %>', name: 'qos_default', type: 'select', options: classList, value: nvram.qos_default },
 					/* REMOVE-BEGIN

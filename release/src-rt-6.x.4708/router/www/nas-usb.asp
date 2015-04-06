@@ -237,7 +237,7 @@ dg.populate = function()
 dg.setup = function()
 {
 	this.init('dev-grid', 'sort');
-	this.headerSet(['<% translate("Type"); %>', '<% translate("Host"); %>', '<% translate("Description"); %>', '<% translate("Mounted"); %>?']);
+	this.headerSet(['<% translate("Type"); %>', '<% translate("Host"); %>', '<% translate("Description"); %>', '<% translate("Mounted?"); %>']);
 	this.populate();
 	this.sort(1);
 }

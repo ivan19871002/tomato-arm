@@ -51,7 +51,7 @@ var xmenus = [['<% translate("Status"); %>', 'status'], ['<% translate("Bandwidt
 function toggle(service, isup)
 {
 	if (changed) {
-		if (!confirm("<% translate("Unsaved changes will be lost. Continue anyway"); %>?")) return;
+		if (!confirm("<% translate("Unsaved changes will be lost. Continue anyway?"); %>")) return;
 	}
 	E('_' + service + '_button').disabled = true;
 	form.submitHidden('service.cgi', {
@@ -169,7 +169,7 @@ function save()
 	fom = E('_fom');
 	a = E('_f_http_local').value * 1;
 	if (a == 0) {
-		if (!confirm('<% translate("Warning: Web Admin is about to be disabled. If you decide to re-enable Web Admin at a later time, it must be done manually via Telnet, SSH or by performing a hardware reset. Are you sure you want to do this"); %>?')) return;
+		if (!confirm('<% translate("Warning: Web Admin is about to be disabled. If you decide to re-enable Web Admin at a later time, it must be done manually via Telnet, SSH or by performing a hardware reset. Are you sure you want to do this?"); %>')) return;
 		fom._nextpage.value = 'about:blank';
 	}
 	fom.http_enable.value = (a & 1) ? 1 : 0;

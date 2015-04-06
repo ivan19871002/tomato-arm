@@ -177,11 +177,11 @@ function save()
 		path = getPath();
 		if (((E('_cstats_stime').value * 1) <= 48) &&
 			((path == '*nvram') || (path == '/jffs/'))) {
-			if (!confirm('<% translate("Frequent saving to NVRAM or JFFS2 is not recommended. Continue anyway"); %>?')) return;
+			if (!confirm('<% translate("Frequent saving to NVRAM or JFFS2 is not recommended. Continue anyway?"); %>')) return;
 		}
 		if ((nvram.cstats_path != path) && (fom.cstats_path.value != path) && (path != '') && (path != '*nvram') &&
 			(path.substr(path.length - 1, 1) != '/')) {
-			if (!confirm('<% translate("Note"); %>: ' + path + ' <% translate("will be treated as a file. If this is a directory, please use a trailing /. Continue anyway"); %>?')) return;
+			if (!confirm('<% translate("Note"); %>: ' + path + ' <% translate("will be treated as a file. If this is a directory, please use a trailing /. Continue anyway?"); %>')) return;
 		}
 		fom.cstats_path.value = path;
 

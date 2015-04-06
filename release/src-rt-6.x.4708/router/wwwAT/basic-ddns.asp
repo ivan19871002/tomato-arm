@@ -326,7 +326,7 @@ No part of this file may be used without permission.
 		{
 			if ('<% psup("ddns-update"); %>' != 0) {
 				var e = E('footer-msg');
-				e.innerHTML = '<% translate("DDNS update is running. Please refresh after a few seconds."); %>';
+				e.innerHTML = '<% translate("DDNS update is running. Please refresh after a few seconds"); %>.';
 				e.style.visibility = 'visible';
 			}
 		}

@@ -484,11 +484,11 @@ function verifyFields(focused, quiet)
 
 <!-- / / / -->
 
-<div class='section-title' id='stitle' onclick='document.location="qos-graphs.asp"' style='cursor:pointer'>View Details: <span id='numtotalconn'></span></div>
+<div class='section-title' id='stitle' onclick='document.location="qos-graphs.asp"' style='cursor:pointer'><% translate("View Details"); %>: QoS <span id='numtotalconn'></span></div>
 <div class='section'>
 <table id='grid' class='tomato-grid' style="float:left" cellspacing=1></table>
 
-<div id='loading'><br><b>Loading...</b></div>
+<div id='loading'><br><b><% translate("Loading"); %>...</b></div>
 </div>
 
 <!-- / / / -->

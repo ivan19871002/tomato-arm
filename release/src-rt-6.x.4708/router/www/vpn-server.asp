@@ -102,7 +102,7 @@ function sectSelect(tab, section)
 
 function toggle(service, isup)
 {
-	if (changed && !confirm("<% translate("Unsaved changes will be lost. Continue anyway"); %>?")) return;
+	if (changed && !confirm("<% translate("Unsaved changes will be lost. Continue anyway?"); %>")) return;
 
 	E('_' + service + '_button').disabled = true;
 	form.submitHidden('service.cgi', {

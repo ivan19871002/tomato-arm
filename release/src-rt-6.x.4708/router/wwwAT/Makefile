@@ -204,7 +204,7 @@ endif
 
 	cd  $(INSTALLDIR)/www-at && \
 	for F in $(wildcard *.asp); do \
-		sed -e "s,<div class='version'>Version <% version(); %></div>,<div class='version'>Version <% version(); %> by shibby</div>," $$F > $$F.tmp; \
+		sed -e "s,<div class='version'>Version <% version(); %></div>,<div class='version'>Version <% version(); %> by tsynik</div>," $$F > $$F.tmp; \
 		mv $$F.tmp $$F; \
 	done
 

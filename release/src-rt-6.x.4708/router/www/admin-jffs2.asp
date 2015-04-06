@@ -37,7 +37,7 @@ function verifyFields(focused, quiet)
 function formatClicked()
 {
 	if (!verifyFields(null, 0)) return;
-	if (!confirm("<% translate("Format the JFFS partition"); %>?")) return;
+	if (!confirm("<% translate("Format the JFFS partition?"); %>")) return;
 	save(1);
 }
 

@@ -43,7 +43,7 @@ No part of this file may be used without permission.
 			name = fix(E('restore-name').value);
 			name = name.toLowerCase();
 			if ((name.length <= 3) || (name.substring(name.length - 3, name.length).toLowerCase() != '.gz')) {
-				alert('<% translate("Incorrect filename. Expecting a"); %> ".gz" <% translate("file."); %>');
+				alert('<% translate("Incorrect filename. Expecting a"); %> ".gz" <% translate("file"); %>.');
 				return false;
 			}
 			if (!confirm('<% translate("Restore data from"); %> ' + name + '?')) return;
@@ -151,7 +151,7 @@ No part of this file may be used without permission.
 				}
 				if ((nvram.cstats_path != path) && (fom.cstats_path.value != path) && (path != '') && (path != '*nvram') &&
 					(path.substr(path.length - 1, 1) != '/')) {
-					if (!confirm('<% translate("Note:"); %> ' + path + ' <% translate("will be treated as a file. If this is a directory, please use a trailing /. Continue anyway?"); %>')) return;
+					if (!confirm('<% translate("Note"); %>: ' + path + ' <% translate("will be treated as a file. If this is a directory, please use a trailing /. Continue anyway?"); %>')) return;
 				}
 				fom.cstats_path.value = path;
 				if (E('_f_new').checked) {

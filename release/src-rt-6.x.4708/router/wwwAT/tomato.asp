@@ -2728,11 +2728,11 @@ function reloadPage() {
 }
 
 function reboot() {
-	if (confirm("Reboot?")) { form.submitHidden('tomato.cgi', { _reboot: 1, _commit: 0, _nvset: 0 }); } else { return false; }
+	if (confirm("<% translate("Reboot?"); %>")) { form.submitHidden('tomato.cgi', { _reboot: 1, _commit: 0, _nvset: 0 }); } else { return false; }
 }
 
 function shutdown() {
-	if (confirm("Shutdown?")) { form.submitHidden('shutdown.cgi', { }); } else { return false; }
+	if (confirm("<% translate("Shutdown?"); %>")) { form.submitHidden('shutdown.cgi', { }); } else { return false; }
 }
 
 function logout(){

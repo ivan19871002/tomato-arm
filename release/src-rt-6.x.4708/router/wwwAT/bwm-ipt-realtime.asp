@@ -135,7 +135,7 @@ No part of this file may be used without permission.
 		function init() {
 
 			if (nvram.cstats_enable != '1') {
-				$('.cstats').before('<div class="alert alert-info">IP Traffic monitoring disabled.</b> <a href="/#admin-iptraffic.asp">Enable &raquo;</a>');
+				$('.cstats').before('<div class="alert alert-info"><% translate("IP Traffic monitoring disabled"); %>.</b> <a href="/#admin-iptraffic.asp"><% translate("Enable"); %> &raquo;</a>');
 				return;
 			}
 
@@ -222,16 +222,16 @@ No part of this file may be used without permission.
 	</script>
 
 	<ul class="nav-tabs">
-		<li><a class="active"><i class="icon-hourglass"></i> Real-Time</a></li>
-		<li><a class="ajaxload" href="bwm-ipt-24.asp"><i class="icon-clock"></i> Last 24 Hours</a></li>
-		<li><a class="ajaxload" href="bwm-ipt-graphs.asp"><i class="icon-graphs"></i> View Graphs</a></li>
-		<li><a class="ajaxload" href="bwm-ipt-details.asp"><i class="icon-globe"></i> Transfer Rates</a></li>
-		<li><a class="ajaxload" href="bwm-ipt-daily.asp"><i class="icon-clock"></i> Daily</a></li>
-		<li><a class="ajaxload" href="bwm-ipt-monthly.asp"><i class="icon-month"></i> Monthly</a></li>
+		<li><a class="active"><i class="icon-hourglass"></i> <% translate("Real-Time"); %></a></li>
+		<li><a class="ajaxload" href="bwm-ipt-24.asp"><i class="icon-clock"></i> <% translate("Last 24 Hours"); %></a></li>
+		<li><a class="ajaxload" href="bwm-ipt-graphs.asp"><i class="icon-graphs"></i> <% translate("View Graphs"); %></a></li>
+		<li><a class="ajaxload" href="bwm-ipt-details.asp"><i class="icon-globe"></i> <% translate("Transfer Rates"); %></a></li>
+		<li><a class="ajaxload" href="bwm-ipt-daily.asp"><i class="icon-clock"></i> <% translate("Daily"); %></a></li>
+		<li><a class="ajaxload" href="bwm-ipt-monthly.asp"><i class="icon-month"></i> <% translate("Monthly"); %></a></li>
 	</ul>
 
 	<div id="cstats" class="box">
-		<div class="heading">Real Time IP Traffic &nbsp; <div class="spinner" id="refresh-spinner" onclick="javascript:debugTime=1"></div></div>
+		<div class="heading"><% translate("Real Time IP Traffic"); %> &nbsp; <div class="spinner" id="refresh-spinner" onclick="javascript:debugTime=1"></div></div>
 		<div class="content">
 			<div id="tab-area" class="btn-toolbar"></div>
 
@@ -242,44 +242,44 @@ No part of this file may be used without permission.
 			</script>
 
 			<div id="bwm-controls">
-				<small>(<span class="updatetime"></span> minute window, <span class="interval"></span> second interval)</small> -
-				<b>Avg</b>:
-				<a href="javascript:switchAvg(1)" id="avg1">Off</a>,
+				<small>(<span class="updatetime"></span> <% translate("minute window"); %>, <span class="interval"></span> <% translate("second interval"); %>)</small> -
+				<b><% translate("Avg"); %></b>:
+				<a href="javascript:switchAvg(1)" id="avg1"><% translate("Off"); %></a>,
 				<a href="javascript:switchAvg(2)" id="avg2">2x</a>,
 				<a href="javascript:switchAvg(4)" id="avg4">4x</a>,
 				<a href="javascript:switchAvg(6)" id="avg6">6x</a>,
 				<a href="javascript:switchAvg(8)" id="avg8">8x</a> |
-				<b>Max</b>:
-				<a href="javascript:switchScale(0)" id="scale0">Uniform</a> or
-				<a href="javascript:switchScale(1)" id="scale1">Per Address</a> |
-				<b>Display</b>:
-				<a href="javascript:switchDraw(0)" id="draw0">Solid</a> or
-				<a href="javascript:switchDraw(1)" id="draw1">Line</a> |
-				<b>Color</b>: <a href="javascript:switchColor()" id="drawcolor">-</a> |
-				<small><a href="javascript:switchColor(1)" id="drawrev">[reverse]</a></small>
-				| <a class="ajaxload" href="admin-iptraffic.asp"><b>Configure</b></a>
+				<b><% translate("Max"); %></b>:
+				<a href="javascript:switchScale(0)" id="scale0"><% translate("Uniform"); %></a> <% translate("or"); %>
+				<a href="javascript:switchScale(1)" id="scale1"><% translate("Per Address"); %></a> |
+				<b><% translate("Display"); %></b>:
+				<a href="javascript:switchDraw(0)" id="draw0"><% translate("Solid"); %></a> <% translate("or"); %>
+				<a href="javascript:switchDraw(1)" id="draw1"><% translate("Line"); %></a> |
+				<b><% translate("Color"); %></b>: <a href="javascript:switchColor()" id="drawcolor">-</a> |
+				<small><a href="javascript:switchColor(1)" id="drawrev">[<% translate("reverse"); %>]</a></small>
+				| <a class="ajaxload" href="admin-iptraffic.asp"><b><% translate("Configure"); %></b></a>
 			</div>
 
 			<table id="txt" class="data-table bwm-info">
 				<tr>
-					<td><b style="border-bottom:blue 2px solid" id="rx-name">RX</b> <i class="icon-arrow-down"></i></td>
+					<td><b style="border-bottom:blue 2px solid" id="rx-name"><% translate("RX"); %></b> <i class="icon-arrow-down"></i></td>
 					<td><span id="rx-current"></span></td>
-					<td><b>Avg</b></td>
+					<td><b><% translate("Avg"); %></b></td>
 					<td id="rx-avg"></td>
-					<td><b>Peak</b></td>
+					<td><b><% translate("Peak"); %></b></td>
 					<td id="rx-max"></td>
-					<td><b>Total</b></td>
+					<td><b><% translate("Total"); %></b></td>
 					<td id="rx-total"></td>
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
-					<td><b style="border-bottom:blue 2px solid" id="tx-name">TX</b> <i class="icon-arrow-up"></i></td>
+					<td><b style="border-bottom:blue 2px solid" id="tx-name"><% translate("TX"); %></b> <i class="icon-arrow-up"></i></td>
 					<td><span id="tx-current"></span></td>
-					<td><b>Avg</b></td>
+					<td><b><% translate("Avg"); %></b></td>
 					<td id="tx-avg"></td>
-					<td><b>Peak</b></td>
+					<td><b><% translate("Peak"); %></b></td>
 					<td id="tx-max"></td>
-					<td><b>Total</b></td>
+					<td><b><% translate("Total"); %></b></td>
 					<td id="tx-total"></td>
 					<td>&nbsp;</td>
 				</tr>
@@ -290,13 +290,13 @@ No part of this file may be used without permission.
 			<hr><div id="options"></div>
 			<script type="text/javascript">
 				$('#options').forms([
-					{ title: '<% translate("IPs currently on graphic"); %>', name: 'f_ipt_addr_shown', type: 'select', options: [[0,'<% translate("Select"); %>']], suffix: ' &nbsp; <small>(Click/select a device from this list to hide it)</small>' },
-					{ title: '<% translate("Hidden addresses"); %>', name: 'f_ipt_addr_hidden', type: 'select', options: [[0,'<% translate("Select"); %>']], suffix: ' &nbsp; <small>(Click/select to show it again)</small>' }
+					{ title: '<% translate("IPs currently on graphic"); %>', name: 'f_ipt_addr_shown', type: 'select', options: [[0,'<% translate("Select"); %>']], suffix: ' &nbsp; <small>(<% translate("Click/select a device from this list to hide it"); %>)</small>' },
+					{ title: '<% translate("Hidden addresses"); %>', name: 'f_ipt_addr_hidden', type: 'select', options: [[0,'<% translate("Select"); %>']], suffix: ' &nbsp; <small>(<% translate("Click/select to show it again"); %>)</small>' }
 				]);
 			</script>
 
 			<span id="dtime" style="display:none;"></span>
-			<div class="alert alert-warning" id="warnwd" style="display:none">Warning: 10 second timeout, restarting...&nbsp;</div>
+			<div class="alert alert-warning" id="warnwd" style="display:none"><% translate("Warning: 10 second timeout, restarting"); %>...&nbsp;</div>
 		</div>
 	</div>
 	<script type="text/javascript">init();</script>

@@ -1513,7 +1513,7 @@ No part of this file may be used without permission.
 			var e = E('footer-msg');
 			var t = fixIP(fom['lan_ipaddr'].value);
 			if ((fom['lan_ifname'].value != 'br0') || (fom['lan_ipaddr'].value == '0.0.0.0') || (!t)) {
-				e.innerHTML = '<% translate("Bridge br0 must be always defined and have a valid IP address set."); %>';
+				e.innerHTML = '<% translate("Bridge br0 must be always defined and have a valid IP address set"); %>.';
 				e.style.visibility = 'visible';
 				setTimeout(
 					function() {

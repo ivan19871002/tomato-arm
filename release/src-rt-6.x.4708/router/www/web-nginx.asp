@@ -40,7 +40,7 @@ nginxup = parseInt ('<% psup("nginx"); %>');
 function toggle(service, isup)
 {
 	if (changed) {
-		if (!confirm("<% translate("Unsaved changes will be lost. Continue anyway"); %>?")) return;
+		if (!confirm("<% translate("Unsaved changes will be lost. Continue anyway?"); %>")) return;
 	}
 	E('_' + service + '_button').disabled = true;
 	form.submitHidden('/service.cgi', {

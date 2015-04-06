@@ -193,7 +193,7 @@ function save()
 function restart(isup)
 {
 	if (changed) {
-		if (!confirm("<% translate("Unsaved changes will be lost. Continue anyway"); %>?")) return;
+		if (!confirm("<% translate("Unsaved changes will be lost. Continue anyway?"); %>")) return;
 	}
 	E('_restart_button').disabled = true;
 	form.submitHidden('tomato.cgi', {

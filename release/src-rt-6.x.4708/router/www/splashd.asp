@@ -45,7 +45,7 @@ function uploadButton()
  alert('<% translate("Wrong filename, the correct extension is"); %> ".html".');
  return;
  }
- if (!confirm('<% translate("Are you sure the file"); %>' + name + '<% translate("must be uploaded to the device"); %>?')) return;
+ if (!confirm('<% translate("Are you sure the file"); %>' + name + '<% translate("must be uploaded to the device?"); %>')) return;
  E('upload-button').disabled = 1;
  fields.disableAll(E('config-section'), 1);
  fields.disableAll(E('footer'), 1);

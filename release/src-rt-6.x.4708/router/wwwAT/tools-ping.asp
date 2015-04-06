@@ -173,11 +173,11 @@ No part of this file may be used without permission.
 	</script>
 
 	<ul class="nav-tabs">
-		<li><a class="active">Ping</a></li>
-		<li><a class="ajaxload" href="tools-trace.asp">Trace</a></li>
-		<li><a class="ajaxload" href="tools-shell.asp">System Commands</a></li>
-		<li><a class="ajaxload" href="tools-survey.asp">Wireless Survey</a></li>
-		<li><a class="ajaxload" href="tools-wol.asp">WOL</a></li>
+		<li><a class="active"><% translate("Ping"); %></a></li>
+		<li><a class="ajaxload" href="tools-trace.asp"><% translate("Trace"); %></a></li>
+		<li><a class="ajaxload" href="tools-shell.asp"><% translate("System Commands"); %></a></li>
+		<li><a class="ajaxload" href="tools-survey.asp"><% translate("Wireless Survey"); %></a></li>
+		<li><a class="ajaxload" href="tools-wol.asp"><% translate("WOL"); %></a></li>
 	</ul>
 
 	<div class="box">

@@ -9,7 +9,7 @@ http://code.google.com/p/tomato-sdhc-vlan/
 
 For use with Tomato Firmware only.
 No part of this file may be used without permission.
---><title>IP Traffic: Daily History</title>
+--><title><% translate("IP Traffic"); %>: <% translate("Daily History"); %></title>
 <content>
 	<style type="text/css">
 		#daily-grid .co3,
@@ -69,7 +69,7 @@ No part of this file may be used without permission.
 
 		dg.setup = function() {
 			this.init('daily-grid', 'sort');
-			this.headerSet(['Date', 'Host', 'Download', 'Upload','<% translate("Total"); %>']);
+			this.headerSet(['<% translate("Date"); %>', '<% translate("Host"); %>', '<% translate("Downloaded"); %>', '<% translate("Uploaded"); %>','<% translate("Total"); %>']);
 		}
 
 		function redraw() {
@@ -163,10 +163,10 @@ No part of this file may be used without permission.
 					}
 					if (E('_f_shortcuts').checked) {
 						h = h + '<br><small>';
-						h = h + '<a href="javascript:viewQosDetail(' + i + ')" title="View QoS Details">[qosdetails]</a>';
-						h = h + '<a href="javascript:viewQosCTrates(' + i + ')" title="View transfer rates per connection">[qosrates]</a>';
-						h = h + '<a href="javascript:viewIptDetail(' + i + ')" title="View real-time IP Traffic for this address">[iptraf]</a>';
-						h = h + '<a href="javascript:addExcludeList(' + i + ')" title="Filter out this address">[hide]</a>';
+						h = h + '<a href="javascript:viewQosDetail(' + i + ')" title="<% translate("View QoS Details"); %>">[qosdetails]</a>';
+						h = h + '<a href="javascript:viewQosCTrates(' + i + ')" title="<% translate("View transfer rates per connection"); %>">[qosrates]</a>';
+						h = h + '<a href="javascript:viewIptDetail(' + i + ')" title="<% translate("View real-time IP Traffic for this address"); %>">[iptraf]</a>';
+						h = h + '<a href="javascript:addExcludeList(' + i + ')" title="<% translate("Filter out this address"); %>">[<% translate("hide"); %>]</a>';
 						h = h + '</small>';
 					}
 					var ymd = getYMD(b[0]);
@@ -177,13 +177,13 @@ No part of this file may be used without permission.
 				dg.resort();
 				dg.recolor();
 				dg.footerSet([
-					'Total',
+					'<% translate("Total"); %>',
 					('<small><i>(' +
 						(((hostslisted.length > 0) || (subnetslisted.length > 0)) ?
-							((hostslisted.length > 0) ? (hostslisted.length + ' hosts') : '') +
+							((hostslisted.length > 0) ? (hostslisted.length + ' <% translate("hosts"); %>') : '') +
 							(((hostslisted.length > 0) && (subnetslisted.length > 0)) ? ', ' : '') +
-							((subnetslisted.length > 0) ? (subnetslisted.length + ' subnets') : '')
-							: 'no data') +
+							((subnetslisted.length > 0) ? (subnetslisted.length + ' <% translate("subnets"); %>') : '')
+							: '<% translate("no data"); %>') +
 						')</i></small>'),
 					rescale(rx),
 					rescale(tx),
@@ -283,7 +283,7 @@ No part of this file may be used without permission.
 		function init() {
 
 			if (nvram.cstats_enable != '1') {
-				$('.cstats').before('<div class="alert alert-info">IP Traffic monitoring disabled.</b> <a href="/#admin-iptraffic.asp">Enable &raquo;</a>');
+				$('.cstats').before('<div class="alert alert-info"><% translate("IP Traffic monitoring disabled"); %>.</b> <a href="/#admin-iptraffic.asp"><% translate("Enable"); %> &raquo;</a>');
 				return;
 			}
 
@@ -422,27 +422,27 @@ No part of this file may be used without permission.
 	</script>
 
 	<ul class="nav-tabs">
-		<li><a class="ajaxload" href="bwm-ipt-realtime.asp"><i class="icon-hourglass"></i> Real-Time</a></li>
-		<li><a class="ajaxload" href="bwm-ipt-24.asp"><i class="icon-clock"></i> Last 24 Hours</a></li>
-		<li><a class="ajaxload" href="bwm-ipt-graphs.asp"><i class="icon-graphs"></i> View Graphs</a></li>
-		<li><a class="ajaxload" href="bwm-ipt-details.asp"><i class="icon-globe"></i> Transfer Rates</a></li>
-		<li><a class="active"><i class="icon-clock"></i> Daily</a></li>
-		<li><a class="ajaxload" href="bwm-ipt-monthly.asp"><i class="icon-month"></i> Monthly</a></li>
+		<li><a class="ajaxload" href="bwm-ipt-realtime.asp"><i class="icon-hourglass"></i> <% translate("Real-Time"); %></a></li>
+		<li><a class="ajaxload" href="bwm-ipt-24.asp"><i class="icon-clock"></i> <% translate("Last 24 Hours"); %></a></li>
+		<li><a class="ajaxload" href="bwm-ipt-graphs.asp"><i class="icon-graphs"></i> <% translate("View Graphs"); %></a></li>
+		<li><a class="ajaxload" href="bwm-ipt-details.asp"><i class="icon-globe"></i> <% translate("Transfer Rates"); %></a></li>
+		<li><a class="active"><i class="icon-clock"></i> <% translate("Daily"); %></a></li>
+		<li><a class="ajaxload" href="bwm-ipt-monthly.asp"><i class="icon-month"></i> <% translate("Monthly"); %></a></li>
 	</ul>
 
 
 	<div id="cstats" class="box">
-		<div class="heading">Daily IP Traffic <a class="pull-right" href="#" data-toggle="tooltip" title="Reload Information" onclick="reloadPage(); return false;"><i class="icon-reboot"></i></a></div>
+		<div class="heading"><% translate("Daily IP Traffic"); %> <a class="pull-right" href="#" data-toggle="tooltip" title="<% translate("Reload Information"); %>" onclick="reloadPage(); return false;"><i class="icon-reboot"></i></a></div>
 		<div class="content">
 			<table id="daily-grid" class="line-table td-large"></table><br />
 
-			<h4><a href="javascript:toggleVisibility('options');">Options <span id="sesdivoptionsshowhide"><i class="icon-chevron-up"></i></span></a></h4>
+			<h4><a href="javascript:toggleVisibility('options');"><% translate("Options"); %> <span id="sesdivoptionsshowhide"><i class="icon-chevron-up"></i></span></a></h4>
 			<div class="section" id="sesdivoptions" style="display:none"></div>
 		</div>
 	</div>
 
-	<a href="javascript:genData()" class="btn btn-primary">Data <i class="icon-drive"></i></a>
-	<a href="admin-iptraffic.asp" class="btn btn-danger ajaxload">Configure <i class="icon-tools"></i></a>
+	<a href="javascript:genData()" class="btn btn-primary"><% translate("Data"); %> <i class="icon-drive"></i></a>
+	<a href="admin-iptraffic.asp" class="btn btn-danger ajaxload"><% translate("Configure"); %> <i class="icon-tools"></i></a>
 
 	<script type="text/javascript">
 		var c;
@@ -452,7 +452,7 @@ No part of this file may be used without permission.
 		c.push({ title: '<% translate("Date Range"); %>', multi: [ { name: 'f_begin_date', type: 'select', options: [['0','<% translate("Any"); %>']], suffix: ' - ' }, { name: 'f_end_date', type: 'select', options: [['0','<% translate("Any"); %>']] } ] } );
 		c.push({ title: '<% translate("Date Format"); %>', name: 'f_dafm', type: 'select', options: [['0', 'yyyy-mm-dd'], ['1', 'mm-dd-yyyy'], ['2', 'mmm dd, yyyy'], ['3', 'dd.mm.yyyy']] });
 		c.push({ title: '<% translate("Scale"); %>', name: 'f_scale', type: 'select', options: [['0', 'KB'], ['1', 'MB'], ['2', 'GB']] });
-		c.push({ title: '<% translate("Show subnet totals"); %>', name: 'f_subnet', type: 'checkbox', suffix: ' <small>(Not considered when calculating total traffic on the last line)</small>' });
+		c.push({ title: '<% translate("Show subnet totals"); %>', name: 'f_subnet', type: 'checkbox', suffix: ' <small>(<% translate("Not considered when calculating total traffic on the last line"); %>)</small>' });
 		c.push({ title: '<% translate("Hide IPs without traffic"); %>', name: 'f_ignorezeroes', type: 'checkbox' });
 		c.push({ title: '<% translate("Show known hostnames"); %>', name: 'f_hostnames', type: 'checkbox' });
 		c.push({ title: '<% translate("Show shortcuts"); %>', name: 'f_shortcuts', type: 'checkbox' });

@@ -102,7 +102,7 @@ function redraw()
 
 	if (summary) {
 		grid = '<table class="bwmg" cellspacing="1">';
-		grid += makeRow('header', '<% translate("Date"); %>', '<% translate("Download"); %>', '<% translate("Upload"); %>', '<% translate("Total"); %>');
+		grid += makeRow('header', '<% translate("Date"); %>', '<% translate("Downloaded"); %>', '<% translate("Uploaded"); %>', '<% translate("Total"); %>');
 	}
 	else {
 		grid = '';
@@ -112,7 +112,7 @@ function redraw()
 	{
 		grid += '<b>' + dbeg + ' to ' + dend + '</b>' +
 				'<table class="bwmg" cellspacing="1">' +
-				makeRow('header', '<% translate("Date"); %>', '<% translate("Download"); %>', '<% translate("Upload"); %>', '<% translate("Total"); %>') +
+				makeRow('header', '<% translate("Date"); %>', '<% translate("Downloaded"); %>', '<% translate("Uploaded"); %>', '<% translate("Total"); %>') +
 				block.join('') +
 				makeRow('footer', '<% translate("Total"); %>', rescale(dl), rescale(ul), rescale(dl + ul)) +
 				'</table><br>';
@@ -245,7 +245,7 @@ function init()
 <div style="float:right;text-align:right">
 <b><% translate("Show"); %></b> <select onchange='changeMode(this)' id='shmode'><option value=1 selected><% translate("Summary"); %><option value=0><% translate("Full"); %></select><br>
 <b><% translate("Date"); %></b> <select onchange='changeDate(this, "ymd")' id='dafm'><option value=0>yyyy-mm-dd</option><option value=1>mm-dd-yyyy</option><option value=2>mmm dd, yyyy</option><option value=3>dd.mm.yyyy</option></select><br>
-<b><% translate("Start"); %></b> <select onchange='changeStart(this)' id='startwk'><option value=0 selected><% translate("Sun"); %><option value=1><% translate("Mon"); %><option value=2><% translate("Tue"); %><option value=3><% translate("Wed"); %><option value=4><% translate("Thu"); %><option value=5><% translate("Fri"); %><option value=6><% translate("Sat"); %></select><br>
+<b><% translate("Week Start"); %></b> <select onchange='changeStart(this)' id='startwk'><option value=0 selected><% translate("Sun"); %><option value=1><% translate("Mon"); %><option value=2><% translate("Tue"); %><option value=3><% translate("Wed"); %><option value=4><% translate("Thu"); %><option value=5><% translate("Fri"); %><option value=6><% translate("Sat"); %></select><br>
 <b><% translate("Scale"); %></b> <select onchange='changeScale(this)' id='scale'><option value=0>KB</option><option value=1>MB</option><option value=2 selected>GB</option></select><br>
 <br>
 &raquo; <a href="admin-bwm.asp"><% translate("Configure"); %></a>

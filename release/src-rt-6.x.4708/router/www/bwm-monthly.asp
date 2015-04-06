@@ -67,7 +67,7 @@ function redraw()
 	gn = 0;
 
 	grid = '<table class="bwmg" cellspacing="1">';
-	grid += makeRow('header', '<% translate("Date"); %>', '<% translate("Download"); %>', '<% translate("Upload"); %>', '<% translate("Total"); %>');
+	grid += makeRow('header', '<% translate("Date"); %>', '<% translate("Downloaded"); %>', '<% translate("Uploaded"); %>', '<% translate("Total"); %>');
 
 	for (i = 0; i < monthly_history.length; ++i) {
 		h = monthly_history[i];

@@ -30,7 +30,7 @@ No part of this file may be used without permission.
 		// {enable}|{begin_mins}|{end_mins}|{dow}|{comp[<comp]}|{rules<rules[...]>}|{http[ ...]}|{http_file}|{desc}
 		//	<% rrule(); %>
 		if ((rule = rrule.match(/^(\d+)\|(-?\d+)\|(-?\d+)\|(\d+)\|(.*?)\|(.*?)\|([^|]*?)\|(\d+)\|(.*)$/m)) == null) {
-			rule = ['', 1, 1380, 240, 31, '', '', '', 0, 'New Rule ' + (rruleN + 1)];
+			rule = ['', 1, 1380, 240, 31, '', '', '', 0, '<% translate("New Rule"); %> ' + (rruleN + 1)];
 		}
 		rule[2] *= 1;
 		rule[3] *= 1;
@@ -41,7 +41,7 @@ No part of this file may be used without permission.
 		layer7.sort();
 		for (i = 0; i < layer7.length; ++i)
 			layer7[i] = [layer7[i],layer7[i]];
-		layer7.unshift(['', 'Layer 7 (disabled)']);
+		layer7.unshift(['', '<% translate("Layer 7 (disabled)"); %>']);
 
 		var ipp2p = [
 			[0,'<% translate("IPP2P (disabled)"); %>'],[0xFFFF,'<% translate("All IPP2P Filters"); %>'],[1,'<% translate("AppleJuice"); %>'],[2,'<% translate("Ares"); %>'],[4,'<% translate("BitTorrent"); %>'],[8,'<% translate("Direct Connect"); %>'],
@@ -431,7 +431,7 @@ No part of this file may be used without permission.
 							{ name: 'f_sched_fri', type: 'checkbox', suffix: ' Fri &nbsp; ', value: (rule[4] & (1 << 5)) },
 							{ name: 'f_sched_sat', type: 'checkbox', suffix: ' Sat', value: (rule[4] & (1 << 6)) } ] },
 						{ title: '<% translate("Type"); %>', name: 'f_type', id: 'rt_norm', type: 'radio', suffix: ' <% translate("Normal Access Restriction"); %>', value: (rule[5] != '~') },
-						{ title: '', name: 'f_type', id: 'rt_wl', type: 'radio', suffix: ' Disable Wireless', value: (rule[5] == '~') },
+						{ title: '', name: 'f_type', id: 'rt_wl', type: 'radio', suffix: ' <% translate("Disable Wireless"); %>', value: (rule[5] == '~') },
 						{ title: '<% translate("Applies To"); %>', name: 'f_comp_all', type: 'select', options: [[0,'<% translate("All Computers / Devices"); %>'],[1,'<% translate("The Following"); %>...'],[2,'<% translate("All Except"); %>...']], value: 0 },
 						{ title: '&nbsp;', text: '<table class="line-table col-sm-9" id="res-comp-grid"></table>' },
 						{ title: '<% translate("Blocked Resources"); %>', name: 'f_block_all', type: 'checkbox', suffix: ' <% translate("Block All Internet Access"); %>', value: 0 },

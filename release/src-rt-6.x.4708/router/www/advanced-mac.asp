@@ -117,7 +117,7 @@ function save()
 	var u, uidx, v;
 
 	if (!verifyFields(null, false)) return;
-	if (!confirm("<% translate("Warning: Changing the MAC address may require that you reboot all devices, computers or modem connected to this router. Continue anyway"); %>?")) return;
+	if (!confirm("<% translate("Warning: Changing the MAC address may require that you reboot all devices, computers or modem connected to this router. Continue anyway?"); %>")) return;
 
 	var fom = E('_fom');
 	fom.mac_wan.value = (fom._f_wan_hwaddr.value == defmac('wan')) ? '' : fom._f_wan_hwaddr.value;

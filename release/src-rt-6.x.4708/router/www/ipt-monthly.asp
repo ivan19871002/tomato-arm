@@ -86,7 +86,7 @@ var dg = new TomatoGrid();
 
 dg.setup = function() {
 	this.init('monthly-grid', 'sort');
-	this.headerSet(['<% translate("Date"); %>', '<% translate("Host"); %>', '<% translate("Download"); %>', '<% translate("Upload"); %>', '<% translate("Total"); %>']);
+	this.headerSet(['<% translate("Date"); %>', '<% translate("Host"); %>', '<% translate("Downloaded"); %>', '<% translate("Uploaded"); %>', '<% translate("Total"); %>']);
 }
 
 function redraw() {

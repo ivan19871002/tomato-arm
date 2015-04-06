@@ -43,7 +43,7 @@ No part of this file may be used without permission.
 			name = fixFile(E('restore-name').value);
 			name = name.toLowerCase();
 			if ((name.indexOf('.cfg') != (name.length - 4)) && (name.indexOf('.cfg.gz') != (name.length - 7))) {
-				alert('<% translate("Incorrect filename. Expecting a"); %> ".cfg" <% translate("file."); %>');
+				alert('<% translate("Incorrect filename. Expecting a"); %> ".cfg" <% translate("file"); %>.');
 				return;
 			}
 			if (!confirm('<% translate("Are you sure?"); %>')) return;
@@ -61,7 +61,7 @@ No part of this file may be used without permission.
 			i = E('restore-mode').value;
 			if (i == 0) return;
 			if ((i == 2) && (features('!nve'))) {
-				if (!confirm('<% translate("WARNING:"); %> <% translate("Erasing the NVRAM on a"); %> ' + nvram.t_model_name + ' <% translate("router may be harmful. It may not be able to re-setup the NVRAM correctly after a complete erase. Proceeed anyway?"); %>')) return;
+				if (!confirm('<% translate("WARNING: Erasing the NVRAM on a"); %> ' + nvram.t_model_name + ' <% translate("router may be harmful. It may not be able to re-setup the NVRAM correctly after a complete erase. Proceeed anyway?"); %>')) return;
 			}
 			if (!confirm('<% translate("Are you sure?"); %>')) return;
 			E('reset-button').disabled = 1;

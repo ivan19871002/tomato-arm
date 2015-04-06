@@ -33,7 +33,7 @@ No part of this file may be used without permission.
 				{ type: 'select', options: class_prio },
 				{ type: 'select', options: class_tcp },
 				{ type: 'select', options: class_udp }]);
-			this.headerSet(['IP | IP Range | MAC Address', 'DLRate', 'DLCeil', 'ULRate', 'ULCeil', 'Priority', 'TCP Limit','<% translate("UDP Limit"); %>']);
+			this.headerSet(['<% translate("IP | IP Range | MAC Address"); %>', '<% translate("DLRate"); %>', '<% translate("DLCeil"); %>', '<% translate("ULRate"); %>', '<% translate("ULCeil"); %>', '<% translate("Priority"); %>', '<% translate("TCP Limit"); %>','<% translate("UDP Limit"); %>']);
 			var qoslimitrules = nvram.new_qoslimit_rules.split('>');
 			for (var i = 0; i < qoslimitrules.length; ++i) {
 				var t = qoslimitrules[i].split('<');
@@ -130,38 +130,38 @@ No part of this file may be used without permission.
 			*/
 			if(v_macip(f[0], quiet, 0, nvram.lan_ipaddr, nvram.lan_netmask)) {
 				if(this.existIP(f[0].value)) {
-					ferror.set(f[0], 'duplicate IP or MAC address', quiet);
+					ferror.set(f[0], '<% translate("duplicate IP or MAC address"); %>', quiet);
 					ok = 0;
 				}
 			}
 
 			if( this.checkRate(f[1].value)) {
-				ferror.set(f[1], 'DLRate must between 1 and 99999', quiet);
+				ferror.set(f[1], '<% translate("DLRate must between 1 and 99999"); %>', quiet);
 				ok = 0;
 			}
 
 			if( this.checkRate(f[2].value)) {
-				ferror.set(f[2], 'DLCeil must between 1 and 99999', quiet);
+				ferror.set(f[2], '<% translate("DLCeil must between 1 and 99999"); %>', quiet);
 				ok = 0;
 			}
 
 			if( this.checkRateCeil(f[1].value, f[2].value)) {
-				ferror.set(f[2], 'DLCeil must be greater than DLRate', quiet);
+				ferror.set(f[2], '<% translate("DLCeil must be greater than DLRate"); %>', quiet);
 				ok = 0;
 			}
 
 			if( this.checkRate(f[3].value)) {
-				ferror.set(f[3], 'ULRate must between 1 and 99999', quiet);
+				ferror.set(f[3], '<% translate("ULRate must between 1 and 99999"); %>', quiet);
 				ok = 0;
 			}
 
 			if( this.checkRate(f[4].value)) {
-				ferror.set(f[4], 'ULCeil must between 1 and 99999', quiet);
+				ferror.set(f[4], '<% translate("ULCeil must between 1 and 99999"); %>', quiet);
 				ok = 0;
 			}
 
 			if( this.checkRateCeil(f[3].value, f[4].value)) {
-				ferror.set(f[4], 'ULCeil must be greater than ULRate', quiet);
+				ferror.set(f[4], '<% translate("ULCeil must be greater than ULRate"); %>', quiet);
 				ok = 0;
 			}
 
@@ -249,7 +249,7 @@ No part of this file may be used without permission.
 
 	<script type="text/javascript">
 		if (nvram.qos_enable != '1') {
-			$('.container .ajaxwrap').prepend('<div class="alert alert-warning"><b>QoS is disabled.</b>&nbsp; <a class="ajaxload" href="#qos-settings.asp">Enable &raquo;</a> <a class="close"><i class="icon-cancel"></i></a></div>');
+			$('.container .ajaxwrap').prepend('<div class="alert alert-warning"><b><% translate("QoS is disabled"); %>.</b>&nbsp; <a class="ajaxload" href="#qos-settings.asp"><% translate("Enable"); %> &raquo;</a> <a class="close"><i class="icon-cancel"></i></a></div>');
 		}
 	</script>
 
@@ -266,14 +266,14 @@ No part of this file may be used without permission.
 		<input type="hidden" name="limit_br3_enable">
 
 		<div class="box" data-box="qos-lan-limit">
-			<div class="heading">Bandwidth Limiter for LAN (br0)</div>
+			<div class="heading"><% translate("Bandwidth Limiter for"); %> LAN (br0)</div>
 			<div class="content">
 				<div class="br0-set"></div><hr>
 				<script type="text/javascript">
 					$('.br0-set').forms([
 						{ title: '<% translate("Enable Limiter"); %>', name: 'f_new_qoslimit_enable', type: 'checkbox', value: nvram.new_qoslimit_enable != '0' },
-						{ title: 'Max Available Download <br><small>(same as used in QoS)</small>', indent: 2, name: 'qos_ibw', type: 'text', maxlen: 6, size: 8, suffix: ' <small>kbit/s</small>', value: nvram.qos_ibw },
-						{ title: 'Max Available Upload <br><small>(same as used in QoS)</small>', indent: 2, name: 'qos_obw', type: 'text', maxlen: 6, size: 8, suffix: ' <small>kbit/s</small>', value: nvram.qos_obw }
+						{ title: '<% translate("Max Available Download"); %> <br><small>(<% translate("same as used in QoS"); %>)</small>', indent: 2, name: 'qos_ibw', type: 'text', maxlen: 6, size: 8, suffix: ' <small>kbit/s</small>', value: nvram.qos_ibw },
+						{ title: '<% translate("Max Available Upload"); %> <br><small>(<% translate("same as used in QoS"); %>)</small>', indent: 2, name: 'qos_obw', type: 'text', maxlen: 6, size: 8, suffix: ' <small>kbit/s</small>', value: nvram.qos_obw }
 					]);
 				</script>
 
@@ -281,18 +281,18 @@ No part of this file may be used without permission.
 
 				<h4><% translate("Notes"); %></h4>
 				<ul>
-					<li><b>IP Address / IP Range:</b>
-					<li>Example: 192.168.1.5 for one IP.
-					<li>Example: 192.168.1.4-7 for IP 192.168.1.4 to 192.168.1.7
-					<li>Example: 4-7 for IP Range .4 to .7
-					<li><b>The IP Range devices will share the Bandwidth</b>
-					<li><b>MAC Address</b> Example: 00:2E:3C:6A:22:D8
+					<li><b><% translate("IP Address / IP Range"); %>:</b>
+					<li><% translate("Example"); %>: 192.168.1.5 for one IP.
+					<li><% translate("Example"); %>: 192.168.1.4-7 for IP 192.168.1.4 to 192.168.1.7
+					<li><% translate("Example"); %>: 4-7 for IP Range .4 to .7
+					<li><b><% translate("The IP Range devices will share the Bandwidth"); %></b>
+					<li><b><% translate("MAC Address"); %></b> <% translate("Example"); %>: 00:2E:3C:6A:22:D8
 				</ul>
 			</div>
 		</div>
 
 		<div class="box" id="qoslimitbr0" data-box="qos-br0-limit">
-			<div class="heading">Default Class for unlisted MAC / IP's in LAN (br0)</div>
+			<div class="heading"><% translate("Default Class for unlisted MAC / IP's in"); %> LAN (br0)</div>
 			<div class="content">
 				<div id="unlistedmac"></div><hr>
 				<script type="text/javascript">
@@ -329,14 +329,14 @@ No part of this file may be used without permission.
 				</script>
 
 				<ul>
-					<li>Default Class - IP / MAC's non included in the list will take the Default Rate/Ceiling setting</li>
-					<li>The bandwitdh will be shared by all unlisted hosts in br0</li>
+					<li><% translate("Default Class"); %> - <% translate("IP / MAC's non included in the list will take the Default Rate/Ceiling setting"); %></li>
+					<li><% translate("The bandwitdh will be shared by all unlisted hosts in"); %> br0</li>
 				</ul>
 			</div>
 		</div>
 
 		<div class="box" id="qoslimitbr1" data-box="qos-limit-br1">
-			<div class="heading">Default Class for LAN1 (br1)</div>
+			<div class="heading"><% translate("Default Class for"); %> LAN1 (br1)</div>
 			<div class="content">
 				<div class="table-set1"></div><hr>
 				<script type="text/javascript">
@@ -352,13 +352,13 @@ No part of this file may be used without permission.
 				</script>
 
 				<ul>
-					<li>The bandwitdh will be shared by all hosts in br1.</li>
+					<li><% translate("The bandwitdh will be shared by all hosts in"); %> br1.</li>
 				</ul>
 			</div>
 		</div>
 
 		<div class="box" id="qoslimitbr2" data-box="qos-limit-br2">
-			<div class="heading">Default Class for LAN2 (br2)</div>
+			<div class="heading"><% translate("Default Class for"); %> LAN2 (br2)</div>
 			<div class="content">
 				<div class="table-set2"></div><hr>
 				<script type="text/javascript">
@@ -374,13 +374,13 @@ No part of this file may be used without permission.
 				</script>
 
 				<ul>
-					<li>The bandwitdh will be shared by all hosts in br2.</li>
+					<li><% translate("The bandwitdh will be shared by all hosts in"); %> br2.</li>
 				</ul>
 			</div>
 		</div>
 
 		<div class="box" id="qoslimitbr3" data-box="qos-limit-br3">
-			<div class="heading">Default Class for LAN3 (br3)</div>
+			<div class="heading"><% translate("Default Class for"); %> LAN3 (br3)</div>
 			<div class="content">
 				<div class="table-set3"></div><hr>
 				<script type="text/javascript">
@@ -396,7 +396,7 @@ No part of this file may be used without permission.
 				</script>
 
 				<ul>
-					<li>The bandwitdh will be shared by all hosts in br3.</li>
+					<li><% translate("The bandwitdh will be shared by all hosts in"); %> br3.</li>
 				</ul>
 			</div>
 		</div>

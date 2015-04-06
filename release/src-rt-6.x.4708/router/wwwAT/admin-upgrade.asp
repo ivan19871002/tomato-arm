@@ -63,7 +63,7 @@ No part of this file may be used without permission.
 			name = fixFile(fom.file.value);
 
 			if (name.search(/\.(bin|trx|chk)$/i) == -1) {
-				alert('<% translate("Incorrect filename. Expecting a"); %> ".bin", ".trx" or ".chk" <% translate("file."); %>');
+				alert('<% translate("Incorrect filename. Expecting a"); %> ".bin", ".trx" <% translate("or"); %> ".chk" <% translate("file"); %>.');
 				return false;
 			}
 
@@ -83,7 +83,7 @@ No part of this file may be used without permission.
 	<div id="afu-input">
 
 		<div class="alert alert-warning icon">
-			<h5><% translate("Attention!"); %></h5><% translate("There has been many reports how AdvancedTomato did not flash well or it came with many bugs. Reason for that is bad image files which can sometimes get corupted at the download process."); %>
+			<h5><% translate("Attention"); %>!</h5><% translate("There has been many reports how AdvancedTomato did not flash well or it came with many bugs. Reason for that is bad image files which can sometimes get corupted at the download process."); %>
 			<% translate("This message is here to warn you to check MD5 checksum"); %> ( <a target="_blank" href="http://en.wikipedia.org/wiki/Checksum"><% translate("HELP"); %></a> ) <% translate("before flashing any images to your router"); %>.
 			<% translate("By using this process and learning if image is corupted or not, you will eliminate many issues with the upgrade process"); %>.
 			<a class="close"><i class="icon-cancel"></i></a>

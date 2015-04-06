@@ -456,7 +456,7 @@ REMOVE-END */
     return;
   }
 
-  if (confirm("<% translate("Router must be rebooted to proceed. Commit changes to NVRAM and reboot now"); %>?"))
+  if (confirm("<% translate("Router must be rebooted to proceed. Commit changes to NVRAM and reboot now?"); %>"))
     form.submit(fom, 0);
 }
 

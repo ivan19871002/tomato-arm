@@ -1381,9 +1381,9 @@ LAN Access admin module by Augusto Bott
 						<li><b><% translate("Other relevant notes/hints"); %>:</b>
 						<ul>
 							<li><% translate("When creating/defining a new wireless VIF, it's MAC address will be shown (incorrectly) as '00:00:00:00:00:00', as it's unknown at that moment (until network is restarted and this page is reloaded)"); %>.</li>
-							<li><% translate("When saving changes, the MAC addresses of all defined non-primary wireless VIFs could sometimes be (already) <i>set</i> but might be <i>recreated</i> by the WL driver (so that previously defined/saved settings might need to be updated/changed accordingly on"); %> <a class="ajaxload" href=advanced-mac.asp><% translate("Advanced/MAC Address"); %></a> <% translate("after saving settings and rebooting your router)"); %>.</li>
+							<li><% translate("When saving changes, the MAC addresses of all defined non-primary wireless VIFs could sometimes be (already) <i>set</i> but might be <i>recreated</i> by the WL driver (so that previously defined/saved settings might need to be updated/changed accordingly on"); %> <a class="ajaxload" href=advanced-mac.asp><% translate("Advanced Settings"); %>/<% translate("MAC Address"); %></a> <% translate("after saving settings and rebooting your router)"); %>.</li>
 							<li><% translate("This web interface allows configuring a maximum of 4 VIFs for each physical wireless interface available - up to 3 extra VIFs can be defined in addition to the primary VIF (<i>on devices with multiple VIF capabilities</i>)"); %>.</li>
-							<li><% translate("By definition, configuration settings for the <i>primary VIF</i> of any physical wireless interfaces shouldn't be touched here (use the"); %> <a class="ajaxload" href="basic-network.asp"><% translate("Basic/Network"); %></a> <% translate("page instead)"); %>.</li>
+							<li><% translate("By definition, configuration settings for the <i>primary VIF</i> of any physical wireless interfaces shouldn't be touched here (use the"); %> <a class="ajaxload" href="basic-network.asp"><% translate("Basic Settings"); %>/<% translate("Network"); %></a> <% translate("page instead)"); %>.</li>
 						</ul>
 					</ul>
 				</div>

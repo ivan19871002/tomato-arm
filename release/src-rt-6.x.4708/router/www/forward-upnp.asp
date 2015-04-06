@@ -104,7 +104,7 @@ ug.populate = function() {
 
 function deleteAll()
 {
-	if (!confirm('<% translate("Delete all entries"); %>?')) return;
+	if (!confirm('<% translate("Delete all entries?"); %>')) return;
 	submitDelete('*', '0');
 }
 

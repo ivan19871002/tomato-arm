@@ -390,7 +390,7 @@ No part of this file may be used without permission.
 
 	<div id="wm-disabled" class="alert alert-info icon">
 		<h5><% translate("Web Monitoring disabled"); %></h5>
-		<% translate("Please"); %> <a class="ajaxload" href="/#admin-log.asp"><% translate("enable"); %></a> <% translate("web monitoring in order to view information on this page"); %>.
+		<% translate("Please"); %> <a class="ajaxload" href="/#admin-log.asp"><% translate("enable web monitoring"); %></a> <% translate("in order to view information on this page"); %>.
 	</div>
 
 	<script type="text/javascript">earlyInit();</script>

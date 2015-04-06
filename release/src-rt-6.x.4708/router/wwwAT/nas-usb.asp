@@ -315,7 +315,7 @@ No part of this file may be used without permission.
 						/* MICROSD-END */
 						/* LINUX26-END */
 						{ title: '<% translate("Automount"); %>', indent: 2, name: 'f_automount', type: 'checkbox',
-							suffix: ' <small>Automatically mount all partitions to sub-directories in <i>/mnt</i>.</small>', value: nvram.usb_automount == 1 },
+							suffix: ' <small><% translate("Automatically mount all partitions to sub-directories in"); %> <i>/mnt</i>.</small>', value: nvram.usb_automount == 1 },
 						{ title: '<% translate("Run after mounting"); %>', indent: 2, name: 'script_usbmount', type: 'textarea', value: nvram.script_usbmount },
 						{ title: '<% translate("Run before unmounting"); %>', indent: 2, name: 'script_usbumount', type: 'textarea', value: nvram.script_usbumount },
 						null,

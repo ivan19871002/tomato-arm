@@ -7,7 +7,7 @@ http://www.polarcloud.com/tomato/
 For use with Tomato Firmware only.
 No part of this file may be used without permission.
 -->
-<title><% translate("Bandwidth: Weekly"); %></title>
+<title><% translate("Bandwidth"); %>: <% translate("Weekly"); %></title>
 <content>
 	<style>
 		table tr td { width: 25%; }
@@ -95,7 +95,7 @@ No part of this file may be used without permission.
 
 			if (summary) {
 				grid = '<table class="line-table">';
-				grid += '<tr><td><b><% translate("Date"); %></b></td><td><b><% translate("Download"); %></b></td><td><b><% translate("Upload"); %></b></td><td><b><% translate("Total"); %></b></td></tr>';
+				grid += '<tr><td><b><% translate("Date"); %></b></td><td><b><% translate("Downloaded"); %></b></td><td><b><% translate("Uploaded"); %></b></td><td><b><% translate("Total"); %></b></td></tr>';
 			}
 			else {
 				grid = '';
@@ -105,9 +105,9 @@ No part of this file may be used without permission.
 			{
 				grid += '<h5>' + dbeg + ' to ' + dend + '</h5>' +
 				'<table class="line-table">' +
-				'<tr><td><b><% translate("Date"); %></b></td><td><b><% translate("Download"); %></b></td><td><b><% translate("Upload"); %></b></td><td><b><% translate("Total"); %></b></td></tr>' +
+				'<tr><td><b><% translate("Date"); %></b></td><td><b><% translate("Downloaded"); %></b></td><td><b><% translate("Uploaded"); %></b></td><td><b><% translate("Total"); %></b></td></tr>' +
 				block.join('') +
-				makeRow('bold', '<% translate("Total', rescale(dl), rescale(ul), rescale(dl + ul)) +
+				makeRow('bold', '<% translate("Total"); %>', rescale(dl), rescale(ul), rescale(dl + ul)) +
 				'</table><br>';
 			}
 
@@ -220,11 +220,11 @@ No part of this file may be used without permission.
 	</script>
 
 	<ul class="nav-tabs">
-		<li><a class="ajaxload" href="bwm-realtime.asp"><i class="icon-hourglass"></i> Real-Time</a></li>
-		<li><a class="ajaxload" href="bwm-24.asp"><i class="icon-graphs"></i> Last 24 Hours</a></li>
-		<li><a class="ajaxload" href="bwm-daily.asp"><i class="icon-clock"></i> Daily</a></li>
-		<li><a class="active"><i class="icon-week"></i> Weekly</a></li>
-		<li><a class="ajaxload" href="bwm-monthly.asp"><i class="icon-month"></i> Monthly</a></li>
+		<li><a class="ajaxload" href="bwm-realtime.asp"><i class="icon-hourglass"></i> <% translate("Real-Time"); %></a></li>
+		<li><a class="ajaxload" href="bwm-24.asp"><i class="icon-graphs"></i> <% translate("Last 24 Hours"); %></a></li>
+		<li><a class="ajaxload" href="bwm-daily.asp"><i class="icon-clock"></i> <% translate("Daily"); %></a></li>
+		<li><a class="active"><i class="icon-week"></i> <% translate("Weekly"); %></a></li>
+		<li><a class="ajaxload" href="bwm-monthly.asp"><i class="icon-month"></i> <% translate("Monthly"); %></a></li>
 	</ul>
 
 	<div id="rstats" class="box">
@@ -235,11 +235,11 @@ No part of this file may be used without permission.
 		</div>
 	</div>
 
-	<a href="admin-bwm.asp" class="btn btn-danger ajaxload">Configure <i class="icon-tools"></i></a>
+	<a href="admin-bwm.asp" class="btn btn-danger ajaxload"><% translate("Configure"); %> <i class="icon-tools"></i></a>
 	<span class="pull-right">
 		<b><% translate("Show"); %></b> <select onchange="changeMode(this)" id="shmode"><option value="1" selected><% translate("Summary"); %><option value="0"><% translate("Full"); %></select> &nbsp;
 		<b><% translate("Date"); %></b> <select onchange="changeDate(this, 'ymd')" id="dafm"><option value="0">yyyy-mm-dd</option><option value="1">mm-dd-yyyy</option><option value="2">mmm dd, yyyy</option><option value="3">dd.mm.yyyy</option></select>  &nbsp;
-		<b><% translate("Start"); %></b> <select onchange="changeStart(this)" id="startwk"><option value="0" selected><% translate("Sun"); %><option value="1"><% translate("Mon"); %><option value="2"><% translate("Tue"); %><option value="3"><% translate("Wed"); %><option value="4"><% translate("Thu"); %><option value="5"><% translate("Fri"); %><option value="6"><% translate("Sat"); %></select>  &nbsp;
+		<b><% translate("Week Start"); %></b> <select onchange="changeStart(this)" id="startwk"><option value="0" selected><% translate("Sun"); %><option value="1"><% translate("Mon"); %><option value="2"><% translate("Tue"); %><option value="3"><% translate("Wed"); %><option value="4"><% translate("Thu"); %><option value="5"><% translate("Fri"); %><option value="6"><% translate("Sat"); %></select>  &nbsp;
 		<b><% translate("Scale"); %></b> <select onchange="changeScale(this)" id="scale"><option value="0">KB</option><option value="1">MB</option><option value="2" selected>GB</option></select> &nbsp;
 	</span>
 

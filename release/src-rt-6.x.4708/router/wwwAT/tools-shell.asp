@@ -99,11 +99,11 @@ No part of this file may be used without permission.
 	</script>
 
 	<ul class="nav-tabs">
-		<li><a class="ajaxload" href="tools-ping.asp">Ping</a></li>
-		<li><a class="ajaxload" href="tools-trace.asp">Trace</a></li>
-		<li><a class="active">System Commands</a></li>
-		<li><a class="ajaxload" href="tools-survey.asp">Wireless Survey</a></li>
-		<li><a class="ajaxload" href="tools-wol.asp">WOL</a></li>
+		<li><a class="ajaxload" href="tools-ping.asp"><% translate("Ping"); %></a></li>
+		<li><a class="ajaxload" href="tools-trace.asp"><% translate("Trace"); %></a></li>
+		<li><a class="active"><% translate("System Commands"); %></a></li>
+		<li><a class="ajaxload" href="tools-survey.asp"><% translate("Wireless Survey"); %></a></li>
+		<li><a class="ajaxload" href="tools-wol.asp"><% translate("WOL"); %></a></li>
 	</ul>
 
 	<div class="box">
@@ -111,19 +111,19 @@ No part of this file may be used without permission.
 		<div class="content">
 			<div id="command-form"></div><hr>
 
-			<div style="visibility:hidden;" id="wait">Please wait... <span class="spinner"></span></div>
+			<div style="visibility:hidden;" id="wait"><% translate("Please wait"); %>... <span class="spinner"></span></div>
 			<pre id="result"></pre>
 
 			<script type="text/javascript">
 				$('#command-form').forms([
-					{ title: '<% translate("Command"); %>', help:'Use the command &quot;nvram export --set&quot; or &quot;nvram export --set | grep qos&quot; to cut and paste configuration',
+					{ title: '<% translate("Command"); %>', help:'<% translate("Use the command &quot;nvram show&quot; or &quot;nvram show | grep qos&quot; to cut and paste configuration"); %>',
 						name: 'f_cmd', type: 'textarea', wrap: 'off', value: '', style: 'width: 100%; height: 80px;' }
 					], { grid: ['col-sm-2', 'col-sm-10'] });
 			</script>
 		</div>
 	</div>
 
-	<div id="refresh"></div><button type="button" value="Execute" onclick="execute()" id="execb" class="btn">Execute <i class="icon-cmd"></i></button>
+	<div id="refresh"></div><button type="button" value="<% translate("Execute"); %>" onclick="execute()" id="execb" class="btn"><% translate("Execute"); %> <i class="icon-cmd"></i></button>
 
 	<script type="text/javascript">init();</script>
 </content>

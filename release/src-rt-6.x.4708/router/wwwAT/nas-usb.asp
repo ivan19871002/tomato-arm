@@ -168,7 +168,7 @@ No part of this file may be used without permission.
 		}
 		dg.setup = function() {
 			this.init('dev-grid', 'sort');
-			this.headerSet(['<% translate("Type"); %>', '<% translate("Host); %>', '<% translate("Description"); %>', '<% translate("Mounted?"); %>']);
+			this.headerSet(['<% translate("Type"); %>', '<% translate("Host"); %>', '<% translate("Description"); %>', '<% translate("Mounted?"); %>']);
 			this.populate();
 			this.sort(1);
 		}

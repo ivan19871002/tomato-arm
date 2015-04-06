@@ -130,7 +130,7 @@ No part of this file may be used without permission.
 					<div class="spinner spinner-large"></div><br /><br />
 					<b id="afu-time">0:00</b><br />
 					<% translate("Please wait while new firmware is being uploaded and flashed"); %>...<br />
-					<b><% translate("WARNING:"); %></b> <% translate("Do not interrupt browser or the router!"); %>
+					<b><% translate("WARNING"); %>:</b> <% translate("Do not interrupt browser or the router!"); %>
 				</div>
 			</div>
 		</form>

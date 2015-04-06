@@ -61,7 +61,7 @@ No part of this file may be used without permission.
 		<input type="hidden" name="t_hidelr">
 
 		<div class="alert alert-warning icon">
-			<h5><% translate("Warning!"); %></h5> <% translate("The NVRAM Dump text file may contain information like wireless encryption keys and usernames/passwords for the router, ISP and DDNS. Please review &amp; edit this file before sharing it with anyone"); %>.
+			<h5><% translate("Warning"); %>!</h5> <% translate("The NVRAM Dump text file may contain information like wireless encryption keys and usernames/passwords for the router, ISP and DDNS. Please review &amp; edit this file before sharing it with anyone"); %>.
 		</div>
 
 		<div class="box">

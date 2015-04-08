@@ -1,6 +1,6 @@
 #!/bin/sh
 DIR=`pwd`
-ALL=en_EN.all_pages
+ALL=en_EN.all_pages_strings
 LEX=en_EN.dict.full
 RU_LEX=ru_RU.dict
 RU_LANG=ru_RU.txt
@@ -30,12 +30,12 @@ echo "###################################" > $RU_LANG
 echo "### RU lang for Tomato (Shibby) ###" >> $RU_LANG
 echo "###################################" >> $RU_LANG
 echo "### Untranslated RU strings ###" > $RU_MISS
-echo "### grep errors" > .grep.err
+
 while read line; do
 	val=`awk -F"=" '{print $1}' <<< "$line"`
 #	echo "val = $val"
 #	echo ""
-	if ! grep "^$val=" $RU_LEX 1>/dev/null 2>>.grep.err; then
+	if ! grep "^$val=" $RU_LEX 1>/dev/null 2>&1; then
 		echo "$line" >> $RU_MISS
 	else
 		grep "^$val=" $RU_LEX >> $RU_LANG
@@ -45,12 +45,11 @@ done < $LEX
 # add advanced tomato strings
 if [ -f ../wwwAT/ru_RU.txt ]; then
 # echo "### RU lang for Advanced Tomato UI ###" >> $RU_LANG
-
 	while read line; do
 	val=`awk -F"=" '{print $1}' <<< "$line"`
-	if ! grep "^$val=" $RU_LANG 1>/dev/null 2>>.grep.err; then
+	if ! grep "^$val=" $RU_LANG 1>/dev/null 2>&1; then
 		echo "$line" >> $RU_LANG
 	fi
 	done < ../wwwAT/ru_RU.txt
-
 fi
+

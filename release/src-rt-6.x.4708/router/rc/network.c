@@ -625,7 +625,7 @@ void start_wl(void)
 	char br;
 
 #ifdef CONFIG_BCMWL5
-	// HACK: When a virtual SSID is disabled, it requires two initialisation
+		// HACK: When a virtual SSID is disabled, it requires two initialisation
 	if (foreach_wif(1, NULL, disabled_wl))
 	{
 		stop_wireless();
@@ -682,11 +682,11 @@ void start_wl(void)
 								eval("blink", ifname, "wlan", "20", "8192");
 						}
 						else{
-							 led(LED_5G, LED_ON);	
+							 led(LED_5G, LED_ON);
 							 if (nvram_get_int("blink_wl"))
 							 	eval("blink", ifname, "5g", "20", "8192");
-						}					
-					}	
+						}
+					}
 #endif	// CONFIG_BCMWL5
 				}
 				free(lan_ifnames);

@@ -92,8 +92,11 @@ void start_usb(void)
 	if (get_model() == MODEL_DIR868L) {
 		xstart("gpio", "enable", "10");
 	}
-	if (get_model() == MODEL_WS880) { // WS880 - initialize USB port (power on)
+	else if (get_model() == MODEL_WS880) { // WS880 - initialize USB port (power on)
 		xstart("gpio", "enable", "7");
+	}
+	else if (get_model() == MODEL_EA6700 || get_model() == MODEL_EA6900) {
+		xstart("gpio", "enable", "9");
 	}
 
 	_dprintf("%s\n", __FUNCTION__);
@@ -105,9 +108,6 @@ void start_usb(void)
 		/* mount usb device filesystem */
         	mount(USBFS, "/proc/bus/usb", USBFS, MS_MGC_VAL, NULL);
 
-		if (get_model() == MODEL_WS880) {
-			led(LED_USB,LED_ON);
-		}
 #ifdef LINUX26
 		i = do_led(LED_USB, LED_PROBE);
 		if (i != 255) {
@@ -339,9 +339,6 @@ void stop_usb(void)
 	//modprobe_r("ledtrig-usbdev");
 	led(LED_USB, LED_OFF);
 #endif
-	if (get_model() == MODEL_WS880) {
-		led(LED_USB,LED_OFF);
-	}
 
 	// only unload core modules if usb is disabled
 	if (disabled) {
@@ -389,8 +386,11 @@ void stop_usb(void)
 	if (get_model() == MODEL_DIR868L) {
 		xstart("gpio", "disable", "10");
 	}
-	if (get_model() == MODEL_WS880) { // WS880 - power off USB port
+	else if (get_model() == MODEL_WS880) { // WS880 - power off USB port
 		xstart("gpio", "disable", "7");
+	}
+	else if (get_model() == MODEL_EA6700 || get_model() == MODEL_EA6900) {
+		xstart("gpio", "disable", "9");
 	}
 
 	}

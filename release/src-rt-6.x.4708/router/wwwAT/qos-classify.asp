@@ -38,7 +38,7 @@ No part of this file may be used without permission.
 		layer7.sort();
 		for (i = 0; i < layer7.length; ++i)
 			layer7[i] = [layer7[i],layer7[i]];
-		layer7.unshift(['', 'Layer 7 (disabled)']);
+		layer7.unshift(['', '<% translate("Layer 7 (disabled)"); %>']);
 
 		var class1 = [[-1,'<% translate("Disabled"); %>']];
 		for (i = 0; i < 10; ++i) class1.push([i, abc[i]]);
@@ -67,16 +67,16 @@ No part of this file may be used without permission.
 			var s, i;
 
 			if (data[0] != 0) {
-				b.push(((data[0] == 1) ? 'To ' : 'From ') + data[1]);
+				b.push(((data[0] == 1) ? '<% translate("To"); %> ' : '<% translate("From"); %> ') + data[1]);
 			}
 			if (data[2] >= -1) {
 				if (data[2] == -1) b.push('TCP/UDP');
 				else if (data[2] >= 0) b.push(protocols[data[2]] || data[2]);
 				if (data[3] != 'a') {
-					if (data[3] == 'd') s = 'Dst ';
-					else if (data[3] == 's') s = 'Src ';
+					if (data[3] == 'd') s = '<% translate("Dst"); %> ';
+					else if (data[3] == 's') s = '<% translate("Src"); %> ';
 						else s = '';
-					b.push(s + 'Port: ' + data[4].replace(/:/g, '-'));
+					b.push(s + '<% translate("Port"); %>: ' + data[4].replace(/:/g, '-'));
 				}
 			}
 			if (data[5] != 0) {

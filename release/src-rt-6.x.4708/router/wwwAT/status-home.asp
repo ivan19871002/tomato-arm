@@ -85,35 +85,35 @@
 
 			// WAN
 			if (etherstates.port0 == "DOWN") { status = 'off'; speed = etherstates.port0.replace("DOWN","<% translate("Unplugged"); %>");
-			} else { status = 'on'; speed = etherstates.port0.replace('HD', 'M Half'); speed = speed.replace("FD","M Full"); }
+			} else { status = 'on'; speed = etherstates.port0.replace('HD', 'M HD'); speed = speed.replace("FD","M FD"); }
 			if (stats.lan_desc != '1') { speed = ' '; }
 
 			code += '<div class="eth ' + status + ' wan"><div class="title">WAN</div><div class="speed">' + speed + '</div></div>';
 
 			// LAN 1
 			if (etherstates.port1 == "DOWN") { status = 'off'; speed = etherstates.port1.replace("DOWN","<% translate("Unplugged"); %>");
-			} else { status = 'on'; speed = etherstates.port1.replace('HD', 'M Half'); speed = speed.replace("FD","M Full"); }
+			} else { status = 'on'; speed = etherstates.port1.replace('HD', 'M HD'); speed = speed.replace("FD","M FD"); }
 			if (stats.lan_desc != '1') { speed = ' '; }
 
 			code += '<div class="eth ' + status + '"><div class="title">LAN 1</div><div class="speed">' + speed + '</div></div>';
 
 			// LAN 2
 			if (etherstates.port2 == "DOWN") { status = 'off'; speed = etherstates.port2.replace("DOWN","<% translate("Unplugged"); %>");
-			} else { status = 'on'; speed = etherstates.port2.replace('HD', 'M Half'); speed = speed.replace("FD","M Full"); }
+			} else { status = 'on'; speed = etherstates.port2.replace('HD', 'M HD'); speed = speed.replace("FD","M FD"); }
 			if (stats.lan_desc != '1') { speed = ' '; }
 
 			code += '<div class="eth ' + status + '"><div class="title">LAN 2</div><div class="speed">' + speed + '</div></div>';
 
 			// LAN 3
 			if (etherstates.port3 == "DOWN") { status = 'off'; speed = etherstates.port3.replace("DOWN","<% translate("Unplugged"); %>");
-			} else { status = 'on'; speed = etherstates.port3.replace('HD', 'M Half'); speed = speed.replace("FD","M Full"); }
+			} else { status = 'on'; speed = etherstates.port3.replace('HD', 'M HD'); speed = speed.replace("FD","M FD"); }
 			if (stats.lan_desc != '1') { speed = ' '; }
 
 			code += '<div class="eth ' + status + '"><div class="title">LAN 3</div><div class="speed">' + speed + '</div></div>';
 
 			// LAN 4
 			if (etherstates.port4 == "DOWN") { status = 'off'; speed = etherstates.port4.replace("DOWN","<% translate("Unplugged"); %>");
-			} else { status = 'on'; speed = etherstates.port4.replace('HD', 'M Half'); speed = speed.replace("FD","M Full"); }
+			} else { status = 'on'; speed = etherstates.port4.replace('HD', 'M HD'); speed = speed.replace("FD","M FD"); }
 			if (stats.lan_desc != '1') { speed = ' '; }
 
 			code += '<div class="eth ' + status + '"><div class="title">LAN 4</div><div class="speed">' + speed + '</div></div>';

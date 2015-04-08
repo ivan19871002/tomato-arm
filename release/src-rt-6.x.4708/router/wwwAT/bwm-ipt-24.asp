@@ -330,7 +330,7 @@ No part of this file may be used without permission.
 			<hr><div id="settings"></div>
 			<script type="text/javascript">
 				$('#settings').forms([
-					{ title: '<% translate("IPs currently on graphic"); %>"); %>', name: 'f_ipt_addr_shown', type: 'select', options: [[0,'<% translate("Select"); %>']], suffix: '&nbsp; <small>(<% translate("Click/select a device from this list to hide it"); %>)</small>' },
+					{ title: '<% translate("IPs currently on graphic"); %>', name: 'f_ipt_addr_shown', type: 'select', options: [[0,'<% translate("Select"); %>']], suffix: '&nbsp; <small>(<% translate("Click/select a device from this list to hide it"); %>)</small>' },
 					{ title: '<% translate("Hidden addresses"); %>', name: 'f_ipt_addr_hidden', type: 'select', options: [[0,'<% translate("Select"); %>']], suffix: '&nbsp; <small>(<% translate("Click/select to show it again"); %>)</small>' }
 				]);
 			</script>

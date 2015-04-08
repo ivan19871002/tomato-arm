@@ -67,7 +67,7 @@ No part of this file may be used without permission.
 			if (daily_history.length > 0) {
 				ymd = getYMD(daily_history[0][0]);
 				d = new Date((new Date(ymd[0], ymd[1], ymd[2], 12, 0, 0, 0)).getTime() - ((30 - 1) * 86400000));
-				E('last-dates').innerHTML = '(' + ymdText(ymd[0], ymd[1], ymd[2]) + ' to ' + ymdText(d.getFullYear(), d.getMonth(), d.getDate()) + ')';
+				E('last-dates').innerHTML = '(' + ymdText(ymd[0], ymd[1], ymd[2]) + ' - ' + ymdText(d.getFullYear(), d.getMonth(), d.getDate()) + ')';
 
 				lastt = ((d.getFullYear() - 1900) << 16) | (d.getMonth() << 8) | d.getDate();
 			}
@@ -137,8 +137,8 @@ No part of this file may be used without permission.
 						<tr><th colspan=2 style="text-align:center"><% translate("Last 30 Days"); %><br><span style="font-weight:normal" id="last-dates"></span></th></tr>
 					</thead>
 					<tbody>
-						<tr><td>Down</td><td id="last-dn">-</td></tr>
-						<tr><td>Up</td><td id="last-up">-</td></tr>
+						<tr><td><% translate("Downloaded"); %></td><td id="last-dn">-</td></tr>
+						<tr><td><% translate("Uploaded"); %></td><td id="last-up">-</td></tr>
 						<tr><td><% translate("Total"); %></td><td id="last-total">-</td></tr>
 					</tbody>
 				</table>
@@ -151,7 +151,7 @@ No part of this file may be used without permission.
 		</div>
 	</div>
 
-	<a class="btn btn-primary" href="javascript:genData();">Data <i class="icon-drive"></i></a>
-	<a class="btn btn-danger ajaxload" href="admin-bwm.asp">Configure <i class="icon-tools"></i></a>
+	<a class="btn btn-primary" href="javascript:genData();"><% translate("Data"); %> <i class="icon-drive"></i></a>
+	<a class="btn btn-danger ajaxload" href="admin-bwm.asp"><% translate("Configure"); %> <i class="icon-tools"></i></a>
 	<script type="text/javascript">init();</script>
 </content>

@@ -153,7 +153,7 @@ No part of this file may be used without permission.
 					for (var uidx = 0; uidx < wl_ifaces.length; ++uidx) {
 						var u = wl_fface(uidx);
 						f.push(
-							{ title: 'Wireless Interface ' + ((wl_ifaces.length > 1) ? wl_ifaces[uidx][0] : ''), indent: 1, name: 'f_wl'+u+'_hwaddr', type: 'text', maxlen: 17, size: 20,
+							{ title: '<% translate("Wireless Interface"); %> ' + ((wl_ifaces.length > 1) ? wl_ifaces[uidx][0] : ''), indent: 1, name: 'f_wl'+u+'_hwaddr', type: 'text', maxlen: 17, size: 20,
 								suffix:' <button type="button" value="<% translate("Default"); %>" onclick="bdefault(\'wl'+u+'\')" class="btn btn-small"><% translate("Default"); %></button> \
 								<button type="button" value="<% translate("Random"); %>" onclick="brand(\'wl'+u+'\')" class="btn btn-small"><% translate("Random"); %></button> \
 								<button type="button" value="<% translate("Clone PC"); %>" onclick="bclone(\'wl'+u+'\')" class="btn btn-small"><% translate("Clone PC"); %></button>',

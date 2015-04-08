@@ -43,7 +43,7 @@ No part of this file may be used without permission.
 
 		var svgReady = 0;
 
-		var Unclassified = ['Unclassified'];
+		var Unclassified = ['<% translate("Unclassified"); %>'];
 		var classNames = nvram.qos_classnames.split(' ');		// Toastman - configurable class names
 		var abc = Unclassified.concat(classNames);
 
@@ -167,7 +167,7 @@ No part of this file may be used without permission.
 
 	<script type="text/javascript">
 		if (nvram.qos_enable != '1') {
-			$('.container .ajaxwrap').prepend('<div class="alert alert-info"><b>QoS is disabled.</b>&nbsp; <a class="ajaxload" href="qos-settings.asp">Enable &raquo;</a> <a class="close"><i class="icon-cancel"></i></a></div>');
+			$('.container .ajaxwrap').prepend('<div class="alert alert-info"><b><% translate("QoS is disabled"); %>.</b>&nbsp; <a class="ajaxload" href="qos-settings.asp"><% translate("Enable"); %> &raquo;</a> <a class="close"><i class="icon-cancel"></i></a></div>');
 		}
 	</script>
 
@@ -179,7 +179,7 @@ No part of this file may be used without permission.
 				<div id="svg-0" class="embedGraph"></div>
 
 				<table id="firstTable">
-					<tr><td>&nbsp;</td><td class="total">Total</td><td id="ccnt-total" class="total count"></td><td class="total pct">100%</td></tr>
+					<tr><td>&nbsp;</td><td class="total"><% translate("Total"); %></td><td id="ccnt-total" class="total count"></td><td class="total pct">100%</td></tr>
 				</table>
 
 				<script type="text/javascript">
@@ -200,8 +200,8 @@ No part of this file may be used without permission.
 				<div id="svg-1" class="embedGraph"></div>
 
 				<table id="secondTable">
-					<tr><td class="color" style="height:1em; margin-right: 5px;"></td><td class="title">&nbsp;</td><td class="thead count">kbit/s</td><td class="thead count">KB/s</td><td class="thead pct">Rate</td></tr>
-					<tr><td>&nbsp;</td><td class="total">Total</td><td id="bcnt-total" class="total count"></td><td id="bcntx-total" class="total count"></td><td id="rateout" class="total pct"></td></tr>
+					<tr><td class="color" style="height:19px; margin-right: 5px;"></td><td class="title">&nbsp;</td><td class="thead count">kbit/s</td><td class="thead count">KB/s</td><td class="thead pct">Rate</td></tr>
+					<tr><td>&nbsp;</td><td class="total"><% translate("Total"); %></td><td id="bcnt-total" class="total count"></td><td id="bcntx-total" class="total count"></td><td id="rateout" class="total pct"></td></tr>
 				</table>
 
 				<script type='text/javascript'>

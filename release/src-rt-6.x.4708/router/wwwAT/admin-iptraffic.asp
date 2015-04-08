@@ -257,19 +257,19 @@ No part of this file may be used without permission.
 
 				<h4><% translate("Notes"); %></h4>
 				<ul>
-					<li>IP Traffic is about monitoring <i>IPv4</i> network traffic flowing <i>through</i> the router.</li>
-					<li>Check your <a class="ajaxload" href="basic-network.asp">LAN Settings</a> before enabling this feature: any/all LAN interfaces must have a netmask with at least 16 bits set (255.255.0.0).</li>
-					<li>Monitoring of larger subnets is not supported.</li>
+					<li><% translate("IP Traffic is about monitoring <i>IPv4</i> network traffic flowing <i>through</i> the router"); %>.</li>
+					<li><% translate("Check your"); %> <a class="ajaxload" href="basic-network.asp"><% translate("LAN Settings"); %></a> <% translate("before enabling this feature: any/all LAN interfaces must have a netmask with at least 16 bits set (255.255.0.0)"); %>.</li>
+					<li><% translate("Monitoring of larger subnets is not supported"); %>.</li>
 				</ul>
 
-				<p>Other relevant notes/hints:</p>
+				<p><% translate("Other relevant notes/hints"); %>:</p>
 				<ul>
-					<li>Before enabling this feature, please check your <a class="ajaxload" href="basic-network.asp">LAN Settings</a> and make sure the netmask on any/all of your LAN bridges has been configured properly (i.e. netmask with at least 16 bits set or "255.255.0.0").</li>
-					<li>Although technically supported, it's not actually recommended having IP Traffic monitoring enabled with subnets larger than/the equivalent of a class C network (i.e. netmask with at least 24 bits set or "255.255.255.0").</li>
-					<li>IP Traffic monitoring keeps track of data/packets that would be either <i>coming from/leaving</i> or <i>going to/arriving</i> IPs on LAN interfaces/subnets.</li>
-					<li>As a rule of thumb, this means keeping track of network/data packets being forwarded from/to LAN interfaces as a result of some kind of routing (or NAT) and would exclude any/all data/packets being exchanged between devices reachable/within the same LAN interface (i.e. on the same IP subnet/LAN bridge, even if packets are actually being forwarded from/to wired/wireless/different interfaces through the router).</li>
+					<li><% translate("Before enabling this feature, please check your"); %> <a class="ajaxload" href="basic-network.asp"><% translate("LAN Settings"); %></a> <% translate("and make sure the netmask on any/all of your LAN bridges has been configured properly"); %> (<% translate("i.e. netmask with at least 16 bits set or"); %> "255.255.0.0").</li>
+					<li><% translate("Although technically supported, it's not actually recommended having IP Traffic monitoring enabled with subnets larger than/the equivalent of a class C network"); %> (<% translate("i.e. netmask with at least 24 bits set or"); %> "255.255.255.0").</li>
+					<li><% translate("IP Traffic monitoring keeps track of data/packets that would be either <i>coming from/leaving</i> or <i>going to/arriving</i> IPs on LAN interfaces/subnets"); %>.</li>
+					<li><% translate("As a rule of thumb, this means keeping track of network/data packets being forwarded from/to LAN interfaces as a result of some kind of routing (or NAT) and would exclude any/all data/packets being exchanged between devices reachable/within the same LAN interface (i.e. on the same IP subnet/LAN bridge, even if packets are actually being forwarded from/to wired/wireless/different interfaces through the router)"); %>.</li>
 					<!-- VLAN-BEGIN -->
-					<li>Network traffic/communications flowing from/to/between different LAN bridges/subnets will be tracked/accounted separately/accordingly ("twice", as in: number of bytes/packets <i>coming from</i> the first LAN bridge and (the same) number of bytes/packets <i>going to</i> the second LAN bridge).</li>
+					<li><% translate("Network traffic/communications flowing from/to/between different LAN bridges/subnets will be tracked/accounted separately/accordingly"); %> ("<% translate("twice"); %>", <% translate("as in: number of bytes/packets <i>coming from</i> the first LAN bridge and (the same) number of bytes/packets <i>going to</i> the second LAN bridge"); %>).</li>
 					<!-- VLAN-END -->
 				</ul>
 			</div>

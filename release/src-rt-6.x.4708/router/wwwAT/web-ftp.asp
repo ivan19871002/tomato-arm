@@ -49,15 +49,15 @@ No part of this file may be used without permission.
 			s = f[0].value.trim().replace(/\s+/g, ' ');
 			if (s.length > 0) {
 				if (s.search(/^[a-zA-Z0-9_\-]+$/) == -1) {
-					ferror.set(f[0], 'Invalid user name. Only characters "A-Z 0-9 - _" are allowed.', quiet);
+					ferror.set(f[0], '<% translate("Invalid user name. Only characters"); %> "A-Z 0-9 - _" <% translate("are allowed"); %>.', quiet);
 					return 0;
 				}
 				if (this.existName(s)) {
-					ferror.set(f[0], 'Duplicate user name.', quiet);
+					ferror.set(f[0], '<% translate("Duplicate user name"); %>.', quiet);
 					return 0;
 				}
 				if (s == 'root' || s == 'admin') {
-					ferror.set(f[0], 'User names "root" and "admin" are not allowed.', quiet);
+					ferror.set(f[0], '<% translate("User names"); %> "root" <% translate("and"); %> "admin" <% translate("are not allowed"); %>.', quiet);
 					return 0;
 				}
 				f[0].value = s;
@@ -97,7 +97,7 @@ No part of this file may be used without permission.
 				{ type: 'select', options: [['Read/Write','<% translate("Read/Write"); %>'],['Read Only','<% translate("Read Only"); %>'],['View Only','<% translate("View Only"); %>'],['Private','<% translate("Private"); %>']] },
 				{ type: 'text', maxlen: 128 }
 			]);
-			this.headerSet(['User Name', 'Password', 'Access', 'Root Directory*']);
+			this.headerSet(['<% translate("User Name"); %>', '<% translate("Password"); %>', '<% translate("Access"); %>', '<% translate("Root Directory"); %> *']);
 
 			var s = nvram.ftp_users.split('>');
 			for (var i = 0; i < s.length; ++i) {
@@ -205,20 +205,20 @@ No part of this file may be used without permission.
 			<div class="heading"><% translate("FTP Server Configuration"); %></div>
 			<div class="content">
 				<div id="ftpconf"></div>
-				<small style="color: red">Note: Avoid using this option when FTP server is enabled for WAN. IT PROVIDES FULL ACCESS TO THE ROUTER FILE SYSTEM!</small>
+				<small style="color: red"><% translate("Note"); %>: <% translate("Avoid using this option when FTP server is enabled for WAN. IT PROVIDES FULL ACCESS TO THE ROUTER FILE SYSTEM"); %>!</small>
 				<script type="text/javascript">
 					$('#ftpconf').forms([
 						{ title: '<% translate("Enable FTP Server"); %>', name: 'ftp_enable', type: 'select',
 							options: [['0','<% translate("No"); %>'],['1','<% translate("Yes, WAN and LAN"); %>'],['2','<% translate("Yes, LAN only"); %>']],
 							value: nvram.ftp_enable },
 						{ title: '<% translate("FTP Port"); %>', indent: 2, name: 'ftp_port', type: 'text', maxlen: 5, size: 7, value: fixPort(nvram.ftp_port, 21) },
-						{ title: 'Allowed Remote<br>Address(es)', indent: 2, name: 'f_ftp_sip', type: 'text', maxlen: 512, size: 64, value: nvram.ftp_sip,
-							suffix: '<br><small>(optional; ex: "1.1.1.1", "1.1.1.0/24", "1.1.1.1 - 2.2.2.2" or "me.example.com")</small>' },
+						{ title: '<% translate("Allowed Remote<br>Address(es)"); %>', indent: 2, name: 'f_ftp_sip', type: 'text', maxlen: 512, size: 64, value: nvram.ftp_sip,
+							suffix: '<br><small>(optional; ex"); %>: "1.1.1.1", "1.1.1.0/24", "1.1.1.1 - 2.2.2.2" or "me.example.com")</small>' },
 						{ title: '<% translate("Anonymous Users Access"); %>', name: 'ftp_anonymous', type: 'select',
 							options: [['0','<% translate("Disabled"); %>'],['1','<% translate("Read/Write"); %>'],['2','<% translate("Read Only"); %>'],['3','<% translate("Write Only"); %>']],
 							value: nvram.ftp_anonymous },
-						{ title: 'Allow Admin Login*', name: 'f_ftp_super', type: 'checkbox',
-							suffix: ' <small>Allows users to connect with admin account.</small>',
+						{ title: '<% translate("Allow Admin Login"); %> *', name: 'f_ftp_super', type: 'checkbox',
+							suffix: ' <small><% translate("Allows users to connect with admin account"); %>.</small>',
 							value: nvram.ftp_super == 1 },
 						{ title: '<% translate("Log FTP requests and responses"); %>', name: 'f_log_ftp', type: 'checkbox',
 							value: nvram.log_ftp == 1 }
@@ -233,24 +233,24 @@ No part of this file may be used without permission.
 
 				<div id="ftpdirs"></div><hr>
 				<small>
-					*&nbsp;&nbsp;When no directory is specified, /mnt is used as a root directory.
-					<br>**&nbsp;In private mode, the root directory is the directory under the "Private Root Directory" with the name matching the name of the user.
+					*&nbsp;&nbsp;<% translate("When no directory is specified, /mnt is used as a root directory"); %>.
+					<br>**&nbsp;<% translate("In private mode, the root directory is the directory under the"); %> "<% translate("Private Root Directory"); %>" <% translate("with the name matching the name of the user"); %>.
 				</small>
 
 				<script type="text/javascript">
 					$('#ftpdirs').forms([
-						{ title: 'Anonymous Root Directory*', name: 'ftp_anonroot', type: 'text', maxlen: 256, size: 32,
-							suffix: ' <small>(for anonymous connections)</small>',
+						{ title: '<% translate("Anonymous Root Directory"); %> *', name: 'ftp_anonroot', type: 'text', maxlen: 256, size: 32,
+							suffix: ' <small>(<% translate("for anonymous connections"); %>)</small>',
 							value: nvram.ftp_anonroot },
-						{ title: 'Public Root Directory*', name: 'ftp_pubroot', type: 'text', maxlen: 256, size: 32,
-							suffix: ' <small>(for authenticated users access, if not specified for the user)</small>',
+						{ title: '<% translate("Public Root Directory"); %> *', name: 'ftp_pubroot', type: 'text', maxlen: 256, size: 32,
+							suffix: ' <small>(<% translate("for authenticated users access, if not specified for the user"); %>)</small>',
 							value: nvram.ftp_pubroot },
-						{ title: 'Private Root Directory**', name: 'ftp_pvtroot', type: 'text', maxlen: 256, size: 32,
-							suffix: ' <small>(for authenticated users access in private mode)</small>',
+						{ title: '<% translate("Private Root Directory"); %> **', name: 'ftp_pvtroot', type: 'text', maxlen: 256, size: 32,
+							suffix: ' <small>(<% translate("for authenticated users access in private mode"); %>)</small>',
 							value: nvram.ftp_pvtroot },
 						{ title: '<% translate("Directory Listings"); %>', name: 'ftp_dirlist', type: 'select',
 							options: [['0','<% translate("Enabled"); %>'],['1','<% translate("Disabled"); %>'],['2','<% translate("Disabled for Anonymous"); %>']],
-							suffix: ' <small>(always enabled for Admin)</small>',
+							suffix: ' <small>(<% translate("always enabled for Admin"); %>)</small>',
 							value: nvram.ftp_dirlist }
 					]);
 				</script>
@@ -263,25 +263,25 @@ No part of this file may be used without permission.
 			<script type="text/javascript">
 				$('#ftp-limits').forms([
 					{ title: '<% translate("Maximum Users Allowed to Log in"); %>', name: 'ftp_max', type: 'text', maxlen: 5, size: 7,
-						suffix: ' <small>(0 - unlimited)</small>',
+						suffix: ' <small>(0 - <% translate("unlimited"); %>)</small>',
 						value: nvram.ftp_max },
 					{ title: '<% translate("Maximum Connections from the same IP"); %>', name: 'ftp_ipmax', type: 'text', maxlen: 5, size: 7,
-						suffix: ' <small>(0 - unlimited)</small>',
+						suffix: ' <small>(0 - <% translate("unlimited"); %>)</small>',
 						value: nvram.ftp_ipmax },
 					{ title: '<% translate("Maximum Bandwidth for Anonymous Users"); %>', name: 'ftp_anonrate', type: 'text', maxlen: 5, size: 7,
-						suffix: ' <small>KBytes/sec (0 - unlimited)</small>',
+						suffix: ' <small>KBytes/sec (0 - <% translate("unlimited"); %>)</small>',
 						value: nvram.ftp_anonrate },
 					{ title: '<% translate("Maximum Bandwidth for Authenticated Users"); %>', name: 'ftp_rate', type: 'text', maxlen: 5, size: 7,
-						suffix: ' <small>KBytes/sec (0 - unlimited)</small>',
+						suffix: ' <small>KBytes/sec (0 - <% translate("unlimited"); %>)</small>',
 						value: nvram.ftp_rate },
 					{ title: '<% translate("Idle Timeout"); %>', name: 'ftp_staytimeout', type: 'text', maxlen: 5, size: 7,
-						suffix: ' <small>seconds (0 - no timeout)</small>',
+						suffix: ' <small><% translate("seconds"); %> (0 - <% translate("no timeout"); %>)</small>',
 						value: nvram.ftp_staytimeout },
 					{ title: '<% translate("Limit Connection Attempts"); %>', name: 'f_limit', type: 'checkbox',
 						value: ftplimit[0] != 0 },
 					{ title: '', indent: 2, multi: [
-						{ name: 'f_limit_hit', type: 'text', maxlen: 4, size: 6, suffix: '&nbsp; <small>every</small> &nbsp;', value: ftplimit[1] },
-						{ name: 'f_limit_sec', type: 'text', maxlen: 4, size: 6, suffix: '&nbsp; <small>seconds</small>', value: ftplimit[2] }
+						{ name: 'f_limit_hit', type: 'text', maxlen: 4, size: 6, suffix: '&nbsp; <small><% translate("every"); %></small> &nbsp;', value: ftplimit[1] },
+						{ name: 'f_limit_sec', type: 'text', maxlen: 4, size: 6, suffix: '&nbsp; <small><% translate("seconds"); %></small>', value: ftplimit[2] }
 					] }
 				]);
 			</script>
@@ -292,7 +292,7 @@ No part of this file may be used without permission.
 			<div class="content" id="ftpcustom"></div>
 			<script type="text/javascript">
 				$('#ftpcustom').forms([
-					{ title: 'Vsftpd Custom Configuration (<a href="http://vsftpd.beasts.org/vsftpd_conf.html" target="_new"><i class="icon-info"></i></a>)', name: 'ftp_custom', type: 'textarea', value: nvram.ftp_custom,
+					{ title: 'Vsftpd <% translate("Custom Configuration"); %> (<a href="http://vsftpd.beasts.org/vsftpd_conf.html" target="_new"><i class="icon-info"></i></a>)', name: 'ftp_custom', type: 'textarea', value: nvram.ftp_custom,
 						style: 'width: 100%; height: 80px;' }
 				]);
 			</script>
@@ -303,7 +303,7 @@ No part of this file may be used without permission.
 			<div class="content">
 				<table class="line-table" id="aft-grid"></table><br /><hr>
 				<small>
-					*&nbsp;&nbsp;When no Root Directory is specified for the user, the default "Public Root Directory" is used.
+					*&nbsp;&nbsp;<% translate("When no Root Directory is specified for the user, the default"); %> "<% translate("Public Root Directory"); %>" <% translate("is used"); %>.
 				</small>
 			</div>
 		</div>

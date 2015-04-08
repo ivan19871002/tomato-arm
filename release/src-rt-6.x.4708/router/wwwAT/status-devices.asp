@@ -232,11 +232,11 @@
 				b = e.mac;
 				if (e.mac.match(/^(..):(..):(..)/)) {
 					b += '<br /><a class="btn btn-small" href="http://standards.ieee.org/cgi-bin/ouisearch?' + RegExp.$1 + '-' + RegExp.$2 + '-' + RegExp.$3 + '" target="_new" title="<% translate("OUI Search"); %>">OUI</a> ' +
-					'<a class="btn btn-small" href="javascript:addStatic(' + i + ')" title="<% translate("Static Lease"); %>...">Static</a> ' +
-					'<a class="btn btn-small" href="javascript:addqoslimit(' + i + ')" title="<% translate("QoS BW Limiter"); %>...">BW Limit</a>';
+					'<a class="btn btn-small" href="javascript:addStatic(' + i + ')" title="<% translate("Static Lease"); %>">Static</a> ' +
+					'<a class="btn btn-small" href="javascript:addqoslimit(' + i + ')" title="<% translate("QoS BW Limiter"); %>">BW Limit</a>';
 
 					if (e.rssi != '') {
-						b += ' <a class="btn btn-small" href="javascript:addWF(' + i + ')" title="<% translate("Wireless Filter"); %>...">Wifi Filter</a>';
+						b += ' <a class="btn btn-small" href="javascript:addWF(' + i + ')" title="<% translate("Wireless Filter"); %>">Wifi Filter</a>';
 					}
 				}
 				else {

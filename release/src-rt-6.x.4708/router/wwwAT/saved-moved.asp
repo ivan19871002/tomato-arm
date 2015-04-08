@@ -12,7 +12,7 @@ No part of this file may be used without permission.
 		<meta http-equiv="content-type" content="text/html;charset=utf-8">
 		<meta name="robots" content="noindex,nofollow">
 
-		<title>[<% ident(); %>] Restarting...</title>
+		<title>[<% ident(); %>] <% translate("Restarting"); %>...</title>
 		<style>
 			body {
 				font-family: Verdana;
@@ -87,10 +87,10 @@ No part of this file may be used without permission.
 
 		<div id="loader">
 			<div class="spinner"></div>
-			The router's new IP address is <% nv("lan_ipaddr"); %>.<br /> You may need to release then renew your computer's DHCP lease before continuing.
+			<% translate("The router's new IP address is"); %> <% nv("lan_ipaddr"); %>.<br /> <% translate("You may need to release then renew your computer's DHCP lease before continuing"); %>.
 			<br /><br />
-			Please wait while the router restarts... &nbsp;
-			<button class="btn" id="continue" onclick="go()" disabled>Continue</button>
+			<% translate("Please wait while the router restarts"); %>... &nbsp;
+			<button class="btn" id="continue" onclick="go()" disabled><% translate("Continue"); %></button>
 		</div>
 
 	</body>

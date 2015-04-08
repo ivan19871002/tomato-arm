@@ -11,7 +11,7 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html;charset=utf-8">
 		<meta name="robots" content="noindex,nofollow">
-		<title>[<% ident(); %>] Tomato</title>
+		<title>[<% ident(); %>] <% translate("Tomato"); %></title>
 		<style>
 			body {
 				font-family: Verdana;
@@ -125,8 +125,8 @@
 
 		<div id="loader">
 			<script type="text/javascript">
-				if (wait <= 0) s = 'Changes Saved!<br /><br /> <button onclick="go()" class="btn">Continue</button>';
-				else s = '<div class="spinner"></div> Working, please wait... <b>(<span id="xclock" style="visibility:hidden">&nbsp;</span>)</b>';
+				if (wait <= 0) s = '<% translate("Changes Saved"); %>!<br /><br /> <button onclick="go()" class="btn"><% translate("Continue"); %></button>';
+				else s = '<div class="spinner"></div> <% translate("Working, please wait"); %>... <b>(<span id="xclock" style="visibility:hidden">&nbsp;</span>)</b>';
 				document.write(s);
 			</script>
 		</div>

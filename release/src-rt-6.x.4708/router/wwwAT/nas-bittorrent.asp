@@ -274,20 +274,20 @@ No part of this file may be used without permission.
 				<div class="clienttable"></div><hr>
 				<script type="text/javascript">
 					$('.clienttable').forms([
-						{ title: '<% translate("Enable torrent client"); %>', name: 'f_bt_enable', type: 'checkbox', value: nvram.bt_enable == '1', suffix: ' <small>*</small>' },
+						{ title: '<% translate("Enable torrent client"); %>', name: 'f_bt_enable', type: 'checkbox', value: nvram.bt_enable == '1', suffix: ' <b>*</b>' },
 						{ title: '<% translate("Transmission binary path"); %>', multi: [
 							{ name: 'bt_binary', type: 'select', options: [
 								/* BBT-BEGIN */
 								['internal','<% translate("Internal"); %> (/usr/bin)'],
 								/* BBT-END */
 								['optware','Optware (/opt/bin)'],
-								['custom','<% translate("Custom"); %>'] ], value: nvram.bt_binary, suffix: ' <small>*</small> ' },
+								['custom','<% translate("Custom"); %>'] ], value: nvram.bt_binary, suffix: ' <b>*</b> ' },
 							{ name: 'bt_binary_custom', type: 'text', maxlen: 40, size: 40, value: nvram.bt_binary_custom }
 						] },
-						{ title: '<% translate("Keep alive"); %>', name: 'f_bt_check', type: 'checkbox', value: nvram.bt_check == '1', suffix: ' <small>*</small>' },
+						{ title: '<% translate("Keep alive"); %>', name: 'f_bt_check', type: 'checkbox', value: nvram.bt_check == '1', suffix: ' <b>*</b>' },
 						{ title: '<% translate("Check alive every"); %>', indent: 2, name: 'bt_check_time', type: 'text', maxlen: 5, size: 7, value: nvram.bt_check_time, suffix: ' <small><% translate("minutes"); %> (<% translate("range"); %>: 1 - 55; <% translate("default"); %>: 15)</small>' },
 						{ title: '<% translate("Delay at startup"); %>', name: 'bt_sleep', type: 'text', maxlen: 5, size: 7, value: nvram.bt_sleep, suffix: ' <small><% translate("seconds"); %> (<% translate("range"); %>: 1 - 60; <% translate("default"); %>: 10)</small>' },
-						{ title: '<% translate("Listening port"); %>', name: 'bt_port', type: 'text', maxlen: 5, size: 7, value: nvram.bt_port, suffix: ' <small>*</small>' },
+						{ title: '<% translate("Listening port"); %>', name: 'bt_port', type: 'text', maxlen: 5, size: 7, value: nvram.bt_port, suffix: ' <b>*</b>' },
 						{ title: '<% translate("Download directory"); %>', name: 'bt_dir', type: 'text', maxlen: 40, size: 40, value: nvram.bt_dir },
 						{ title: '<% translate("Use .incomplete/"); %>', indent: 2, name: 'f_bt_incomplete', type: 'checkbox', value: nvram.bt_incomplete == '1' }
 					]);
@@ -309,11 +309,11 @@ No part of this file may be used without permission.
 				<script type="text/javascript">
 					$('.remoteacc').forms([
 						{ title: '<% translate("Enable GUI"); %>', name: 'f_bt_rpc_enable', type: 'checkbox', value: nvram.bt_rpc_enable == '1' },
-						{ title: '<% translate("Listening GUI port"); %>', indent: 2, name: 'bt_port_gui', type: 'text', maxlen: 32, size: 5, value: nvram.bt_port_gui, suffix: ' <small>*</small>' },
-						{ title: '<% translate("Authentication required"); %>', name: 'f_bt_auth', type: 'checkbox', value: nvram.bt_auth == '1', suffix: ' <small>*</small>' },
+						{ title: '<% translate("Listening GUI port"); %>', indent: 2, name: 'bt_port_gui', type: 'text', maxlen: 32, size: 5, value: nvram.bt_port_gui, suffix: ' <b>*</b>' },
+						{ title: '<% translate("Authentication required"); %>', name: 'f_bt_auth', type: 'checkbox', value: nvram.bt_auth == '1', suffix: ' <b>*</b>' },
 						{ title: '<% translate("Username"); %>', indent: 2, name: 'bt_login', type: 'text', maxlen: 32, size: 15, value: nvram.bt_login },
 						{ title: '<% translate("Password"); %>', indent: 2, name: 'bt_password', type: 'password', maxlen: 32, size: 15, value: nvram.bt_password },
-						{ title: '<% translate("Allow remote access"); %>', name: 'f_bt_rpc_wan', type: 'checkbox', value: nvram.bt_rpc_wan == '1', suffix: ' <small>*</small>' }
+						{ title: '<% translate("Allow remote access"); %>', name: 'f_bt_rpc_wan', type: 'checkbox', value: nvram.bt_rpc_wan == '1', suffix: ' <b>*</b>' }
 					]);
 				</script>
 

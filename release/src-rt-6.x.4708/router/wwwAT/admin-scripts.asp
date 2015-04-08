@@ -57,7 +57,7 @@ No part of this file may be used without permission.
 				x = (t[0] == 'as-fire') ? 8192 : 4096;
 				if (n > x) {
 					tabSelect(t[0]);
-					alert(t[1] + ' script is too long. Maximum allowed is ' + x + ' bytes.');
+					alert(t[1] + ' <% translate("script is too long. Maximum allowed is"); %> ' + x + ' <% translate("bytes"); %>.');
 					return;
 				}
 			}
@@ -88,7 +88,7 @@ No part of this file may be used without permission.
 			$('.scriptsetc').append('<textarea class="as-script" name="script_' + t.replace('as-', '') + '" id="' + t + '-text" wrap=' + (wrap ? 'virtual' : 'off') + ' style="max-width:100%; min-width: 100%; margin: 0; ' + s + '"></textarea>');
 		}
 		$('.scriptsetc').append('<br /><br /><div class="checkbox c-checkbox"><label><input type="checkbox" id="as-wordwrap" onclick="wordWrap()" onchange="wordWrap()" ' +
-			(wrap ? 'checked' : '') + '><span class="icon-check"></span> &nbsp; Word Wrap</label></div> ');
+			(wrap ? 'checked' : '') + '><span class="icon-check"></span> &nbsp; <% translate("Word Wrap"); %></label></div> ');
 	</script>
 
 	<div class="box">

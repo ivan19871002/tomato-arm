@@ -197,7 +197,7 @@ createFieldTable('', [
 <li><b><% translate("Prevent DNS-rebind attacks"); %></b> - <% translate("Enable DNS rebinding protection on Dnsmasq"); %>.</li>
 <li><b><% translate("Intercept DNS port"); %></b> - <% translate("Any DNS requests/packets sent out to UDP port 53 are redirected to the internal DNS server"); %>.</li>
 <li><b><% translate("Use user-entered gateway if WAN is disabled"); %></b> - <% translate("DHCP will use the IP address of the router as the default gateway on each LAN"); %>.</li>
-<li><b><% translate("Ignore DHCP requests (...)"); %></b> - <% translate("Dnsmasq will ignore DHCP requests  to Only MAC addresses listed on the"); %> <a href='basic-static.asp'><% translate("Static DHCP/ARP"); %></a> <% translate("page won't be able to obtain an IP address through DHCP"); %>.</li>
+<li><b><% translate("Ignore DHCP requests (...)"); %></b> - <% translate("Dnsmasq will ignore DHCP requests to Only MAC addresses listed on the"); %> <a href='basic-static.asp'><% translate("Static DHCP/ARP"); %></a> <% translate("page, others won't be able to obtain an IP address through DHCP"); %>.</li>
 <li><b><% translate("Maximum active DHCP leases"); %></b> - <% translate("Self-explanatory"); %>.</li>
 <li><b><% translate("Static lease time"); %></b> - <% translate("Absolute maximum amount of time allowed for any DHCP lease to be valid"); %>.</li>
 <li><b><% translate("Custom configuration"); %></b> - <% translate("Extra options to be added to the Dnsmasq configuration file"); %>.</li>

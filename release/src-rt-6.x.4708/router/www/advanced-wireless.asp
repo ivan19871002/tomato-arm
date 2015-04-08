@@ -204,7 +204,7 @@ if (wl_sunit(uidx)<0) {
 }
 </script>
 
-<small><% translate("The default settings are indicated with an asterisk"); %> <b style='font-size: 1.5em'>*</b> <% translate("symbol"); %>.</small>
+<small><% translate("The default settings are indicated with an asterisk"); %> <b style='font-size: 1.5em'>*</b>.</small>
 
 <!-- / / / -->
 

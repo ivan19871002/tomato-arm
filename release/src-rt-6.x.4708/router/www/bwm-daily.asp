@@ -87,7 +87,7 @@ function redraw()
 	gn = 0;
 
 	grid = '<table class="bwmg" cellspacing="1">';
-	grid += makeRow('<% translate("header"); %>', '<% translate("Date"); %>', '<% translate("Download"); %>', '<% translate("Upload"); %>', '<% translate("Total"); %>');
+	grid += makeRow('<% translate("header"); %>', '<% translate("Date"); %>', '<% translate("Downloaded"); %>', '<% translate("Uploaded"); %>', '<% translate("Total"); %>');
 
 	for (i = 0; i < daily_history.length; ++i) {
 		h = daily_history[i];
@@ -147,8 +147,8 @@ function init()
 
 <table class='tomato-grid' style='width:150px'>
 <tr class='header'><td colspan=2 style='text-align:center'><% translate("Last 30 Days"); %><br><span style='font-weight:normal' id='last-dates'></span></td></tr>
-<tr class='even'><td><% translate("Down"); %></td><td id='last-dn'>-</td></tr>
-<tr class='odd'><td><% translate("Up"); %></td><td id='last-up'>-</td></tr>
+<tr class='even'><td><% translate("Downloaded"); %></td><td id='last-dn'>-</td></tr>
+<tr class='odd'><td><% translate("Uploaded"); %></td><td id='last-up'>-</td></tr>
 <tr class='footer'><td><% translate("Total"); %></td><td id='last-total'>-</td></tr>
 </table>
 

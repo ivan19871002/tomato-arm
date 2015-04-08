@@ -83,7 +83,7 @@ function init()
  - <% translate("Installed version of Tomato. Ex"); %>: 102 K26 USB<br>
  - <% translate("Builtype. Ex"); %>: Mega-VPN-64K<br>
  - <% translate("Uptime of your router. Ex: 3 days"); %><br>
-<% translate("That`s it"); %> !!<br>
+<% translate("That`s it"); %>!<br>
 <br>
 <% translate("Thank you for reading and please make the right choice to help this project"); %>.<br>
 <br>
@@ -95,8 +95,8 @@ function init()
 <div class='section'>
 <script type='text/javascript'>
 createFieldTable('', [
-	{ title: '<% translate("Do you know what TomatoAnon doing"); %> ?', name: 'tomatoanon_answer', type: 'select', options: [ ['0','<% translate("No, i don`t. Have to read all information, before i will make a choice"); %>'], ['1','<% translate("Yes, i do and want to make a choice"); %>'] ], value: nvram.tomatoanon_answer, suffix: ' '},
-	{ title: '<% translate("Do you want enable TomatoAnon"); %> ?', name: 'tomatoanon_enable', type: 'select', options: [ ['-1','<% translate("I`m not sure right now"); %>'], ['1','<% translate("Yes, i`m sure i do"); %>'], ['0','<% translate("No, i definitely wont enable it"); %>'] ], value: nvram.tomatoanon_enable, suffix: ' '}
+	{ title: '<% translate("Do you know what TomatoAnon doing"); %>?', name: 'tomatoanon_answer', type: 'select', options: [ ['0','<% translate("No, i don`t. Have to read all information, before i will make a choice"); %>'], ['1','<% translate("Yes, i do and want to make a choice"); %>'] ], value: nvram.tomatoanon_answer, suffix: ' '},
+	{ title: '<% translate("Do you want enable TomatoAnon"); %>?', name: 'tomatoanon_enable', type: 'select', options: [ ['-1','<% translate("I`m not sure right now"); %>'], ['1','<% translate("Yes, i`m sure i do"); %>'], ['0','<% translate("No, i definitely wont enable it"); %>'] ], value: nvram.tomatoanon_enable, suffix: ' '}
 ]);
 </script>
 </div>
@@ -109,7 +109,7 @@ createFieldTable('', [
 ]);
 </script>
 <ul>
-	<li><% translate("When new tomato version will be available, you will be notified about this on"); %> <% translate("status"); %>-<% translate("overview"); %> <% translate("page"); %>.
+	<li><% translate("When new tomato version will be available, you will be notified about this on"); %> <% translate("Status"); %> - <% translate("Overview"); %>.
 </ul>
 </div>
 </form>

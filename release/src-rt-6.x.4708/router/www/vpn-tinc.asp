@@ -144,7 +144,7 @@ th.verifyFields = function(row, quiet) {
 	}
 
 	if (E('_host_ed25519_key').value == "") {
-		ferror.set(E('_host_ed25519_key'), "<% translate("Ed25519 Public Key is required；"); %>.", quiet); return 0 ; }
+		ferror.set(E('_host_ed25519_key'), "<% translate("Ed25519 Public Key is required"); %>.", quiet); return 0 ; }
 	else {  ferror.clear(E('_host_ed25519_key')) }
 
 	return 1;

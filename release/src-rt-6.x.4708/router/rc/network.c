@@ -625,7 +625,7 @@ void start_wl(void)
 	char br;
 
 #ifdef CONFIG_BCMWL5
-		// HACK: When a virtual SSID is disabled, it requires two initialisation
+	// HACK: When a virtual SSID is disabled, it requires two initialisation
 	if (foreach_wif(1, NULL, disabled_wl))
 	{
 		stop_wireless();

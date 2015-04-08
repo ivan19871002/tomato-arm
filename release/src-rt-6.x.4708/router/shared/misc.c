@@ -562,7 +562,7 @@ void set_radio(int on, int unit)
 	n = on ? (WL_RADIO_SW_DISABLE << 16) : ((WL_RADIO_SW_DISABLE << 16) | 1);
 	wl_ioctl(nvram_safe_get(wl_nvname("ifname", unit, 0)), WLC_SET_RADIO, &n, sizeof(n));
 	if (get_model() == MODEL_WS880) {
-		led(LED_WLAN, (on) ? LED_ON : LED_OFF);
+		led(LED_5G, (on) ? LED_ON : LED_OFF);
 	}
 	if (!on) {
 		if (unit == 0) led(LED_WLAN, LED_OFF);

@@ -581,7 +581,17 @@ void restart_wl(void)
 		xstart("radio", "join");
 
 	if (get_model() == MODEL_WS880) {
-		if (nvram_match("wl0_radio", "1") || nvram_match("wl1_radio", "1"))
+	// 1 LED
+	//	if (nvram_match("wl0_radio", "1") || nvram_match("wl1_radio", "1"))
+	//		led(LED_WLAN, LED_ON);
+	//	else
+	//		led(LED_WLAN, LED_OFF);
+	// 2 LEDS (WLAN+WPS)
+		if (nvram_match("wl1_radio", "1"))
+			led(LED_5G, LED_ON);
+		else
+			led(LED_5G, LED_OFF);
+		if (nvram_match("wl0_radio", "1"))
 			led(LED_WLAN, LED_ON);
 		else
 			led(LED_WLAN, LED_OFF);
@@ -695,7 +705,17 @@ void start_wl(void)
 		xstart("radio", "join");
 
 	if (get_model() == MODEL_WS880) {
-		if (nvram_match("wl0_radio", "1") || nvram_match("wl1_radio", "1"))
+	// 1 LED (WLAN)
+	//	if (nvram_match("wl0_radio", "1") || nvram_match("wl1_radio", "1"))
+	//		led(LED_WLAN, LED_ON);
+	//	else
+	//		led(LED_WLAN, LED_OFF);
+	// 2 LED (WLAN+WPS)
+		if (nvram_match("wl1_radio", "1"))
+			led(LED_5G, LED_ON);
+		else
+			led(LED_5G, LED_OFF);
+		if (nvram_match("wl0_radio", "1"))
 			led(LED_WLAN, LED_ON);
 		else
 			led(LED_WLAN, LED_OFF);

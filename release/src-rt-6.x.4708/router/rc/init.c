@@ -2112,6 +2112,11 @@ static int init_nvram(void)
 			// nvram_set("blink_2g_interface","eth1");
 			// nvram_set("blink_5g_interface","eth2");
 
+			// Advanced Tomato UI by default
+			nvram_set("web_dir", "at");
+			// Russian Lang by default
+			nvram_set("web_lang", "ru_RU");
+
 			// fix WL mac`s
 			strcpy(s, nvram_safe_get("et0macaddr"));
 			inc_mac(s, +2);

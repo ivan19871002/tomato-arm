@@ -178,7 +178,7 @@ function systemUI () {
 		stats = {};
 		try { eval(data); } catch (ex) { stats = {}; }
 
-		stats.wanstatus = '<a title="<% translate("Go to Status Overview"); %>" href="#" onclick="loadPage(\'#status-home.asp\');">' + ((stats.wanstatus == 'Connected') ? '<span style="color: green;">' + stats.wanstatus + '</span>' : stats.wanstatus) + '</a>';
+		stats.wanstatus = '<a title="<% translate("Go to Status Overview"); %>" href="#" onclick="loadPage(\'#status-home.asp\');">' + ((stats.wanstatus == 'Connected') ? '<span style="color: green;"><% translate("Connected"); %></span>' : stats.wanstatus) + '</a>';
 		$('.system-ui .datasystem').html('<div class="router-name">' + stats.routermodel + ' <small class="pull-right">(' + stats.uptime + ')</small></div>' +
 			'<div class="inner-container row">' +
 			'<div class="col-sm-2">CPU:</div><div class="col-sm-10">' + stats.cpuload + ' (' + stats.cpupercent + ')</div>'+
@@ -300,7 +300,7 @@ function loadPage(page, variables) {
 		console.log(x);
 		
 		$('h2.currentpage').text('<% translate("ERROR"); %>');
-		$('.container .ajaxwrap').hide().html('<div class="box"><div class="heading"><% translate("ERROR occured!</div><div class="content" style="font-size: 13px;">\
+		$('.container .ajaxwrap').hide().html('<div class="box"><div class="heading"><% translate("ERROR occured"); %>!</div><div class="content" style="font-size: 13px;">\
 			<% translate("There has been error while loading a page, please review debug data bellow if this is isolated issue"); %>.<br />\
 			<% translate("If this is not an isolated issue, please create issue with details bellow and how to reproduce the error at"); %>\
 			<a target="_blank" href="https://github.com/Jackysi/advancedtomato2/issues">https://github.com/Jackysi/advancedtomato2/issues</a>. <br /><br />\

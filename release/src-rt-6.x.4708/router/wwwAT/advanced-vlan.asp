@@ -78,8 +78,16 @@ No part of this file may be used without permission.
 		// http://wiki.openwrt.org/toh/linksys/start
 		// http://wiki.openwrt.org/toh/start
 		switch(nvram['boardtype']) {
-			case '0x0646':  // RT-AC56 && RT-AC68
+			case '0x0646':  // RT-AC56 && RT-AC68, Huawei WS880
 			case '0x0665':  //R7000
+				if ((nvram['boardrev'] == '0x1101') && (nvram['model'] == 'WS880'))  { // Huawei WS880
+					COL_P0N = '1';
+					COL_P1N = '2';
+					COL_P2N = '3';
+					COL_P3N = '4';
+					COL_P4N = '0';
+					break;
+				}
 				if ((nvram['boardrev'] == '0x1100') && (nvram['model'] == 'RT-AC56U')) { //RT-AC56U
 					COL_P0N = '0';
 					COL_P1N = '1';

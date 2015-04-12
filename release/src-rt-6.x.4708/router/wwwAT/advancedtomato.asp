@@ -302,9 +302,9 @@ function loadPage(page, variables) {
 		$('h2.currentpage').text('<% translate("ERROR"); %>');
 		$('.container .ajaxwrap').hide().html('<div class="box"><div class="heading"><% translate("ERROR occured"); %>!</div><div class="content" style="font-size: 13px;">\
 			<% translate("There has been error while loading a page, please review debug data bellow if this is isolated issue"); %>.<br />\
-			<% translate("If this is not an isolated issue, please create issue with details bellow and how to reproduce the error at"); %>\
-			<a target="_blank" href="https://github.com/Jackysi/advancedtomato2/issues">https://github.com/Jackysi/advancedtomato2/issues</a>. <br /><br />\
-			<b><% translate("Detailed information"); %>:</b><br /><pre class="debug">' + x.stack + x.message + '</pre><br /><a href="/"><% translate("Refreshing"); %></a> <% translate("browser window might help"); %>.</div></div>').fadeIn(200);
+			<% translate("If this is not an isolated issue, please create issue with details bellow and how to reproduce the error at"); %> \
+			<a target="_blank" href="https://bitbucket.org/tsynik/tomato-arm/issues">https://bitbucket.org/tsynik/tomato-arm/issues</a>. <br /><br />\
+			<b><% translate("Detailed information"); %>:</b><br /><pre class="debug">' + x.stack + ' ' + x.message + '</pre><br /><a href="/"><% translate("Refreshing"); %></a> <% translate("browser window might help"); %>.</div></div>').fadeIn(200);
 
 		NProgress.done();
 		// Loaded, clear state

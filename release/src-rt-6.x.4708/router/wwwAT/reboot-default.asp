@@ -16,17 +16,17 @@ No part of this file may be used without permission.
 		<style>
 			body {
 				font: 13px 'Verdana', sans-serif;
-				background-color: #fafafa;
+				background-color: #bfbfbf;
 				color: #585858;
 			}
 			.progress {
 				position: relative;
 				overflow: hidden;
-				height: 20px;
+				height: 4px;
 				margin: 10px 0;
 				background-color: #f0f0f0;
-				border-radius: 3px;
-				-webkit-border-radius: 3px;
+				border-radius: 2px;
+				-webkit-border-radius: 2px;
 				box-shadow: inset 0 -1px 0 rgba(0,0,0,0.02);
 				-webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,0.02);
 			}
@@ -36,7 +36,7 @@ No part of this file may be used without permission.
 				height: 100%;
 				color: #ffffff;
 				text-align: center;
-				background-color: #69baf2;
+				background-color: #706e6e;
 				-webkit-transition: width 0.6s ease;
 				transition: width 0.6s ease;
 				box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);
@@ -96,7 +96,7 @@ No part of this file may be used without permission.
 				var c = document.getElementById('continue');
 
 				e.style.width = (((n++) / Max) * 100) + '%';
-				d.innerHTML = (Max - n) + 's';
+				d.innerHTML = (Max - n) + ' <% translate("s."); %>';
 
 				if (n == Max) {
 					d.innerHTML = '';
@@ -130,10 +130,10 @@ No part of this file may be used without permission.
 
 		<div style="width:100%; max-width: 650px; margin: 10% auto; text-align: center;">
 			<div style="width:90%; margin:5px auto;padding:5px 5%;" id="msg">
-				<b id="re"><% translate("Please wait while the defaults are restored"); %>...</b>
+				<b id="re"><% translate("Please wait while the defaults are restored"); %> <span class="txt" id="progTXT"></span></b>
 				<div id="progbar" class="progress">
 					<div class="bar info" id="prog">
-						<span class="txt" id="progTXT"></span>
+						&nbsp;
 					</div>
 				</div>
 				<div id="continue" style="display: none;">

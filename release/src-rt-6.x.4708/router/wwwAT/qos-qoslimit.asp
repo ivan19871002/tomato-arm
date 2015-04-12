@@ -12,7 +12,7 @@ No part of this file may be used without permission.
 --><title><% translate("Bandwidth Limiter"); %></title>
 <content>
 	<script type="text/javascript">
-		// <% nvram("new_qoslimit_enable,qos_ibw,qos_obw,new_qoslimit_rules,lan_ipaddr,lan_netmask,qosl_enable,qosl_dlr,qosl_dlc,qosl_ulr,qosl_ulc,qosl_udp,qosl_tcp,limit_br0_prio,limit_br1_enable,limit_br1_dlc,limit_br1_dlr,limit_br1_ulc,limit_br1_ulr,limit_br1_prio,limit_br2_enable,limit_br2_dlc,limit_br2_dlr,limit_br2_ulc,limit_br2_ulr,limit_br2_prio,limit_br3_enable,limit_br3_dlc,limit_br3_dlr,limit_br3_ulc,limit_br3_ulr,limit_br3_prio"); %>
+		// <% nvram("qos_enable,new_qoslimit_enable,qos_ibw,qos_obw,new_qoslimit_rules,lan_ipaddr,lan_netmask,qosl_enable,qosl_dlr,qosl_dlc,qosl_ulr,qosl_ulc,qosl_udp,qosl_tcp,limit_br0_prio,limit_br1_enable,limit_br1_dlc,limit_br1_dlr,limit_br1_ulc,limit_br1_ulr,limit_br1_prio,limit_br2_enable,limit_br2_dlc,limit_br2_dlr,limit_br2_ulc,limit_br2_ulr,limit_br2_prio,limit_br3_enable,limit_br3_dlc,limit_br3_dlr,limit_br3_ulc,limit_br3_ulr,limit_br3_prio"); %>
 
 		var class_prio = [['0','<% translate("Highest"); %>'],['1','<% translate("High"); %>'],['2','<% translate("Normal"); %>'],['3','<% translate("Low"); %>'],['4','<% translate("Lowest"); %>']];
 		var class_tcp = [['0','<% translate("nolimit"); %>']];
@@ -249,7 +249,7 @@ No part of this file may be used without permission.
 
 	<script type="text/javascript">
 		if (nvram.qos_enable != '1') {
-			$('.container .ajaxwrap').prepend('<div class="alert alert-warning"><b><% translate("QoS is disabled"); %>.</b>&nbsp; <a class="ajaxload" href="#qos-settings.asp"><% translate("Enable"); %> &raquo;</a> <a class="close"><i class="icon-cancel"></i></a></div>');
+			$('.container .ajaxwrap').prepend('<div class="alert alert-info"><b><% translate("QoS is disabled"); %>.</b>&nbsp; <a class="ajaxload" href="qos-settings.asp"><% translate("Enable"); %> &raquo;</a> <a class="close"><i class="icon-cancel"></i></a></div>');
 		}
 	</script>
 

@@ -5,14 +5,14 @@ http://www.polarcloud.com/tomato/
 
 For use with Tomato Firmware only.
 No part of this file may be used without permission.
---><title><% translate("Basic Settings"); %></title>
+--><title><% translate("Basic QoS Settings"); %></title>
 <content>
 	<script type="text/javascript">
 
 		/* REMOVE-BEGIN
 		!!TB - added qos_pfifo
 		REMOVE-END */
-		//	<% nvram("at_update,tomatoanon_answer,qos_classnames,qos_enable,qos_ack,qos_syn,qos_fin,qos_rst,qos_icmp,qos_udp,qos_default,qos_pfifo,qos_obw,qos_ibw,qos_orates,qos_irates,qos_reset,ne_vegas,ne_valpha,ne_vbeta,ne_vgamma,atm_overhead"); %>
+		// <% nvram("qos_classnames,qos_enable,qos_ack,qos_syn,qos_fin,qos_rst,qos_icmp,qos_udp,qos_default,qos_pfifo,qos_obw,qos_ibw,qos_orates,qos_irates,qos_reset,ne_vegas,ne_valpha,ne_vbeta,ne_vgamma,atm_overhead"); %>
 
 		var classNames = nvram.qos_classnames.split(' ');		// Toastman - configurable class names
 

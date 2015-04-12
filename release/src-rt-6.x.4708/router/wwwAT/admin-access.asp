@@ -9,7 +9,7 @@ No part of this file may be used without permission.
 <content>
 	<script type="text/javascript" src="js/interfaces.js"></script>
 	<script type="text/javascript">
-		// <% nvram("at_navi,at_update,web_nav,http_enable,https_enable,http_lanport,https_lanport,remote_management,remote_mgt_https,web_wl_filter,web_css,web_dir,ttb_css,sshd_eas,sshd_pass,sshd_remote,telnetd_eas,http_wanport,sshd_authkeys,sshd_port,sshd_rport,sshd_forwarding,telnetd_port,rmgt_sip,https_crt_cn,https_crt_save,lan_ipaddr,ne_shlimit,sshd_motd,http_username,http_root"); %>
+		// <% nvram("at_navi,at_update,web_nav,http_enable,https_enable,http_lanport,https_lanport,remote_management,remote_mgt_https,web_wl_filter,web_lang,web_css,web_dir,ttb_css,sshd_eas,sshd_pass,sshd_remote,telnetd_eas,http_wanport,sshd_authkeys,sshd_port,sshd_rport,sshd_forwarding,telnetd_port,rmgt_sip,https_crt_cn,https_crt_save,lan_ipaddr,ne_shlimit,sshd_motd,http_username,http_root"); %>
 		changed = 0;
 		tdup = parseInt("<% psup('telnetd'); %>");
 		sdup = parseInt("<% psup('dropbear'); %>");
@@ -235,7 +235,7 @@ No part of this file may be used without permission.
 						{ title: '<% translate("Allow Wireless Access"); %>', name: 'f_http_wireless', type: 'checkbox', value:  nvram.web_wl_filter == 0 },
 						{ title: '<h5><% translate("Interface Settings"); %></h5>' },
 						{ title: '<% translate("Language"); %>', name: 'web_lang', type: 'select',
-                					options: [['en_EN','<% translate("English"); %>'],['ru_RU','<% translate("Russian"); %>']], value: nvram.web_lang },
+							options: [['en_EN','<% translate("English"); %>'],['ru_RU','<% translate("Russian"); %>']], value: nvram.web_lang },
 						{ title: '<% translate("Interface Theme"); %>', name: 'web_css', type: 'select', help: '<% translate("With AdvancedTomato you get very few built in skins, others are available on AdvancedTomato Themes Directory. This way we can save space on router for more important functions."); %>',
 							options: [['tomato','<% translate("Default"); %>'],['ext/custom','Custom (ext/custom.css)'], ['online', 'On-line from ATTD']], value: nvram.web_css },
 						{ title: '<% translate("Default Navigation State"); %>', name: 'at_navi', type: 'select', help: '<% translate("You can always toggle navigation style by clicking an icon right to logo, but doing so won`t change default state"); %>.',

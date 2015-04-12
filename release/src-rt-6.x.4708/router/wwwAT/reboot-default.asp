@@ -15,7 +15,7 @@ No part of this file may be used without permission.
 
 		<style>
 			body {
-				font: 13px 'Verdana', sans-serif;
+				font: 14px 'Verdana', sans-serif;
 				background-color: #bfbfbf;
 				color: #585858;
 			}
@@ -50,7 +50,7 @@ No part of this file may be used without permission.
 				top: 0;
 				left: 0;
 				text-align: center;
-				font-size: 11px;
+				font-size: 13px;
 				line-height: 20px;
 			}
 
@@ -60,26 +60,27 @@ No part of this file may be used without permission.
 				text-align: center;
 				cursor: pointer;
 				background-image: none;
-				padding: 5px 16px;
+				padding: 4px 16px;
 				margin: 0;
-				font-size: 11px;
-				font-weight: bold !important;
+				font-size: 13px;
+				font-weight: 500 !important;
 				line-height: 1.42857143;
-				color: #fff !important;
+				color: #0088cc !important;
 				background: #f0f0f0;
 				transition: 0.1s ease-out;
 				border-radius: 4px;
 				-webkit-border-radius: 4px;
-				border: 2px solid #585858;
+				border: 1px solid #0088cc;
 			}
 
 			.btn:hover {
-				background: #fbfbfb;
+				color: #ffffff !important;
+				background: #0088cc;
 			}
 
 			.btn:active, .btn:focus {
 				transition: none;
-				border-width: 2px;
+				border-width: 1px;
 			}
 		</style>
 
@@ -128,7 +129,7 @@ No part of this file may be used without permission.
 
 		<div style="width:100%; max-width: 650px; margin: 10% auto; text-align: center;">
 			<div style="width:90%; margin:5px auto;padding:5px 5%;" id="msg">
-				<b id="re"><% translate("Please wait while the defaults are restored"); %> <span class="txt" id="progTXT"></span></b>
+				<span id="re"><% translate("Please wait while the defaults are restored"); %> <span class="txt" id="progTXT"></span></span>
 				<div id="progbar" class="progress">
 					<div class="bar info" id="prog">
 						&nbsp;

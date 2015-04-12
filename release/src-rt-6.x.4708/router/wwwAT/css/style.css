@@ -1396,8 +1396,8 @@ input[type=radio]:disabled + span:before {
 .customfile-text  {
 	display: block;
 	font-size: 9pt;
-	line-height: normal;
-	height: 33px; /* align with button */
+	line-height: 13pt; /* vert. center text */
+	height: 33px; /* align with buttons */
 	float: left;
 	overflow: hidden;
 	width: 280px;
@@ -1423,6 +1423,7 @@ input[type=radio]:disabled + span:before {
 	-webkit-border-top-left-radius: 0;
 	-webkit-border-bottom-left-radius: 0;
 	height: 33px; /* align with customfile */
+	line-height: 13pt; /* vert. center text */
 }
 
 .customfile-hover .customfile-text {

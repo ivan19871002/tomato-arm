@@ -58,22 +58,20 @@
 				font-weight: bold !important;
 				line-height: 1.42857143;
 				color: #fff !important;
-				background: #69baf2;
+				background: #f0f0f0;
 				transition: 0.1s ease-out;
 				border-radius: 4px;
 				-webkit-border-radius: 4px;
-				border: 0;
-				border-bottom: 2px solid #4297d0;
+				border: 2px solid #585858;
 			}
 
 			.btn:hover {
-				background: #77c1f6;
+				background: #fbfbfb;
 			}
 
 			.btn:active, .btn:focus {
 				transition: none;
-				margin-top: 2px;
-				border-width: 0;
+				border-width: 2px;
 			}
 
 		</style>

@@ -53,7 +53,8 @@
 								C8.6,1.6,7.9,5,14.1,5.4z"/>
 						</svg>
 -->
-<!-- HUAWEI LOGO WHITE 32px --
+<!-- HUAWEI LOGO WHITE 32px -->
+<!--
 <svg version="1.1" id="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="32px" height="32px" viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve">
 <g id="huawei" transform="matrix(1.25,0,0,-1.25,0,1772.5)">
@@ -75,6 +76,7 @@
 	</g>
 </g>
 </svg>
+-->
 <!-- HUAWEI LOGO RED 48(50)px -->
 <svg version="1.1" id="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="50px" height="50px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">

@@ -5,7 +5,7 @@ http://www.polarcloud.com/tomato/
 
 For use with Tomato Firmware only.
 No part of this file may be used without permission.
---><title><% translate("Basic QoS Settings"); %></title>
+--><title><% translate("Basic QOS Settings"); %></title>
 <content>
 	<script type="text/javascript">
 

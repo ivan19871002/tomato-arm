@@ -1070,7 +1070,7 @@ createFieldTable('', [
 <div class='section' id='sesdiv_notes' style='display:none'>
 <ul>
 <li><b><% translate("VLAN"); %></b> - <% translate("Unique identifier of a VLAN"); %>.</li>
-<li><b><% translate("VID"); %></b> - <i><% translate("EXPERIMENTAL"); %></i> - <% translate("Allows overriding 'traditional' VLAN/VID mapping with arbitrary VIDs for each VLAN"); %> (<% translate("set to '0' to use 'regular' VLAN/VID mappings instead"); %>). <% translate("Warning: this hasn't been verified/tested on anything but a Cisco/Linksys E3000 and may not be supported by your particular device/model"); %> (<small><b><i><% translate("see notes on"); %> "<% translate("VID Offset"); %>" <% translate("below"); %></i></b></small>).</li>
+<li><b><% translate("VID"); %></b> - <i><% translate("EXPERIMENTAL"); %></i> - <% translate("Allows overriding 'traditional' VLAN/VID mapping with arbitrary VIDs for each VLAN"); %> (<% translate("set to '0' to use 'regular' VLAN/VID mappings instead"); %>). <% translate("Warning: this hasn`t been verified/tested on anything but a Cisco/Linksys E3000 and may not be supported by your particular device/model"); %> (<small><b><i><% translate("see notes on"); %> "<% translate("VID Offset"); %>" <% translate("below"); %></i></b></small>).</li>
 <li><b><% translate("Ports"); %> 1-4 &amp; WAN</b> - <% translate("Which ethernet ports on the router should be members of this VLAN"); %>.</li>
 <li><b><% translate("Tagged"); %></b> - <% translate("Enable 802.1Q tagging of ethernet frames on a particular port/VLAN"); %>.</li>
 <script type='text/javascript'>
@@ -1079,7 +1079,7 @@ if(!trunk_vlan_supported)
 </script>
 </li>
 <li><b><% translate("Default"); %></b> - <% translate("VLAN ID assigned to untagged frames received by the router"); %>.</li>
-<li><b><% translate("Bridge"); %></b> - <% translate("Determines if this VLAN ID should be treated as WAN, part of a LAN bridge or just left alone (i.e. member of a 802.1Q trunk, being managed manually via scripts, etc"); %>...).</li>
+<li><b><% translate("Bridge"); %></b> - <% translate("Determines if this VLAN ID should be treated as WAN, part of a LAN bridge or just left alone (i.e. member of a 802.1Q trunk, being managed manually via scripts, etc...)"); %>.</li>
 </ul>
 
 <ul>
@@ -1105,7 +1105,7 @@ if((trunk_vlan_supported) || (nvram.trunk_vlan_so == '1')) {
 </ul>
 <br>
 <ul>
-<li><% translate("This is an"); %> <b><% translate("experimental"); %></b> <% translate("feature and hasn't been tested in anything but a Linksys WRT54GL v1.1 running a Teaman-ND K24 build and a Cisco/Linksys E3000 running a Teaman-RT K26 build"); %>.</li>
+<li><% translate("This is an <b>experimental</b> feature and hasn't been tested in anything but a Linksys WRT54GL v1.1 running a Teaman-ND K24 build and a Cisco/Linksys E3000 running a Teaman-RT K26 build"); %>.</li>
 <li><% translate("There's lots of things that could go wrong, please do think about what you're doing and take a backup before hitting the 'Save' button on this page"); %>!</li>
 </ul>
 </ul>

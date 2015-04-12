@@ -173,7 +173,7 @@ No part of this file may be used without permission.
 					{ title: '<% translate("Wireless Multicast Forwarding"); %>', name: 'wl'+u+'_wmf_bss_enable', type: 'select', options: [['0','<% translate("Disable"); %> *'],['1','<% translate("Enable"); %>']],
 						value: nvram['wl'+u+'_wmf_bss_enable'] }
 					]);
-				htmlOut += ('<small><% translate("The default settings are indicated with an asterisk"); %> <b style="font-size: 1.5em">*</b> <% translate("symbol"); %>.</small></div></div>');
+				htmlOut += ('<small><% translate("The default settings are indicated with an asterisk"); %> <b style="font-size: 1.5em">*</b>.</small></div></div>');
 			}
 
 		}

@@ -96,7 +96,7 @@ No part of this file may be used without permission.
 				<div class="content">
 
 					<fieldset>
-						<label class="control-left-label col-sm-3">Select new image:</label>
+						<label class="control-left-label col-sm-3"><% translate("Select new image"); %>:</label>
 						<div class="col-sm-9"><input class="uploadfile" type="file" name="file" size="50">
 							<button type="button" value="<% translate("Upgrade"); %>" id="afu-upgrade-button" onclick="upgrade();" class="btn btn-danger"><% translate("Upgrade"); %> <i class="icon-upload"></i></button>
 						</div>

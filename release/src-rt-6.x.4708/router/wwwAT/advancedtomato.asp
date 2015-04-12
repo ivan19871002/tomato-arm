@@ -129,7 +129,7 @@ function AdvancedTomato () {
 		if (n < lastUpdate || n == null) {
 
 			$updateNotification = $('<div class="alert alert-info icon"><a href="#" class="close" data-update="' + nvram.at_update.replace('.','') + '"><i class="icon-cancel"></i></a>\
-				<h5>Update Available!</h5>AdvancedTomato update <b>v' + nvram.at_update + '</b> has been released. <a target="_blank" href="http://advancedtomato.com/changelog/">Click here to find out more</a>.</div>');
+				<h5><% translate("Update Available"); %>!</h5><% translate("AdvancedTomato update"); %> <b>v' + nvram.at_update + '</b> <% translate("has been released"); %>. <a target="_blank" href="http://advancedtomato.com/changelog/"><% translate("Click here to find out more"); %></a>.</div>');
 
 			$($updateNotification).find('.close').on('click', function() {
 				if ($(this).attr('data-update')) { cookie.set('latest-update', $(this).attr('data-update')); }
@@ -147,8 +147,8 @@ function AdvancedTomato () {
 
 		if (nvram.tomatoanon_answer != '1') {
 
-			$('.container').prepend('<div class="alert alert-warning icon"><h5>Attention</h5> You did not configure <b>TomatoAnon project</b> setting.\
-				Please go to <a onclick="loadPage(\'admin-tomatoanon.asp\')" href="#">TomatoAnon configuration page</a> and make a choice.</div>');
+			$('.container').prepend('<div class="alert alert-warning icon"><h5><% translate("Attention"); %></h5> <% translate("You did not configure <b>TomatoAnon project</b> setting"); %>.\
+				<% translate("Please go to"); %> <a onclick="loadPage(\'admin-tomatoanon.asp\')" href="#"><% translate("TomatoAnon configuration page"); %></a> <% translate("and make a choice"); %>.</div>');
 
 		}
 
@@ -178,7 +178,7 @@ function systemUI () {
 		stats = {};
 		try { eval(data); } catch (ex) { stats = {}; }
 
-		stats.wanstatus = '<a title="Go to Status Overview" href="#" onclick="loadPage(\'#status-home.asp\');">' + ((stats.wanstatus == 'Connected') ? '<span style="color: green;">' + stats.wanstatus + '</span>' : stats.wanstatus) + '</a>';
+		stats.wanstatus = '<a title="<% translate("Go to Status Overview"); %>" href="#" onclick="loadPage(\'#status-home.asp\');">' + ((stats.wanstatus == 'Connected') ? '<span style="color: green;">' + stats.wanstatus + '</span>' : stats.wanstatus) + '</a>';
 		$('.system-ui .datasystem').html('<div class="router-name">' + stats.routermodel + ' <small class="pull-right">(' + stats.uptime + ')</small></div>' +
 			'<div class="inner-container row">' +
 			'<div class="col-sm-2">CPU:</div><div class="col-sm-10">' + stats.cpuload + ' (' + stats.cpupercent + ')</div>'+
@@ -247,7 +247,7 @@ function loadPage(page, variables) {
 			var id 		= $(this).attr('data-box');
 			var parent	= $(this);
 			var status	= (((hs_cook = cookie.get(id + '_visibility')) != null && (hs_cook != '1')) && $(this).is(':visible')) ? false : true;
-			var html	= $('<a class="pull-right" href="#" data-toggle="tooltip" title="Hide/Show"><i class="icon-chevron-' + ((status) ? 'down' : 'up') + '"></i></a>');
+			var html	= $('<a class="pull-right" href="#" data-toggle="tooltip" title="<% translate("Hide/Show"); %>"><i class="icon-chevron-' + ((status) ? 'down' : 'up') + '"></i></a>');
 
 			// Hide if hidden
 			if (status) { 
@@ -299,12 +299,12 @@ function loadPage(page, variables) {
 
 		console.log(x);
 		
-		$('h2.currentpage').text('ERROR');
-		$('.container .ajaxwrap').hide().html('<div class="box"><div class="heading">ERROR occured!</div><div class="content" style="font-size: 13px;">\
-			There has been error while loading a page, please review debug data bellow if this is isolated issue.<br />\
-			If this is not an isolated issue, please create issue with details bellow and how to reproduce the error at\
+		$('h2.currentpage').text('<% translate("ERROR"); %>');
+		$('.container .ajaxwrap').hide().html('<div class="box"><div class="heading"><% translate("ERROR occured!</div><div class="content" style="font-size: 13px;">\
+			<% translate("There has been error while loading a page, please review debug data bellow if this is isolated issue"); %>.<br />\
+			<% translate("If this is not an isolated issue, please create issue with details bellow and how to reproduce the error at"); %>\
 			<a target="_blank" href="https://github.com/Jackysi/advancedtomato2/issues">https://github.com/Jackysi/advancedtomato2/issues</a>. <br /><br />\
-			<b>Detailed information:</b><br /><pre class="debug">' + x.stack + x.message + '</pre><br /><a href="/">Refreshing</a> browser window might help.</div></div>').fadeIn(200);
+			<b><% translate("Detailed information"); %>:</b><br /><pre class="debug">' + x.stack + x.message + '</pre><br /><a href="/"><% translate("Refreshing"); %></a> <% translate("browser window might help"); %>.</div></div>').fadeIn(200);
 
 		NProgress.done();
 		// Loaded, clear state

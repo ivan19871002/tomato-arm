@@ -13,7 +13,7 @@
 
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="tomato.asp"></script>
-		<script type="text/javascript" src="js/advancedtomato.js"></script>
+		<script type="text/javascript" src="advancedtomato.asp"></script>
 
 		<script type="text/javascript">
 			// used in pages title, space for gap
@@ -128,7 +128,7 @@
 						<div class="router-control">
 							<a href="#" class="btn btn-primary" onclick="reboot();"><% translate("Reboot"); %> <i class="icon-reboot"></i></a>
 							<a href="#" class="btn btn-danger" onclick="shutdown();"><% translate("Shutdown"); %> <i class="icon-power"></i></a>
-							<a href="#" onclick="logout();" class="btn"><% translate("Logout"); %> <i class="icon-logout"></i></a>
+							<a href="#" onclick="logout();" class="btn" style="margin-left:1px"><% translate("Logout"); %> <i class="icon-logout"></i></a>
 						</div>
 					</div>
 				</div>

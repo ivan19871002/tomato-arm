@@ -466,7 +466,7 @@ endif
 	cd $(TARGETDIR)/lib/modules/*/kernel/fs && mv exportfs/* . && rm -rf exportfs || true
 	cd $(TARGETDIR)/lib/modules/*/kernel/net && mv sunrpc/* . && rm -rf sunrpc || true
 	cd $(TARGETDIR)/lib/modules/*/kernel/net && mv auth_gss/* . && rm -rf auth_gss || true
-	cd $(TARGETDIR)/lib/modules/*/kernel/sound/core/sec && mv oss/* . && rm -rf oss || true
+	cd $(TARGETDIR)/lib/modules/*/kernel/sound/core/seq && mv oss/* . && rm -rf oss || true
 	cd $(TARGETDIR)/lib/modules/*/kernel/sound/core && mv seq/* . && rm -rf seq || true
 	cd $(TARGETDIR)/lib/modules/*/kernel/sound/core && mv oss/* . && rm -rf oss || true
 	cd $(TARGETDIR)/lib/modules/*/kernel/sound && mv core/* . && rm -rf core || true

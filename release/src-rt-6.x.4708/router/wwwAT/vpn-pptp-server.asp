@@ -250,7 +250,7 @@ No part of this file may be used without permission.
 
 		</div>
 
-		<a class="pull-right btn" href="/#vpn-pptp-online.asp">&raquo; <% translate("PPTP Online"); %></a>
+		<a class="pull-right btn btn-success" href="/#vpn-pptp-online.asp">&raquo; <% translate("PPTP Online"); %></a>
 
 		<button type="button" value="<% translate("Save"); %>" id="save-button" onclick="save()" class="btn btn-primary"><% translate("Save"); %> <i class="icon-check"></i></button>
 		<button type="button" value="<% translate("Cancel"); %>" id="cancel-button" onclick="javascript:reloadPage();" class="btn"><% translate("Cancel"); %> <i class="icon-cancel"></i></button>

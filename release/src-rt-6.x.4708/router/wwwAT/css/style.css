@@ -762,9 +762,9 @@ table.line-table tr td {
 
 #table-row-panel a.move-up-row, #table-row-panel a.move-down-row, #table-row-panel a.move-row, #table-row-panel a.delete-row  {
 	float: left;
-	font-size: 10px;
+	font-size: 12px;
 	text-align: center;
-	padding: 2px;
+	padding: 3px 2px;
 	color: #fff;
 	background: #585858;
 	width: 20px;
@@ -992,7 +992,8 @@ table .header {
 }
 
 /* Other btn styles */
-.btn b { color: #fff !important; }
+.btn b { color: #0088cc !important; }
+.btn:hover b, .btn:focus b, .btn:active b { color: #fff !important; }
 button.btn { font-family: 'Neo Sans Cyr', 'Open Sans', sans-serif; vertical-align: middle; outline: 0; outline-style: none; }
 button::-moz-focus-inner { border:0; padding:0; } /* FF button fix */
 .btn-small { font-size: 8pt; padding: 4px 10px !important; vertical-align: middle; }
@@ -1094,7 +1095,7 @@ a.close:hover { opacity: 1; }
 .alert.icon.alert-error:after { content: "\E02B"; }
 
 
-#footer-msg { vertical-align: middle; padding: 9px 40px 8px 15px; min-height: 34px; }
+#footer-msg { vertical-align: middle; padding: 9px 40px 9px 15px; min-height: 35px; }
 
 /* Progress Bars */
 .progress {
@@ -1265,7 +1266,6 @@ select#refresh-time, select#expire-time { /* good for dark bg */
  	height: 34px; /* align with button */
 }
 select#refresh-time>option, select#expire-time>option {
-	-webkit-border-radius:2px; -moz-border-radius:2px; border-radius:2px;
 	color:#fff !important;
 	background-color:#2c3037;
 }
@@ -1283,6 +1283,7 @@ select#refresh-time>option, select#expire-time>option {
 #cancel-button.btn:focus {
 	color: #fff !important;
 	background: #FFA500;
+	border: 1px solid #FFA500;
 }
 #refresh-button.btn:active,
 #cancel-button.btn:active {
@@ -1405,6 +1406,7 @@ input[type=radio]:disabled + span:before {
 	border-bottom-left-radius: 0;
 	-webkit-border-top-left-radius: 0;
 	-webkit-border-bottom-left-radius: 0;
+	height: 34px; /* align with input */
 }
 
 .input-append input,

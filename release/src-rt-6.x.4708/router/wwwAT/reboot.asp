@@ -52,22 +52,23 @@
 				text-align: center;
 				cursor: pointer;
 				background-image: none;
-				padding: 4px 16px;
+				padding: 5px 16px;
 				margin: 0;
 				font-size: 13px;
-				font-weight: 500 !important;
+				font-weight: bold;
 				line-height: 1.42857143;
-				color: #0088cc !important;
+				color: #555 !important;
 				background: #f0f0f0;
 				transition: 0.1s ease-out;
 				border-radius: 4px;
 				-webkit-border-radius: 4px;
-				border: 1px solid #0088cc;
+				border: 1px solid #706e6e;
 			}
 
 			.btn:hover {
-				color: #ffffff !important;
+				color: #fff !important;
 				background: #0088cc;
+				border: 1px solid #0088cc;
 			}
 
 			.btn:active, .btn:focus {

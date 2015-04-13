@@ -886,14 +886,16 @@ table .header {
 }
 
 .btn:hover,
-.btn:focus,
-.btn.active {
+.btn:focus {
 /*
 	background: #706e6e;
 	color: #fff;
 */
 	color: #fff !important;
 	background: #414141;
+}
+.btn.active {
+	background: #706e6e;
 }
 
 .btn.disabled,
@@ -922,6 +924,9 @@ table .header {
 	color: #fff !important;
 	background: #0088CC;
 }
+.btn.btn-primary:active {
+	background: #5DADE2;
+}
 
 .btn.btn-danger {
 /*
@@ -941,6 +946,9 @@ table .header {
 	color: #fff !important;
 	background: #E74C3C;
 }
+.btn.btn-danger:active {
+	background: #EC7063;
+}
 
 .btn.btn-success {
 /*
@@ -959,6 +967,9 @@ table .header {
 */
 	color: #fff !important;
 	background: #67ba2f;
+}
+.btn.btn-success:active {
+	background: #6cc92e;
 }
 
 .btn.btn-link {

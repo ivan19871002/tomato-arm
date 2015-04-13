@@ -1071,8 +1071,8 @@ a.close {
 	position: absolute;
 	top: 15px;
 	right: 15px;
-	margin-top: -10px;
-	margin-right: -10px;
+	margin-top: -6px;
+	margin-right: -5px;
 	padding: 2px;
 	font-size: 14px;
 	line-height: 1;
@@ -1537,8 +1537,8 @@ input[type=radio]:disabled + span:before {
 	height: 48px;
 }
 
-#ethPorts .eth.off { background: url('/img/ethernet.x.svg') 20px center no-repeat; }
-#ethPorts .eth.on { background:  url('/img/ethernet.svg') 20px center no-repeat; }
+#ethPorts .eth.off { background: url('/img/eth_gray.svg') 20px center no-repeat; }
+#ethPorts .eth.on { background:  url('/img/eth_green.svg') 20px center no-repeat; }
 #ethPorts .eth.wan { width: 30%; }
 
 

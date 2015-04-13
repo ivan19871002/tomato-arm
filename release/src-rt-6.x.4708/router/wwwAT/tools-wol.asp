@@ -68,7 +68,7 @@ No part of this file may be used without permission.
 			// show anything else in ARP that is awake
 			for (i = 0; i < arplist.length; ++i) {
 				if ((arplist[i][2] != nvram.lan_ifname) || (arplist[i][1].length != 17)) continue;
-				r = this.insertData(-1, [arplist[i][1], arplist[i][0], '<% translate("Active"); %> (<% translate("In ARP"); %>)', '']);
+				r = this.insertData(-1, [arplist[i][1].toUpperCase(), arplist[i][0], '<% translate("Active"); %> (<% translate("In ARP"); %>)', '']);
 				for (j = 0; j < 4; ++j)
 					r.cells[j].title = '<% translate("Click to wake up"); %>';
 			}

@@ -16,6 +16,10 @@ else
 c="dual"
 fi
 
+if [ ! $d ]; then e="N/A"; fi
+if [ ! $e ]; then e="N/A"; fi
+if [ ! $f ]; then e="N/A"; fi
+
 echo "cpu MHz : $a MHz ($c" > /tmp/sysinfo-helper
 echo "cpu Temp : $d" >> /tmp/sysinfo-helper
 echo "wl0 Temp : $e" >> /tmp/sysinfo-helper

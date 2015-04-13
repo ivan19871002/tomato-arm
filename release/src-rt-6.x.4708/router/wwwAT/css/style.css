@@ -1537,8 +1537,8 @@ input[type=radio]:disabled + span:before {
 	height: 48px;
 }
 
-#ethPorts .eth.off { background: url('/img/eth_gray.svg') 20px center no-repeat; }
-#ethPorts .eth.on { background:  url('/img/eth_green.svg') 20px center no-repeat; }
+#ethPorts .eth.off { background: url('/img/eth_gray.svg') 18px center no-repeat; }
+#ethPorts .eth.on { background:  url('/img/eth_green.svg') 18px center no-repeat; }
 #ethPorts .eth.wan { width: 30%; }
 
 

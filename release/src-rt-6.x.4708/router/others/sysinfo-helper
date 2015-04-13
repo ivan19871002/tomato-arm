@@ -4,6 +4,12 @@ a=`cat /proc/cpuinfo | grep BogoMIPS | head -1 | awk {' print $3'} | awk '{print
 
 b=`cat /proc/cpuinfo | grep processor | wc -l`
 
+d=`cat /proc/dmu/temperature | head -1 | awk {' print $4'} | cut -c -2`
+
+e=`wl -i eth1 phy_tempsense | awk {' print $1'}`
+
+f=`wl -i eth2 phy_tempsense | awk {' print $1'}`
+
 if [ $b == "0" ]; then
 c="single"
 else
@@ -11,3 +17,7 @@ c="dual"
 fi
 
 echo "cpu MHz : $a MHz ($c" > /tmp/sysinfo-helper
+echo "cpu Temp : $d" >> /tmp/sysinfo-helper
+echo "wl0 Temp : $e" >> /tmp/sysinfo-helper
+echo "wl1 Temp : $f" >> /tmp/sysinfo-helper
+

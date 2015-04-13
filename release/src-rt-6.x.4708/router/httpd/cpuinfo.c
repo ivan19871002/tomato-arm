@@ -119,6 +119,39 @@ int get_cpuinfo(char *system_type, char *cpu_model, char *bogomips, char *cpuclk
 	return (okcount==3);
 }
 
+float get_temps(char *cputemp, char *wl0temp, char *wl1temp)
+{
+	FILE *fd;
+        char *next;
+	char buff[1024];
+	char title[128], value[512];
+	int okcount=0;
+
+	system("/usr/sbin/sysinfo-helper");
+	fd = fopen ("/tmp/sysinfo-helper", "r");
+	while (fgets(buff, sizeof(buff), fd)) {
+		next = buff;
+		strcpy(title, strsep(&next, ":"));
+		if (next == NULL) continue;
+		strcpy(value, next);
+		trim(value);
+		if (strncmp_ex(title, "cpu Temp")==0) {
+			okcount++;
+			strcpy(cputemp, value);
+		}
+		if (strncmp_ex(title, "wl0 Temp")==0) {
+			okcount++;
+			strcpy(wl0temp, value);
+		}
+		if (strncmp_ex(title, "wl1 Temp")==0) {
+			okcount++;
+			strcpy(wl1temp, value);
+		}
+	}
+	fclose(fd);
+	return (okcount==2);	
+}
+
 /*
 int main()
 {

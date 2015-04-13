@@ -2103,6 +2103,7 @@ Stop PPTP Client=Запустить PPTP-клиент
 swap=SWAP
 TCP Connections=Соединения TCP
 TCP IN/OUT (pkt/s)=TCP ВХ/ИСХ (п/с)
+Temperature=Температура
 The bandwitdh will be shared by all hosts in=Полоса будет разделена всеми клиентами в
 The bandwitdh will be shared by all unlisted hosts in=Полоса будет разделена между всеми несконфигурированными клиентами из
 There has been error while loading a page, please review debug data bellow if this is isolated issue=Возникла ошибка при загрузке страницы

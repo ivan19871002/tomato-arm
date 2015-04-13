@@ -1358,6 +1358,7 @@ TCP Timeout=Таймауты TCP
 TCP/UDP=TCP/UDP
 TCP Vegas=TCP Vegas
 Telnet Daemon=Сервис Telnet
+Temperature=Температура
 The bandwitdh will be shared by all hosts in=Полоса будет разделена всеми клиентами в
 The bandwitdh will be shared by all unlisted hosts in=Полоса будет разделена между всеми несконфигурированными клиентами из
 The contents of file /etc/dnsmasq.custom are also added to the end of Dnsmasq's configuration file (if it exists)=Содержимое файла /etc/dnsmasq.custom будет добавлено к опциям Dnsmasq (при наличии файла)

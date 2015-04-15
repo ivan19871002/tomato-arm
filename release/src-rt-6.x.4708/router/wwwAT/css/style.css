@@ -661,7 +661,7 @@ small { font-size: 80%; }
 
 .box .heading a {
 	color: #656565;
-	margin: -10px 0 0 0;
+	margin: -10px -10px 0 10px;
 	padding: 8px 12px;
 	border-radius: 3px;
 	-webkit-border-radius: 3px;

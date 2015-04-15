@@ -6,7 +6,7 @@ For use with Tomato Firmware only.
 No part of this file may be used without permission.
 --><title><% translate("USB Support"); %></title>
 <content>
-	<style>textarea { width: 100%; }</style>
+	<style>textarea { width: 100%; height: 63px; }</style>
 	<script type="text/javascript">
 		//    <% nvram("at_update,tomatoanon_answer,usb_enable,usb_uhci,usb_ohci,usb_usb2,usb_mmc,usb_storage,usb_printer,usb_printer_bidirect,usb_automount,usb_fs_ext3,usb_fs_fat,usb_fs_ntfs,usb_fs_hfs,script_usbmount,script_usbumount,script_usbhotplug,idle_enable,usb_3g"); %>
 		//    <% usbdevices(); %>
@@ -316,8 +316,8 @@ No part of this file may be used without permission.
 						/* LINUX26-END */
 						{ title: '<% translate("Automount"); %>', indent: 2, name: 'f_automount', type: 'checkbox',
 							suffix: ' <small><% translate("Automatically mount all partitions to sub-directories in"); %> <i>/mnt</i>.</small>', value: nvram.usb_automount == 1 },
-						{ title: '<% translate("Run after mounting"); %>', indent: 2, name: 'script_usbmount', type: 'textarea', value: nvram.script_usbmount, style: 'width: 100%; height: 63px;' },
-						{ title: '<% translate("Run before unmounting"); %>', indent: 2, name: 'script_usbumount', type: 'textarea', value: nvram.script_usbumount, style: 'width: 100%; height: 63px;' },
+						{ title: '<% translate("Run after mounting"); %>', indent: 2, name: 'script_usbmount', type: 'textarea', value: nvram.script_usbmount },
+						{ title: '<% translate("Run before unmounting"); %>', indent: 2, name: 'script_usbumount', type: 'textarea', value: nvram.script_usbumount },
 						null,
 						/* LINUX26-BEGIN */
 						{ title: '<% translate("HDD Spindown"); %>', name: 'f_idle_enable', type: 'checkbox',
@@ -327,7 +327,7 @@ No part of this file may be used without permission.
 							suffix: ' <small><% translate("Before disconnecting 3G Modem from USB port, remember to uncheck box. If modem used usbserial module, you have to reboot router before unplug modem"); %>.</small>', value: nvram.usb_3g == 1 },
 						null,
 						/* LINUX26-END */
-						{ title: '<% translate("Hotplug script"); %><br><small>(<% translate("called when any USB device is attached or removed"); %>)</small>', name: 'script_usbhotplug', type: 'textarea', value: nvram.script_usbhotplug, style: 'width: 100%; height: 63px;' },
+						{ title: '<% translate("Hotplug script"); %><br><small>(<% translate("called when any USB device is attached or removed"); %>)</small>', name: 'script_usbhotplug', type: 'textarea', value: nvram.script_usbhotplug },
 						{ text: '<small><% translate("Some of the changes will take effect only after a restart"); %>.</small>' }
 					]);
 				</script>

@@ -12,7 +12,7 @@ No part of this file may be used without permission.
 			width: 95%;
 		}
 		.empty {
-			height: 2em;
+			height: 34px;
 		}
 	</style>
 	<script type="text/javascript">

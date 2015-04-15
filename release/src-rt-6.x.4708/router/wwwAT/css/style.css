@@ -830,7 +830,8 @@ table .controls, table.line-table tr.controls { box-shadow: none; -webkit-box-sh
 table .controls:hover, table.line-table tr.controls:hover { background: transparent; }
 table .controls td, table.line-table tr.controls td { padding: 8px 4px; }
 
-table tr.editor td { margin: 0;}
+table tr.editor td { margin: 0; }
+table tr.editor td:last-child { padding-right: 10px; } /* added right-padding */
 table tr.editor td input:not([type='checkbox']),
 table tr.editor td select,
 table tr.editor td textarea {

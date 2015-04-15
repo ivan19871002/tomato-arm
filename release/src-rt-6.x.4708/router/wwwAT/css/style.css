@@ -1315,7 +1315,7 @@ textarea { resize:vertical !important; }
 .c-radio {
 	display: inline-block;
 	margin: 5px 2px 0;
-	margin:	6px 2px 6px; /* 32px height as select */
+	margin:	7px 2px 7px; /* 34px height as select / input */
 }
 .c-checkbox label,
 .c-radio label {

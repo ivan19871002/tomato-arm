@@ -349,9 +349,9 @@ No part of this file may be used without permission.
 					{ title: '<% translate("Encryption cipher"); %>', name: 'vpn_'+t+'_cipher', type: 'select', options: ciphers, value: eval( 'nvram.vpn_'+t+'_cipher' ) },
 					{ title: '<% translate("Compression"); %>', name: 'vpn_'+t+'_comp', type: 'select', options: [ ['-1','<% translate("Disabled"); %>'], ['no','<% translate("None"); %>'], ['yes','<% translate("Enabled"); %>'], ['adaptive','<% translate("Adaptive"); %>'] ], value: eval( 'nvram.vpn_'+t+'_comp' ) },
 					{ title: '<% translate("TLS Renegotiation Time"); %>', name: 'vpn_'+t+'_reneg', type: 'text', maxlen: 10, size: 7, value: eval( 'nvram.vpn_'+t+'_reneg' ),
-						suffix: '&nbsp;<small>(<% translate("in seconds"); %>, -1 <% translate("for default"); %>)</small>' },
+						suffix: '&nbsp;<small>(<% translate("in seconds, -1 for default"); %>)</small>' },
 					{ title: '<% translate("Connection retry"); %>', name: 'vpn_'+t+'_retry', type: 'text', maxlen: 5, size: 7, value: eval( 'nvram.vpn_'+t+'_retry' ),
-						suffix: '&nbsp;<small>(<% translate("in seconds"); %>; -1 <% translate("for infinite"); %>)</small>' },
+						suffix: '&nbsp;<small>(<% translate("in seconds; -1 for infinite"); %>)</small>' },
 					{ title: 'Verify server certificate (tls-remote)', multi: [
 						{ name: 'f_vpn_'+t+'_tlsremote', type: 'checkbox', value: eval( 'nvram.vpn_'+t+'_tlsremote' ) != 0 },
 						{ name: 'vpn_'+t+'_cn', type: 'text', maxlen: 64, size: 54,

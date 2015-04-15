@@ -257,7 +257,7 @@ CCDGrid.prototype.verifyFields = function(row, quiet)
 	if (f[3].value != "" && !v_netmask(f[3],quiet)) ret = 0;
 	if (f[2].value == "" && f[3].value != "" ) { ferror.set(f[2], "<% translate("Either both or neither subnet and netmask must be provided"); %>.", quiet); ret = 0; }
 	if (f[3].value == "" && f[2].value != "" ) { ferror.set(f[3], "<% translate("Either both or neither subnet and netmask must be provided"); %>.", quiet); ret = 0; }
-	if (f[4].checked && (f[2].value == "" || f[3].value == "")) { ferror.set(f[4], "<% translate("Cannot push routes if they're not given. Please provide subnet/netmask"); %>.", quiet); ret = 0; }
+	if (f[4].checked && (f[2].value == "" || f[3].value == "")) { ferror.set(f[4], "<% translate("Cannot push routes if they`re not given. Please provide subnet/netmask"); %>.", quiet); ret = 0; }
 
 	return ret;
 }

@@ -247,13 +247,13 @@ No part of this file may be used without permission.
 			var f = fields.getAll(row);
 
 			// Verify fields in this row of the table
-			if (f[1].value == "") { ferror.set(f[1], "Common name is mandatory.", quiet); ret = 0; }
-			if (f[1].value.indexOf('>') >= 0 || f[1].value.indexOf('<') >= 0) { ferror.set(f[1], "Common name cannot contain '<' or '>' characters.", quiet); ret = 0; }
+			if (f[1].value == "") { ferror.set(f[1], "<% translate("Common name is mandatory"); %>.", quiet); ret = 0; }
+			if (f[1].value.indexOf('>') >= 0 || f[1].value.indexOf('<') >= 0) { ferror.set(f[1], "<% translate("Common name cannot contain"); %> '<' <% translate("or"); %> '>' <% translate("characters"); %>.", quiet); ret = 0; }
 			if (f[2].value != "" && !v_ip(f[2],quiet,0)) ret = 0;
 			if (f[3].value != "" && !v_netmask(f[3],quiet)) ret = 0;
-			if (f[2].value == "" && f[3].value != "" ) { ferror.set(f[2], "Either both or neither subnet and netmask must be provided.", quiet); ret = 0; }
-			if (f[3].value == "" && f[2].value != "" ) { ferror.set(f[3], "Either both or neither subnet and netmask must be provided.", quiet); ret = 0; }
-			if (f[4].checked && (f[2].value == "" || f[3].value == "")) { ferror.set(f[4], "Cannot push routes if they're not given. Please provide subnet/netmask.", quiet); ret = 0; }
+			if (f[2].value == "" && f[3].value != "" ) { ferror.set(f[2], "<% translate("Either both or neither subnet and netmask must be provided"); %>.", quiet); ret = 0; }
+			if (f[3].value == "" && f[2].value != "" ) { ferror.set(f[3], "<% translate("Either both or neither subnet and netmask must be provided"); %>.", quiet); ret = 0; }
+			if (f[4].checked && (f[2].value == "" || f[3].value == "")) { ferror.set(f[4], "<% translate("Cannot push routes if they`re not given. Please provide subnet/netmask"); %>.", quiet); ret = 0; }
 
 			return ret;
 		}
@@ -325,10 +325,10 @@ No part of this file may be used without permission.
 			var f = fields.getAll(row);
 
 			// Verify fields in this row of the table
-			if (f[1].value == "") { ferror.set(f[1], "username is mandatory.", quiet); ret = 0; }
-			if (f[1].value.indexOf('>') >= 0 || f[1].value.indexOf('<') >= 0) { ferror.set(f[1], "user name cannot contain '<' or '>' characters.", quiet); ret = 0; }
-			if (f[2].value == "" ) { ferror.set(f[2], "password is mandatory.", quiet); ret = 0; }
-			if (f[2].value.indexOf('>') >= 0 || f[1].value.indexOf('<') >= 0) { ferror.set(f[2], "password cannot contain '<' or '>' characters.", quiet); ret = 0; }
+			if (f[1].value == "") { ferror.set(f[1], "<% translate("username is mandatory"); %>.", quiet); ret = 0; }
+			if (f[1].value.indexOf('>') >= 0 || f[1].value.indexOf('<') >= 0) { ferror.set(f[1], "<% translate("user name cannot contain"); %> '<' <% translate("or"); %> '>' <% translate("characters"); %>.", quiet); ret = 0; }
+			if (f[2].value == "" ) { ferror.set(f[2], "<% translate("password is mandatory"); %>.", quiet); ret = 0; }
+			if (f[2].value.indexOf('>') >= 0 || f[1].value.indexOf('<') >= 0) { ferror.set(f[2], "<% translate("password cannot contain"); %> '<' <% translate("or"); %> '>' <% translate("characters"); %>.", quiet); ret = 0; }
 			return ret;
 		}
 		UsersGrid.prototype.fieldValuesToData = function(row)
@@ -412,7 +412,7 @@ No part of this file may be used without permission.
 				t = tabs[i][0];
 
 				ccdTables[i].init('table_'+t+'_ccd', 'sort', 0, [{ type: 'checkbox' }, { type: 'text' }, { type: 'text', maxlen: 15 }, { type: 'text', maxlen: 15 }, { type: 'checkbox' }]);
-				ccdTables[i].headerSet(['Enable', 'Common Name', 'Subnet', 'Netmask','<% translate("Push"); %>']);
+				ccdTables[i].headerSet(['<% translate("Enable"); %>', '<% translate("Common Name"); %>', '<% translate("Subnet"); %>', '<% translate("Netmask"); %>','<% translate("Push"); %>']);
 				var ccdVal = eval( 'nvram.vpn_'+t+'_ccd_val' );
 
 				if (ccdVal.length) {
@@ -431,7 +431,7 @@ No part of this file may be used without permission.
 				ccdTables[i].resetNewEditor();
 
 				usersTables[i].init('table_' + t + '_users','sort', 0, [{ type: 'checkbox' }, { type: 'text' }, { type: 'text', maxlen: 15 }]);
-				usersTables[i].headerSet(['Enable', 'Username','<% translate("Password"); %>']);
+				usersTables[i].headerSet(['<% translate("Enable"); %>', '<% translate("Username"); %>','<% translate("Password"); %>']);
 
 				var usersVal = eval('nvram.vpn_' + t + '_users_val');
 				if(usersVal.length) {

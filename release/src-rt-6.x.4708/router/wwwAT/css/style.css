@@ -1388,9 +1388,11 @@ input[type=radio]:checked + span:before {
 input[type=checkbox]:disabled + span,
 input[type=radio]:disabled + span {
 	pointer-events: none;
-	color: #ddd !important;
 	border-color: #ddd !important;
 	background-color: #eee !important;
+}
+input[type=checkbox]:disabled + span:before {
+	color: #ddd;
 }
 /* override for radio */
 input[type=radio]:disabled + span {
@@ -1398,7 +1400,7 @@ input[type=radio]:disabled + span {
 	background-color: #fff !important;
 }
 input[type=radio]:disabled + span:before {
-	color: #dddddd;
+	color: #ddd;
 }
 
 /* Input appends */

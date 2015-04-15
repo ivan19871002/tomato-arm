@@ -494,7 +494,7 @@ No part of this file may be used without permission.
 					var status = (!eval('vpn'+(i+1)+'up') ? '<small style="color: red">(<% translate("Stopped"); %>)</small>' : '<small style="color: green;">(<% translate("Running"); %>)</small>');
 
 					htmlOut += '</ul>'
-					+ '<div class="box"><div class="heading">VPN Server #'+(i+1) + status + ' <a id="_vpn' + t + '_button" class="pull-right" href="#" data-toggle="tooltip"' +
+					+ '<div class="box"><div class="heading"><% translate("VPN Server"); %> #'+(i+1) + status + ' <a id="_vpn' + t + '_button" class="pull-right" href="#" data-toggle="tooltip"' +
 					'onclick="toggle(\'vpn'+t+'\', vpn'+(i+1)+'up); return false;"' + action + '</a></div><div class="content">';
 
 					htmlOut += '<div id=\''+t+'-basic\'>';
@@ -511,7 +511,7 @@ No part of this file may be used without permission.
 						{ title: '<% translate("Port"); %>', name: 'vpn_'+t+'_port', type: 'text', value: eval( 'nvram.vpn_'+t+'_port' ) },
 						{ title: '<% translate("Firewall"); %>', name: 'vpn_'+t+'_firewall', type: 'select', options: [ ['auto','<% translate("Automatic"); %>'], ['external','<% translate("External Only"); %>'], ['custom','<% translate("Custom"); %>'] ], value: eval( 'nvram.vpn_'+t+'_firewall' ) },
 						{ title: '<% translate("Authorization Mode"); %>', name: 'vpn_'+t+'_crypt', type: 'select', options: [ ['tls','<% translate("TLS"); %>'], ['secret','<% translate("Static Key"); %>'], ['custom','<% translate("Custom"); %>'] ], value: eval( 'nvram.vpn_'+t+'_crypt' ),
-							suffix: '<span id=\''+t+'_custom_crypto_text\'>&nbsp;<small>(must configure manually...)</small></span>' },
+							suffix: '<span id=\''+t+'_custom_crypto_text\'>&nbsp;<small>(<% translate("must configure manually"); %>...)</small></span>' },
 						{ title: '<% translate("Extra HMAC authorization"); %> (tls-auth)', name: 'vpn_'+t+'_hmac', type: 'select', options: [ [-1,'<% translate("Disabled"); %>'], [2,'<% translate("Bi-directional"); %>'], [0, 'Incoming (0)'], [1, 'Outgoing (1)'] ], value: eval( 'nvram.vpn_'+t+'_hmac' ) },
 						{ title: '<% translate("VPN subnet/netmask"); %>', multi: [
 							{ name: 'vpn_'+t+'_sn', type: 'text', maxlen: 15, size: 17, value: eval( 'nvram.vpn_'+t+'_sn' ) },

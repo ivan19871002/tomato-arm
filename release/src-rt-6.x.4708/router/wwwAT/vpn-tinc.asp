@@ -35,12 +35,12 @@
 
 		//	<% nvram("tinc_wanup,tinc_name,tinc_devicetype,tinc_mode,tinc_vpn_netmask,tinc_private_rsa,tinc_private_ed25519,tinc_custom,tinc_hosts,tinc_firewall,tinc_manual_firewall,tinc_manual_tinc_up,tinc_tinc_up,tinc_tinc_down,tinc_host_up,tinc_host_down,tinc_subnet_up,tinc_subnet_down"); %>
 
-		var tinc_compression = [['0','0 - None'],['1','1 - Fast zlib'],['2','2'],['3','3'],['4','4'],['5','5'],['6','6'],['7','7'],['8','8'],['9','9 - Best zlib'],['10','10 - Fast lzo'],['11','11 - Best lzo']];
+		var tinc_compression = [['0','0 - <% translate("None"); %>'],['1','1 - <% translate("Fast zlib"); %>'],['2','2'],['3','3'],['4','4'],['5','5'],['6','6'],['7','7'],['8','8'],['9','9 - <% translate("Best zlib"); %>'],['10','10 - <% translate("Fast lzo"); %>'],['11','11 - <% translate("Best lzo"); %>']];
 		var th = new TomatoGrid();
 		var cmd = null;
 		var cmdresult = '';
 
-		tabs = [['config', 'Config'],['hosts', 'Hosts'],['scripts', 'Scripts'],['keys', 'Generate Keys'],['status', 'Status']];
+		tabs = [['config', '<% translate("Config"); %>'],['hosts', '<% translate("Hosts"); %>'],['scripts', '<% translate("Scripts"); %>'],['keys', '<% translate("Generate Keys"); %>'],['status', '<% translate("Status"); %>']];
 		changed = 0;
 		tincup = parseInt ('<% psup("tincd"); %>');
 
@@ -185,11 +185,11 @@
 
 			// Element Verification
 			if (E('_tinc_name').value == "" && E('_f_tinc_wanup').checked) {
-				ferror.set(E('_tinc_name'), "<% translate("Host Name is required when 'Start With WAN' is checked"); %>.", quiet); return 0 ; }
+				ferror.set(E('_tinc_name'), "<% translate("Host Name is required when Start With WAN is checked"); %>.", quiet); return 0 ; }
 			else {  ferror.clear(E('_tinc_name')) }
 
 			if (E('_tinc_private_ed25519').value == "" && E('_tinc_custom').value == "" && E('_f_tinc_wanup').checked) {
-				ferror.set(E('_tinc_private_ed25519'), "<% translate("Ed25519 Private Key is required when 'Start With WAN' is checked"); %>.", quiet); return 0 ; }
+				ferror.set(E('_tinc_private_ed25519'), "<% translate("Ed25519 Private Key is required when Start With WAN is checked"); %>.", quiet); return 0 ; }
 			else {  ferror.clear(E('_tinc_private_ed25519')) }
 
 			if (!v_netmask('_tinc_vpn_netmask', quiet)) return 0;
@@ -207,7 +207,7 @@
 			}
 
 			if (!hostdefined && E('_f_tinc_wanup').checked) {
-				ferror.set(E('_tinc_name'), "<% translate("Host Name"); %> \"" + E('_tinc_name').value + "\" <% translate("must be defined in the hosts area when 'Start With WAN' is checked"); %>.", quiet); return 0 ; }
+				ferror.set(E('_tinc_name'), "<% translate("Host Name"); %> \"" + E('_tinc_name').value + "\" <% translate("must be defined in the hosts area when Start With WAN is checked"); %>.", quiet); return 0 ; }
 			else {  ferror.clear(E('_tinc_name')) };
 
 			return 1;
@@ -277,7 +277,7 @@
 				displayKeys();
 			}
 			cmd.onError = function(x) {
-				cmdresult = 'ERROR: ' + x;
+				cmdresult = '<% translate("ERROR"); %>: ' + x;
 				displayKeys();
 			}
 
@@ -311,7 +311,7 @@
 				displayStatus();
 			}
 			cmd.onError = function(x) {
-				cmdresult = 'ERROR: ' + x;
+				cmdresult = '<% translate("ERROR"); %>: ' + x;
 				displayStatus();
 			}
 
@@ -364,7 +364,7 @@
 					displayNodes();
 				}
 				cmd.onError = function(x) {
-					cmdresult = 'ERROR: ' + x;
+					cmdresult = '<% translate("ERROR"); %>: ' + x;
 					displayNodes();
 				}
 
@@ -387,7 +387,7 @@
 				displayVersion();
 			}
 			cmd.onError = function(x) {
-				cmdresult = 'ERROR: ' + x;
+				cmdresult = '<% translate("ERROR"); %>: ' + x;
 				displayVersion();
 			}
 
@@ -479,11 +479,11 @@
 		function toggleVisibility(whichone) {
 			if (E('sesdiv_' + whichone).style.display == '') {
 				E('sesdiv_' + whichone).style.display = 'none';
-				E('sesdiv_' + whichone + '_showhide').innerHTML = '(Click here to show)';
+				E('sesdiv_' + whichone + '_showhide').innerHTML = '(<% translate("Click here to show"); %>)';
 				cookie.set('vpn_tinc_' + whichone + '_vis', 0);
 			} else {
 				E('sesdiv_' + whichone).style.display='';
-				E('sesdiv_' + whichone + '_showhide').innerHTML = '(Click here to hide)';
+				E('sesdiv_' + whichone + '_showhide').innerHTML = '(<% translate("Click here to hide"); %>)';
 				cookie.set('vpn_tinc_' + whichone + '_vis', 1);
 			}
 		}
@@ -504,12 +504,12 @@
 					html += '<li><a href="javascript:tabSelect(\''+tabs[j][0]+'\')" id="'+tabs[j][0]+'">'+tabs[j][1]+'</a></li>';
 				}
 
-				var action = ((tincup) ? 'title="Stop now"><i class="icon-stop"></i>' : 'title="Start now"><i class="icon-play"></i>');
-				var status = ((!tincup) ? '<small style="color: red">(Stopped)</small>' : '<small style="color: green;">(Running)</small>');
+				var action = ((tincup) ? 'title="<% translate("Stop now"); %>"><i class="icon-stop"></i>' : 'title="<% translate("Start now"); %>"><i class="icon-play"></i>');
+				var status = ((!tincup) ? '<small style="color: red">(<% translate("Stopped"); %>)</small>' : '<small style="color: green;">(<% translate("Running"); %>)</small>');
 
 				html += '</ul>\
 				<div class="box">\
-				<div class="heading">Tinc Configuration <span id="version"></span> ' + status + '\
+				<div class="heading"><% translate("Tinc Configuration"); %> <span id="version"></span> ' + status + '\
 				<a id="_tinc_button" class="pull-right" href="#" data-toggle="tooltip" onclick="toggle(\'tinc\', tincup); return false;"' + action + '</a></div>\
 				<div class="content">'
 
@@ -518,14 +518,14 @@
 				html +='<input type="hidden" name="tinc_wanup">';
 
 				html += createFormFields([
-					{ title: 'Start With WAN ', name: 'f_tinc_wanup', type: 'checkbox', value: (nvram.tinc_wanup == 1) },
-					{ title: 'Interface Type', name: 'tinc_devicetype', type: 'select', options: [['tun','TUN'],['tap','TAP']], value: nvram.tinc_devicetype },
-					{ title: 'Mode', name: 'tinc_mode', type: 'select', options: [['switch','Switch'],['hub','Hub']], value: nvram.tinc_mode },
-					{ title: 'VPN Netmask', name: 'tinc_vpn_netmask', type: 'text', maxlen: 15, size: 25, value: nvram.tinc_vpn_netmask,  suffix: ' <small>The netmask for the entire VPN network.</small>' },
-					{ title: 'Host Name', name: 'tinc_name', type: 'text', maxlen: 30, size: 25, value: nvram.tinc_name, suffix: ' <small>Must also be defined in the \'Hosts\' area.</small>' },
-					{ title: 'Ed25519 Private Key', name: 'tinc_private_ed25519', type: 'textarea', value: nvram.tinc_private_ed25519 },
-					{ title: 'RSA Private Key *', name: 'tinc_private_rsa', type: 'textarea', value: nvram.tinc_private_rsa },
-					{ title: 'Custom', name: 'tinc_custom', type: 'textarea', value: nvram.tinc_custom }
+					{ title: '<% translate("Start With WAN"); %>', name: 'f_tinc_wanup', type: 'checkbox', value: (nvram.tinc_wanup == 1) },
+					{ title: '<% translate("Interface Type"); %>', name: 'tinc_devicetype', type: 'select', options: [['tun','TUN'],['tap','TAP']], value: nvram.tinc_devicetype },
+					{ title: '<% translate("Mode"); %>', name: 'tinc_mode', type: 'select', options: [['switch','Switch'],['hub','Hub']], value: nvram.tinc_mode },
+					{ title: '<% translate("VPN Netmask"); %>', name: 'tinc_vpn_netmask', type: 'text', maxlen: 15, size: 25, value: nvram.tinc_vpn_netmask,  suffix: ' <small><% translate("The netmask for the entire VPN network"); %>.</small>' },
+					{ title: '<% translate("Host Name"); %>', name: 'tinc_name', type: 'text', maxlen: 30, size: 25, value: nvram.tinc_name, suffix: ' <small><% translate("Must also be defined in the Hosts area"); %>.</small>' },
+					{ title: '<% translate("Ed25519 Private Key"); %>', name: 'tinc_private_ed25519', type: 'textarea', value: nvram.tinc_private_ed25519 },
+					{ title: '<% translate("RSA Private Key"); %> *', name: 'tinc_private_rsa', type: 'textarea', value: nvram.tinc_private_rsa },
+					{ title: '<% translate("Custom"); %>', name: 'tinc_custom', type: 'textarea', value: nvram.tinc_custom }
 				]);
 
 				html +='</div>';
@@ -539,21 +539,21 @@
 				html +='<table class="line-table" id="th-grid"></table>';
 
 				html += createFormFields([
-					{ title: 'Ed25519 Public Key', name: 'host_ed25519_key', type: 'textarea' },
-					{ title: 'RSA Public Key *', name: 'host_rsa_key', type: 'textarea' },
-					{ title: 'Custom', name: 'host_custom', type: 'textarea' }
+					{ title: '<% translate("Ed25519 Public Key"); %>', name: 'host_ed25519_key', type: 'textarea' },
+					{ title: '<% translate("RSA Public Key"); %> *', name: 'host_rsa_key', type: 'textarea' },
+					{ title: '<% translate("Custom"); %>', name: 'host_custom', type: 'textarea' }
 				]);
 
 				html +='<br /><h4><% translate("Notes"); %> <a href="javascript:toggleVisibility(\'hosts\');"><span id="sesdiv_hosts_showhide"><i class="icon-chevron-up"></i></span></a></h4>';
 				html +='<div class="section" id="sesdiv_hosts" style="display:none">';
 				html +='<ul>';
-				html +='<li><b>ConnectTo</b> - Tinc will try to establish a meta-connection to the host. Requires the Address field';
-				html +='<li><b>Name</b> - Name of the host. There must be an entry for this host.';
-				html +='<li><b>Address</b> <i>(optional)</i> - Must resolve to the external IP address where the host can be reached.';
-				html +='<li><b>Port</b> <i>(optional)</i> - The port the host listens on. If empty the default value (655) is used.';
-				html +='<li><b>Compression</b> - The level of compression used for UDP packets. Possible values are ';
-				html +='0 (off), 1 (fast zlib) and any integer up to 9 (best zlib), 10 (fast lzo) and 11 (best lzo).';
-				html +='<li><b>Subnet</b> - The subnet which the host will serve.';
+				html +='<li><b><% translate("ConnectTo"); %></b> - <% translate("Tinc will try to establish a meta-connection to the host. Requires the Address field"); %>';
+				html +='<li><b><% translate("Name"); %></b> - <% translate("Name of the host. There must be an entry for this host"); %>.';
+				html +='<li><b><% translate("Address"); %></b> <i>(optional)</i> - <% translate("Must resolve to the external IP address where the host can be reached"); %>.';
+				html +='<li><b><% translate("Port"); %></b> <i>(optional)</i> - <% translate("The port the host listens on. If empty the default value (655) is used"); %>.';
+				html +='<li><b><% translate("Compression"); %></b> - <% translate("The level of compression used for UDP packets. Possible values are"); %> ';
+				html +='0 (<% translate("off"); %>), 1 (<% translate("fast zlib"); %>) <% translate("and any integer up to 9 (best zlib), 10 (fast lzo) and 11 (best lzo)"); %>.';
+				html +='<li><b><% translate("Subnet"); %></b> - <% translate("The subnet which the host will serve"); %>.';
 				html +='</ul>';
 				html +='</div>';
 

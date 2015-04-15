@@ -11,7 +11,7 @@ No part of this file may be used without permission.
 		//	<% nvram("at_update,tomatoanon_answer,tm_sel,tm_dst,tm_tz,ntp_updates,ntp_server,ntp_tdod,ntp_kiss"); %>
 
 		var ntpList = [
-			['custom', 'Custom...'],
+			['custom', '<% translate("Custom"); %>...'],
 			['','<% translate("Default"); %>'],
 			['africa','<% translate("Africa"); %>'],
 			['asia','<% translate("Asia"); %>'],
@@ -242,10 +242,10 @@ No part of this file may be used without permission.
 				</script>
 
 				<div id="ntpkiss" style="display:none">
-					The following NTP servers have been automatically blocked by request from the server:
+					<% translate("The following NTP servers have been automatically blocked by request from the server"); %>:
 					<b id="ntpkiss-ip"></b>
 					<div>
-						<input type="button" value="Clear" onclick="save(1)" class="btn">
+						<input type="button" value="<% translate("Clear"); %>" onclick="save(1)" class="btn">
 					</div>
 				</div>
 			</div>

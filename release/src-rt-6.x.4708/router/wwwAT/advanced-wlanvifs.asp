@@ -1351,7 +1351,7 @@ LAN Access admin module by Augusto Bott
 				</div><br />
 
 				<!-- LINUX24-BEGIN -->
-				<h3><a href="javascript:toggleVisibility('options');">Options <span id="sesdivoptionsshowhide"><i class="icon-chevron-up"></i></span></a></h3>
+				<h3><a href="javascript:toggleVisibility('options');"><% translate("Options"); %> <span id="sesdivoptionsshowhide"><i class="icon-chevron-up"></i></span></a></h3>
 				<div class="section" id="sesdivoptions" style="display:none"></div><hr>
 				<script type="text/javascript">
 					$('#sesdivoptions').forms([

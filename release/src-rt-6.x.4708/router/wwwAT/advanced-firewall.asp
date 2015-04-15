@@ -109,7 +109,7 @@ No part of this file may be used without permission.
 					{ title: '<% translate("ICMP"); %>', indent: 3, name: 'f_icmp_limit_icmp', type: 'text', maxlen: 3, size: 3, suffix: ' <small> <% translate("request per second"); %></small>', value: fixInt(nvram.block_wan_limit_icmp || 1, 1, 300, 5) },
 					{ title: '<% translate("Traceroute"); %>', indent: 3, name: 'f_icmp_limit_traceroute', type: 'text', maxlen: 3, size: 3, suffix: ' <small> <% translate("request per second"); %></small>', value: fixInt(nvram.block_wan_limit_tr || 5, 1, 300, 5) },
 					{ title: '<% translate("Enable SYN cookies"); %>', name: 'f_syncookies', type: 'checkbox', value: nvram.ne_syncookies != '0' },
-					{ title: '<% translate("Enable DSCP Fix"); %>', name: 'f_DSCP_fix_enable', type: 'checkbox', value: nvram.DSCP_fix_enable != '0', suffix: ' <small>Fixes Comcast incorrect DSCP</small>' }
+					{ title: '<% translate("Enable DSCP Fix"); %>', name: 'f_DSCP_fix_enable', type: 'checkbox', value: nvram.DSCP_fix_enable != '0', suffix: ' <small><% translate("Fixes Comcast incorrect DSCP"); %></small>' }
 				]);
 			</script>
 		</div>

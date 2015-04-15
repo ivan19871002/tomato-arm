@@ -185,7 +185,7 @@ No part of this file may be used without permission.
 			<script type="text/javascript">
 				$('#tracert-form').forms([
 					{ title: '<% translate("Address"); %>', name: 'f_addr', type: 'text', maxlen: 64, size: 32, value: '',
-						suffix: ' <button type="submit" value="<% translate("Trace"); %>" onclick="trace()" id="traceb" class="btn"><% translate("Trace"); %> <i class="icon-gauge"></i></button>' },
+						suffix: ' <button type="submit" value="<% translate("Trace"); %>" onclick="trace()" id="traceb" class="btn btn-success"><% translate("Trace"); %> <i class="icon-gauge"></i></button>' },
 					{ title: '<% translate("Maximum Hops"); %>', name: 'f_hops', type: 'text', maxlen: 2, size: 4, value: '20' },
 					{ title: '<% translate("Maximum Wait Time"); %>', name: 'f_wait', type: 'text', maxlen: 2, size: 4, value: '3', suffix: ' <small>(<% translate("seconds per hop"); %>)</small>' }
 				]);

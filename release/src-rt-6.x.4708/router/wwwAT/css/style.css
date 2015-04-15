@@ -1287,7 +1287,8 @@ select#refresh-time>option, select#expire-time>option {
 	color:#fff !important;
 	background-color:#2c3037;
 }
-/* Refresh / Cancel on dark BG */
+
+/* Refresh / Cancel for dark BG */
 #refresh-button.btn, #cancel-button.btn {
 	color: #bfbfbf !important;
 /* 	height: 33px; align with select */
@@ -1306,17 +1307,6 @@ select#refresh-time>option, select#expire-time>option {
 #refresh-button.btn:active,
 #cancel-button.btn:active {
 	background: #FFC251;
-}
-/* Exec on dark BG */
-#execb.btn {
-	color: #E74C3C !important;
-	background: transparent;
-	border: 1px solid #E74C3C;
-}
-#execb.btn:hover,
-#execb.btn:focus {
-	color: #fff !important;
-	background: #E74C3C;
 }
 
 textarea { resize:vertical !important; }
@@ -1355,7 +1345,7 @@ textarea { resize:vertical !important; }
 }
 .c-checkbox:hover span,
 .c-radio:hover span {
-	border-color: #3498db;
+	border-color: #0088cc;
 }
 
 /* override for radio */
@@ -1398,8 +1388,9 @@ input[type=radio]:checked + span:before {
 input[type=checkbox]:disabled + span,
 input[type=radio]:disabled + span {
 	pointer-events: none;
-	border-color: #dddddd !important;
-	background-color: #dddddd !important;
+	color: #ddd !important;
+	border-color: #ddd !important;
+	background-color: #eee !important;
 }
 /* override for radio */
 input[type=radio]:disabled + span {

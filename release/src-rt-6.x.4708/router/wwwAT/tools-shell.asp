@@ -123,7 +123,7 @@ No part of this file may be used without permission.
 		</div>
 	</div>
 
-	<div id="refresh"></div><button type="button" value="<% translate("Execute"); %>" onclick="execute()" id="execb" class="btn"><% translate("Execute"); %> <i class="icon-cmd"></i></button>
+	<div id="refresh"></div><button type="button" value="<% translate("Execute"); %>" onclick="execute()" id="execb" class="btn btn-success"><% translate("Execute"); %> <i class="icon-cmd"></i></button>
 
 	<script type="text/javascript">init();</script>
 </content>

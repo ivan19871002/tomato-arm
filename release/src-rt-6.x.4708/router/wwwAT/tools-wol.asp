@@ -176,7 +176,7 @@ No part of this file may be used without permission.
 					<button type="button" value="<% translate("Refresh"); %>" onclick="refreshClick()" id="refreshb" class="btn"><% translate("Refresh"); %> <i class="icon-reboot"></i></button>
 				</div>
 
-				<button type="button" value="<% translate("Wake Up"); %>" onclick="wake(null)" id="save-button" class="btn"><% translate("Wake Up"); %> <i class="icon-forward"></i></button>
+				<button type="button" value="<% translate("Wake Up"); %>" onclick="wake(null)" id="save-button" class="btn btn-success"><% translate("Wake Up"); %> <i class="icon-forward"></i></button>
 			</div>
 		</div>
 

@@ -26,7 +26,7 @@ No part of this file may be used without permission.
 			[16,'<% translate("eDonkey"); %>'],[32,'<% translate("Gnutella"); %>'],[64,'<% translate("Kazaa"); %>'],[128,'<% translate("Mute"); %>'],[256,'<% translate("SoulSeek"); %>'],[512,'<% translate("Waste"); %>'],[1024,'<% translate("WinMX"); %>'],[2048,'<% translate("XDCC"); %>']];
 
 		var dscp = [
-			['','DSCP (any)'],['0x00','BE'],
+			['','<% translate("DSCP (any)"); %>'],['0x00','BE'],
 			['0x08','CS1'],['0x10','CS2'],['0x18','CS3'],['0x20','CS4'],['0x28','CS5'],['0x30','CS6'],['0x38','CS7'],
 			['0x0a','AF11'],['0x0c','AF12'],['0x0e','AF13'],['0x12','AF21'],['0x14','AF22'],['0x16','AF23'],
 			['0x1a','AF31'],['0x1c','AF32'],['0x1e','AF33'],['0x22','AF41'],['0x24','AF42'],['0x26','AF43'],

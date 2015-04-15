@@ -544,7 +544,7 @@
 					{ title: 'Custom', name: 'host_custom', type: 'textarea' }
 				]);
 
-				html +='<br /><h4>Notes <a href="javascript:toggleVisibility(\'hosts\');"><span id="sesdiv_hosts_showhide"><i class="icon-chevron-up"></i></span></a></h4>';
+				html +='<br /><h4><% translate("Notes"); %> <a href="javascript:toggleVisibility(\'hosts\');"><span id="sesdiv_hosts_showhide"><i class="icon-chevron-up"></i></span></a></h4>';
 				html +='<div class="section" id="sesdiv_hosts" style="display:none">';
 				html +='<ul>';
 				html +='<li><b>ConnectTo</b> - Tinc will try to establish a meta-connection to the host. Requires the Address field';

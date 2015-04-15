@@ -199,7 +199,7 @@ LAN Access admin module by Augusto Bott
 		<div class="content">
 			<table class="line-table" id="la-grid"></table><br /><hr>
 
-			<h4>Notes <a href="javascript:toggleVisibility('notes');"><span id="sesdiv_notes_showhide"><i class="icon-chevron-up"></i></span></a></h4>
+			<h4><% translate("Notes"); %> <a href="javascript:toggleVisibility('notes');"><span id="sesdiv_notes_showhide"><i class="icon-chevron-up"></i></span></a></h4>
 			<div class="section" id="sesdiv_notes" style="display:none">
 				<ul>
 					<li><b><% translate("Src"); %></b> - <% translate("Source LAN bridge"); %>.</li>

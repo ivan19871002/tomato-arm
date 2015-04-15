@@ -1360,7 +1360,7 @@ LAN Access admin module by Augusto Bott
 				</script>
 				<!-- LINUX24-END -->
 
-				<h4>Notes <a href="javascript:toggleVisibility('notes');"><span id="sesdivnotesshowhide"><i class="icon-chevron-up"></i></span></a></h4>
+				<h4><% translate("Notes"); %> <a href="javascript:toggleVisibility('notes');"><span id="sesdivnotesshowhide"><i class="icon-chevron-up"></i></span></a></h4>
 				<div class="section" id="sesdivnotes" style="display:none">
 
 					<ul>

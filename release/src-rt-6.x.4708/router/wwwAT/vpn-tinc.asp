@@ -592,8 +592,8 @@
 					{ title: 'RSA Public Key', name: 'rsa_public_key', type: 'textarea', value: "" }
 				]);
 
-				html +='<button class="btn btn-primary" type="button" value="gen" onclick="generateKeys()" id="execb"><i class="icon-reboot"></i> Generate Keys</button>';
-				html +='<div style="visibility:hidden;text-align:right" id="generateWait">Please wait... <div class="spinner"></div></div>';
+				html +='<button class="btn btn-primary" type="button" value="gen" onclick="generateKeys()" id="execb"><i class="icon-reboot"></i> <% translate("Generate Keys"); %></button>';
+				html +='<div style="visibility:hidden;text-align:right" id="generateWait"><% translate("Please wait"); %>... <div class="spinner"></div></div>';
 				html +='</div>';
 
 				// -------- END KEY TAB -----------
@@ -604,15 +604,15 @@
 				html +='<div id="'+t+'-tab">';
 
 				html += '<div class="btn-group">';
-				html += '<a class="btn btn-success" onclick="updateStatus(\'edges\')" id="edges">Edges</a>';
-				html += '<a class="btn" onclick="updateStatus(\'subnets\')" id="subnets">Subnets</a>';
-				html += '<a class="btn" onclick="updateStatus(\'connections\')" id="connections">Connections</a>';
-				html += '<a class="btn" onclick="updateStatus(\'nodes\')" id="nodes">Nodes</a>';
+				html += '<a class="btn btn-success" onclick="updateStatus(\'edges\')" id="edges"><% translate("Edges"); %></a>';
+				html += '<a class="btn" onclick="updateStatus(\'subnets\')" id="subnets"><% translate("Subnets"); %></a>';
+				html += '<a class="btn" onclick="updateStatus(\'connections\')" id="connections"><% translate("Connections"); %></a>';
+				html += '<a class="btn" onclick="updateStatus(\'nodes\')" id="nodes"><% translate("Nodes"); %></a>';
 				html += '</div>'
-				html += '<div style="visibility:hidden;text-align:right" id="statusWait">Please wait... <div class="spinner"></div></div>';
+				html += '<div style="visibility:hidden;text-align:right" id="statusWait"><% translate("Please wait"); %>... <div class="spinner"></div></div>';
 
-				html +='<input class="btn btn-primary" type="button" value="Info" onclick="updateStatus(\'info\')" id="info">';
-				html +='<select id="hostselect" style="width:170px"></select>';
+				html +='<input class="btn btn-primary" style="margin-top: 0; margin-right: 6px" type="button" value="<% translate("Info"); %>" onclick="updateStatus(\'info\')" id="info">';
+				html +='<select id="hostselect" style="width:170px"></select><br/><br/>';
 
 				html +='<pre id="result"></pre>';
 

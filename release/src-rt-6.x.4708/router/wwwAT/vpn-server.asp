@@ -490,8 +490,8 @@ No part of this file may be used without permission.
 						htmlOut += '<li><a href="javascript:sectSelect('+i+', \''+sections[j][0]+'\')" id="'+t+'-'+sections[j][0]+'-tab">'+sections[j][1]+'</a></li>';
 					}
 
-					var action = (eval('vpn'+(i+1)+'up') ? 'title="Stop VPN Server ' + (i+1) + '"><i class="icon-stop"></i>' : 'title="Start VPN Server ' + (i+1) + '"><i class="icon-play"></i>');
-					var status = (!eval('vpn'+(i+1)+'up') ? '<small style="color: red">(Stopped)</small>' : '<small style="color: green;">(Running)</small>');
+					var action = (eval('vpn'+(i+1)+'up') ? 'title="<% translate("Stop VPN Server"); %> ' + (i+1) + '"><i class="icon-stop"></i>' : 'title="<% translate("Start VPN Server"); %> ' + (i+1) + '"><i class="icon-play"></i>');
+					var status = (!eval('vpn'+(i+1)+'up') ? '<small style="color: red">(<% translate("Stopped"); %>)</small>' : '<small style="color: green;">(<% translate("Running"); %>)</small>');
 
 					htmlOut += '</ul>'
 					+ '<div class="box"><div class="heading">VPN Server #'+(i+1) + status + ' <a id="_vpn' + t + '_button" class="pull-right" href="#" data-toggle="tooltip"' +
@@ -506,7 +506,7 @@ No part of this file may be used without permission.
 							['br1','LAN1 (br1)'],
 							['br2','LAN2 (br2)'],
 							['br3','LAN3 (br3)']
-							], value: eval ( 'nvram.vpn_'+t+'_br' ), suffix: ' <small>* default</small> ' },
+							], value: eval ( 'nvram.vpn_'+t+'_br' ), suffix: ' <small>* <% translate("default"); %></small> ' },
 						{ title: '<% translate("Protocol"); %>', name: 'vpn_'+t+'_proto', type: 'select', options: [ ['udp','<% translate("UDP"); %>'], ['tcp-server','<% translate("TCP"); %>'] ], value: eval( 'nvram.vpn_'+t+'_proto' ) },
 						{ title: '<% translate("Port"); %>', name: 'vpn_'+t+'_port', type: 'text', value: eval( 'nvram.vpn_'+t+'_port' ) },
 						{ title: '<% translate("Firewall"); %>', name: 'vpn_'+t+'_firewall', type: 'select', options: [ ['auto','<% translate("Automatic"); %>'], ['external','<% translate("External Only"); %>'], ['custom','<% translate("Custom"); %>'] ], value: eval( 'nvram.vpn_'+t+'_firewall' ) },
@@ -565,7 +565,7 @@ No part of this file may be used without permission.
 					htmlOut += '<div id=\''+t+'-status-stats\'><div class=\'section-title\'><% translate("General Statistics"); %></div><table class=\'line-table\' id=\''+t+'-status-stats-table\'></table><br></div>';
 					htmlOut += '<div id=\''+t+'-status-errors\' class=\'error\'></div>';
 					htmlOut += '</div>';
-					htmlOut += '<div><a href=\'javascript:updateStatus('+i+')\'><% translate("Refresh Status"); %></a></div>';
+					htmlOut += '<div style=\'text-align:right\'><a href=\'javascript:updateStatus('+i+')\'><% translate("Refresh Status"); %></a></div>';
 					htmlOut += '</div>';
 					htmlOut += '</div></div></div>';
 				}

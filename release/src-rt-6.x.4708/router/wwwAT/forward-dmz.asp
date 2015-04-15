@@ -92,7 +92,7 @@ No part of this file may be used without permission.
 		<input type="hidden" name="dmz_sip">
 
 		<div class="box">
-			<div class="heading">DMZ Settings</div>
+			<div class="heading"><% translate("DMZ Settings"); %></div>
 			<div class="content dmz-settings"></div>
 			<script type="text/javascript">
 				$('.dmz-settings').forms([

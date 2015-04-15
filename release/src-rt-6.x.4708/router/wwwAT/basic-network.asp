@@ -535,8 +535,8 @@ No part of this file may be used without permission.
 				E('_f_wl'+wl_unit(u)+'_scan').disabled = x;
 			}
 			var e = E('_f_wl'+unit+'_scan');
-			if (x) e.value = 'Scan ' + (wscan.tries + 1);
-			else e.value = 'Scan';
+			if (x) e.value = '<% translate("Scan"); %> ' + (wscan.tries + 1);
+			else e.value = '<% translate("Scan"); %>';
 			E('spin'+unit).style.visibility = x ? 'visible' : 'hidden';
 		}
 
@@ -582,7 +582,7 @@ No part of this file may be used without permission.
 					for (i = 1; i < ghz[uidx].length; ++i) {
 						var s = ghz[uidx][i][1];
 						var u = wscan.inuse[ghz[uidx][i][0]];
-						if (u) s += ' (' + u.count + ' AP' + (u.count == 1 ? '' : 's') + ' / strongest: "' + escapeHTML(ellipsis(u.ssid, 15)) + '" ' + u.rssi + ' dBm)';
+						if (u) s += ' (' + u.count + ' AP' + (u.count == 1 ? '' : 's') + ' / <% translate("strongest"); %>: "' + escapeHTML(ellipsis(u.ssid, 15)) + '" ' + u.rssi + ' dBm)';
 						e.options[i].innerHTML = s;
 					}
 					e.style.width = '400px';
@@ -1739,7 +1739,7 @@ No part of this file may be used without permission.
 							options: [], prefix: '<span id="__wl'+u+'_net_mode">', suffix: '</span>' },
 						{ title: '<% translate("SSID"); %>', name: 'wl'+u+'_ssid', type: 'text', maxlen: 32, size: 34, value: eval('nvram.wl'+u+'_ssid') },
 						{ title: '<% translate("Broadcast"); %>', indent: 2, name: 'f_wl'+u+'_bcast', type: 'checkbox', value: (eval('nvram.wl'+u+'_closed') == '0') },
-						{ title: '<% translate("Channel"); %>', name: 'wl'+u+'_channel', type: 'select', options: ghz[uidx], prefix: '<div class="pull-left" id="__wl'+u+'_channel">', suffix: '</div> &nbsp; <button class="btn btn-primary" type="button" id="_f_wl'+u+'_scan" value="<% translate("Scan"); %>" onclick="scanButton('+u+')"><% translate("Scan"); %> <i class="icon-search"></i></button> &nbsp; <div class="spinner" style="visibility: hidden;" id="spin'+u+'"></div>',
+						{ title: '<% translate("Channel"); %>', name: 'wl'+u+'_channel', type: 'select', options: ghz[uidx], prefix: '<div class="pull-left" id="__wl'+u+'_channel">', suffix: '</div> &nbsp; <button class="btn btn-primary" style="margin-top: 1px" type="button" id="_f_wl'+u+'_scan" value="<% translate("Scan"); %>" onclick="scanButton('+u+')"><% translate("Scan"); %> <i class="icon-search"></i></button> &nbsp; <div class="spinner" style="visibility: hidden;" id="spin'+u+'"></div>',
 							value: eval('nvram.wl'+u+'_channel') },
 						{ title: '<% translate("Channel Width"); %>', name: 'wl'+u+'_nbw_cap', type: 'select', options: [],
 							value: eval('nvram.wl'+u+'_nbw_cap'), prefix: '<span id="__wl'+u+'_nbw_cap">', suffix: '</span>' },

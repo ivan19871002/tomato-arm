@@ -89,9 +89,9 @@ No part of this file may be used without permission.
 			<script type="text/javascript">
 				$('#pptp-client').forms([
 					{ title: '<% translate("Start with WAN"); %>', name: 'f_pptp_client_enable', type: 'checkbox', value: nvram.pptp_client_enable != 0 },
-					{ title: '<% translate("Server Address"); %>', name: 'pptp_client_srvip', type: 'text', size: 17, value: nvram.pptp_client_srvip },
-					{ title: '<% translate("Username"); %>: ', name: 'pptp_client_username', type: 'text', maxlen: 50, size: 54, value: nvram.pptp_client_username },
-					{ title: '<% translate("Password"); %>: ', name: 'pptp_client_passwd', type: 'password', maxlen: 50, size: 54, value: nvram.pptp_client_passwd },
+					{ title: '<% translate("Server Address"); %>:', name: 'pptp_client_srvip', type: 'text', size: 32, value: nvram.pptp_client_srvip },
+					{ title: '<% translate("Username"); %>:', name: 'pptp_client_username', type: 'text', maxlen: 50, size: 54, value: nvram.pptp_client_username },
+					{ title: '<% translate("Password"); %>:', name: 'pptp_client_passwd', type: 'password', maxlen: 50, size: 54, value: nvram.pptp_client_passwd },
 					{ title: '<% translate("Encryption"); %>', name: 'pptp_client_crypt', type: 'select', value: nvram.pptp_client_crypt,
 						options: [['0','<% translate("Auto"); %>'],['1','<% translate("None"); %>'],['2','<% translate("Maximum (128 bit only)"); %>'],['3','<% translate("Required (128 or 40 bit)"); %>']] },
 					{ title: '<% translate("Stateless MPPE connection"); %>', name: 'f_pptp_client_stateless', type: 'checkbox', value: nvram.pptp_client_stateless != 0 },

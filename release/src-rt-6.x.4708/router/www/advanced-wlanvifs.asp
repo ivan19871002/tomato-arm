@@ -1010,7 +1010,7 @@ function cancel() {
 }
 
 function save() {
-	if (E('save-button').value != 'Save') {
+	if (E('save-button').value != '<% translate("Save"); %>') {
 		tabSelect('overview');
 		return;
 	}

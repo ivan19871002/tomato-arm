@@ -1,5 +1,5 @@
 .top-header .logo {
-	background: #27ae60;
+/*	background: #27ae60; */
 }
 
 .top-header > .links > ul > li > a:hover,
@@ -8,11 +8,16 @@
 }
 
 /* Hover & Active States */
-.navigation li ul li.active a:after { background-color: #3498DB; }
+.navigation li ul li.active a:after { background-color: #27ae60; }
 
 .navigation .active > a > i,
 .navigation > ul > li > a:hover > i {
 	color: #27ae60;
+}
+
+.navigation li ul li a:hover {
+	color: #fff;
+	background: rgba(39,174,96,0.2);
 }
 
 /* Replace some general styles (b, h1-h6, etc...) */
@@ -26,12 +31,16 @@ a:hover, a:active {
 
 /* Buttons */
 .btn.btn-primary {
-	color: #fff !important;
-	background-color: #27ae60;
+	color: #27ae60 !important;
+	border-color: #27ae60;
 }
 
 .btn.btn-primary:hover,
 .btn.btn-primary:focus {
+	background: #27ae60;
+}
+
+.btn.btn-primary:active {
 	background: #2ecc71;
 }
 
@@ -56,6 +65,11 @@ input:hover, select:hover, textarea:hover {
 	border-color: #27ae60;
 }
 
+.customfile-hover .browse {
+	background: #27ae60;
+	color: #fff !important;
+}
+
 /* Checkboxes */
 .c-checkbox:hover span,
 .c-checkbox input:hover + span,
@@ -67,11 +81,15 @@ input:hover, select:hover, textarea:hover {
 input[type=checkbox]:checked + span,
 input[type=radio]:checked + span {
 	border-color: #27ae60;
-	background-color: #27ae60;
+/*	background-color: #27ae60; */
 }
-
+input[type=checkbox]:checked + span:before,
 input[type=radio]:checked + span:before {
 	color: #27ae60;
+}
+input[type=checkbox]:disabled + span:before,
+input[type=radio]:disabled + span:before {
+	color: #ddd;
 }
 
 /* Pure CSS preloader */

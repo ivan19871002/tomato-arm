@@ -483,7 +483,8 @@ small { font-size: 80%; }
 
 .navigation.collapsed li:hover > a {
 	color: #fff !important;
-	background: rgba(255,255,255,0.05);
+/*	background: rgba(255,255,255,0.05); */
+	background: rgba(0,136,204,0.1);
 }
 
 .navigation.collapsed li:hover .icons-desc {
@@ -752,7 +753,7 @@ table.line-table tr td {
 
 #table-row-panel a.move-up-row, #table-row-panel a.move-down-row, #table-row-panel a.move-row, #table-row-panel a.delete-row  {
 	float: left;
-	font-size: 12px;
+	font-size: 11px;
 	text-align: center;
 	padding: 3px 2px;
 	color: #fff;
@@ -1273,10 +1274,11 @@ input:hover, select:hover, textarea:hover {
 	border-color: #0088cc;
 }
 input:disabled, select:disabled, textarea:disabled {
-	opacity: 0.65;
+/*	opacity: 0.65; */
 	cursor: not-allowed;
 	color: #7c7c7c;
-	border: 1px solid #f0f0f0;
+	border: 1px solid #ddd;
+	background-color: #eee;
 }
 
 select#refresh-time, select#expire-time { /* good for dark bg */

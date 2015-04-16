@@ -14,9 +14,11 @@
 .navigation > ul > li > a:hover > i {
 	color: #16a085;
 }
-
 .navigation li ul li a:hover {
 	color: #fff;
+	background: rgba(22,160,133,0.1);
+}
+.navigation.collapsed li:hover > a {
 	background: rgba(22,160,133,0.1);
 }
 

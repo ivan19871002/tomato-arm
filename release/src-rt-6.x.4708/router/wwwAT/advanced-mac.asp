@@ -144,9 +144,9 @@ No part of this file may be used without permission.
 
 					f = [
 						{ title: '<% translate("WAN Port"); %>', indent: 1, name: 'f_wan_hwaddr', type: 'text', maxlen: 17, size: 20,
-							suffix: ' <button type="button" value="<% translate("Default"); %>" onclick="bdefault(\'wan\')" class="btn btn-small"><% translate("Default"); %></button> \
-							<button type="button" value="<% translate("Random"); %>" onclick="brand(\'wan\')" class="btn btn-small"><% translate("Random"); %></button> \
-							<button type="button" value="<% translate("Clone PC"); %>" onclick="bclone(\'wan\')" class="btn btn-small"><% translate("Clone PC"); %></button>',
+							suffix: ' <button type="button" value="<% translate("Default"); %>" onclick="bdefault(\'wan\')" class="btn"><% translate("Default"); %></button> \
+							<button type="button" value="<% translate("Random"); %>" onclick="brand(\'wan\')" class="btn"><% translate("Random"); %></button> \
+							<button type="button" value="<% translate("Clone PC"); %>" onclick="bclone(\'wan\')" class="btn"><% translate("Clone PC"); %></button>',
 							value: nvram.mac_wan || defmac('wan') }
 					];
 
@@ -154,9 +154,9 @@ No part of this file may be used without permission.
 						var u = wl_fface(uidx);
 						f.push(
 							{ title: '<% translate("Wireless Interface"); %> ' + ((wl_ifaces.length > 1) ? wl_ifaces[uidx][0] : ''), indent: 1, name: 'f_wl'+u+'_hwaddr', type: 'text', maxlen: 17, size: 20,
-								suffix:' <button type="button" value="<% translate("Default"); %>" onclick="bdefault(\'wl'+u+'\')" class="btn btn-small"><% translate("Default"); %></button> \
-								<button type="button" value="<% translate("Random"); %>" onclick="brand(\'wl'+u+'\')" class="btn btn-small"><% translate("Random"); %></button> \
-								<button type="button" value="<% translate("Clone PC"); %>" onclick="bclone(\'wl'+u+'\')" class="btn btn-small"><% translate("Clone PC"); %></button>',
+								suffix:' <button type="button" value="<% translate("Default"); %>" onclick="bdefault(\'wl'+u+'\')" class="btn"><% translate("Default"); %></button> \
+								<button type="button" value="<% translate("Random"); %>" onclick="brand(\'wl'+u+'\')" class="btn"><% translate("Random"); %></button> \
+								<button type="button" value="<% translate("Clone PC"); %>" onclick="bclone(\'wl'+u+'\')" class="btn"><% translate("Clone PC"); %></button>',
 								value: nvram['wl'+u+'_hwaddr'] || defmac('wl' + u) }
 						);
 					}

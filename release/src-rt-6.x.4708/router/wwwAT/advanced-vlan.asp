@@ -462,8 +462,8 @@ No part of this file may be used without permission.
 			var vlg = new TomatoGrid();
 			vlg.setup = function() {
 				this.init('vlan-grid', '', (MAX_VLAN_ID + 1), [
-					{ type: 'select', options: [[0, '0'],[1, '1'],[2, '2'],[3, '3'],[4, '4'],[5, '5'],[6, '6'],[7, '7'],[8, '8'],[9, '9'],[10, '10'],[11, '11'],[12, '12'],[13, '13'],[14, '14'],[15, '15']], prefix: '<div class="centered">', suffix: '</div>', class: 'input-mini' },
-					{ type: 'text', maxlen: 4, prefix: '<div class="centered">', suffix: '</div>',class: 'input-mini' },
+					{ type: 'select', options: [[0, '0'],[1, '1'],[2, '2'],[3, '3'],[4, '4'],[5, '5'],[6, '6'],[7, '7'],[8, '8'],[9, '9'],[10, '10'],[11, '11'],[12, '12'],[13, '13'],[14, '14'],[15, '15']], prefix: '<div class="centered">', suffix: '</div>' },
+					{ type: 'text', maxlen: 4, prefix: '<div class="centered">', suffix: '</div>' },
 					{ type: 'checkbox', prefix: '<div class="centered">', suffix: '</div>' },
 					{ type: 'checkbox', prefix: '<div class="centered">', suffix: '</div>' },
 					{ type: 'checkbox', prefix: '<div class="centered">', suffix: '</div>' },
@@ -475,7 +475,7 @@ No part of this file may be used without permission.
 					{ type: 'checkbox', prefix: '<div class="centered">', suffix: '</div>' },
 					{ type: 'checkbox', prefix: '<div class="centered">', suffix: '</div>' },
 					{ type: 'checkbox', prefix: '<div class="centered">', suffix: '</div>' },
-					{ type: 'select', options: [[1,'<% translate("none"); %>'],[2,'<% translate("WAN"); %>'],[3, 'LAN (br0)'],[4, 'LAN1 (br1)'],[5, 'LAN2 (br2)'],[6, 'LAN3 (br3)']], prefix: '<div class="centered">', suffix: '</div>', class: 'input-small' }]);
+					{ type: 'select', options: [[1,'<% translate("none"); %>'],[2,'<% translate("WAN"); %>'],[3, 'LAN (br0)'],[4, 'LAN1 (br1)'],[5, 'LAN2 (br2)'],[6, 'LAN3 (br3)']], prefix: '<div class="centered">', suffix: '</div>' }]);
 
 				this.headerSet(['VLAN', 'VID', '<% translate("Port"); %> 1', '<% translate("Tagged"); %>', '<% translate("Port"); %> 2', '<% translate("Tagged"); %>', '<% translate("Port"); %> 3', '<% translate("Tagged"); %>', '<% translate("Port 4"); %>', '<% translate("Tagged"); %>', 'WAN <% translate("Port"); %>', '<% translate("Tagged"); %>', '<% translate("Default"); %>','<% translate("Bridge"); %>']);
 
@@ -1018,10 +1018,10 @@ No part of this file may be used without permission.
 						<li><b>VLAN</b> - <% translate("Unique identifier of a VLAN"); %>.</li>
 						<li><b>VID</b> - <i><% translate("EXPERIMENTAL"); %></i> - <% translate("Allows overriding 'traditional' VLAN/VID mapping with arbitrary VIDs for each VLAN"); %> (<% translate("set to '0' to use 'regular' VLAN/VID mappings instead"); %>). <% translate("Warning: this hasn`t been verified/tested on anything but a Cisco/Linksys E3000 and may not be supported by your particular device/model"); %> (<small><b><i><% translate("see notes on 'VID Offset' below"); %></i></b></small>).</li>
 						<li><b><% translate("Ports"); %> 1-4 &amp; WAN</b> - <% translate("Which ethernet ports on the router should be members of this VLAN"); %>.</li>
-						<li><b><% translate("Tagged"); %></b> - <% translate("Enable 802.1Q tagging of ethernet frames on a particular port/VLAN"); %>
+						<li><b><% translate("Tagged"); %></b> - <% translate("Enable 802.1Q tagging of ethernet frames on a particular port/VLAN"); %> <span id="trunk_vlan_supported_message"></span>
 							<script type="text/javascript">
 								if(!trunk_vlan_supported)
-									W(' <i><b>(<% translate("unknown support for this model...contact the developper (Victek)"); %>)</i></b>');
+									$('#trunk_vlan_supported_message').html(' <i><b>(<% translate("unknown support for this model...contact the developper (Victek)"); %>)</i></b>');
 							</script>
 						</li>
 						<li><b><% translate("Default"); %></b> - <% translate("VLAN ID assigned to untagged frames received by the router"); %>.</li>

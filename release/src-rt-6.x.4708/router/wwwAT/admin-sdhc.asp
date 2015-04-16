@@ -115,7 +115,7 @@
 
 	<form id="_fom" method="post" action="tomato.cgi">
 
-		<input type="hidden" name="_nextpage" value="#admin-sdhc.asp">
+		<input type="hidden" name="_nextpage" value="/#admin-sdhc.asp">
 		<input type="hidden" name="_nextwait" value="10">
 		<input type="hidden" name="_service" value="mmc-restart">
 		<input type="hidden" name="_commit" value="1">

@@ -29,6 +29,10 @@ a:hover, a:active {
 }
 
 /* Buttons */
+.btn b {
+    color: #16a085 !important;
+}
+
 .btn.btn-primary {
 	color: #16a085 !important;
 	border-color: #16a085;
@@ -46,9 +50,27 @@ a:hover, a:active {
 	background: #16a085;
 }
 
+/* Tabs */
+ul.nav-tabs {
+	border: 1px solid #16a085;
+	background: rgba(22,160,133,0.5);
+}
+
+ul.nav-tabs li a {
+	color: #ddd;
+	border-right: 1px solid rgba(255,255,255,0.1);
+}
+
+ul.nav-tabs li a:hover,
+ul.nav-tabs li a:focus,
+ul.nav-tabs li a.active {
+	color: #fff;
+	background: #16a085;
+}
+/*
 ul.nav-tabs li a.active {
 	border-color: #16a085;
-}
+}*/
 
 /* Input */
 input:focus, select:focus, textarea:focus {
@@ -90,10 +112,6 @@ input[type=radio]:disabled + span:before {
 	color: #ddd;
 }
 
-select#refresh-time>option:active, select#expire-time>option:active {
-	background-color: #16a085;
-}
-
 /* Pure CSS preloader */
 .spinner {
 	border: solid 1px #16a085;
@@ -102,3 +120,4 @@ select#refresh-time>option:active, select#expire-time>option:active {
 
 /* Preloader */
 #nprogress .bar {background: #16a085;}
+

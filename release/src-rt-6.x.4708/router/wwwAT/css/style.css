@@ -29,30 +29,7 @@
 	font-weight: 500;
 	font-style: normal;
 }
-/*
-@font-face {
-	font-family: 'Open Sans';
-	src: url('fonts/OpenSans-Regular-webfont.eot');
-	src: url('fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
-		url('fonts/OpenSans-Regular-webfont.woff') format('woff'),
-		url('fonts/OpenSans-Regular-webfont.ttf') format('truetype'),
-		url('fonts/OpenSans-Regular-webfont.svg#open_sansregular') format('svg');
-	font-weight: normal;
-	font-style: normal;
 
-}
-
-@font-face {
-	font-family: 'Open Sans';
-	src: url('fonts/OpenSans-Semibold-webfont.eot');
-	src: url('fonts/OpenSans-Semibold-webfont.eot?#iefix') format('embedded-opentype'),
-		url('fonts/OpenSans-Semibold-webfont.woff') format('woff'),
-		url('fonts/OpenSans-Semibold-webfont.ttf') format('truetype'),
-		url('fonts/OpenSans-Semibold-webfont.svg#open_sansSemibold') format('svg');
-	font-weight: 500;
-	font-style: normal;
-}
-*/
 @font-face {
 	font-family: "advancedtomato";
 	src:url("fonts/advancedtomato.eot");
@@ -69,13 +46,12 @@
 html { font-size: 62.5%; }
 body {
 	font-size: 12px;
-	font-family: 'Neo Sans Cyr', 'Open Sans', 'Helvetica Neue', Helvetica, sans-serif;
+	font-family: "Neo Sans Cyr", Roboto, "Helvetica Neue", Helvetica, sans-serif;
 	color: #888888;
 	line-height: 1.42857;
-	background-color: #EEF0F4;
-	background: #EEF0F4 url(../img/linen_bg.png);
-	-webkit-font-smoothing: antialiased;
+	background: #efefef url(../img/linen_bg.png);
 	min-width: 960px;
+	-webkit-font-smoothing: antialiased;
 }
 
 /* Replace some general styles (b, h1-h6, etc...) */
@@ -98,7 +74,6 @@ h1, h2, h3, h4, h5 {
 	font-weight: 500;
 	line-height: 1.1;
 	color: inherit;
-	font-weight: 500;
 	color:#585858;
 }
 
@@ -268,13 +243,12 @@ small { font-size: 80%; }
 	width: 385px; /* buttons fit */
 	top: 50px;
 	right: 10px;
-	border: 1px solid #EEE;
 	border-radius: 3px;
 	-webkit-border-radius: 3px;
 	display: none;
 	z-index: 1;
-	box-shadow: 0 0 2px rgba(0,0,0,0.1);
-	-webkit-box-shadow: 0 0 2px rgba(0,0,0,0.1);
+	box-shadow: 0 1px 5px rgba(0,0,0,0.15);
+	-webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.15);
 }
 
 .system-ui:before, .system-ui:after {
@@ -293,7 +267,7 @@ small { font-size: 80%; }
 	top: -26px;
 	right: 31px;
 	border-width: 13px;
-	border-color: transparent transparent #EEE transparent;
+	border-color: transparent transparent #f2f2f2 transparent;
 	z-index: 11;
 }
 
@@ -518,7 +492,7 @@ small { font-size: 80%; }
 	text-align:left;
 	left:100%;
 	top:0;
-	font-weight:400;
+	font-weight:normal;
 	line-height:40px;
 	width:200px;
 	color:#FFF;
@@ -641,11 +615,11 @@ small { font-size: 80%; }
 
 .box .heading {
 	display: block;
-	font-size: 15px;
+	font-size: 12pt;
 	font-weight: 500;
-	line-height: 1;
+	line-height: normal;
 	color: #656565;
-	background-color: #FAFAFA;
+	background-color: #f9f9f9;
 	padding: 16px;
 	border-bottom: 1px solid #f0f0f0;
 	border-top-right-radius: 3px;
@@ -717,21 +691,37 @@ table {
 	margin: 0;
 }
 
+table th {
+	font-weight: 500;
+}
+
 /* Nice Lined Tables */
 table.line-table tr {
 	display: table-row;
-	border-bottom: 0;
+	border-bottom: 1px solid #f0f0f0;
 	transition: 100ms ease-out;
 	-webkit-transition: 100ms ease-out;
 }
 
 table.line-table .progress { margin: 1px 15px; }
 table.line-table tr:nth-child(even) {
-	background: #f7f7f7;
+	background: #fafafa;
 }
 
 table.line-table tr:hover {
 	background: #f0f0f0;
+}
+
+table.line-table tr:hover .progress {
+	background: #e0e0e0;
+}
+
+table.line-table tr.editor {
+	background: transparent !important;
+}
+
+table.line-table tr.controls {
+	background: #fafafa !important;
 }
 
 table.line-table tr:first-child,
@@ -742,7 +732,7 @@ table.line-table.static tr {
 table.line-table tr th {
 	display: table-cell;
 	padding: 8px;
-	font-weight: 700;
+	font-weight: 500;
 	text-align: left;
 }
 
@@ -1006,7 +996,7 @@ table .header {
 /* Other btn styles */
 .btn b { color: #0088cc !important; }
 .btn:hover b, .btn:focus b, .btn:active b { color: #fff !important; }
-button.btn { font-family: 'Neo Sans Cyr', 'Open Sans', sans-serif; vertical-align: middle; outline: 0; outline-style: none; }
+button.btn { height: 34px; font-family: "Neo Sans Cyr", Roboto, "Helvetica Neue", sans-serif; vertical-align: middle; outline: 0; outline-style: none; }
 button::-moz-focus-inner { border:0; padding:0; } /* FF button fix */
 .btn-small { font-size: 8pt; padding: 4px 10px !important; vertical-align: middle; }
 
@@ -1141,30 +1131,32 @@ a.close:hover { opacity: 1; }
 /* Tabs */
 ul.nav-tabs {
 	display: block;
-	height: 40px;
-	background: #3498DB;
+	height: 36px;
+/*	background: #3498DB; */
+	border: 1px solid #0088cc;
+	background: rgba(0,136,204,0.5);
 	list-style: none;
 	margin: 0 0 10px !important;
 	white-space:nowrap;
-	border-radius: 2px;
-	-webkit-border-radius: 2px;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
 	overflow: hidden;
 }
 
 ul.nav-tabs li {
 	display: inline-block;
 	float: left;
-	height: 40px;
-	line-height: 40px;
+	height: 36px;
+	line-height: 36px;
 	margin: 0 !important;
 }
 
 ul.nav-tabs li a {
 	display: inline-block;
 	padding: 0 15px;
-	height: 40px;
+	height: 36px;
 	font-weight: 500;
-	line-height: 40px;
+	line-height: 36px;
 	color: #BFDAEE;
 	text-shadow: 0 1px 0 rgba(0,0,0,0.2);
 	transition: all 100ms ease-out;
@@ -1178,7 +1170,8 @@ ul.nav-tabs li a:hover,
 ul.nav-tabs li a:focus,
 ul.nav-tabs li a.active {
 	color: #fff;
-	background: rgba(255,255,255,0.1);
+/*	background: rgba(255,255,255,0.1); */
+	background: #0088cc;
 }
 
 ul.nav-tabs li a i {
@@ -1547,7 +1540,7 @@ input[type=radio]:disabled + span:before {
 }
 
 .tomato-refresh .spinner { margin-right: 10px; vertical-align: middle; }
-.tomato-refresh select { padding: 7px 10px; width: 120px; vertical-align: middle; }
+.tomato-refresh select { padding: 7px 10px; width: 130px; vertical-align: middle; }
 
 #refresh-spinner {
 	vertical-align: middle;

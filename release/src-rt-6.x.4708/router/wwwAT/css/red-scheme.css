@@ -30,6 +30,10 @@ a:hover, a:active {
 }
 
 /* Buttons */
+.btn b {
+    color: #c0392b !important;
+}
+
 .btn.btn-primary {
 	color: #c0392b !important;
 	border-color: #c0392b;
@@ -48,9 +52,27 @@ a:hover, a:active {
 	background: #c0392b;
 }
 
+/* Tabs */
+ul.nav-tabs {
+	border: 1px solid #c0392b;
+	background: rgba(192,57,43,0.5);
+}
+
+ul.nav-tabs li a {
+  color: #ddd;
+	border-right: 1px solid rgba(255,255,255,0.1);
+}
+
+ul.nav-tabs li a:hover,
+ul.nav-tabs li a:focus,
+ul.nav-tabs li a.active {
+	color: #fff;
+	background: #c0392b;
+}
+/*
 ul.nav-tabs li a.active {
 	border-color: #c0392b;
-}
+}*/
 
 /* Input */
 input:focus, select:focus, textarea:focus {
@@ -100,3 +122,4 @@ input[type=radio]:disabled + span:before {
 
 /* Preloader */
 #nprogress .bar {background: #c0392b;}
+

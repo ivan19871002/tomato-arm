@@ -127,7 +127,7 @@ float get_temps(char *cputemp, char *wl0temp, char *wl1temp)
 	char title[128], value[512];
 	int okcount=0;
 
-	system("/usr/sbin/sysinfo-helper");
+//	system("/usr/sbin/sysinfo-helper"); // don't do it twice, get_cpuinfo is enough
 	fd = fopen ("/tmp/sysinfo-helper", "r");
 	while (fgets(buff, sizeof(buff), fd)) {
 		next = buff;

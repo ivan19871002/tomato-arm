@@ -75,8 +75,8 @@ No part of this file may be used without permission.
 
 			.btn:hover {
 				color: #fff !important;
-				background: #0088cc;
-				border: 1px solid #0088cc;
+				background: #555;
+				border: 1px solid #555;
 			}
 
 			.btn:active, .btn:focus {

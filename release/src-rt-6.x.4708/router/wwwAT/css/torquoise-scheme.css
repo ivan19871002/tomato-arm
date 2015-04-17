@@ -78,9 +78,11 @@ ul.nav-tabs li a.active {
 input:focus, select:focus, textarea:focus {
 	border-color: #16a085;
 }
-
 input:hover, select:hover, textarea:hover {
 	border-color: #16a085;
+}
+input:disabled, select:disabled, textarea:disabled {
+	border-color: #ddd;	
 }
 
 .customfile-hover .customfile-text {

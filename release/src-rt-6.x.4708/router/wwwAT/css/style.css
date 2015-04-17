@@ -1339,7 +1339,9 @@ textarea {
 .c-checkbox input,
 .c-radio input {
 	opacity: 0;
-	height: auto !important;
+	width: 20px;
+	height: 20px;
+/*	height: auto !important; */
 	position: absolute;
 	margin-left: 0 !important;
 }

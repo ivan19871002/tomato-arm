@@ -84,6 +84,9 @@ input:focus, select:focus, textarea:focus {
 input:hover, select:hover, textarea:hover {
 	border-color: #27ae60;
 }
+input:disabled, select:disabled, textarea:disabled {
+	border-color: #ddd;	
+}
 
 .customfile-hover .customfile-text {
 	border-color: #27ae60;

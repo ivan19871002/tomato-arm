@@ -1152,8 +1152,10 @@ void hotplug_usb(void)
 #ifdef LINUX26
 		if (strncmp(interface ? : "", "7/", 2) == 0)	/* printer */
 			usbled_proc(device, add);
-		if (strncmp(interface ? : "", "3/", 2) == 0)	/* usb audio (3/0/0 & 1/2/0) */
-			usbled_proc(device, add);
+
+		if (strncmp(interface ? : "", "1/", 2) == 0)	/* usb audio */
+			usbled_proc(device, add);		/* Creative: 1/1/0, 1/2/0, 1/2/0 */
+								/* Muse DAC: 1/1/0, 1/2/0, 3/0/0 */
 #endif
 		/* Do nothing.  The user's hotplug script must do it all. */
 		run_nvscript("script_usbhotplug", NULL, 2);

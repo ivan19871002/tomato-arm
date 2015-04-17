@@ -245,6 +245,28 @@ void start_usb(void)
 		start_ups();
 #endif
 
+#ifdef TCONFIG_USB_AUDIO
+		if (nvram_get_int("usb_audio") == 1) {
+			/* insert audio modules if present */
+			modprobe("soundcore.ko");
+			modprobe("snd.ko");
+			modprobe("snd-timer.ko");
+			modprobe("snd-page-alloc.ko");
+			modprobe("snd-hwdep.ko");
+			modprobe("snd-pcm.ko");
+			modprobe("snd-seq-device.ko");
+			modprobe("snd-seq.ko");
+			modprobe("snd-seq-dummy.ko");
+			modprobe("snd-seq-midi-event.ko");
+			modprobe("snd-rawmidi.ko");
+			modprobe("snd-seq-midi.ko");
+			modprobe("snd-mixer-oss.ko");
+			modprobe("snd-pcm-oss.ko");
+			modprobe("snd-usbmidi-lib.ko");
+			modprobe("snd-usb-audio.ko");
+		}
+#endif
+
 #ifdef TCONFIG_USBAP
 			//enable eth2 after detect new iface by wl_high module
 			sleep(5);
@@ -264,6 +286,28 @@ void start_usb(void)
 void stop_usb(void)
 {
 	int disabled = !nvram_get_int("usb_enable");
+
+#ifdef TCONFIG_USB_AUDIO
+	if (disabled || nvram_get_int("usb_audio") != 1) {
+		/* remove audio modules */
+		modprobe_r("snd-usb-audio.ko");
+		modprobe_r("snd-usbmidi-lib.ko");
+		modprobe_r("snd-pcm-oss.ko");
+		modprobe_r("snd-mixer-oss.ko");
+		modprobe_r("snd-seq-midi.ko");
+		modprobe_r("snd-rawmidi.ko");
+		modprobe_r("snd-seq-midi-event.ko");
+		modprobe_r("snd-seq-dummy.ko");
+		modprobe_r("snd-seq.ko");
+		modprobe_r("snd-seq-device.ko");
+		modprobe_r("snd-pcm.ko");
+		modprobe_r("snd-hwdep.ko");
+		modprobe_r("snd-page-alloc.ko");
+		modprobe_r("snd-timer.ko");
+		modprobe_r("snd.ko");
+		modprobe_r("soundcore.ko");
+	}
+#endif
 
 #ifdef TCONFIG_UPS
 		stop_ups();

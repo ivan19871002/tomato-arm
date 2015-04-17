@@ -8,7 +8,7 @@ No part of this file may be used without permission.
 <content>
 	<style>textarea { width: 100%; height: 63px; }</style>
 	<script type="text/javascript">
-		//    <% nvram("at_update,tomatoanon_answer,usb_enable,usb_uhci,usb_ohci,usb_usb2,usb_mmc,usb_storage,usb_printer,usb_printer_bidirect,usb_automount,usb_fs_ext3,usb_fs_fat,usb_fs_ntfs,usb_fs_hfs,script_usbmount,script_usbumount,script_usbhotplug,idle_enable,usb_3g"); %>
+		//    <% nvram("at_update,tomatoanon_answer,usb_enable,usb_uhci,usb_ohci,usb_usb2,usb_mmc,usb_storage,usb_printer,usb_printer_bidirect,usb_audio,usb_automount,usb_fs_ext3,usb_fs_fat,usb_fs_ntfs,usb_fs_hfs,script_usbmount,script_usbumount,script_usbhotplug,idle_enable,usb_3g"); %>
 		//    <% usbdevices(); %>
 
 		list = [];
@@ -192,6 +192,7 @@ No part of this file may be used without permission.
 			E('_f_ohci').disabled = b || nvram.usb_ohci == -1;
 			E('_f_usb2').disabled = b;
 			E('_f_print').disabled = b;
+			E('_f_audio').disabled = b;
 			E('_f_storage').disabled = b;
 
 			E('_f_ext3').disabled = b || a;
@@ -232,6 +233,7 @@ No part of this file may be used without permission.
 			fom.usb_usb2.value = E('_f_usb2').checked ? 1 : 0;
 			fom.usb_storage.value = E('_f_storage').checked ? 1 : 0;
 			fom.usb_printer.value = E('_f_print').checked ? 1 : 0;
+			fom.usb_audio.value = E('_f_audio').checked ? 1 : 0;
 			fom.usb_printer_bidirect.value = E('_f_bprint').checked ? 1 : 0;
 			fom.usb_fs_ext3.value = E('_f_ext3').checked ? 1 : 0;
 			fom.usb_fs_fat.value = E('_f_fat').checked ? 1 : 0;
@@ -266,6 +268,7 @@ No part of this file may be used without permission.
 		<input type="hidden" name="usb_usb2">
 		<input type="hidden" name="usb_storage">
 		<input type="hidden" name="usb_printer">
+		<input type="hidden" name="usb_audio">
 		<input type="hidden" name="usb_printer_bidirect">
 		<input type="hidden" name="usb_fs_ext3">
 		<input type="hidden" name="usb_fs_fat">
@@ -298,6 +301,7 @@ No part of this file may be used without permission.
 						{ title: '<% translate("USB Printer Support"); %>', name: 'f_print', type: 'checkbox', value: nvram.usb_printer == 1 },
 						{ title: '<% translate("Bidirectional copying"); %>', indent: 2, name: 'f_bprint', type: 'checkbox', value: nvram.usb_printer_bidirect == 1 },
 						null,
+						{ title: '<% translate("USB Audio Support"); %>', name: 'f_audio', type: 'checkbox', value: nvram.usb_audio == 1 },
 						{ title: '<% translate("USB Storage Support"); %>', name: 'f_storage', type: 'checkbox', value: nvram.usb_storage == 1 },
 						{ title: '<% translate("File Systems Support"); %>', indent: 2, multi: [
 							{ suffix: '&nbsp; Ext2 / Ext3 &nbsp;&nbsp;&nbsp;', name: 'f_ext3', type: 'checkbox', value: nvram.usb_fs_ext3 == 1 },

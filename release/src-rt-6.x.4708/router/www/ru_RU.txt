@@ -2149,6 +2149,7 @@ Upgrade forbidden=Обновление запрещено
 Upload (bytes/s)=UL (байт/с)
 UPnP / NAT-PMP Forwarding=Порты UPnP / NAT-PMP
 UPnP / NAT-PMP Port Forwarding=Порты UPnP / NAT-PMP
+USB Audio Support=Поддержка USB-аудио
 USB & NAS=USB и NAS
 Use .incomplete/=Использ. директорию .incomplete
 Use the command &quot;nvram show&quot; or &quot;nvram show | grep qos&quot; to cut and paste configuration=Вы можете использовать команду &quot;nvram show&quot; или &quot;nvram show | grep qos&quot; etc. для копирования настроек nvram

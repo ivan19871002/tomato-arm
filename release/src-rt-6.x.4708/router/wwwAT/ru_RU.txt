@@ -1560,6 +1560,7 @@ USB 1.1 Support=USB 1.1
 USB 2.0 Support=USB 2.0
 USB 3G Modem support=Поддержка USB 3G-модемов
 USB and NAS=USB и NAS
+USB Audio Support=Поддержка USB-аудио
 USB & NAS=USB и NAS
 USB Printer Support=USB принтер
 USB Storage Support=Поддержка дисков

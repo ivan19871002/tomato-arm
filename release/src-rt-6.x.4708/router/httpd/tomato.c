@@ -1125,6 +1125,9 @@ static const nvset_t nvset_list[] = {
 #endif
 	{ "usb_irq_thresh",		V_RANGE(0, 6)			},
 	{ "usb_storage",		V_01				},
+#ifdef TCONFIG_USB_AUDIO
+	{ "usb_audio",			V_01				},	// for audio modules
+#endif
 	{ "usb_printer",		V_01				},
 	{ "usb_printer_bidirect",	V_01				},
 	{ "usb_fs_ext3",		V_01				},
@@ -1134,7 +1137,7 @@ static const nvset_t nvset_list[] = {
 	{ "usb_fs_ntfs",		V_01				},
 #endif
 #ifdef TCONFIG_HFS
-	{ "usb_fs_hfs",			V_01				}, //!Victek
+	{ "usb_fs_hfs",			V_01				},	//!Victek
 #endif
 	{ "usb_automount",		V_01				},
 	{ "script_usbhotplug", 		V_TEXT(0, 2048)			},

@@ -351,6 +351,12 @@ ifeq ($(TCONFIG_BCMWL6), y)
 include ../../$(SRCBASE)/makefiles/WLAN_Common.mk
 endif
 
+ifeq ($(TCONFIG_USB_AUDIO),y)
+export TCONFIG_USB_AUDIO := y
+else
+TCONFIG_USB_AUDIO :=
+endif
+
 #
 # Basic rules
 #

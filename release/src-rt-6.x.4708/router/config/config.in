@@ -250,3 +250,8 @@ config TCONFIG_DNSSEC
 config TCONFIG_TINC
 	bool "TINC"
 	default n
+
+config TCONFIG_USB_AUDIO
+	bool "USB AUDIO Support"
+	default n
+

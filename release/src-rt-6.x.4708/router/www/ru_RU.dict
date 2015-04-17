@@ -790,6 +790,7 @@ USB 1.1 Support=USB 1.1
 USB Printer Support=USB принтер
 Bidirectional copying=Копирование в обоих направл.
 USB Storage Support=Поддержка дисков
+USB Audio Support=Поддержка USB-аудио
 File Systems Support=Файловые системы
 SD/MMC Card Support=Поддержка SD/MMC
 Automount=Авто-монтирование

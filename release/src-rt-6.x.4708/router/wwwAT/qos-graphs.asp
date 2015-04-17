@@ -200,7 +200,7 @@ No part of this file may be used without permission.
 				<div id="svg-1" class="embedGraph"></div>
 
 				<table id="secondTable">
-					<tr><td class="color" style="height:19px; margin-right: 5px;"></td><td class="title">&nbsp;</td><td class="thead count">kbit/s</td><td class="thead count">KB/s</td><td class="thead pct">Rate</td></tr>
+					<tr><td class="color" style="width: 13px; height: 19px;"></td><td class="title">&nbsp;</td><td class="thead count">kbit/s</td><td class="thead count">KB/s</td><td class="thead pct">Rate</td></tr>
 					<tr><td>&nbsp;</td><td class="total"><% translate("Total"); %></td><td id="bcnt-total" class="total count"></td><td id="bcntx-total" class="total count"></td><td id="rateout" class="total pct"></td></tr>
 				</table>
 

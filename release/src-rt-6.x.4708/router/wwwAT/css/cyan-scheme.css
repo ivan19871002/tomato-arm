@@ -1,6 +1,9 @@
 .top-header .logo {
 /*	background: #3bb; */
 }
+.top-header .logo.collapsed a svg {
+	fill: #6cc;
+}
 
 .top-header > .links > ul > li > a:hover,
 .top-header > .links > ul > li a.active {

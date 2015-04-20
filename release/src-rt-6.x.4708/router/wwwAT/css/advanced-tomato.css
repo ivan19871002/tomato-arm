@@ -447,6 +447,9 @@ small { font-size: 80%; }
 .top-header .logo.collapsed a svg {
 	margin:15px 0 0;
 	display: inline-block;
+	width: 32px;
+	height: 32px;
+	fill: #fff; /* logo fill color */
 }
 
 .navigation.collapsed {

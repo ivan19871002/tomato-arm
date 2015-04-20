@@ -180,7 +180,8 @@ small { font-size: 80%; }
 	display: inline-block;
 	height: 100%;
 	margin-left: 10px;
-	line-height: 60px;
+/*	line-height: 60px; */
+	line-height: 65px; /* vertical middle centered */
 }
 
 .top-header .left-container a {
@@ -446,7 +447,6 @@ small { font-size: 80%; }
 /* Collapse Logo/Navigation and extend content */
 .top-header .logo.collapsed {
 	width:60px;
-/*	background: url('/img/huawei.svg') 60px center no-repeat; */
 }
 
 .top-header .logo.collapsed a svg {
@@ -455,6 +455,7 @@ small { font-size: 80%; }
 	display: inline-block;
 	width: 50px;
 	height: 50px;
+	fill: #fff; /* logo fill color */
 }
 
 .navigation.collapsed {
@@ -1472,7 +1473,7 @@ input[type=radio]:disabled + span {
 .customfile-text  {
 	display: block;
 	font-size: 9pt;
-	line-height: 13pt; /* vert. center text */
+	line-height: 12pt; /* vert. center text */
 	height: 34px; /* align with buttons */
 	float: left;
 	overflow: hidden;
@@ -1499,7 +1500,7 @@ input[type=radio]:disabled + span {
 	-webkit-border-top-left-radius: 0;
 	-webkit-border-bottom-left-radius: 0;
 	height: 34px; /* align with customfile */
-	line-height: 13pt; /* vert. center text */
+	line-height: 12pt; /* vert. center text */
 }
 
 .customfile-hover .customfile-text {

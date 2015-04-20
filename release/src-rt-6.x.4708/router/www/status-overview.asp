@@ -375,6 +375,7 @@ createFieldTable('', [
 	{ title: '<% translate("Time"); %>', rid: 'time', text: stats.time },
 	{ title: '<% translate("Uptime"); %>', rid: 'uptime', text: stats.uptime },
 	{ title: '<% translate("CPU Usage"); %>', rid: 'cpupercent', text: stats.cpupercent },
+	{ title: '<% translate("Temperature"); %> <small>(CPU / WL0 / WL1)</small>', rid: 'temps', text: stats.cputemp + ' / ' + stats.wl0temp + ' / ' + stats.wl1temp +'C'},
 	{ title: '<% translate("CPU Load"); %> <small>(1 / 5 / 15 <% translate("mins"); %>)</small>', rid: 'cpu', text: stats.cpuload },
 	{ title: '<% translate("Total / Free Memory"); %>', rid: 'memory', text: stats.memory },
 	{ title: '<% translate("Total / Free Swap"); %>', rid: 'swap', text: stats.swap, hidden: (stats.swap == '') },

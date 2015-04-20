@@ -455,7 +455,7 @@ small { font-size: 80%; }
 	display: inline-block;
 	width: 50px;
 	height: 50px;
-	fill: #fff; /* logo fill color */
+	fill: #EEF0F4; /* logo fill color */
 }
 
 .navigation.collapsed {
@@ -853,7 +853,7 @@ table .header {
 /*
 	line-height: normal;
 */
-	line-height: 12pt;
+	line-height: 18px;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
@@ -1246,7 +1246,7 @@ input, select, textarea {
 /*
 	line-height: normal;
 */
-	line-height: 12pt;
+	line-height: 18px;
 	font-size: 9pt;
 	font-family: inherit;
 	border: 1px solid #ccc;
@@ -1473,7 +1473,7 @@ input[type=radio]:disabled + span {
 .customfile-text  {
 	display: block;
 	font-size: 9pt;
-	line-height: 12pt; /* vert. center text */
+	line-height: 18px; /* vert. center text */
 	height: 34px; /* align with buttons */
 	float: left;
 	overflow: hidden;
@@ -1500,7 +1500,7 @@ input[type=radio]:disabled + span {
 	-webkit-border-top-left-radius: 0;
 	-webkit-border-bottom-left-radius: 0;
 	height: 34px; /* align with customfile */
-	line-height: 12pt; /* vert. center text */
+	line-height: 18px; /* vert. center text */
 }
 
 .customfile-hover .customfile-text {

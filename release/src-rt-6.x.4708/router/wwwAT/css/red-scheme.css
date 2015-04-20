@@ -9,11 +9,11 @@
 
 /* Hover & Active States */
 .navigation li ul li.active a:after { background-color: #c0392b; }
-
+/*
 .navigation .active > a > i,
 .navigation > ul > li > a:hover > i {
 	color: #c0392b;
-}
+}*/
 .navigation li ul li a:hover {
 	color: #fff;
 	background: rgba(192,57,43,0.1);

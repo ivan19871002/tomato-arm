@@ -9,6 +9,6 @@ cd $SRC
 echo " ---- Update sources from GIT ---- "
 # git pull
 EXTENDNO=`git rev-parse --verify HEAD --short`
-make V1=GIT V2=$EXTENDNO ws880z
+make V1=git- V2=$EXTENDNO ws880z
 #make V1=$EXTENDNO ws880e
 

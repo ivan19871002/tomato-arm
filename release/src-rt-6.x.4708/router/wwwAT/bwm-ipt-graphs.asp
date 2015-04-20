@@ -290,7 +290,7 @@ LAN Access admin module by Augusto Bott
 
 	<div class="fluid-grid x3">
 		<div class="box graphs">
-			<div class="heading"><% translate("Connections Distribution"); %> (TCP/UDP)</div>
+			<div class="heading"><% translate("Connections Distribution"); %></div>
 			<div class="content">
 				<div id="svg-0"></div>
 				<table id="firstTable">

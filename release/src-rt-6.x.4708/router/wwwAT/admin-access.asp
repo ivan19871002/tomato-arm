@@ -242,7 +242,7 @@ No part of this file may be used without permission.
 							['css/green-scheme','<% translate("Green Color Scheme"); %>'],
 							['css/torquoise-scheme','<% translate("Torquoise Color Scheme"); %>'],
 							['css/cyan-scheme','<% translate("Cyan Color Scheme"); %>'],
-							['css/advanced-tomato','<% translate("AT 2.7"); %>'],
+							['css/advanced-tomato','<% translate("AT 2.7"); %>']], value: nvram.web_css },
 //							['ext/custom','<% translate("Custom"); %> (ext/custom.css)'],
 //							['online', 'On-line from ATTD']], value: nvram.web_css },
 						{ title: '<% translate("Default Navigation State"); %>', name: 'at_navi', type: 'select', help: '<% translate("You can always toggle navigation style by clicking an icon right to logo, but doing so won`t change default state"); %>.',

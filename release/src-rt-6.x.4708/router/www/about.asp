@@ -146,6 +146,9 @@ function init()
 <!-- TOR-BEGIN -->
 - <% translate("TOR Project integration and GUI"); %><br>
 <!-- TOR-END -->
+<!-- OPENVPN-BEGIN -->
+- OpenVPN: Routing Policy
+<!-- OPENVPN-END -->
 - <% translate("TomatoAnon project integration and GUI"); %><br>
 - <% translate("TomatoThemeBase project integration and GUI"); %><br>
 - <% translate("Ethernet Ports State"); %><br>

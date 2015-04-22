@@ -705,7 +705,14 @@ struct nvram_tuple router_defaults[] = {
 	{ "usb_fs_fat",			"1"				, 0 },
 #ifdef TCONFIG_NTFS
 	{ "usb_fs_ntfs",		"1"				, 0 },
+#ifdef TCONFIG_TUXERA
+	{ "usb_ntfs_driver",		"tuxera"			, 0 },
+#elif TCONFIG_UFSD
+	{ "usb_ntfs_driver",		"paragon"			, 0 },
+#else
+	{ "usb_ntfs_driver",		"ntfs3g"			, 0 },
 #endif
+#endif //TCONFIG_NTFS
 #ifdef TCONFIG_HFS
 	{ "usb_fs_hfs",			"0"				, 0 }, //!Victek
 #endif
@@ -854,6 +861,8 @@ struct nvram_tuple router_defaults[] = {
 	{ "vpn_server1_key",      ""              , 0 },
 	{ "vpn_server1_dh",       ""              , 0 },
 	{ "vpn_server1_br",       "br0"           , 0 },
+	{ "vpn_server1_route"     "0"             , 0 },
+	{ "vpn_server1_routing_val", ""           , 0 },
 	{ "vpn_server2_poll",     "0"             , 0 },
 	{ "vpn_server2_if",       "tun"           , 0 },
 	{ "vpn_server2_proto",    "udp"           , 0 },
@@ -885,6 +894,8 @@ struct nvram_tuple router_defaults[] = {
 	{ "vpn_server2_key",      ""              , 0 },
 	{ "vpn_server2_dh",       ""              , 0 },
 	{ "vpn_server2_br",       "br0"           , 0 },
+	{ "vpn_server2_route"     "0"             , 0 },
+	{ "vpn_server2_routing_val", ""           , 0 },
 	{ "vpn_client_eas",       ""              , 0 },
 	{ "vpn_client1_poll",     "0"             , 0 },
 	{ "vpn_client1_if",       "tun"           , 0 },
@@ -913,6 +924,9 @@ struct nvram_tuple router_defaults[] = {
 	{ "vpn_client1_crt",      ""              , 0 },
 	{ "vpn_client1_key",      ""              , 0 },
 	{ "vpn_client1_br",       "br0"           , 0 },
+	{ "vpn_client1_nopull",   "0"             , 0 },
+	{ "vpn_client1_route",    "0"             , 0 },
+	{ "vpn_client1_routing_val", ""           , 0 },
 	{ "vpn_client2_poll",     "0"             , 0 },
 	{ "vpn_client2_if",       "tun"           , 0 },
 	{ "vpn_client2_bridge",   "1"             , 0 },
@@ -940,6 +954,9 @@ struct nvram_tuple router_defaults[] = {
 	{ "vpn_client2_crt",      ""              , 0 },
 	{ "vpn_client2_key",      ""              , 0 },
 	{ "vpn_client2_br",       "br0"           , 0 },
+	{ "vpn_client2_nopull",   "0"             , 0 },
+	{ "vpn_client2_route",    "0"             , 0 },
+	{ "vpn_client2_routing_val", ""           , 0 },
 #endif	// vpn
 #ifdef TCONFIG_PPTPD
 	{ "pptp_client_enable",   "0"             , 0 },

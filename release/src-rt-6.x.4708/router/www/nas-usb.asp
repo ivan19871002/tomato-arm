@@ -47,7 +47,7 @@ textarea {
 
 <script type='text/javascript'>
 
-//	<% nvram("usb_enable,usb_uhci,usb_ohci,usb_usb2,usb_usb3,usb_mmc,usb_storage,usb_printer,usb_printer_bidirect,usb_automount,usb_fs_ext3,usb_fs_ext4,usb_fs_fat,usb_fs_ntfs,usb_ntfs_driver,usb_fs_hfs,script_usbmount,script_usbumount,script_usbhotplug,idle_enable,usb_3g"); %>
+//	<% nvram("usb_enable,usb_uhci,usb_ohci,usb_usb2,usb_usb3,usb_mmc,usb_storage,usb_printer,usb_printer_bidirect,usb_automount,usb_fs_ext3,usb_fs_ext4,usb_fs_fat,usb_fs_ntfs,usb_ntfs_driver,usb_fs_hfs,usb_hfs_driver,script_usbmount,script_usbumount,script_usbhotplug,idle_enable,usb_3g"); %>
 //	<% usbdevices(); %>
 
 list = [];
@@ -285,6 +285,7 @@ function verifyFields(focused, quiet)
 /* NTFS-END */
 /* HFS-BEGIN */
 	E('_f_hfs').disabled = b || a; //!Victek
+	E('_usb_hfs_driver').disabled = b || a;
 /* HFS-END */
 	E('_f_automount').disabled = b || a;
 	E('_f_bprint').disabled = b || !E('_f_print').checked;
@@ -426,6 +427,17 @@ createFieldTable('', [
 /* PARAGON-END */
 		], value: nvram.usb_ntfs_driver },
 /* NTFS-END */
+/* HFS-BEGIN */
+	{ title: 'HFS/HFS+ Driver', indent: 2, name: 'usb_hfs_driver', type: 'select', options: [
+			['kernel','Open HFS/HFS+ driver'],
+/* TUXERA-BEGIN */
+			['tuxera','Tuxera driver'],
+/* TUXERA-END */
+/* PARAGON-BEGIN */
+			['paragon','Paragon driver'],
+/* PARAGON-END */
+		], value: nvram.usb_hfs_driver },
+/* HFS-END */
 /* LINUX26-BEGIN */
 /* MICROSD-BEGIN */
 		{ title: '<% translate("SD/MMC Card Support"); %>', indent: 2, name: 'f_mmc', type: 'checkbox', value: nvram.usb_mmc == 1 },

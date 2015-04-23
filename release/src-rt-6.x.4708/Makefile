@@ -339,6 +339,10 @@ define RouterOptions
 			sed -i "/TCONFIG_TUXERA/d" $(1); \
 			echo "TCONFIG_TUXERA=y" >>$(1); \
 		fi; \
+		if [ "$(TUXERA_HFS)" = "y" ]; then \
+			sed -i "/TCONFIG_TUXERA_HFS/d" $(1); \
+			echo "TCONFIG_TUXERA_HFS=y" >>$(1); \
+		fi; \
 		if [ "$(MEDIASRV)" = "y" ]; then \
 			sed -i "/TCONFIG_MEDIA_SERVER/d" $(1); \
 			echo "TCONFIG_MEDIA_SERVER=y" >>$(1); \
@@ -854,6 +858,10 @@ define KernelConfig
         else \
                 echo "# CONFIG_NVRAM_64K is not set" >>$(1); \
 	fi; \
+	if [ "$(HFS)" = "y" ]; then \
+		sed -i "s/# CONFIG_HFS_FS is not set/CONFIG_HFS_FS=m/g" $(1); \
+		sed -i "s/# CONFIG_HFSPLUS_FS is not set/CONFIG_HFSPLUS_FS=m/g" $(1); \
+	fi; \
 	sed -i "/CONFIG_FAILSAFE_UPGRADE/d" $(1); \
 	if [ "$(FAILSAFE_UPGRADE)" = "y" ]; then \
 		echo "CONFIG_FAILSAFE_UPGRADE=y" >>$(1); \
@@ -925,10 +933,10 @@ r6300v2init:
 	@$(MAKE) bin ARM=y NVRAM_64K=y NAND=y BCMSMP=y B=E IPV6SUPP=y OPENVPN=y BUILD_DESC="initial" NETGEAR_CHK="R6300v2" BOARDID_FILE="compatible_r6300v2.txt" FW_CFG_FILE="ambitCfg-r6300v2.h"
 
 ws880e:
-	@$(MAKE) e ARM=y NVRAM_64K=y NAND=y BCMSMP=y ASUS_TRX="HUAWEI" TUXERA=y USB_AUDIO=y
+	@$(MAKE) e ARM=y NVRAM_64K=y NAND=y BCMSMP=y ASUS_TRX="HUAWEI" HFS=y TUXERA=y TUXERA_HFS=y USB_AUDIO=y
 
 ws880z:
-	@$(MAKE) z ARM=y NVRAM_64K=y NAND=y BCMSMP=y ASUS_TRX="HUAWEI" TUXERA=y USB_AUDIO=y
+	@$(MAKE) z ARM=y NVRAM_64K=y NAND=y BCMSMP=y ASUS_TRX="HUAWEI" HFS=y TUXERA=y TUXERA_HFS=y USB_AUDIO=y
 
 ea6700e:
 	@$(MAKE) e ARM=y NVRAM_64K=y NAND=y BCMSMP=y ASUS_TRX="LINKSYS" FAILSAFE_UPGRADE=n

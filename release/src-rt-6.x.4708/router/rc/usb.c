@@ -189,9 +189,15 @@ void start_usb(void)
 #endif
 
 #ifdef TCONFIG_HFS
-			if (nvram_get_int("usb_fs_hfs")) {
+			if (nvram_get_int("usb_fs_hfs") && nvram_match("usb_hfs_driver", "kernel")) {
 				modprobe("hfs");
 				modprobe("hfsplus");
+			}
+#endif
+
+#if defined(TCONFIG_TUXERA_HFS)
+			if (nvram_get_int("usb_fs_hfs") && nvram_match("usb_hfs_driver", "tuxera")) {
+				modprobe("thfsplus");
 			}
 #endif
 
@@ -351,6 +357,9 @@ void stop_usb(void)
 #ifdef TCONFIG_HFS
 		modprobe_r("hfs");
 		modprobe_r("hfsplus");
+#endif
+#if defined(TCONFIG_TUXERA_HFS)
+		modprobe_r("thfsplus");
 #endif
 		sleep(1);
 
@@ -550,13 +559,35 @@ int mount_r(char *mnt_dev, char *mnt_dir, char *type)
 
 #ifdef TCONFIG_HFS
 			if (ret != 0 && strncmp(type, "hfs", "") == 0) {
-				ret = eval("mount", "-o", "noatime,nodev", "-o", "force", mnt_dev, mnt_dir);
+				sprintf(options + strlen(options), ",noatime,nodev" + (options[0] ? 0 : 1));
+				if (nvram_get_int("usb_fs_hfs")) {
+					/* options for kernel hfs/hfs+ (force rw) */
+					if( nvram_match( "usb_hfs_driver", "kernel" )) {
+						ret = eval("mount", "-o", options, "-o", "force", mnt_dev, mnt_dir);
+					}
+#ifdef TCONFIG_TUXERA_HFS
+					else if( nvram_match( "usb_hfs_driver", "tuxera" )) {
+						ret = eval("mount", "-t", "thfs", "-o", options, mnt_dev, mnt_dir);
+					}
+#endif
+				}
 			}
 
 			if (ret != 0 && strncmp(type, "hfsplus", "") == 0) {
-				ret = eval("mount", "-o", "noatime,nodev", "-o", "force", mnt_dev, mnt_dir);
-			}
+				sprintf(options + strlen(options), ",noatime,nodev" + (options[0] ? 0 : 1));
+				if (nvram_get_int("usb_fs_hfs")) {
+					/* options for kernel hfs/hfs+ (force rw) */
+					if( nvram_match( "usb_hfs_driver", "kernel" )) {
+						ret = eval("mount", "-o", options, "-o", "force", mnt_dev, mnt_dir);
+					}
+#ifdef TCONFIG_TUXERA_HFS
+					else if( nvram_match( "usb_hfs_driver", "tuxera" )) {
+						ret = eval("mount", "-t", "thfsplus", "-o", options, mnt_dev, mnt_dir);
+					}
 #endif
+				}
+			}
+#endif // ifdef TCONFIG_HFS
 
 			if (ret != 0) /* give it another try - guess fs */
 				ret = eval("mount", "-o", "noatime,nodev", mnt_dev, mnt_dir);

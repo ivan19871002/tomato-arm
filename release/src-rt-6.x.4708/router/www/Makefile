@@ -237,7 +237,7 @@ endif
 		sed -e "s,bwm-hist.js,bwm-hist.asp," $$F > $$F.tmp; \
 	mv $$F.tmp $$F; \
 	done
-
+# translated jsx
 	cd $(INSTALLDIR)/www && \
 	for F in $(wildcard *.asp); do \
 		sed -e "s,status-data.jsx,status-data.asp," $$F > $$F.tmp; \

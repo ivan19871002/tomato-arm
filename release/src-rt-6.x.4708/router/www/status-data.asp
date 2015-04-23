@@ -31,6 +31,9 @@ do {
 	}
 	stats.flashsize = sysinfo.flashsize+'MB';
 	stats.cpumhz = sysinfo.cpuclk+'-core)';
+	stats.cputemp = sysinfo.cputemp+'°';
+	stats.wl0temp = sysinfo.wl0temp+'°';
+	stats.wl1temp = sysinfo.wl1temp+'°';
 	stats.systemtype = sysinfo.systemtype;
 	stats.cpuload = ((sysinfo.loads[0] / 65536.0).toFixed(2) + '<small> / </small> ' +
 		(sysinfo.loads[1] / 65536.0).toFixed(2) + '<small> / </small>' +
@@ -51,6 +54,7 @@ do {
 	lastjiffiesidle = jiffylist[3];
 
 	stats.cpupercent = lastjiffiesusage.toFixed(2) + '%';
+	stats.wlsense = sysinfo.wlsense;
 
 	a = sysinfo.totalram;
 	b = sysinfo.totalfreeram;

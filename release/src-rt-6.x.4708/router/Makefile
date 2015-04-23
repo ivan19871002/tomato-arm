@@ -624,8 +624,11 @@ endif
 	@rm -rf $(TARGETDIR)/lib/modules/*/kernel/drivers/net/usb || true
 	@mv $(TARGETDIR)/lib/modules/*/kernel/drivers/media/* $(PLATFORMDIR)/extras/ || true
 	@rm -rf $(TARGETDIR)/lib/modules/*/kernel/drivers/media || true
-	@cp -f $(TARGETDIR)/lib/modules/*/kernel/drivers/sound/* $(PLATFORMDIR)/extras/ || true
-	@cp -f $(TARGETDIR)/lib/modules/*/kernel/sound/* $(PLATFORMDIR)/extras/ || true
+	@mv $(TARGETDIR)/lib/modules/*/kernel/sound/drivers/* $(PLATFORMDIR)/extras/ || true
+	@rm -rf $(TARGETDIR)/lib/modules/*/kernel/sound/drivers || true
+	@mv $(TARGETDIR)/lib/modules/*/kernel/drivers/sound/* $(PLATFORMDIR)/extras/ || true
+	@rm -rf $(TARGETDIR)/lib/modules/*/kernel/drivers/sound || true
+	$(if $(TCONFIG_USB_AUDIO),@cp -f,@mv) $(TARGETDIR)/lib/modules/*/kernel/sound/* $(PLATFORMDIR)/extras/ || true
 	@mv $(TARGETDIR)/lib/modules/*/kernel/drivers/input/* $(PLATFORMDIR)/extras/ || true
 	@rm -rf $(TARGETDIR)/lib/modules/*/kernel/drivers/input || true
 	$(if $(TCONFIG_UPS),@cp -f,@mv) $(TARGETDIR)/lib/modules/*/kernel/drivers/hid/* $(PLATFORMDIR)/extras/ || true
@@ -791,7 +794,7 @@ kmconf:
 	@$(MAKE) -C $(LINUXDIR) menuconfig
 
 koldconf:
-	@$(MAKE) -C $(LINUXDIR) oldconfig
+	@yes "" | $(MAKE) -C $(LINUXDIR) oldconfig
 	@$(MAKE) -C $(LINUXDIR) include/linux/version.h
 
 bboldconf:

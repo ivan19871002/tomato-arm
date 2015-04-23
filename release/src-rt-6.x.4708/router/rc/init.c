@@ -2136,7 +2136,7 @@ static int init_nvram(void)
 			inc_mac(s, +4);
 			nvram_set("1:macaddr", s);
 
-			// usb3.0 settings
+			// usb settings
 			nvram_set("usb_usb3", "1");
 			nvram_set("xhci_ports", "1-1");
 			nvram_set("ehci_ports", "2-1 2-2");
@@ -2644,7 +2644,7 @@ static int init_nvram(void)
 			inc_mac(s, +4);
 			nvram_set("1:macaddr", s);
 
-			// usb3.0 settings
+			// usb settings
 			nvram_set("usb_usb3", "1");
 			nvram_set("xhci_ports", "1-1");
 			nvram_set("ehci_ports", "2-1 2-2");

@@ -191,6 +191,7 @@ No part of this file may be used without permission.
 			E('_f_uhci').disabled = b || nvram.usb_uhci == -1;
 			E('_f_ohci').disabled = b || nvram.usb_ohci == -1;
 			E('_f_usb2').disabled = b;
+			E('_f_usb3').disabled = b;
 			E('_f_print').disabled = b;
 			E('_f_audio').disabled = b;
 			E('_f_storage').disabled = b;
@@ -233,11 +234,13 @@ No part of this file may be used without permission.
 			fom.usb_uhci.value = nvram.usb_uhci == -1 ? -1 : (E('_f_uhci').checked ? 1 : 0);
 			fom.usb_ohci.value = nvram.usb_ohci == -1 ? -1 : (E('_f_ohci').checked ? 1 : 0);
 			fom.usb_usb2.value = E('_f_usb2').checked ? 1 : 0;
+			fom.usb_usb3.value = E('_f_usb3').checked ? 1 : 0;
 			fom.usb_storage.value = E('_f_storage').checked ? 1 : 0;
 			fom.usb_printer.value = E('_f_print').checked ? 1 : 0;
 			fom.usb_audio.value = E('_f_audio').checked ? 1 : 0;
 			fom.usb_printer_bidirect.value = E('_f_bprint').checked ? 1 : 0;
 			fom.usb_fs_ext3.value = E('_f_ext3').checked ? 1 : 0;
+			fom.usb_fs_ext4.value = E('_f_ext4').checked ? 1 : 0;
 			fom.usb_fs_fat.value = E('_f_fat').checked ? 1 : 0;
 			/* NTFS-BEGIN */
 			fom.usb_fs_ntfs.value = E('_f_ntfs').checked ? 1 : 0;
@@ -268,17 +271,21 @@ No part of this file may be used without permission.
 		<input type="hidden" name="usb_uhci">
 		<input type="hidden" name="usb_ohci">
 		<input type="hidden" name="usb_usb2">
+		<input type='hidden' name='usb_usb3'>
 		<input type="hidden" name="usb_storage">
 		<input type="hidden" name="usb_printer">
 		<input type="hidden" name="usb_audio">
 		<input type="hidden" name="usb_printer_bidirect">
 		<input type="hidden" name="usb_fs_ext3">
+		<input type='hidden' name='usb_fs_ext4'>
 		<input type="hidden" name="usb_fs_fat">
 		/* NTFS-BEGIN */
 		<input type="hidden" name="usb_fs_ntfs">
+		<!--input type="hidden" name="usb_ntfs_driver"-->
 		/* NTFS-END */
 		/* HFS-BEGIN */
 		<input type="hidden" name="usb_fs_hfs">
+		<!--input type="hidden" name="usb_hfs_driver"-->
 		/* HFS-END */
 		<input type="hidden" name="usb_automount">
 		/* LINUX26-BEGIN */
@@ -294,6 +301,7 @@ No part of this file may be used without permission.
 
 					$('#usbfields').forms([
 						{ title: '<% translate("Core USB Support"); %>', name: 'f_usb', type: 'checkbox', value: nvram.usb_enable == 1 },
+						{ title: '<% translate("USB 3.0 Support"); %>', indent: 2, name: 'f_usb3', type: 'checkbox', value: nvram.usb_usb3 == 1 },
 						{ title: '<% translate("USB 2.0 Support"); %>', indent: 2, name: 'f_usb2', type: 'checkbox', value: nvram.usb_usb2 == 1 },
 						{ title: '<% translate("USB 1.1 Support"); %>', indent: 2, multi: [
 							{ suffix: '&nbsp; OHCI &nbsp;&nbsp;&nbsp;', name: 'f_ohci', type: 'checkbox', value: nvram.usb_ohci == 1 },
@@ -307,6 +315,7 @@ No part of this file may be used without permission.
 						{ title: '<% translate("USB Storage Support"); %>', name: 'f_storage', type: 'checkbox', value: nvram.usb_storage == 1 },
 						{ title: '<% translate("File Systems Support"); %>', indent: 2, multi: [
 							{ suffix: '&nbsp; Ext2 / Ext3 &nbsp;&nbsp;&nbsp;', name: 'f_ext3', type: 'checkbox', value: nvram.usb_fs_ext3 == 1 },
+							{ suffix: '&nbsp; Ext4 &nbsp;&nbsp;&nbsp;', name: 'f_ext4', type: 'checkbox', value: nvram.usb_fs_ext4 == 1 },
 							/* NTFS-BEGIN */
 							{ suffix: '&nbsp; NTFS &nbsp;&nbsp;&nbsp;', name: 'f_ntfs', type: 'checkbox', value: nvram.usb_fs_ntfs == 1 },
 							/* NTFS-END */
@@ -315,6 +324,17 @@ No part of this file may be used without permission.
 							,{ suffix: '&nbsp; HFS / HFS+ &nbsp;', name: 'f_hfs', type: 'checkbox', value: nvram.usb_fs_hfs == 1 }
 							/* HFS-END */
 						] },
+						/* NTFS-BEGIN */
+						{ title: 'NTFS Driver', indent: 2, name: 'usb_ntfs_driver', type: 'select', options: [
+							['ntfs3g','Open NTFS-3G driver'],
+							/* TUXERA-BEGIN */
+							['tuxera','Tuxera driver'],
+							/* TUXERA-END */
+							/* PARAGON-BEGIN */
+							['paragon','Paragon driver'],
+							/* PARAGON-END */
+						], value: nvram.usb_ntfs_driver },
+						/* NTFS-END */
 						/* HFS-BEGIN */
 						{ title: 'HFS/HFS+ Driver', indent: 2, name: 'usb_hfs_driver', type: 'select', options: [
 							['kernel','Open HFS/HFS+ driver'],

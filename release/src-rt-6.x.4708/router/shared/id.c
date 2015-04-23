@@ -18,10 +18,10 @@
 
 		HW_*                  boardtype    boardnum  boardrev  boardflags  others
 					--------------------- ------------ --------- --------- ----------- ---------------
-WRT54G 1.x			BCM4702               bcm94710dev  42
-WRT54G 2.0			BCM4712               0x0101       42        0x10      0x0188
+WRT54G 1.x		BCM4702               bcm94710dev  42
+WRT54G 2.0		BCM4712               0x0101       42        0x10      0x0188
 WRT54G 2.2, 3.x		BCM5325E              0x0708       42        0x10      0x0118
-WRT54G 4.0			BCM5352E              0x0467       42        0x10      0x2558
+WRT54G 4.0		BCM5352E              0x0467       42        0x10      0x2558
 WRT54GL 1.0, 1.1	BCM5352E              0x0467       42        0x10      0x2558
 WRT54GS 1.0         BCM4712               0x0101       42        0x10      0x0388
 WRT54GS 1.1, 2.x    BCM5325E              0x0708       42        0x10      0x0318

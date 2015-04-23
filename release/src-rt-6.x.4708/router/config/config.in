@@ -267,3 +267,7 @@ config TCONFIG_USB_AUDIO
 	bool "USB AUDIO Support"
 	default n
 
+config TCONFIG_FANCTRL
+	bool "FANCTRL"
+ 	default n
+

@@ -166,6 +166,10 @@ struct nvram_tuple router_defaults[] = {
 	{ "ipv6_isp_opt",		"0"				, 0 },	// wan.c add eval option for dhcpd
 #endif
 
+#ifdef RTCONFIG_FANCTRL
+	{ "fanctrl_dutycycle",		"0"				, 0 },
+#endif
+
 	// Wireless parameters
 	{ "wl_ifname",			""				, 0 },	// Interface name
 	{ "wl_hwaddr",			""				, 0 },	// MAC address

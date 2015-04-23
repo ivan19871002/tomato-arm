@@ -53,14 +53,15 @@
 								C8.6,1.6,7.9,5,14.1,5.4z"/>
 						</svg>
 -->
-<!-- XIAOMI LOGO (orange #EC7E23)
+<!-- XIAOMI LOGO (orange #EC7E23)  -->
 <svg version="1.1" id="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 32 32" enable-background="new 0 0 32 32" xml:space="preserve">
-<path id="mi" inkscape:connector-curvature="0" fill="#EC7E23" d="M24.5,7.8h3.9v16.4h-3.9V7.8z M10.5,14.1h4v9.9h-4V14.1z M3.6,7.8
+<path id="mi" inkscape:connector-curvature="0" d="M24.5,7.8h3.9v16.4h-3.9V7.8z M10.5,14.1h4v9.9h-4V14.1z M3.6,7.8
 	l3.9,0h9.8c2.5,0,4.2,2.2,4.2,4.6c0,3.7,0,11.7,0,11.7l-3.8,0l-0.1-10.5c0-1.5-1-2.4-2.4-2.4c-1.8,0-6.5,0-7.7,0v12.9H3.6V7.8z"/>
 </svg>
--->
+
 <!-- HUAWEI LOGO OUTLINES (CSS colors) 32px -->
+<!--
 <svg version="1.1" id="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="32px" height="32px" viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve">
 <g id="huawei" transform="matrix(1.25,0,0,-1.25,0,1772.5)">
@@ -82,6 +83,7 @@
 	</g>
 </g>
 </svg>
+-->
 <!-- // HUAWEI LOGO -->
 						<h1 class="nav-collapse-hide">Advanced<span>Tomato</span></h1>
 					</a>

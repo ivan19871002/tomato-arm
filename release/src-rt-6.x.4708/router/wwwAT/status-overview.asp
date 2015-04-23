@@ -39,7 +39,7 @@
 
 				<div class="logo">
 					<a href="/">
-<!--
+<!-- AT LOGO
 						<svg version="1.1" id="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 							width="26px" height="26px" viewBox="0 0 32 32" enable-background="new 0 0 32 32" xml:space="preserve">
 							<path fill-rule="evenodd" clip-rule="evenodd" fill="#fff" d="M19.4,10.5C19.4,10.5,19.4,10.5,19.4,10.5c0-0.1,0-0.1,0-0.2
@@ -52,6 +52,13 @@
 								c0-2.5,1.1-3.9,1.6-4.2c0.6-0.3,0.2-0.5-0.4-0.4c-1.4,0.3-3.3,3.7-3.3,4.7c-0.2-1.4-2.9-2.1-4-2.1c-1.6,0-2.1-0.7-2.6-1.2
 								C8.6,1.6,7.9,5,14.1,5.4z"/>
 						</svg>
+-->
+<!-- XIAOMI LOGO (orange #EC7E23)
+<svg version="1.1" id="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 32 32" enable-background="new 0 0 32 32" xml:space="preserve">
+<path id="mi" inkscape:connector-curvature="0" fill="#EC7E23" d="M24.5,7.8h3.9v16.4h-3.9V7.8z M10.5,14.1h4v9.9h-4V14.1z M3.6,7.8
+	l3.9,0h9.8c2.5,0,4.2,2.2,4.2,4.6c0,3.7,0,11.7,0,11.7l-3.8,0l-0.1-10.5c0-1.5-1-2.4-2.4-2.4c-1.8,0-6.5,0-7.7,0v12.9H3.6V7.8z"/>
+</svg>
 -->
 <!-- HUAWEI LOGO OUTLINES (CSS colors) 32px -->
 <svg version="1.1" id="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"

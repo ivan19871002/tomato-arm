@@ -216,6 +216,9 @@ endif
 # WS880 Branding
 	cd $(INSTALLDIR)/www-at && \
 	sed -ie "s,Advanced<span>Tomato</span>,Huawei <span>WS880</span>," status-overview.asp
+# Xiaomi Branding
+#	cd $(INSTALLDIR)/www-at && \
+#	sed -ie "s,Advanced<span>Tomato</span>,Xiaomi <span>MiWiFi</span>," status-overview.asp
 
 # Only include the vpn pages if OpenVPN is compiled in
 # Remove AES ciphers from the GUI if openssl doesn't have an AES directory

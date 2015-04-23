@@ -451,10 +451,10 @@ small { font-size: 80%; }
 
 .top-header .logo.collapsed a svg {
 /*	margin:15px 0 0; */
-	margin: 5px 0 0;
+	margin: 14px 0 0;
 	display: inline-block;
-	width: 50px;
-	height: 50px;
+	width: 32px;
+	height: 32px;
 	fill: #EEF0F4; /* logo fill color */
 }
 

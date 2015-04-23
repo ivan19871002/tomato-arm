@@ -77,9 +77,9 @@ No part of this file may be used without permission.
 		function init()
 		{
 			verifyFields(null, 1);
-			$('.nginx-status').html((!nginxup ? '<small style="color: red;">(Stopped)</small>' : '<small style="color: green;">(Running)</small>'));
+			$('.nginx-status').html((!nginxup ? '<small style="color: red;">(<% translate("Stopped"); %>)</small>' : '<small style="color: green;">(<% translate("Running"); %>)</small>'));
 			$('.nginx-status').after('<a href="#" data-toggle="tooltip" class="pull-right nginx-control" title="' +
-				(nginxup ? 'Stop NGINX Server' : 'Start NGINX Server') + '" onclick="toggle(\'nginxfp\', nginxup); return false;" id="_nginxfp_button">' + (nginxup ? '<i class="icon-stop"></i>' : '<i class="icon-play"></i>') + '</a>');
+				(nginxup ? '<% translate("Stop"); %> NGINX Server' : '<% translate("Start"); %> NGINX Server') + '" onclick="toggle(\'nginxfp\', nginxup); return false;" id="_nginxfp_button">' + (nginxup ? '<i class="icon-stop"></i>' : '<i class="icon-play"></i>') + '</a>');
 		}
 	</script>
 
@@ -96,7 +96,7 @@ No part of this file may be used without permission.
 		<input type="hidden" name="nginx_override">
 
 		<div class="box" data-box="nginx-webserver">
-			<div class="heading">NGINX Web Server <span class="nginx-status"></span></div>
+			<div class="heading"><% translate("NGINX Web Server"); %> <span class="nginx-status"></span></div>
 			<div class="content config-section"></div>
 		</div>
 
@@ -146,15 +146,15 @@ No part of this file may be used without permission.
 			{ title: '<% translate("Allow Remote Access"); %>', name: 'f_nginx_remote', type: 'checkbox', value: nvram.nginx_remote == '1' },
 			{ title: '<% translate("Web Server Name"); %>', name: 'nginx_fqdn', type: 'text', maxlen: 255, size: 20, value: nvram.nginx_fqdn },
 			{ title: '<% translate("Server Root Path"); %>', name: 'nginx_docroot', type: 'text', maxlen: 255, size: 40, value: nvram.nginx_docroot, suffix: '<small>&nbsp;/index.html / index.htm / index.php</small>' },
-			{ title: '<% translate("Server Priority"); %>', name: 'nginx_priority', type: 'text', maxlen: 8, size:3, value: nvram.nginx_priority, suffix:'<small> Max. Perfor: -20, Min.Perfor: 19, <% translate("default"); %>: 10</small>' }
+			{ title: '<% translate("Server Priority"); %>', name: 'nginx_priority', type: 'text', maxlen: 8, size:3, value: nvram.nginx_priority, suffix:'<small> <% translate("Max. Perfor"); %>: -20, <% translate("Min.Perfor"); %>: 19, <% translate("default"); %>: 10</small>' }
 		]);
 
 		$('.content.config-adv').forms([
-			{ title: 'HTTP Section - Custom configuration (<a href="http://wiki.nginx.org/Configuration" target="_new">NGINX<i class="icon-info"></i></a>)', name: 'nginx_httpcustom', type: 'textarea', value: nvram.nginx_httpcustom, style: 'width: 100%; height: 140px;' },
-			{ title: 'SERVER Section - Custom configuration (<a href="http://wiki.nginx.org/Configuration" target="_new">NGINX<i class="icon-info"></i></a>)', name: 'nginx_servercustom', type: 'textarea', value: nvram.nginx_servercustom, style: 'width: 100%; height: 140px;'},
-			{ title: 'Custom configuration (<a href="http://wiki.nginx.org/Configuration" target="_new">NGINX<i class="icon-info"></i></a>)', name: 'nginx_custom', type: 'textarea', value: nvram.nginx_custom, style: 'width: 100%; height: 140px;' },
-			{ title: 'Custom configuration (<a href="http://php.net/manual/en/ini.php" target="_new">PHP<i class="icon-info"></i></a>)', name: 'nginx_phpconf', type: 'textarea', value: nvram.nginx_phpconf, style: 'width: 100%; height: 140px;' },
-			{ title: '<% translate("Use user config file"); %>', name: 'f_nginx_override', type: 'checkbox', value: nvram.nginx_override == '1', suffix: '<small> User config file will be used, some of GUI settings will be ignored</small>' },
+			{ title: '<% translate("HTTP Section"); %> - <% translate("Custom configuration"); %> (<a href="http://wiki.nginx.org/Configuration" target="_new">NGINX<i class="icon-info"></i></a>)', name: 'nginx_httpcustom', type: 'textarea', value: nvram.nginx_httpcustom, style: 'width: 100%; height: 140px;' },
+			{ title: '<% translate("SERVER Section"); %> - <% translate("Custom configuration"); %> (<a href="http://wiki.nginx.org/Configuration" target="_new">NGINX<i class="icon-info"></i></a>)', name: 'nginx_servercustom', type: 'textarea', value: nvram.nginx_servercustom, style: 'width: 100%; height: 140px;'},
+			{ title: '<% translate("Custom configuration"); %> (<a href="http://wiki.nginx.org/Configuration" target="_new">NGINX<i class="icon-info"></i></a>)', name: 'nginx_custom', type: 'textarea', value: nvram.nginx_custom, style: 'width: 100%; height: 140px;' },
+			{ title: '<% translate("Custom configuration"); %> (<a href="http://php.net/manual/en/ini.php" target="_new">PHP<i class="icon-info"></i></a>)', name: 'nginx_phpconf', type: 'textarea', value: nvram.nginx_phpconf, style: 'width: 100%; height: 140px;' },
+			{ title: '<% translate("Use user config file"); %>', name: 'f_nginx_override', type: 'checkbox', value: nvram.nginx_override == '1', suffix: '<small> <% translate("User config file will be used, some of GUI settings will be ignored"); %></small>' },
 			{ title: '<% translate("User config file path"); %>', name: 'nginx_overridefile', type: 'text', maxlen: 255, size: 40, value: nvram.nginx_overridefile }
 		]);
 	</script>

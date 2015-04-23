@@ -208,8 +208,8 @@ createFieldTable('', [
 	{ title: '<% translate("Enable USB Partition"); %>', multi: [
 		{ name: 'f_mysql_usb_enable', type: 'checkbox', value: nvram.mysql_usb_enable == 1, suffix: '  ' },
 		{ name: 'mysql_dlroot', type: 'select', options: usb_disk_list, value: nvram.mysql_dlroot, suffix: ' '} ] },
-	{ title: '<% translate("Data dir"); %>.', indent: 2, name: 'mysql_datadir', type: 'text', maxlen: 50, size: 40, value: nvram.mysql_datadir, suffix: ' <small><% translate("Directory name under mounted partition"); %>.</small>' },
-	{ title: '<% translate("Tmp dir"); %>.', indent: 2, name: 'mysql_tmpdir', type: 'text', maxlen: 50, size: 40, value: nvram.mysql_tmpdir, suffix: ' <small><% translate("Directory name under mounted partition"); %>.</small>' }
+	{ title: '<% translate("Data dir."); %>', indent: 2, name: 'mysql_datadir', type: 'text', maxlen: 50, size: 40, value: nvram.mysql_datadir, suffix: ' <small><% translate("Directory name under mounted partition"); %>.</small>' },
+	{ title: '<% translate("Tmp dir."); %>', indent: 2, name: 'mysql_tmpdir', type: 'text', maxlen: 50, size: 40, value: nvram.mysql_tmpdir, suffix: ' <small><% translate("Directory name under mounted partition"); %>.</small>' }
 ]);
 </script>
 	<ul>
@@ -235,11 +235,11 @@ createFieldTable('', [
 	{ title: '<% translate("Read buffer size"); %>', name: 'mysql_read_buffer_size', type: 'text', maxlen: 10, size: 10, value: nvram.mysql_read_buffer_size, suffix: ' <small>KB (<% translate("range"); %>: 0 - 1024000; <% translate("default"); %>: 128)</small>' },
 	{ title: '<% translate("Read rand buffer size"); %>', name: 'mysql_read_rnd_buffer_size', type: 'text', maxlen: 10, size: 10, value: nvram.mysql_read_rnd_buffer_size, suffix: ' <small>KB (<% translate("range"); %>: 1 - 1024000; <% translate("default"); %>: 256)</small>' },
 	{ title: '<% translate("Max connections"); %>', name: 'mysql_max_connections', type: 'text', maxlen: 10, size: 10, value: nvram.mysql_max_connections, suffix: ' <small>(<% translate("range"); %>: 0 - 999999; <% translate("default"); %>: 1000)</small>' },
-	{ title: '<% translate("MySQL server custom config"); %>.', name: 'mysql_server_custom', type: 'textarea', value: nvram.mysql_server_custom }
+	{ title: '<% translate("MySQL server custom config."); %>', name: 'mysql_server_custom', type: 'textarea', value: nvram.mysql_server_custom }
 ]);
 </script>
 	<ul>
-		<li><b><% translate("MySQL Server custom config"); %>.</b> - <% translate("input like"); %>:  param=value   <% translate("e.g"); %>.  connect_timeout=10
+		<li><b><% translate("MySQL Server custom config."); %></b> - <% translate("input like"); %>:  param=value   <% translate("e.g"); %>.  connect_timeout=10
 	</ul>
 </div>
 </div>

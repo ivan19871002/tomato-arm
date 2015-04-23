@@ -238,6 +238,7 @@ No part of this file may be used without permission.
 							options: [['en_EN','<% translate("English"); %>'],['ru_RU','<% translate("Russian"); %>']], value: nvram.web_lang },
 						{ title: '<% translate("Interface Theme"); %>', name: 'web_css', type: 'select', help: '<% translate("With AdvancedTomato you get very few built in skins, others are available on AdvancedTomato Themes Directory. This way we can save space on router for more important functions."); %>',
 							options: [['tomato','<% translate("Default"); %>'],
+							['css/orange-scheme','<% translate("Orange Color Scheme"); %>'],
 							['css/red-scheme','<% translate("Red Color Scheme"); %>'],
 							['css/green-scheme','<% translate("Green Color Scheme"); %>'],
 							['css/torquoise-scheme','<% translate("Torquoise Color Scheme"); %>'],

@@ -328,7 +328,7 @@ Custom Script=Скрипт пользователя
 Custom TZ String=Параметр TZ
 Custom URL=URL пользователя
 Cut-Through Forwarding=Аппаратный NAT
-Cyan Color Scheme=Бирюзовая тема
+Cyan Color Scheme=Сине-зелёная тема
 Daily=По дням
 Daily Backup=Ежедневный бэкап
 Daily Bandwidth=Загрузка сети по дням
@@ -1496,7 +1496,7 @@ To prevent 802.1Q compatibility issues, avoid using VID <b>0</b> as 802.1Q speci
 Tor Project=Проект TOR
 TOR Project=Проект TOR
 Tor Project Settings=Настройки The Onion Router
-Torquoise Color Scheme=Тёмно-зелёная тема
+Torquoise Color Scheme=Бирюзовая тема
 To specify multiple hostnames for a device, separate them with spaces=Для задания нескольких имен, разделяйте их пробелами
 total=всего
 Total=Всего

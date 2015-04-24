@@ -570,7 +570,7 @@ int mount_r(char *mnt_dev, char *mnt_dir, char *type)
 #endif
 				}
 			}
-#endif
+#endif // ifdef TCONFIG_NTFS
 
 #ifdef TCONFIG_HFS
 			if (ret != 0 && strncmp(type, "hfs", "") == 0) {
@@ -582,7 +582,7 @@ int mount_r(char *mnt_dev, char *mnt_dir, char *type)
 					}
 #ifdef TCONFIG_TUXERA_HFS
 					else if( nvram_match( "usb_hfs_driver", "tuxera" )) {
-						ret = eval("mount", "-t", "thfs", "-o", options, mnt_dev, mnt_dir);
+						ret = eval("mount", "-t", "thfsplus", "-o", options, mnt_dev, mnt_dir);
 					}
 #endif
 				}

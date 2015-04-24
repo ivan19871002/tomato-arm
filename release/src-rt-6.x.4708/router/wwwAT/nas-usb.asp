@@ -287,11 +287,9 @@ No part of this file may be used without permission.
 		/* EXFAT-END */
 		/* NTFS-BEGIN */
 		<input type="hidden" name="usb_fs_ntfs">
-		<!--input type="hidden" name="usb_ntfs_driver"-->
 		/* NTFS-END */
 		/* HFS-BEGIN */
 		<input type="hidden" name="usb_fs_hfs">
-		<!--input type="hidden" name="usb_hfs_driver"-->
 		/* HFS-END */
 		<input type="hidden" name="usb_automount">
 		/* LINUX26-BEGIN */

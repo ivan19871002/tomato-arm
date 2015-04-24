@@ -727,6 +727,9 @@ struct nvram_tuple router_defaults[] = {
 	{ "usb_hfs_driver",		"kernel"			, 0 },
 #endif
 #endif //TCONFIG_HFS
+#ifdef TCONFIG_TEXFAT
+	{ "usb_fs_exfat",		"1"				, 0 },
+#endif
 	{ "usb_automount",		"1"				, 0 },
 #if 0
 	{ "usb_bdflush",		"30 500 0 0 100 100 60 0 0"	, 0 },

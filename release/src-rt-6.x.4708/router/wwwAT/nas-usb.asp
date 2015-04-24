@@ -8,7 +8,7 @@ No part of this file may be used without permission.
 <content>
 	<style>textarea { width: 100%; height: 63px; }</style>
 	<script type="text/javascript">
-		//    <% nvram("at_update,tomatoanon_answer,usb_enable,usb_uhci,usb_ohci,usb_usb2,usb_usb3,usb_mmc,usb_storage,usb_printer,usb_printer_bidirect,usb_audio,usb_automount,usb_fs_ext3,usb_fs_ext4,usb_fs_fat,usb_fs_ntfs,usb_ntfs_driver,usb_fs_hfs,usb_hfs_driver,script_usbmount,script_usbumount,script_usbhotplug,idle_enable,usb_3g"); %>
+		//    <% nvram("at_update,tomatoanon_answer,usb_enable,usb_uhci,usb_ohci,usb_usb2,usb_usb3,usb_mmc,usb_storage,usb_printer,usb_printer_bidirect,usb_audio,usb_automount,usb_fs_ext3,usb_fs_ext4,usb_fs_fat,usb_fs_exfat,usb_fs_ntfs,usb_ntfs_driver,usb_fs_hfs,usb_hfs_driver,script_usbmount,script_usbumount,script_usbhotplug,idle_enable,usb_3g"); %>
 		//    <% usbdevices(); %>
 
 		list = [];
@@ -242,6 +242,9 @@ No part of this file may be used without permission.
 			fom.usb_fs_ext3.value = E('_f_ext3').checked ? 1 : 0;
 			fom.usb_fs_ext4.value = E('_f_ext4').checked ? 1 : 0;
 			fom.usb_fs_fat.value = E('_f_fat').checked ? 1 : 0;
+			/* EXFAT-BEGIN */
+			fom.usb_fs_fat.value = E('_f_exfat').checked ? 1 : 0;
+			/* EXFAT-END */
 			/* NTFS-BEGIN */
 			fom.usb_fs_ntfs.value = E('_f_ntfs').checked ? 1 : 0;
 			/* NTFS-END */
@@ -279,6 +282,9 @@ No part of this file may be used without permission.
 		<input type="hidden" name="usb_fs_ext3">
 		<input type='hidden' name='usb_fs_ext4'>
 		<input type="hidden" name="usb_fs_fat">
+		/* EXFAT-BEGIN */
+		<input type="hidden" name="usb_fs_exfat">
+		/* EXFAT-END */
 		/* NTFS-BEGIN */
 		<input type="hidden" name="usb_fs_ntfs">
 		<!--input type="hidden" name="usb_ntfs_driver"-->
@@ -320,6 +326,9 @@ No part of this file may be used without permission.
 							{ suffix: '&nbsp; NTFS &nbsp;&nbsp;&nbsp;', name: 'f_ntfs', type: 'checkbox', value: nvram.usb_fs_ntfs == 1 },
 							/* NTFS-END */
 							{ suffix: '&nbsp; FAT &nbsp;', name: 'f_fat', type: 'checkbox', value: nvram.usb_fs_fat == 1 }
+							/* EXFAT-BEGIN */
+							,{ suffix: '&nbsp; ExFAT &nbsp;', name: 'f_exfat', type: 'checkbox', value: nvram.usb_fs_exfat == 1 }
+							/* EXFAT-END */
 							/* HFS-BEGIN */
 							,{ suffix: '&nbsp; HFS / HFS+ &nbsp;', name: 'f_hfs', type: 'checkbox', value: nvram.usb_fs_hfs == 1 }
 							/* HFS-END */

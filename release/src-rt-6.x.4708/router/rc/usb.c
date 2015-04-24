@@ -204,6 +204,12 @@ void start_usb(void)
 			}
 #endif
 
+#if defined(TCONFIG_TEXFAT)
+			if (nvram_get_int("usb_fs_exfat")) {
+				modprobe("texfat");
+			}
+#endif
+
 #if defined(LINUX26) && defined(TCONFIG_MICROSD)
 			if (nvram_get_int("usb_mmc") == 1) {
 				/* insert SD/MMC modules if present */
@@ -363,6 +369,9 @@ void stop_usb(void)
 #endif
 #if defined(TCONFIG_TUXERA_HFS)
 		modprobe_r("thfsplus");
+#endif
+#if defined(TCONFIG_TEXFAT)
+		modprobe_r("texfat");
 #endif
 		sleep(1);
 
@@ -594,6 +603,14 @@ int mount_r(char *mnt_dev, char *mnt_dir, char *type)
 				}
 			}
 #endif // ifdef TCONFIG_HFS
+
+#ifdef TCONFIG_TEXFAT
+			if (ret != 0 && strncmp(type, "exfat", "") == 0) {
+				if (nvram_get_int("usb_fs_exfat")) {
+						ret = eval("mount", "-t", "textfat", mnt_dev, mnt_dir);
+				}
+			}
+#endif // ifdef TCONFIG_TEXFAT
 
 			if (ret != 0) /* give it another try - guess fs */
 				ret = eval("mount", "-o", "noatime,nodev", mnt_dev, mnt_dir);

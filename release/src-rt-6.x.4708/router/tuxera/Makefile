@@ -34,6 +34,16 @@ ifneq ($(NO_MKTOOLS),y)
 	#install -D $(SRCFILE)/fat/tools/fatdump $(INSTALLDIR)/usr/sbin/fatdump
 endif
 endif
+ifeq ($(TCONFIG_TEXFAT),y)
+	@cp -f $(SRCFILE)/exfat/kernel-module/texfat.ko $(DSTDIR)
+	install -D $(SRCFILE)/exfat/tools/exfatck $(INSTALLDIR)/usr/sbin/exfatck
+ifneq ($(NO_MKTOOLS),y)
+	install -D $(SRCFILE)/exfat/tools/mkexfat $(INSTALLDIR)/usr/sbin/mkexfat
+	#install -D $(SRCFILE)/exfat/tools/exfatdebug $(INSTALLDIR)/usr/sbin/exfatdebug
+	#install -D $(SRCFILE)/exfat/tools/exfatinfo $(INSTALLDIR)/usr/sbin/exfatinfo
+	#install -D $(SRCFILE)/exfat/tools/exfatlabel $(INSTALLDIR)/usr/sbin/exfatlabel
+endif
+endif
 ifeq ($(TCONFIG_TUXERA),y)
 	@cp -f $(SRCFILE)/ntfs/kernel-module/tntfs.ko $(DSTDIR)
 	install -D $(SRCFILE)/ntfs/tools/ntfsck $(INSTALLDIR)/usr/sbin/ntfsck

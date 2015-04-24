@@ -136,11 +136,15 @@ ifneq ($(TCONFIG_NGINX),y)
 	sed -i $(INSTALLDIR)/www/about.asp -e "/NGINX-BEGIN/,/NGINX-END/d"
 endif
 
-
 # Only include HFS/HFS+ option and pages when configured.
 ifneq ($(TCONFIG_HFS),y)
 	sed -i $(INSTALLDIR)/www/nas-usb.asp -e "/HFS-BEGIN/,/HFS-END/d"
 	sed -i $(INSTALLDIR)/www/about.asp -e "/HFS-BEGIN/,/HFS-END/d"
+endif
+
+# Only include ExFAT option and pages when configured.
+ifneq ($(TCONFIG_TEXFAT),y)
+	sed -i $(INSTALLDIR)/www/nas-usb.asp -e "/EXFAT-BEGIN/,/EXFAT-END/d"
 endif
 
 # Only include IPv6 options if IPv6 is configured in.
@@ -345,6 +349,7 @@ endif
 		-e "/NGINX-BEGIN/d"	-e "/NGINX-END/d"\
 		-e "/SNMP-BEGIN/d"	-e "/SNMP-END/d"\
 		-e "/SDHC-BEGIN/d"	-e "/SDHC-END/d"\
+		-e "/EXFAT-BEGIN/d"	-e "/EXFAT-END/d"\
 		-e "/HFS-BEGIN/d"	-e "/HFS-END/d"\
 		-e "/DNSCRYPT-BEGIN/d"	-e "/DNSCRYPT-END/d"\
 		-e "/DNSSEC-BEGIN/d"	-e "/DNSSEC-END/d"\

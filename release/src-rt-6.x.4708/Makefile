@@ -358,6 +358,10 @@ define RouterOptions
 			sed -i "/TCONFIG_TUXERA_HFS/d" $(1); \
 			echo "TCONFIG_TUXERA_HFS=y" >>$(1); \
 		fi; \
+		if [ "$(TUXERA_EXFAT)" = "y" ]; then \
+			sed -i "/TCONFIG_TEXFAT/d" $(1); \
+			echo "TCONFIG_TEXFAT=y" >>$(1); \
+		fi; \
 		if [ "$(MEDIASRV)" = "y" ]; then \
 			sed -i "/TCONFIG_MEDIA_SERVER/d" $(1); \
 			echo "TCONFIG_MEDIA_SERVER=y" >>$(1); \

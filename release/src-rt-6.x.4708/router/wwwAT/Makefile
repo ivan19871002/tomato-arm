@@ -1,6 +1,10 @@
 
 include ../common.mak
 
+# BRANDING (0 to disable)
+XIAOMI = 1
+HUAWEI = 0
+
 all:
 
 clean:
@@ -226,12 +230,24 @@ endif
 		sed -e "s,<script type='text/javascript' src='tomato.js'></script>,<script type='text/javascript' src='tomato.asp'></script>," $$F > $$F.tmp; \
 	mv $$F.tmp $$F; \
 	done
+
 # WS880 Branding
-#	cd $(INSTALLDIR)/www-at && \
-#	sed -ie "s,Advanced<span>Tomato</span>,Huawei <span>WS880</span>," status-overview.asp
+ifneq ($(HUAWEI),1)
+	sed -i $(INSTALLDIR)/www-at/status-overview.asp -e "/HUAWEI-BEGIN/,/HUAWEI-END/d"
+else
+	cd $(INSTALLDIR)/www-at && \
+	sed -ie "s,Advanced<span>Tomato</span>,Huawei <span>WS880</span>," status-overview.asp
+	sed -i $(INSTALLDIR)/www-at/status-overview.asp -e "/ATOMATO-BEGIN/,/ATOMATO-END/d"
+endif
+
 # Xiaomi Branding
+ifneq ($(XIAOMI),1)
+	sed -i $(INSTALLDIR)/www-at/status-overview.asp -e "/XIAOMI-BEGIN/,/XIAOMI-END/d"
+else
 	cd $(INSTALLDIR)/www-at && \
 	sed -ie "s,Advanced<span>Tomato</span>,Xiaomi <span>MiWiFi</span>," status-overview.asp
+	sed -i $(INSTALLDIR)/www-at/status-overview.asp -e "/ATOMATO-BEGIN/,/ATOMATO-END/d"
+endif
 
 # Only include the vpn pages if OpenVPN is compiled in
 # Remove AES ciphers from the GUI if openssl doesn't have an AES directory

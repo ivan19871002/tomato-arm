@@ -47,7 +47,7 @@ textarea {
 
 <script type='text/javascript'>
 
-//	<% nvram("usb_enable,usb_uhci,usb_ohci,usb_usb2,usb_usb3,usb_mmc,usb_storage,usb_printer,usb_printer_bidirect,usb_automount,usb_fs_ext3,usb_fs_ext4,usb_fs_fat,usb_fs_ntfs,usb_ntfs_driver,usb_fs_hfs,usb_hfs_driver,script_usbmount,script_usbumount,script_usbhotplug,idle_enable,usb_3g"); %>
+//	<% nvram("usb_enable,usb_uhci,usb_ohci,usb_usb2,usb_usb3,usb_mmc,usb_storage,usb_printer,usb_printer_bidirect,usb_audio,usb_automount,usb_fs_ext3,usb_fs_ext4,usb_fs_fat,usb_fs_ntfs,usb_ntfs_driver,usb_fs_hfs,usb_hfs_driver,script_usbmount,script_usbumount,script_usbhotplug,idle_enable,usb_3g"); %>
 //	<% usbdevices(); %>
 
 list = [];
@@ -314,6 +314,7 @@ function save()
 	fom.usb_usb2.value = E('_f_usb2').checked ? 1 : 0;
 	fom.usb_usb3.value = E('_f_usb3').checked ? 1 : 0;
 	fom.usb_storage.value = E('_f_storage').checked ? 1 : 0;
+	fom.usb_audio.value = E('_f_audio').checked ? 1 : 0;
 	fom.usb_printer.value = E('_f_print').checked ? 1 : 0;
 	fom.usb_printer_bidirect.value = E('_f_bprint').checked ? 1 : 0;
 
@@ -371,6 +372,7 @@ function submit_complete()
 <input type='hidden' name='usb_usb3'>
 <input type='hidden' name='usb_mmc'>
 <input type='hidden' name='usb_storage'>
+<input type="hidden" name="usb_audio">
 <input type='hidden' name='usb_printer'>
 <input type='hidden' name='usb_printer_bidirect'>
 <input type='hidden' name='usb_fs_ext3'>
@@ -404,6 +406,7 @@ createFieldTable('', [
 	{ title: '<% translate("USB Printer Support"); %>', name: 'f_print', type: 'checkbox', value: nvram.usb_printer == 1 },
 		{ title: '<% translate("Bidirectional copying"); %>', indent: 2, name: 'f_bprint', type: 'checkbox', value: nvram.usb_printer_bidirect == 1 },
 	null,
+		{ title: '<% translate("USB Audio Support"); %>', name: 'f_audio', type: 'checkbox', value: nvram.usb_audio == 1 },
 	{ title: '<% translate("USB Storage Support"); %>', name: 'f_storage', type: 'checkbox', value: nvram.usb_storage == 1 },
 		{ title: '<% translate("File Systems Support"); %>', indent: 2, multi: [
 			{ suffix: '&nbsp; Ext2 / Ext3 &nbsp;&nbsp;&nbsp;', name: 'f_ext3', type: 'checkbox', value: nvram.usb_fs_ext3 == 1 },
@@ -417,24 +420,24 @@ createFieldTable('', [
 /* HFS-END */
 		] },
 /* NTFS-BEGIN */
-	{ title: 'NTFS Driver', indent: 2, name: 'usb_ntfs_driver', type: 'select', options: [
-			['ntfs3g','Open NTFS-3G driver'],
+	{ title: '<% translate("NTFS Driver"); %>', indent: 2, name: 'usb_ntfs_driver', type: 'select', options: [
+			['ntfs3g','<% translate("Open NTFS-3G driver"); %>'],
 /* TUXERA-BEGIN */
-			['tuxera','Tuxera driver'],
+			['tuxera','<% translate("Tuxera driver"); %>'],
 /* TUXERA-END */
 /* PARAGON-BEGIN */
-			['paragon','Paragon driver'],
+			['paragon','<% translate("Paragon driver"); %>'],
 /* PARAGON-END */
 		], value: nvram.usb_ntfs_driver },
 /* NTFS-END */
 /* HFS-BEGIN */
-	{ title: 'HFS/HFS+ Driver', indent: 2, name: 'usb_hfs_driver', type: 'select', options: [
-			['kernel','Open HFS/HFS+ driver'],
+	{ title: '<% translate("HFS/HFS+ Driver"); %>', indent: 2, name: 'usb_hfs_driver', type: 'select', options: [
+			['kernel','<% translate("Open HFS/HFS+ driver"); %>'],
 /* TUXERA-BEGIN */
-			['tuxera','Tuxera driver'],
+			['tuxera','<% translate("Tuxera driver"); %>'],
 /* TUXERA-END */
 /* PARAGON-BEGIN */
-			['paragon','Paragon driver'],
+			['paragon','<% translate("Paragon driver"); %>'],
 /* PARAGON-END */
 		], value: nvram.usb_hfs_driver },
 /* HFS-END */

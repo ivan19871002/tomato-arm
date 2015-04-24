@@ -325,24 +325,24 @@ No part of this file may be used without permission.
 							/* HFS-END */
 						] },
 						/* NTFS-BEGIN */
-						{ title: 'NTFS Driver', indent: 2, name: 'usb_ntfs_driver', type: 'select', options: [
-							['ntfs3g','Open NTFS-3G driver'],
+						{ title: '<% translate("NTFS Driver"); %>', indent: 2, name: 'usb_ntfs_driver', type: 'select', options: [
+							['ntfs3g','<% translate("Open NTFS-3G driver"); %>'],
 							/* TUXERA-BEGIN */
-							['tuxera','Tuxera driver'],
+							['tuxera','<% translate("Tuxera driver"); %>'],
 							/* TUXERA-END */
 							/* PARAGON-BEGIN */
-							['paragon','Paragon driver'],
+							['paragon','<% translate("Paragon driver"); %>'],
 							/* PARAGON-END */
 						], value: nvram.usb_ntfs_driver },
 						/* NTFS-END */
 						/* HFS-BEGIN */
-						{ title: 'HFS/HFS+ Driver', indent: 2, name: 'usb_hfs_driver', type: 'select', options: [
-							['kernel','Open HFS/HFS+ driver'],
+						{ title: '<% translate("HFS/HFS+ Driver"); %>', indent: 2, name: 'usb_hfs_driver', type: 'select', options: [
+							['kernel','<% translate("Open HFS/HFS+ driver"); %>'],
 							/* TUXERA-BEGIN */
-							['tuxera','Tuxera driver'],
+							['tuxera','<% translate("Tuxera driver"); %>'],
 							/* TUXERA-END */
 							/* PARAGON-BEGIN */
-							['paragon','Paragon driver'],
+							['paragon','<% translate("Paragon driver"); %>'],
 							/* PARAGON-END */
 						], value: nvram.usb_hfs_driver },
 						/* HFS-END */

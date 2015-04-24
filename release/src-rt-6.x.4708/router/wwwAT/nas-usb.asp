@@ -137,7 +137,7 @@ No part of this file may be used without permission.
 					s = '&nbsp<br><small>&nbsp</small>';
 				else {
 					if (xob)
-						s = ((e.is_mounted == 0) ? 'No' : 'Yes') + '<br><small><% translate("Please wait"); %>...</small>';
+						s = ((e.is_mounted == 0) ? '<% translate("No"); %>' : '<% translate("Yes"); %>') + '<br><small><% translate("Please wait"); %>...</small>';
 					else if (e.is_mounted == 0)
 						s = 'No<br><small><a href="javascript:mountHost(\'L' + i + '\',\'' + e.host + '\')" title="<% translate("Mount all Partitions of Storage Device"); %>" id="L' + i + '">[ <% translate("Mount"); %> ]</a></small>';
 						else
@@ -153,10 +153,10 @@ No part of this file may be used without permission.
 							if (p) {
 								desc = desc + '<br><% translate("Partition"); %> \'' + p[0] + '\'' + (p[3] != '' ? ' ' + p[3] : '') +
 								((p[5] != 0) ? ' (' + doScaleSize(p[5], 0) +
-									((p[1] == 1) ? ' / ' + doScaleSize(p[6], 0) + ' free' : '') +
+									((p[1] == 1) ? ' / ' + doScaleSize(p[6], 0) + ' <% translate("free"); %>' : '') +
 									')' : '') + ' is ' +
-								((p[1] != 0) ? '' : 'not ') + ((p[3] == '<% translate("swap"); %>') ? 'active' : 'mounted') +
-								((p[2] != '') ? ' on ' + p[2] : '');
+								((p[1] != 0) ? '' : '<% translate("not"); %> ') + ((p[3] == '<% translate("swap"); %>') ? '<% translate("active"); %>' : '<% translate("mounted"); %>') +
+								((p[2] != '') ? ' <% translate("on"); %> ' + p[2] : '');
 							}
 						}
 					}

@@ -355,6 +355,9 @@ else
 		-e "/TINC-BEGIN/d"	-e "/TINC-END/d"\
 		-e "/PARAGON-BEGIN/d"	-e "/PARAGON-END/d"\
 		-e "/TUXERA-BEGIN/d"	-e "/TUXERA-END/d"\
+		-e "/ATOMATO-BEGIN/d"	-e "/ATOMATO-END/d"\
+		-e "/XIAOMI-BEGIN/d"	-e "/XIAOMI-END/d"\
+		-e "/HUAWEI-BEGIN/d"	-e "/HUAWEI-END/d"\
 		-e "/MICROSD-BEGIN/d"	-e "/MICROSD-END/d"\
 		|| true; \
 	done

@@ -1364,6 +1364,7 @@ Router's LAN MAC Address=LAN MAC-адрес роутера
 Router Time=Дата и время роутера
 Routes must be configured manually=Маршруты должны быть настроены отдельно
 Routing=Маршрутизация
+Routing Policy=Политики маршрутизации
 Routing Table=Таблица маршрутизации
 RSA Private Key=Приватный ключ RSA
 RSA Public Key=Публичный ключ RSA

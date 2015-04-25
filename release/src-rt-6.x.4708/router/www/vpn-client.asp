@@ -27,7 +27,7 @@ function RouteGrid() {return this;}
 RouteGrid.prototype = new TomatoGrid;
 
 tabs = [['client1', '<% translate("Client"); %> 1'],['client2', '<% translate("Client"); %> 2']];
-sections = [['basic', '<% translate("Basic"); %>'],['advanced', '<% translate("Advanced"); %>'],['keys','<% translate("Keys"); %>'],['policy','<%translate("Routing Policy"); %>'],['status','<% translate("Status"); %>']];
+sections = [['basic', '<% translate("Basic"); %>'],['advanced', '<% translate("Advanced"); %>'],['keys','<% translate("Keys"); %>'],['policy','<% translate("Routing Policy"); %>'],['status','<% translate("Status"); %>']];
 routingTables = [];
 statusUpdaters = [];
 for (i = 0; i < tabs.length; ++i)

@@ -520,10 +520,11 @@ void asp_sysinfo(int argc, char **argv)
 	char cputemp[8];
 	char wl0temp[8];
 	char wl1temp[8];
+	char hddtemp[8];
 	char wl_tempsense[128];
 
 	get_cpuinfo(system_type, cpu_model, bogomips, cpuclk);
-	get_temps(cputemp, wl0temp, wl1temp);
+	get_temps(cputemp, wl0temp, wl1temp, hddtemp);
 	get_wl_tempsense(wl_tempsense);
 
 	web_puts("\nsysinfo = {\n");
@@ -552,6 +553,7 @@ void asp_sysinfo(int argc, char **argv)
 		"\tbogomips: '%s',\n"
 		"\tcpuclk: '%s',\n"
 		"\tcputemp: '%s',\n"
+		"\thddtemp: '%s',\n"
 		"\twl0temp: '%s',\n"
 		"\twl1temp: '%s',\n"
 		"\twlsense: '%s'",
@@ -569,6 +571,7 @@ void asp_sysinfo(int argc, char **argv)
 			bogomips,
 			cpuclk,
 			cputemp,
+			hddtemp,
 			wl0temp,
 			wl1temp,
 			wl_tempsense);

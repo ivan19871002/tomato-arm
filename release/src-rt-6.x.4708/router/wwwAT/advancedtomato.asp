@@ -182,7 +182,11 @@ function systemUI () {
 		$('.system-ui .datasystem').html('<div class="router-name">' + stats.routermodel + ' <small class="pull-right">(' + stats.uptime + ')</small></div>' +
 			'<div class="inner-container row">' +
 			'<div class="col-sm-2">CPU:</div><div class="col-sm-10">' + stats.cpuload + ' (' + stats.cpupercent + ')</div>'+
-			'<div class="col-sm-2">T,&deg;C:</div><div class="col-sm-10">' + stats.cputemp + ' <small>CPU</small> / ' + stats.wl0temp + ' <small>WL0</small> / ' + stats.wl1temp + ' <small>WL1</small></div>'+
+			'<div class="col-sm-2">T,&deg;C:</div><div class="col-sm-10">' + stats.cputemp + ' <small>CPU</small>'+
+			/* SMARTCTL-BEGIN */
+			' / ' + stats.hddtemp + ' <small>HDD</small>'+
+			/* SMARTCTL-END */
+			' / ' + stats.wl0temp + ' <small>WL0</small> / ' + stats.wl1temp + ' <small>WL1</small></div>'+
 			'<div class="col-sm-2">RAM:</div><div class="col-sm-10">' + stats.memory + '<div class="progress"><div class="bar" style="width: ' + stats.memoryperc + '"></div></div></div>' +
 			((nvram.swap != null) ? '<div class="col-sm-2">SWAP:</div><div class="col-sm-10">' + stats.swap + '<div class="progress"><div class="bar" style="width: ' + stats.swapperc + '"></div></div></div>':'') +
 			'<div class="col-sm-2">WAN:</div><div class="col-sm-10">' + stats.wanstatus + ' (' + stats.wanuptime + ')</div></div>').removeClass('align center');

@@ -30,8 +30,9 @@ do {
 		reloadPage();
 	}
 	stats.flashsize = sysinfo.flashsize+'MB';
-	stats.cpumhz = sysinfo.cpuclk+'-core)';
+	stats.cpumhz = sysinfo.cpuclk;
 	stats.cputemp = sysinfo.cputemp+'°';
+	stats.hddtemp = sysinfo.hddtemp+'°';
 	stats.wl0temp = sysinfo.wl0temp+'°';
 	stats.wl1temp = sysinfo.wl1temp+'°';
 	stats.systemtype = sysinfo.systemtype;

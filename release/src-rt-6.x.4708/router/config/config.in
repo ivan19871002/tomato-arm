@@ -271,3 +271,7 @@ config TCONFIG_FANCTRL
 	bool "FANCTRL"
  	default n
 
+config TCONFIG_SMARTCTL
+	bool "SMARTCTL for SATA"
+ 	default n
+

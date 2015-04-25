@@ -554,6 +554,10 @@ define RouterOptions
 		sed -i "/TCONFIG_FANCTRL/d" $(1); \
 		echo "TCONFIG_FANCTRL=y" >>$(1); \
 	fi; \
+	if [ "$(SATA)" = "y" ]; then \
+		sed -i "/TCONFIG_SMARTCTL/d" $(1); \
+		echo "TCONFIG_SMARTCTL=y" >>$(1); \
+	fi; \
 	)
 endef
 

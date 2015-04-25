@@ -287,6 +287,11 @@ endif
 
 obj-y += wanuptime
 
+# SATA
+ifeq ($(TCONFIG_SMARTCTL),y)
+obj-y += smartmontools
+endif
+
 ifeq ($(TCONFIG_IPV6),y)
 export TCONFIG_IPV6 := y
 IPTABLES_IPV6_OPT := --enable-ipv6
@@ -2784,6 +2789,20 @@ comgt-install: comgt
 
 comgt-clean:
 	-@$(MAKE) -C comgt clean
+
+smartmontools/stamp-h1:
+	cd smartmontools-6.3 && CC=$(CC) AR=$(AR) RANLIB=$(RANLIB) LD=$(LD) \
+	LDFLAGS="-static" \
+	$(CONFIGURE) --prefix=/usr
+	@touch smartmontools-6.3/stamp-h1
+smartmontools: smartmontools/stamp-h1
+	@$(MAKE) -C smartmontools-6.3
+smartmontools-clean:
+	-@$(MAKE) -C smartmontools-6.3 clean
+	@rm -f smartmontools-6.3/stamp-h1
+smartmontools-install:
+	install -D smartmontools-6.3/smartctl $(INSTALLDIR)/smartmontools/usr/sbin/smartctl
+	$(STRIP) $(INSTALLDIR)/smartmontools/usr/sbin/smartctl
 
 #
 # Generic rules

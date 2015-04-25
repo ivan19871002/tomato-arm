@@ -245,6 +245,9 @@
 						{ title: '<% translate("Uptime"); %>', rid: 'uptime', text: stats.uptime },
 						{ title: '<% translate("CPU Usage"); %>', rid: 'cpupercent', text: stats.cpupercent },
 						{ title: '<% translate("Temperature"); %> <small>(CPU / WL0 / WL1)</small>', rid: 'temps', text: stats.cputemp + ' / ' + stats.wl0temp + ' / ' + stats.wl1temp +'C'},
+						/* SMARTCTL-BEGIN */
+						{ title: '<% translate("Temperature"); %> HDD', rid: 'hddtemp', text: stats.hddtemp+'C'},
+						/* SMARTCTL-END */
 						{ title: '<% translate("CPU Load"); %> <small>(1 / 5 / 15 <% translate("mins"); %>)</small>', rid: 'cpu', text: stats.cpuload },
 						{ title: '<% translate("Total / Free Memory"); %>', rid: 'memory', text: stats.memory + '<div class="progress"><div class="bar" style="width: ' + stats.memoryperc + ';"></div></div>' },
 						{ title: '<% translate("Total / Free Swap"); %>', rid: 'swap', text: stats.swap + '<div class="progress"><div class="bar" style="width: ' + stats.swapperc + ';"></div></div>', hidden: (stats.swap == '') },

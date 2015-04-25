@@ -119,7 +119,7 @@ int get_cpuinfo(char *system_type, char *cpu_model, char *bogomips, char *cpuclk
 	return (okcount==3);
 }
 
-float get_temps(char *cputemp, char *wl0temp, char *wl1temp)
+float get_temps(char *cputemp, char *wl0temp, char *wl1temp, char *hddtemp)
 {
 	FILE *fd;
         char *next;
@@ -147,9 +147,13 @@ float get_temps(char *cputemp, char *wl0temp, char *wl1temp)
 			okcount++;
 			strcpy(wl1temp, value);
 		}
+		if (strncmp_ex(title, "hdd Temp")==0) {
+			okcount++;
+			strcpy(hddtemp, value);
+		}
 	}
 	fclose(fd);
-	return (okcount==2);	
+	return (okcount==3);	
 }
 
 /*

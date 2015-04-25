@@ -322,7 +322,13 @@ ifeq ($(TCONFIG_DNSCRYPT),y)
 else
 	sed -i  $(INSTALLDIR)/www-at/basic-network.asp -e "/DNSCRYPT-BEGIN/,/DNSCRYPT-END/d"
 	sed -i  $(INSTALLDIR)/www-at/about.asp -e "/DNSCRYPT-BEGIN/,/DNSCRYPT-END/d"
- endif
+endif
+
+# Only include HDD temp if smartctl installed
+ifneq ($(TCONFIG_SMARTCTL),y)
+	sed -i  $(INSTALLDIR)/www-at/status-home.asp -e "/SMARTCTL-BEGIN/,/SMARTCTL-END/d"
+	sed -i  $(INSTALLDIR)/www-at/advancedtomato.asp -e "/SMARTCTL-BEGIN/,/SMARTCTL-END/d"
+endif
 
 # clean up
 	cd  $(INSTALLDIR)/www-at && \
@@ -364,6 +370,7 @@ else
 		-e "/ATOMATO-BEGIN/d"	-e "/ATOMATO-END/d"\
 		-e "/XIAOMI-BEGIN/d"	-e "/XIAOMI-END/d"\
 		-e "/HUAWEI-BEGIN/d"	-e "/HUAWEI-END/d"\
+		-e "/SMARTCTL-BEGIN/d"	-e "/SMARTCTL-END/d"\
 		-e "/MICROSD-BEGIN/d"	-e "/MICROSD-END/d"\
 		|| true; \
 	done

@@ -196,8 +196,8 @@ No part of this file may be used without permission.
 				{ title: '<% translate("Allow Anyhost to access"); %>', name: 'f_mysql_allow_anyhost', type: 'checkbox', value: nvram.mysql_allow_anyhost == 1, suffix: ' <small><% translate("Allowed any hosts to access database server"); %>.</small>' },
 				{ title: '<% translate("Re-init priv. table"); %>', name: 'f_mysql_init_priv', type: 'checkbox', value: nvram.mysql_init_priv== 1, suffix: ' <small><% translate("If checked, privileges table will be forced to re-initialize by mysql_install_db"); %>.</small>' },
 				{ title: '<% translate("Re-init root password"); %>', name: 'f_mysql_init_rootpass', type: 'checkbox', value: nvram.mysql_init_rootpass == 1, suffix: ' <small><% translate("If checked, root password will be forced to re-initialize"); %>.</small>' },
-				{ title: '<% translate("root user name"); %>', name: 'mysql_username', type: 'text', maxlen: 32, size: 16, value: nvram.mysql_username, suffix: ' <small><% translate("user name connected to server"); %>.(<% translate("default"); %>: root)</small>' },
-				{ title: '<% translate("root password"); %>', name: 'mysql_passwd', type: 'password', maxlen: 32, size: 16, peekaboo: 1, value: nvram.mysql_passwd, suffix: ' <small><% translate("not allowed NULL"); %>.(<% translate("default"); %>: admin)</small>' },
+				{ title: '<% translate("root user name"); %>', name: 'mysql_username', type: 'text', maxlen: 32, size: 16, value: nvram.mysql_username, suffix: ' <small><% translate("user name connected to server"); %> (<% translate("default"); %>: root)</small>' },
+				{ title: '<% translate("root password"); %>', name: 'mysql_passwd', type: 'password', maxlen: 32, size: 16, peekaboo: 1, value: nvram.mysql_passwd, suffix: ' <small><% translate("not allowed NULL"); %> (<% translate("default"); %>: admin)</small>' },
 				{ title: '<% translate("Enable USB Partition"); %>', multi: [
 					{ name: 'f_mysql_usb_enable', type: 'checkbox', value: nvram.mysql_usb_enable == 1, suffix: '  ' },
 					{ name: 'mysql_dlroot', type: 'select', options: usb_disk_list, value: nvram.mysql_dlroot, suffix: ' '} ] },
@@ -232,7 +232,7 @@ No part of this file may be used without permission.
 				{ title: '<% translate("Read buffer size"); %>', name: 'mysql_read_buffer_size', type: 'text', maxlen: 10, size: 10, value: nvram.mysql_read_buffer_size, suffix: ' <small>KB (<% translate("range"); %>: 0 - 1024000; <% translate("default"); %>: 128)</small>' },
 				{ title: '<% translate("Read rand buffer size"); %>', name: 'mysql_read_rnd_buffer_size', type: 'text', maxlen: 10, size: 10, value: nvram.mysql_read_rnd_buffer_size, suffix: ' <small>KB (<% translate("range"); %>: 1 - 1024000; <% translate("default"); %>: 256)</small>' },
 				{ title: '<% translate("Max connections"); %>', name: 'mysql_max_connections', type: 'text', maxlen: 10, size: 10, value: nvram.mysql_max_connections, suffix: ' <small>(<% translate("range"); %>: 0 - 999999; <% translate("default"); %>: 1000)</small>' },
-				{ title: 'MySQL server custom config.', name: 'mysql_server_custom', type: 'textarea', value: nvram.mysql_server_custom, style: 'width: 100%; height: 80px;' }
+				{ title: '<% translate("MySQL server custom config."); %>', name: 'mysql_server_custom', type: 'textarea', value: nvram.mysql_server_custom, style: 'width: 100%; height: 80px;' }
 			]);
 		</script>
 

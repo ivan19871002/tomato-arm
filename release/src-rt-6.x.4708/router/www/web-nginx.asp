@@ -184,8 +184,8 @@ createFieldTable('', [
 <li><b> <% translate("PHP Custom Configuration"); %>:</b> <% translate("You can add other values to php.ini to suit your needs"); %>.<br>
 <li><b> <% translate("Server Priority"); %>:</b> <% translate("Sets the service priority over other processes running on the router"); %>.<br><br>
 <% translate("The operating system kernel has priority"); %> -5.<br>
-<% translate("Never select a lower value than the kernel uses. Do not use the service test page to adjust the server performance"); %>,<br>
-<% translate("it's performance is lower than the definitive media where files will be located"); %> ,<br>
+<% translate("Never select a lower value than the kernel uses. Do not use the service test page to adjust the server performance"); %>,
+<% translate("it's performance is lower than the definitive media where files will be located"); %>,
 <% translate("i.e; USB Stick, Hard Drive or SSD"); %>.<br>
 </ul>
 </div>

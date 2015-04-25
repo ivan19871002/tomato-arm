@@ -264,10 +264,10 @@ RouteGrid.prototype.verifyFields = function(row, quiet)
 	var f = fields.getAll(row);
 
 	// Verify fields in this row of the table
-	if (f[2].value == "" ) { ferror.set(f[2], "Value is mandatory.", quiet); ret = 0; }
-	if (f[2].value.indexOf('>') >= 0 || f[2].value.indexOf('<') >= 0) { ferror.set(f[2], "Value cannot contain '<' or '>' characters.", quiet); ret = 0; }
-	if (f[2].value.indexOf(' ') >= 0 || f[2].value.indexOf(',') >= 0) { ferror.set(f[2], "Value cannot contain 'space' or ',' characters. Only one IP or Domain per entry.", quiet); ret = 0; }
-	if (f[2].value.indexOf(' ') >= 0) { ferror.set(f[2], "Value cannot contain '-' character. IP range is not supported.", quiet); ret = 0; }
+	if (f[2].value == "" ) { ferror.set(f[2], "<% translate("Value is mandatory"); %>.", quiet); ret = 0; }
+	if (f[2].value.indexOf('>') >= 0 || f[2].value.indexOf('<') >= 0) { ferror.set(f[2], "<% translate("Value cannot contain"); %> '<' <% translate("or"); %> '>' <% translate("characters"); %>.", quiet); ret = 0; }
+	if (f[2].value.indexOf(' ') >= 0 || f[2].value.indexOf(',') >= 0) { ferror.set(f[2], "<% translate("Value cannot contain"); %> '<% translate("space"); %>' <% translate("or"); %> ',' <% translate("characters. Only one IP or Domain per entry"); %>.", quiet); ret = 0; }
+	if (f[2].value.indexOf(' ') >= 0) { ferror.set(f[2], "<% translate("Value cannot contain"); %> '-' <% translate("character. IP range is not supported"); %>.", quiet); ret = 0; }
 	return ret;
 }
 RouteGrid.prototype.fieldValuesToData = function(row)
@@ -277,7 +277,7 @@ RouteGrid.prototype.fieldValuesToData = function(row)
 }
 RouteGrid.prototype.dataToView = function(data){
 	var temp = ['<input type=\'checkbox\' style="opacity:1" disabled'+(data[0]!=0?' checked':'')+'>',
-	            ['From Source IP', 'To Destination IP', 'To Domain'][data[1] - 1],
+	            ['<% translate("From Source IP"); %>', '<% translate("To Destination IP"); %>', '<% translate("To Domain"); %>'][data[1] - 1],
 	            data[2]
                 ];
 	var v = [];
@@ -341,9 +341,9 @@ function init()
 
 		routingTables[i].init('table_' + t + '_routing','sort', 0,[
 			{ type: 'checkbox' },
-			{ type: 'select', options: [[1, 'From Source IP'],[2, 'To Destination IP'],[3,'To Domain']] },
+			{ type: 'select', options: [[1, '<% translate("From Source IP"); %>'],[2, '<% translate("To Destination IP"); %>'],[3,'<% translate("To Domain"); %>']] },
 			{ type: 'text' }]);
-		routingTables[i].headerSet(['Enable', 'Type', 'Value']);
+		routingTables[i].headerSet(['<% translate("Enable"); %>', '<% translate("Type"); %>', '<% translate("Value"); %>']);
 		var routingVal = eval('nvram.vpn_' + t + '_routing_val');
 		if(routingVal.length) {
 			var s = routingVal.split('>');
@@ -474,7 +474,7 @@ for (i = 0; i < tabs.length; ++i)
 		{ title: '<% translate("Redirect Internet traffic"); %>', multi: [
 			{ name: 'f_vpn_'+t+'_rgw', type: 'checkbox', value: eval( 'nvram.vpn_'+t+'_rgw' ) != 0 },
 			{ name: 'vpn_'+t+'_gw', type: 'text', maxlen: 15, size: 17, value: eval( 'nvram.vpn_'+t+'_gw' ), prefix: '<span id=\''+t+'_gateway\'> <% translate("Gateway"); %>:&nbsp', suffix: '</span>'} ] },
-		{ title: '<% translate("Ignore Redirect Gateway (route-nopull)"); %>', name: 'f_vpn_'+t+'_nopull', type: 'checkbox', value: eval( 'nvram.vpn_'+t+'_nopull' ) != 0 },
+		{ title: '<% translate("Ignore Redirect Gateway"); %> (route-nopull)', name: 'f_vpn_'+t+'_nopull', type: 'checkbox', value: eval( 'nvram.vpn_'+t+'_nopull' ) != 0 },
 		{ title: '<% translate("Accept DNS configuration"); %>', name: 'vpn_'+t+'_adns', type: 'select', options: [[0, 'Disabled'],[1, 'Relaxed'],[2, 'Strict'],[3, 'Exclusive']], value: eval( 'nvram.vpn_'+t+'_adns' ) },
 		{ title: '<% translate("Encryption cipher"); %>', name: 'vpn_'+t+'_cipher', type: 'select', options: ciphers, value: eval( 'nvram.vpn_'+t+'_cipher' ) },
 		{ title: '<% translate("Compression"); %>', name: 'vpn_'+t+'_comp', type: 'select', options: [ ['-1', '<% translate("Disabled"); %>'], ['no', '<% translate("None"); %>'], ['yes', '<% translate("Enabled"); %>'], ['adaptive', '<% translate("Adaptive"); %>'] ], value: eval( 'nvram.vpn_'+t+'_comp' ) },
@@ -496,9 +496,9 @@ for (i = 0; i < tabs.length; ++i)
 	]);
 	    W('<div>');
 		W('<ul>');
-			W('<li><b><% translate("Type -> From Source IP"); %></b> - <% translate("Ex"); %>: "1.2.3.4" <% translate("or"); %> "1.2.3.0/24".');
-			W('<li><b><% translate("Type -> To Destination IP"); %></b> - <% translate("Ex"); %>: "1.2.3.4" <% translate("or"); %> "1.2.3.0/24".');
-			W('<li><b><% translate("Type -> To Domain"); %></b> - <% translate("Ex"); %>: "domain.com". <% translate("Please enter one domain per line"); %>');
+			W('<li><b><% translate("Type"); %> -> <% translate("From Source IP"); %></b> - <% translate("Ex"); %>: "1.2.3.4" <% translate("or"); %> "1.2.3.0/24".');
+			W('<li><b><% translate("Type"); %> -> <% translate("To Destination IP"); %></b> - <% translate("Ex"); %>: "1.2.3.4" <% translate("or"); %> "1.2.3.0/24".');
+			W('<li><b><% translate("Type"); %> -> <% translate("To Domain"); %></b> - <% translate("Ex"); %>: "domain.com". <% translate("Please enter one domain per line"); %>');
 		W('</ul>');
 	    W('</div>');
 	W('</div>');

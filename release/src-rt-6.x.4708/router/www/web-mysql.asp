@@ -203,8 +203,8 @@ createFieldTable('', [
 	{ title: '<% translate("Allow Anyhost to access"); %>', name: 'f_mysql_allow_anyhost', type: 'checkbox', value: nvram.mysql_allow_anyhost == 1, suffix: ' <small><% translate("Allowed any hosts to access database server"); %>.</small>' },
 	{ title: '<% translate("Re-init priv. table"); %>', name: 'f_mysql_init_priv', type: 'checkbox', value: nvram.mysql_init_priv== 1, suffix: ' <small><% translate("If checked, privileges table will be forced to re-initialize by mysql_install_db"); %>.</small>' },
 	{ title: '<% translate("Re-init root password"); %>', name: 'f_mysql_init_rootpass', type: 'checkbox', value: nvram.mysql_init_rootpass == 1, suffix: ' <small><% translate("If checked, root password will be forced to re-initialize"); %>.</small>' },
-	{ title: '<% translate("root user name"); %>', name: 'mysql_username', type: 'text', maxlen: 32, size: 16, value: nvram.mysql_username, suffix: ' <small><% translate("user name connected to server"); %>.(<% translate("default"); %>: root)</small>' },
-	{ title: '<% translate("root password"); %>', name: 'mysql_passwd', type: 'password', maxlen: 32, size: 16, peekaboo: 1, value: nvram.mysql_passwd, suffix: ' <small><% translate("not allowed NULL"); %>.(<% translate("default"); %>: admin)</small>' },
+	{ title: '<% translate("root user name"); %>', name: 'mysql_username', type: 'text', maxlen: 32, size: 16, value: nvram.mysql_username, suffix: ' <small><% translate("user name connected to server"); %> (<% translate("default"); %>: root)</small>' },
+	{ title: '<% translate("root password"); %>', name: 'mysql_passwd', type: 'password', maxlen: 32, size: 16, peekaboo: 1, value: nvram.mysql_passwd, suffix: ' <small><% translate("not allowed NULL"); %> (<% translate("default"); %>: admin)</small>' },
 	{ title: '<% translate("Enable USB Partition"); %>', multi: [
 		{ name: 'f_mysql_usb_enable', type: 'checkbox', value: nvram.mysql_usb_enable == 1, suffix: '  ' },
 		{ name: 'mysql_dlroot', type: 'select', options: usb_disk_list, value: nvram.mysql_dlroot, suffix: ' '} ] },
@@ -216,7 +216,7 @@ createFieldTable('', [
 		<li><b><% translate("Enable MySQL server"); %></b> - <% translate("Caution! - If your router only has 32MB of RAM, you'll have to use swap"); %>.
 		<li><b><% translate("MySQL binary path"); %></b> - <% translate("Path to the directory containing mysqld etc. Not include program name"); %> "/mysqld"
 		<li><b><% translate("Keep alive"); %></b> - <% translate("If enabled, mysqld will be checked at the specified interval and will re-launch after a crash"); %>.
-		<li><b><% translate("Data and tmp dir"); %>.</b> - <% translate("Attention! Must not use NAND for datadir and tmpdir"); %>.
+		<li><b><% translate("Data and tmp dir."); %></b> - <% translate("Attention! Must not use NAND for datadir and tmpdir"); %>.
 	</ul>
 </div>
 </div>
@@ -239,7 +239,7 @@ createFieldTable('', [
 ]);
 </script>
 	<ul>
-		<li><b><% translate("MySQL Server custom config."); %></b> - <% translate("input like"); %>:  param=value   <% translate("e.g"); %>.  connect_timeout=10
+		<li><b><% translate("MySQL Server custom config."); %></b> - <% translate("input like:  param=value   e.g.  connect_timeout=10"); %>
 	</ul>
 </div>
 </div>

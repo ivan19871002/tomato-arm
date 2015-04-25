@@ -680,12 +680,12 @@ void start_wl(void)
 							led(LED_WLAN, LED_ON);
 							if (nvram_get_int("blink_wl"))
 								killall("blink", SIGKILL); /* ugly way to be uniq (or there will be many...) */
-								eval("blink", ifname, "wlan", "20", "8192");
+								eval("blink", ifname, "wlan", "20", "2000000");
 						}
 						else{
 							 led(LED_5G, LED_ON);
 							 if (nvram_get_int("blink_wl"))
-							 	eval("blink", ifname, "5g", "20", "8192");
+							 	eval("blink", ifname, "5g", "20", "2000000");
 						}
 					}
 #endif	// CONFIG_BCMWL5

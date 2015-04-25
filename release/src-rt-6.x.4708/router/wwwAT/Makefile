@@ -318,7 +318,7 @@ endif
 
 # Only include the dnscrypt option if is compiled in
 ifeq ($(TCONFIG_DNSCRYPT),y)
-	$(TOP)/www/dnscrypt-helper.sh $(INSTALLDIR)/../rom/rom/etc/dnscrypt-resolvers.csv  $(INSTALLDIR)/www-at/basic-network.asp
+	$(TOP)/wwwAT/dnscrypt-helper.sh $(INSTALLDIR)/../rom/rom/etc/dnscrypt-resolvers.csv  $(INSTALLDIR)/www-at/basic-network.asp
 else
 	sed -i  $(INSTALLDIR)/www-at/basic-network.asp -e "/DNSCRYPT-BEGIN/,/DNSCRYPT-END/d"
 	sed -i  $(INSTALLDIR)/www-at/about.asp -e "/DNSCRYPT-BEGIN/,/DNSCRYPT-END/d"
@@ -385,7 +385,7 @@ endif
 
 # remove C-style comments from java files. All "control" comments have been processed by now.
 	for F in $(wildcard *.js *.jsx); do \
-		[ -f  $(INSTALLDIR)/www-at/$$F ] && $(TOP)/www/remcoms2.sh  $(INSTALLDIR)/www-at/$$F c; \
+		[ -f  $(INSTALLDIR)/www-at/$$F ] && $(TOP)/wwwAT/remcoms2.sh  $(INSTALLDIR)/www-at/$$F c; \
 	done
 
 	# Copy over the directories needed for the new AdvancedTomato stuff (img, css and js)

@@ -2365,9 +2365,9 @@ static int init_nvram(void)
 #ifdef TCONFIG_USB
 		nvram_set("usb_uhci", "-1");
 #endif
-		nvram_set("boot_wait", "off");
-
 		if (!nvram_match("t_fix1", (char *)name)) {
+			nvram_set("boot_wait", "on");
+			nvram_set("wait_time", "10");
 			nvram_set("router_name", "X-R1D");
 
 			nvram_set("vlan1hwname", "et0");

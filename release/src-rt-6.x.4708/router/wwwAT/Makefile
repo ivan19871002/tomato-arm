@@ -2,8 +2,8 @@
 include ../common.mak
 
 # BRANDING (0 to disable)
-XIAOMI = 1
 HUAWEI = 0
+XIAOMI = 0
 
 all:
 

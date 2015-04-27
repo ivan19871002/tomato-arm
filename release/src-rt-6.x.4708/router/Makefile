@@ -1991,13 +1991,13 @@ libpng-clean:
 	@rm -f libpng/stamp-h1
 	@rm -rf libpng/staged
 
-php/stamp-h1: pcre zlib libiconv sqlite libxml2 libpng jpeg
+php/stamp-h1: pcre zlib libiconv sqlite libxml2 libpng jpeg libcurl
 	@$(SEP)
 	cd php && CC=$(CC) CXX=$(ARCH)-g++ AR=$(AR) RANLIB=$(RANLIB) LD=$(LD) \
-	CFLAGS="-Os -Wall -I$(TOP)/zlib -I$(TOP)/libxml2/include/libxml -I$(TOP)/libxml2/include -I$(TOP)/pcre -I$(TOP)/libiconv/include -I$(TOP)/libpng/staged/usr/include" \
-	LDFLAGS="-L$(TOP)/pcre/.libs -L$(TOP)/sqlite/.libs -L$(TOP)/zlib -L$(TOP)/libxml2/.libs -L$(TOP)/libiconv/lib/.libs -L$(TOP)/libpng/.libs" \
+	CFLAGS="-Os -Wall -I$(TOP)/zlib -I$(TOP)/libxml2/include/libxml -I$(TOP)/libxml2/include -I$(TOP)/pcre -I$(TOP)/libiconv/include -I$(TOP)/libpng/staged/usr/include -I$(TOP)/libcurl/include" \
+	LDFLAGS="-L$(TOP)/pcre/.libs -L$(TOP)/sqlite/.libs -L$(TOP)/zlib -L$(TOP)/libxml2/.libs -L$(TOP)/libiconv/lib/.libs -L$(TOP)/libpng/.libs -L$(TOP)/libcurl/lib/.libs" \
 	CPPFLAGS="-L$(TOP)/pcre/.libs -L$(TOP)/sqlite/.libs -L$(TOP)/zlib -L$(TOP)/libxml2/.libs -L$(TOP)/libiconv/lib/.libs -L$(TOP)/libpng/.libs" \
-	LIBS="-L$(TOP)/pcre/.libs -L$(TOP)/sqlite/.libs -L$(TOP)/zlib -L$(TOP)/libxml2/.libs -L$(TOP)/libiconv/lib/.libs -L$(TOP)/libpng/.libs -lz -lsqlite3 -ldl -lpthread -liconv -lxml2 -lstdc++" \
+	LIBS="-L$(TOP)/pcre/.libs -L$(TOP)/sqlite/.libs -L$(TOP)/zlib -L$(TOP)/libxml2/.libs -L$(TOP)/libiconv/lib/.libs -L$(TOP)/libpng/.libs -L$(TOP)/libcurl/lib/.libs -lz -lsqlite3 -ldl -lpthread -liconv -lxml2 -lstdc++ -lcurl" \
 	PHP_FCGI_LIBXML_DIR="$(TOP)/libxml2/staged/usr" \
 	ac_cv_func_memcmp_working=yes \
 	cv_php_mbstring_stdarg=yes \
@@ -2017,7 +2017,7 @@ php/stamp-h1: pcre zlib libiconv sqlite libxml2 libpng jpeg
 	--enable-cgi \
 	--disable-calendar \
 	--enable-ctype \
-	--without-curl \
+	--with-curl="$(TOP)/libcurl" \
 	--enable-fileinfo \
 	--without-gettext \
 	--enable-dom \

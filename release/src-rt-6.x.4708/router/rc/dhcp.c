@@ -400,6 +400,8 @@ void start_dhcpc(void)
 		"udhcpc -i %s -b -s dhcpc-event %s %s %s %s %s %s",
 		ifname,
 		nvram_invmatch("wan_hostname", "") ? "-H" : "", nvram_safe_get("wan_hostname"),
+		// This params required to get static / classless routes from DHCP server
+		nvram_get_int("dhcp_routes") ? "-O 33 -O 121 -O 249" : "",
 		nvram_get_int("dhcpc_minpkt") ? "-m" : "",
 		nvram_contains_word("log_events", "dhcpc") ? "-S" : "",
 		nvram_safe_get("dhcpc_custom"),

@@ -31,6 +31,16 @@ OBJS += $(TOP)/busybox/util-linux/volume_id/util2.o
 OBJS += $(TOP)/busybox/util-linux/volume_id/fat.o
 OBJS += $(TOP)/busybox/util-linux/volume_id/ntfs.o
 OBJS += $(TOP)/busybox/util-linux/volume_id/linux_swap.o
+ifeq ($(TCONFIG_HFS),y)
+CFLAGS += -DHFS
+OBJS += $(TOP)/busybox/libbb/hash_md5_sha.o
+OBJS += $(TOP)/busybox/libbb/bb_bswap_64.o
+OBJS += $(TOP)/busybox/util-linux/volume_id/hfs.o
+endif
+ifeq ($(TCONFIG_EXFAT),y)
+CFLAGS += -DEXFAT
+OBJS += $(TOP)/busybox/util-linux/volume_id/exfat.o
+endif
 endif
 
 ifeq ($(CONFIG_BCMWL5),y)

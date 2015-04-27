@@ -607,7 +607,7 @@ int mount_r(char *mnt_dev, char *mnt_dir, char *type)
 #ifdef TCONFIG_TEXFAT
 			if (ret != 0 && strncmp(type, "exfat", "") == 0) {
 				if (nvram_get_int("usb_fs_exfat")) {
-						ret = eval("mount", "-t", "textfat", mnt_dev, mnt_dir);
+						ret = eval("mount", "-t", "texfat", mnt_dev, mnt_dir);
 				}
 			}
 #endif // ifdef TCONFIG_TEXFAT

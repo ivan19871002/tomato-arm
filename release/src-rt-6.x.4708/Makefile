@@ -358,7 +358,7 @@ define RouterOptions
 			sed -i "/TCONFIG_TUXERA_HFS/d" $(1); \
 			echo "TCONFIG_TUXERA_HFS=y" >>$(1); \
 		fi; \
-		if [ "$(TUXERA_EXFAT)" = "y" ]; then \
+		if [ "$(EXFAT)" = "y" ]; then \
 			sed -i "/TCONFIG_TEXFAT/d" $(1); \
 			echo "TCONFIG_TEXFAT=y" >>$(1); \
 		fi; \
@@ -626,6 +626,12 @@ define BusyboxOptions
 			echo "CONFIG_TUNE2FS=y" >>$(1); \
 			sed -i "/CONFIG_E2LABEL/d" $(1); \
 			echo "CONFIG_E2LABEL=y" >>$(1); \
+			if [ "$(HFS)" = "y" ]; then \
+			echo "CONFIG_FEATURE_VOLUMEID_HFS=y" >>$(1); \
+			fi; \
+			if [ "$(EXFAT)" = "y" ]; then \
+			echo "CONFIG_FEATURE_VOLUMEID_EXFAT=y" >>$(1); \
+			fi; \
 			if [ "$(CONFIG_LINUX26)" = "y" ]; then \
 				sed -i "/CONFIG_LSUSB/d" $(1); \
 				echo "CONFIG_LSUSB=y" >>$(1); \

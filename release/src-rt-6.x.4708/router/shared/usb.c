@@ -417,12 +417,17 @@ struct volume_id {
 	char		uuid[VOLUME_ID_UUID_SIZE+1];
 };
 
-extern void volume_id_set_uuid();
 extern void *volume_id_get_buffer();
 extern void volume_id_free_buffer();
 extern int volume_id_probe_ext();
 extern int volume_id_probe_vfat();
 extern int volume_id_probe_ntfs();
+#ifdef HFS
+extern int volume_id_probe_hfs_hfsplus();
+#endif
+#ifdef EXFAT
+extern int volume_id_probe_exfat();
+#endif
 extern int volume_id_probe_linux_swap();
 
 /* Put the label in *label and uuid in *uuid.
@@ -450,6 +455,14 @@ char *find_label_or_uuid(char *dev_name, char *label, char *uuid)
 		          (id.sbbuf[0x45c] & 0x0004 /* HAS_JOURNAL */) != 0) ? "ext3" : "ext2";
 	else if (!id.error && volume_id_probe_ntfs(&id) == 0)
 		fstype = "ntfs";
+#ifdef HFS
+	else if (!id.error && volume_id_probe_hfs_hfsplus(&id) == 0)
+		fstype = "hfsplus";
+#endif
+#ifdef EXFAT
+	else if (!id.error && volume_id_probe_exfat(&id) == 0)
+		fstype = "exfat";
+#endif
 	else if (!id.error)
 		fstype = "unknown";
 

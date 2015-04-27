@@ -8,12 +8,16 @@ No part of this file may be used without permission.
 --><title><% translate("Miscellaneous"); %></title>
 <content>
 	<script type="text/javascript">
-		//	<% nvram("at_update,tomatoanon_answer,t_features,wait_time,wan_speed,clkfreq,jumbo_frame_enable,jumbo_frame_size,ctf_disable"); %>
+		//	<% nvram("t_features,boot_wait,wait_time,wan_speed,clkfreq,jumbo_frame_enable,jumbo_frame_size,ctf_disable"); %>
 
 		et1000 = features('1000et');
 
 		function verifyFields(focused, quiet)
 		{
+			if(nvram.boot_wait == 'off') {
+				E('_wait_time').disabled = true;
+				E('_wait_time').options[0].selected = true;
+			}
 			E('_jumbo_frame_size').disabled = !E('_f_jumbo_frame_enable').checked;
 			return 1;
 		}
@@ -56,19 +60,18 @@ No part of this file may be used without permission.
 
 				<div id="form-fields"></div><hr>
 				<script type="text/javascript">
-					a = [];
-					for (i = 3; i <= 20; ++i) a.push([i, i + ' <% translate("seconds"); %>']);
+					a = [[0,'<% translate("Disabled"); %>']];
+					for (i = 1; i <= 30; ++i) a.push([i, i + ' <% translate("seconds"); %>']);
 
 					$('#form-fields').forms([
-						{ title: '<% translate("Boot Wait Time"); %> *', name: 'wait_time', type: 'select', options: a, value: fixInt(nvram.wait_time, 3, 20, 3) },
-						{ title: '<% translate("WAN Port Speed"); %> *', name: 'wan_speed', type: 'select', options: [[0,'10Mb Full'],[1,'10Mb Half'],[2,'100Mb Full'],[3,'100Mb Half'],[4,'<% translate("Auto"); %>']], value: nvram.wan_speed },
+						{ title: '<% translate("Boot Wait Time"); %> *', name: 'wait_time', type: 'select', options: a, value: fixInt(nvram.wait_time, 1, 30, 3) },
+						{ title: '<% translate("WAN Port Speed"); %> *', name: 'wan_speed', type: 'select', options: [[0,'10Mb <% translate("Full-Duplex"); %>'],[1,'10Mb <% translate("Half-Duplex"); %>'],[2,'100Mb <% translate("Full-Duplex"); %>'],[3,'100Mb <% translate("Half-Duplex"); %>'],[4,'<% translate("Auto"); %>']], value: nvram.wan_speed },
 						null,
 
 						/* CTF-BEGIN */
 						{ title: 'CTF (<% translate("Cut-Through Forwarding"); %>)', name: 'f_ctf_disable', type: 'checkbox', value: nvram.ctf_disable != '1' },
 						null,
 						/* CTF-END */
-
 						{ title: '<% translate("Enable Jumbo Frames"); %> *', name: 'f_jumbo_frame_enable', type: 'checkbox', value: nvram.jumbo_frame_enable != '0', hidden: !et1000 },
 						{ title: '<% translate("Jumbo Frame Size"); %> *', name: 'jumbo_frame_size', type: 'text', maxlen: 4, size: 6, value: fixInt(nvram.jumbo_frame_size, 1, 9720, 2000),
 							suffix: ' <small><% translate("Bytes"); %> (<% translate("range"); %>: 1 - 9720; <% translate("default"); %>: 2000)</small>', hidden: !et1000 }

@@ -22,12 +22,16 @@
 
 <script type='text/javascript'>
 
-//	<% nvram("t_features,wait_time,wan_speed,jumbo_frame_enable,jumbo_frame_size,ctf_disable"); %>
+//	<% nvram("t_features,boot_wait,wait_time,wan_speed,jumbo_frame_enable,jumbo_frame_size,ctf_disable"); %>
 
 et1000 = features('1000et');
 
 function verifyFields(focused, quiet)
 {
+	if(nvram.boot_wait == 'off') {
+		E('_wait_time').disabled = true;
+		E('_wait_time').selectedIndex = 0;
+	}
 	E('_jumbo_frame_size').disabled = !E('_f_jumbo_frame_enable').checked;
 	return 1;
 }
@@ -80,10 +84,10 @@ function save()
 <div class='section-title'><% translate("Miscellaneous"); %></div>
 <div class='section'>
 <script type='text/javascript'>
-a = [];
-for (i = 3; i <= 20; ++i) a.push([i, i + ' <% translate("seconds"); %>']);
+a = [[0,'<% translate("Disabled"); %>']];
+for (i = 1; i <= 30; ++i) a.push([i, i + ' <% translate("seconds"); %>']);
 createFieldTable('', [
-	{ title: '<% translate("Boot Wait Time"); %> *', name: 'wait_time', type: 'select', options: a, value: fixInt(nvram.wait_time, 3, 20, 3) },
+	{ title: '<% translate("Boot Wait Time"); %> *', name: 'wait_time', type: 'select', options: a, value: fixInt(nvram.wait_time, 1, 30, 3) },
 	{ title: '<% translate("WAN Port Speed"); %> *', name: 'wan_speed', type: 'select', options: [[0,'10Mb <% translate("Full-Duplex"); %>'],[1,'10Mb <% translate("Half-Duplex"); %>'],[2,'100Mb <% translate("Full-Duplex"); %>'],[3,'100Mb <% translate("Half-Duplex"); %>'],[4,'<% translate("Auto"); %>']], value: nvram.wan_speed },
 	null,
 /* CTF-BEGIN */

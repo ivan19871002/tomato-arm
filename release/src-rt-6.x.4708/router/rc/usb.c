@@ -540,6 +540,31 @@ int mount_r(char *mnt_dev, char *mnt_dir, char *type)
 			if (nvram_invmatch("usb_ntfs_opt", ""))
 				sprintf(options + strlen(options), "%s%s", options[0] ? "," : "", nvram_safe_get("usb_ntfs_opt"));
 		}
+#ifdef TCONFIG_HFS
+		else if (strcmp(type, "hfs") == 0 || strcmp(type, "hfsplus") == 0) {
+			if (nvram_get_int("usb_fs_hfs")) {
+				if( nvram_match( "usb_hfs_driver", "kernel" )) {
+					/* options for kernel hfs/hfs+ (force rw mount) */
+					sprintf(options + strlen(options), "rw,force" + (options[0] ? 0 : 1));
+				}
+#ifdef TCONFIG_TUXERA_HFS
+				else if( nvram_match( "usb_hfs_driver", "tuxera" )) {
+					/* override fs fype */
+					type = "thfsplus";
+				}
+#endif
+#if defined(TCONFIG_UFSDA) || defined(TCONFIG_UFSDN)
+				else if( nvram_match( "usb_ntfs_driver", "paragon" )) {
+					sprintf(options + strlen(options), "force" + (options[0] ? 0 : 1));
+					/* override fs fype */
+					type = "ufsd";
+				}
+#endif
+			}
+			else // HFS support disabled by user, don't try to mount
+				flags = 0;
+		}
+#endif // ifdef TCONFIG_HFS
 
 		if (flags) {
 			if ((dir_made = mkdir_if_none(mnt_dir))) {
@@ -548,6 +573,7 @@ int mount_r(char *mnt_dev, char *mnt_dir, char *type)
 				f_write(flagfn, NULL, 0, 0, 0);
 			}
 
+			/* mount it, finally */
 			ret = mount(mnt_dev, mnt_dir, type, flags, options[0] ? options : "");
 
 #ifdef TCONFIG_NTFS
@@ -571,38 +597,6 @@ int mount_r(char *mnt_dev, char *mnt_dir, char *type)
 				}
 			}
 #endif // ifdef TCONFIG_NTFS
-
-#ifdef TCONFIG_HFS
-			if (ret != 0 && strncmp(type, "hfs", "") == 0) {
-				sprintf(options + strlen(options), ",noatime,nodev" + (options[0] ? 0 : 1));
-				if (nvram_get_int("usb_fs_hfs")) {
-					/* options for kernel hfs/hfs+ (force rw) */
-					if( nvram_match( "usb_hfs_driver", "kernel" )) {
-						ret = eval("mount", "-o", options, "-o", "force", mnt_dev, mnt_dir);
-					}
-#ifdef TCONFIG_TUXERA_HFS
-					else if( nvram_match( "usb_hfs_driver", "tuxera" )) {
-						ret = eval("mount", "-t", "thfsplus", "-o", options, mnt_dev, mnt_dir);
-					}
-#endif
-				}
-			}
-
-			if (ret != 0 && strncmp(type, "hfsplus", "") == 0) {
-				sprintf(options + strlen(options), ",noatime,nodev" + (options[0] ? 0 : 1));
-				if (nvram_get_int("usb_fs_hfs")) {
-					/* options for kernel hfs/hfs+ (force rw) */
-					if( nvram_match( "usb_hfs_driver", "kernel" )) {
-						ret = eval("mount", "-o", options, "-o", "force", mnt_dev, mnt_dir);
-					}
-#ifdef TCONFIG_TUXERA_HFS
-					else if( nvram_match( "usb_hfs_driver", "tuxera" )) {
-						ret = eval("mount", "-t", "thfsplus", "-o", options, mnt_dev, mnt_dir);
-					}
-#endif
-				}
-			}
-#endif // ifdef TCONFIG_HFS
 
 #ifdef TCONFIG_TEXFAT
 			if (ret != 0 && strncmp(type, "exfat", "") == 0) {

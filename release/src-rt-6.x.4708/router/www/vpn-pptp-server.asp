@@ -357,6 +357,7 @@ createFieldTable('', [
 <ul>
 <li><% translate("Try to avoid any conflicts and/or overlaps between the address ranges configured/available for DHCP and VPN clients on your local networks"); %>.</li>
 </ul>
+</ul>
 </small>
 </div>
 

@@ -113,7 +113,7 @@ createFieldTable('', [
 </ul>
 </div>
 </form>
-</div>
+<div></div>
 </td></tr>
 <tr><td id='footer' colspan=2>
  <form>
@@ -121,7 +121,7 @@ createFieldTable('', [
  <input type='button' value='<% translate("Save"); %>' id='save-button' onclick='save()'>
  <input type='button' value='<% translate("Cancel"); %>' id='cancel-button' onclick='javascript:reloadPage();'>
  </form>
-</div>
+<div></div>
 </td></tr>
 </table>
 <script type='text/javascript'>verifyFields(null, 1);</script>

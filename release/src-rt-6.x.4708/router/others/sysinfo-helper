@@ -12,7 +12,7 @@ f=`wl -i eth2 phy_tempsense | awk {' print $1'}`
 
 g=`smartctl -s on -x /dev/sda | grep "Current Temperature" | awk {' print $3'}`
 
-if [ $b == "0" ]; then
+if [ $b -le "1" ]; then
 c="single"
 else
 c="dual"

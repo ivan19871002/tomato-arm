@@ -9,14 +9,16 @@ cd $SRC
 # echo " ---- Update sources from GIT ---- "
 # git pull
 EXTENDNO=`git rev-parse --verify HEAD --short`
+
 # Huawei build
-#sed -ie "s|HUAWEI = 0|HUAWEI = 1|" $SRC/router/wwwAT/Makefile
-#sed -ie "s|XIAOMI = 1|XIAOMI = 0|" $SRC/router/wwwAT/Makefile
+sed -ie "s|HUAWEI = 0|HUAWEI = 1|" $SRC/router/wwwAT/Makefile
+sed -ie "s|XIAOMI = 1|XIAOMI = 0|" $SRC/router/wwwAT/Makefile
 #make V1=ML- V2=$EXTENDNO ws880e
-#make V1=ML- V2=$EXTENDNO ws880z
+make V1=ML- V2=$EXTENDNO ws880z
 #make V1=ML- V2=$EXTENDNO ws880zz
+
 # Xiaomi build
-sed -ie "s|HUAWEI = 1|HUAWEI = 0|" $SRC/router/wwwAT/Makefile
-sed -ie "s|XIAOMI = 0|XIAOMI = 1|" $SRC/router/wwwAT/Makefile
-make V1=ML- V2=$EXTENDNO r1dz
+#sed -ie "s|HUAWEI = 1|HUAWEI = 0|" $SRC/router/wwwAT/Makefile
+#sed -ie "s|XIAOMI = 0|XIAOMI = 1|" $SRC/router/wwwAT/Makefile
+#make V1=ML- V2=$EXTENDNO r1dz
 

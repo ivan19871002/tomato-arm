@@ -896,6 +896,26 @@ No part of this file may be used without permission.
 					vis._modem_ipaddr = 0;
 					vis._f_ppp_mlppp = 0;
 					break;
+				case 'lte':
+					vis._pppoe_lei = 0;
+					vis._pppoe_lef = 0;
+					vis._ppp_service = 0;
+					vis._ppp_demand = 0;
+					vis._ppp_service = 0;
+					vis._ppp_username = 0;
+					vis._ppp_custom = 0;
+					vis._l2tp_server_ip = 0;
+					vis._pptp_server_ip = 0;
+					vis._f_pptp_dhcp = 0;
+					vis._wan_gateway = 0;
+					vis._wan_ipaddr = 0;
+					vis._wan_netmask = 0;
+					vis._lan_gateway = 0;
+					vis._modem_ipaddr = 0;
+					vis._modem_dev = 0;
+					vis._modem_init = 0;
+					vis._f_ppp_mlppp = 0;
+					break;
 				case 'static':
 					vis._pppoe_lei = 0;
 					vis._pppoe_lef = 0;
@@ -1602,6 +1622,7 @@ No part of this file may be used without permission.
 						/* LINUX26-BEGIN */
 						/* USB-BEGIN */
 						['ppp3g','<% translate("3G Modem"); %>'],
+						['lte','<% translate("4G/LTE"); %>'],
 						/* USB-END */
 						/* LINUX26-END */
 						['disabled','<% translate("Disabled"); %>']],

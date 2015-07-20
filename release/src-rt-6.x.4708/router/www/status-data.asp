@@ -30,8 +30,9 @@ do {
 		reloadPage();
 	}
 	stats.flashsize = sysinfo.flashsize+'MB';
-	stats.cpumhz = sysinfo.cpuclk+'-core)';
+	stats.cpumhz = sysinfo.cpuclk;
 	stats.cputemp = sysinfo.cputemp+'°';
+	stats.hddtemp = sysinfo.hddtemp+'°';
 	stats.wl0temp = sysinfo.wl0temp+'°';
 	stats.wl1temp = sysinfo.wl1temp+'°';
 	stats.systemtype = sysinfo.systemtype;
@@ -111,7 +112,7 @@ do {
 /* IPV6-BEGIN */
 	stats.ip6_wan = ((typeof(sysinfo.ip6_wan) != 'undefined') ? sysinfo.ip6_wan : '') + '';
 	stats.ip6_lan = ((typeof(sysinfo.ip6_lan) != 'undefined') ? sysinfo.ip6_lan : '') + '';
-	stats.ip6_lan_ll = ((typeof(sysinfo.ip6_lan_ll) != 'undefined') ? sysinfo.ip6_lan_ll : '') + ''
+	stats.ip6_lan_ll = ((typeof(sysinfo.ip6_lan_ll) != 'undefined') ? sysinfo.ip6_lan_ll : '') + '';
 /* IPV6-END */
 
 	stats.wanstatus = '<% wanstatus(); %>';

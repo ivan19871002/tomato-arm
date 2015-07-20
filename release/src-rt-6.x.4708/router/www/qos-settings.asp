@@ -28,10 +28,10 @@ REMOVE-END */
 
 var classNames = nvram.qos_classnames.split(' ');		// Toastman - configurable class names
 
-pctListin = [[0, 'No Limit']];
+pctListin = [[0, '<% translate("No Limit"); %>']];
 for (i = 1; i <= 100; ++i) pctListin.push([i, i + '%']);
 
-pctListout = [[0, 'No Limit']];
+pctListout = [[0, '<% translate("No Limit"); %>']];
 for (i = 1; i <= 100; ++i) pctListout.push([i, i + '%']);
 
 function scale(bandwidth, rate, ceil)
@@ -41,7 +41,7 @@ function scale(bandwidth, rate, ceil)
 
 	var s = comma(MAX(Math.floor((bandwidth * rate) / 100), 1));
 	if (ceil > 0) s += ' - ' + MAX(Math.round((bandwidth * ceil) / 100), 1);
-	return s + ' <small>kbit/s</small>';
+	return s + ' <small><% translate("kbit/s"); %></small>';
 }
 
 function toggleFiltersVisibility(){
@@ -66,7 +66,7 @@ function verifyClassCeilingAndRate(bandwidthString, rateString, ceilingString, r
 	{
 		elem.setInnerHTML(
                         resultsFieldName,
-                        'Ceiling must be greater than or equal to rate.');
+                        '<% translate("Ceiling must be greater than or equal to rate"); %>.');
                                                                 
                 return 0;
 	}	                                                                                        
@@ -221,25 +221,25 @@ createFieldTable('', [
 		{ suffix: ' <% translate("FIN"); %> &nbsp;', name: 'f_qos_fin', type: 'checkbox', value: nvram.qos_fin == '1' },
 		{ suffix: ' <% translate("RST"); %> &nbsp;', name: 'f_qos_rst', type: 'checkbox', value: nvram.qos_rst == '1' }
 	] },
-	{ title: 'Prioritize ICMP', name: 'f_qos_icmp', type: 'checkbox', value: nvram.qos_icmp == '1' },
-	{ title: 'No Ingress QOS for UDP', name: 'f_qos_udp', type: 'checkbox', value: nvram.qos_udp == '1' },
-	{ title: 'Reset class when changing settings', name: 'f_qos_reset', type: 'checkbox', value: nvram.qos_reset == '1' },
-	{ title: 'Default class', name: 'qos_default', type: 'select', options: classList, value: nvram.qos_default },
+	{ title: '<% translate("Prioritize ICMP"); %>', name: 'f_qos_icmp', type: 'checkbox', value: nvram.qos_icmp == '1' },
+	{ title: '<% translate("No Ingress QOS for UDP"); %>', name: 'f_qos_udp', type: 'checkbox', value: nvram.qos_udp == '1' },
+	{ title: '<% translate("Reset class when changing settings"); %>', name: 'f_qos_reset', type: 'checkbox', value: nvram.qos_reset == '1' },
+	{ title: '<% translate("Default class"); %>', name: 'qos_default', type: 'select', options: classList, value: nvram.qos_default },
 /* REMOVE-BEGIN
 	!!TB - added qos_pfifo
 REMOVE-END */
-	{ title: 'Qdisc Scheduler', name: 'qos_pfifo', type: 'select', options: [['0','sfq'],['1','pfifo'],['2','codel'],['3','fq_codel']], value: nvram.qos_pfifo }
+	{ title: '<% translate("Qdisc Scheduler"); %>', name: 'qos_pfifo', type: 'select', options: [['0','sfq'],['1','pfifo'],['2','codel'],['3','fq_codel']], value: nvram.qos_pfifo }
 ]);
 </script>
 </div>
 
-<div class='section-title'>Settings for DSL only</div>
+<div class='section-title'><% translate("Settings for DSL only"); %></div>
 <div class='section'>
 <script type='text/javascript'>
 
 createFieldTable('', [
-		{ title: 'DSL Overhead Value - ATM Encapsulation Type', multi:[
-		{name: 'atm_overhead', type: 'select', options: [['0','None'],['32','32-PPPoE VC-Mux'],['40','40-PPPoE LLC/Snap'],
+		{ title: '<% translate("DSL Overhead Value - ATM Encapsulation Type"); %>', multi:[
+		{name: 'atm_overhead', type: 'select', options: [['0','<% translate("None"); %>'],['32','32-PPPoE VC-Mux'],['40','40-PPPoE LLC/Snap'],
 						['10','10-PPPoA VC-Mux'],['14','14-PPPoA LLC/Snap'],
 						['8','8-RFC2684/RFC1483 Routed VC-Mux'],['16','16-RFC2684/RFC1483 Routed LLC/Snap'],
 						['24','24-RFC2684/RFC1483 Bridged VC-Mux'],
@@ -254,7 +254,7 @@ createFieldTable('', [
 <script type='text/javascript'>
 cc = nvram.qos_orates.split(/[,-]/);
 f = [];
-f.push({ title: 'Max Bandwidth Limit', name: 'qos_obw', type: 'text', maxlen: 6, size: 8, suffix: ' <small>kbit/s   (Set to measured bandwidth less 15-30%)</small>', value: nvram.qos_obw });
+f.push({ title: '<% translate("Max Bandwidth Limit"); %>', name: 'qos_obw', type: 'text', maxlen: 6, size: 8, suffix: ' <small><% translate("kbit/s"); %>   (<% translate("Set to measured bandwidth less 15-30%"); %>)</small>', value: nvram.qos_obw });
 f.push(null);
 j = 0;
 for (i = 0; i < 10; ++i) {
@@ -270,19 +270,19 @@ createFieldTable('', f);
 </script>
 </div>
 
-<div class='section-title'>Inbound Rates / Limits</div>
+<div class='section-title'><% translate("Inbound Rates / Limits"); %></div>
 <div class='section'>
 <script type='text/javascript'>
 allRates = nvram.qos_irates.split(',');
 f = [];
-f.push({ title: 'Max Bandwidth Limit', name: 'qos_ibw', type: 'text', maxlen: 6, size: 8, suffix: ' <small>kbit/s   (Set to measured bandwidth less 15-30%)</small>', value: nvram.qos_ibw });
+f.push({ title: '<% translate("Max Bandwidth Limit"); %>', name: 'qos_ibw', type: 'text', maxlen: 6, size: 8, suffix: ' <small><% translate("kbit/s"); %>   (<% translate("Set to measured bandwidth less 15-30%"); %>)</small>', value: nvram.qos_ibw });
 f.push(null);
 
 f.push(
 	{
 		title: '', multi: [
-			{ title: 'Rate' },
-			{ title: 'Limit' } ]
+			{ title: '<% translate("Rate"); %>' },
+			{ title: '<% translate("Limit"); %>' } ]
 	});			
 
 for (i = 0; i < 10; ++i) 

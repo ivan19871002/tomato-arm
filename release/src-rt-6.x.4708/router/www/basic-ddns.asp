@@ -168,7 +168,7 @@ function verifyFields(focused, quiet)
 					e.value = 'http://';
 				}
 				if (e.value.search(/http(s?):\/\/./) != 0)  {
-					ferror.set(e, '<% translate("Expecting a URL -- http://... or https://..."); %>', quiet)
+					ferror.set(e, '<% translate("Expecting a URL -- http://... or https://..."); %>', quiet);
 					r = 0;
 				}
 				else {
@@ -183,7 +183,7 @@ function verifyFields(focused, quiet)
 					e.value = RegExp.$1;
 				}
 				if (e.value.search(/^[A-Za-z0-9]+/) == -1) {
-					ferror.set(e, '<% translate("Invalid hash or URL"); %>', quiet)
+					ferror.set(e, '<% translate("Invalid hash or URL"); %>', quiet);
 					r = 0;
 				}
 				else {

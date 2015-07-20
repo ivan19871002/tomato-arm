@@ -185,8 +185,6 @@ ifneq ($(TCONFIG_TOR),y)
 	sed -i $(INSTALLDIR)/www/about.asp -e "/TOR-BEGIN/,/TOR-END/d"
 endif
 
-
-
 # Only include the USB and NAS pages if USB Support is configured in.
 ifneq ($(TCONFIG_USB),y)
 	rm -f $(INSTALLDIR)/www/nas-*.*
@@ -243,7 +241,7 @@ endif
 		sed -e "s,bwm-hist.js,bwm-hist.asp," $$F > $$F.tmp; \
 	mv $$F.tmp $$F; \
 	done
-# translated jsx
+# translated jsx refs
 	cd $(INSTALLDIR)/www && \
 	for F in $(wildcard *.asp); do \
 		sed -e "s,status-data.jsx,status-data.asp," $$F > $$F.tmp; \

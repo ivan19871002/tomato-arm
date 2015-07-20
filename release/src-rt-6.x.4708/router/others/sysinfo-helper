@@ -10,7 +10,7 @@ e=`wl -i eth1 phy_tempsense | awk {' print $1'}`
 
 f=`wl -i eth2 phy_tempsense | awk {' print $1'}`
 
-g=`smartctl -s on -x /dev/sda | grep "Current Temperature" | awk {' print $3'}`
+g=`smartctl -s on -x /dev/sda 2>/dev/null | grep "Current Temperature" | awk {' print $3'}`
 
 if [ $b -le "1" ]; then
 c="single"
@@ -18,10 +18,10 @@ else
 c="dual"
 fi
 
-if [ ! $d ]; then d="N/A"; fi
-if [ ! $e ]; then e="N/A"; fi
-if [ ! $f ]; then f="N/A"; fi
-if [ ! $g ]; then g="N/A"; fi
+if [ ! $d ]; then d="--"; fi
+if [ ! $e ]; then e="--"; else e=$((e/2+20)); fi # convert to Celsius
+if [ ! $f ]; then f="--"; else f=$((f/2+20)); fi # convert to Celsius
+if [ ! $g ]; then g="--"; fi
 
 echo "cpu MHz : $a MHz ($c-core)" > /tmp/sysinfo-helper
 echo "cpu Temp : $d" >> /tmp/sysinfo-helper

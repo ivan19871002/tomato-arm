@@ -843,6 +843,9 @@ httpd: shared nvram$(BCMEX) mssl
 www-install:
 	@$(MAKE) -C www install INSTALLDIR=$(INSTALLDIR)/www TOMATO_EXPERIMENTAL=$(TOMATO_EXPERIMENTAL)
 
+www-at-install:
+	@$(MAKE) -C wwwAT install INSTALLDIR=$(INSTALLDIR)/wwwAT TOMATO_EXPERIMENTAL=$(TOMATO_EXPERIMENTAL)
+
 matrixssl:
 	@$(SEP)
 	@$(MAKE) -C matrixssl/src
@@ -2731,7 +2734,7 @@ mdadm-clean:
 	-@$(MAKE) -C mdadm clean
 
 libmnl/stamp-h1:
-	cd $(TOP)/libmnl && CC=$(CC) STRIP=$(STRIP) \
+	cd $(TOP)/libmnl && aclocal && CC=$(CC) STRIP=$(STRIP) \
 	CFLAGS="-Os -Wall $(EXTRACFLAGS) -ffunction-sections -fdata-sections" \
 	LDFLAGS="-ffunction-sections -fdata-sections -Wl,--gc-sections" \
 	$(CONFIGURE) --prefix=/usr

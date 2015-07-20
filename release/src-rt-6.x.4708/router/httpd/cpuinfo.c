@@ -60,7 +60,7 @@ int strncmp_ex(char *str1, char *str2)
 	return strncmp(str1, str2, strlen(str2));
 }
 
-int get_cpuinfo(char *system_type, char *cpu_model, char *bogomips, char *cpuclk, char *cputemp)
+int get_cpuinfo(char *system_type, char *cpu_model, char *bogomips, char *cpuclk)
 
 {
 	FILE *fd;
@@ -113,14 +113,14 @@ int get_cpuinfo(char *system_type, char *cpu_model, char *bogomips, char *cpuclk
 			okcount++;
 			strcpy(cpuclk, value);
 		}
-		if (strncmp_ex(title, "cpu Temp")==0) {
-			okcount++;
-			strcpy(cputemp, value);
-		}
+//		if (strncmp_ex(title, "cpu Temp")==0) {
+//			okcount++;
+//			strcpy(cputemp, value);
+//		}
 	}
 	fclose(fd);
 
-	return (okcount==4);
+	return (okcount==3);
 }
 
 float get_temps(char *cputemp, char *wl0temp, char *wl1temp, char *hddtemp)

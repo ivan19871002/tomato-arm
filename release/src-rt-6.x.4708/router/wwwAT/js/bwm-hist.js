@@ -85,19 +85,6 @@ function checkCstats()
 
 var dateFormat = -1;
 
-function ymText(yr, mo)
-{
-	switch (dateFormat) {
-		case 1:
-			return (mo + 1).pad(2) + '-' + yr;
-		case 2:
-			return months[mo] + ' ' + yr;
-		case 3:
-			return (mo + 1).pad(2) + '.' + yr;
-	}
-	return yr + '-' + (mo + 1).pad(2);
-}
-
 function ymdText(yr, mo, da)
 {
 	switch (dateFormat) {
@@ -133,6 +120,6 @@ function changeDate(e, c)
 
 function initDate(c)
 {
-	dateFormat = fixInt(cookie.get(c), 0, 3, 0)
+	dateFormat = fixInt(cookie.get(c), 0, 3, 0);
 	E('dafm').value = dateFormat;
 }

@@ -93,11 +93,12 @@ No part of this file may be used without permission.
 					{ title: '<% translate("Enable"); %>', name: 'f_jffs2_on', type: 'checkbox', value: jfon },
 					{ title: '<% translate("Execute When Mounted"); %>', name: 'jffs2_exec', type: 'text', maxlen: 64, size: 34, value: nvram.jffs2_exec },
 					null,
-					{ title: '<% translate("Total / Free Size"); %> ', text: (((jffs2.mnt) || (jffs2.size > 0)) ? scaleSize(jffs2.size) : '') + ((jffs2.mnt) ? ' / ' + scaleSize(jffs2.free) + ' (<span class="percentage"></span>)\
+					{ title: '<% translate("JFFS Usage"); %> ', text: (((jffs2.mnt) || (jffs2.size > 0)) ? scaleSize(jffs2.size - jffs2.free) : '') + ((jffs2.mnt) ? ' / ' + scaleSize(jffs2.size) + ' (<span class="percentage"></span>)\
 					<div class="progress jffs2"><div class="bar"></div></div>' : ' (<% translate("not mounted"); %>)') },
 					{ title: '', custom: '<button type="button" value="<% translate("Format / Erase"); %>..." onclick="formatClicked()" id="format" class="btn"><% translate("Format / Erase"); %>...</button>' }
 				]);
 
+				// Progress BAR
 				if (jffs2.size) {
 
 					var calc = (Math.round(((jffs2.size - jffs2.free) / jffs2.size) * 100)) + '%';

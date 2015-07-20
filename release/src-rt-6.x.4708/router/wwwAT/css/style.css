@@ -1743,6 +1743,23 @@ input[type=radio]:disabled + span {
 	margin: 0 10px;
 }
 
+/* Animate Page Loads & Changes */
+@-webkit-keyframes ajax-animation {
+	0%   { opacity: 0.5; -webkit-transform: scale(0.99); }
+	100% { opacity: 1; -webkit-transform: scale(1); }
+}
+@keyframes ajax-animation {
+	0%   { opacity: 0.5; transform: scale(0.99); }
+	100% { opacity: 1; transform: scale(1); }
+}
+.ajax-animation {
+	-webkit-animation: ajax-animation 350ms 1;
+	-moz-animation:    ajax-animation 350ms 1;
+	animation:         ajax-animation 350ms 1;
+	backface-visibility: hidden;  /* Performance Improvement */
+	transform: translate3d(0, 0, 0);  /* Font Rendering FIX */
+}
+
 /* Pure CSS preloader */
 .spinner {
 	display: inline-block;
@@ -1754,7 +1771,6 @@ input[type=radio]:disabled + span {
 	border-color: #0088cc #0088cc transparent transparent;
 	border-width: 0 1px 1px;
 	border-radius: 50%;
-	-webkit-border-radius: 50%;
 
 	-webkit-animation: tomato-spinner 600ms linear infinite;
 	animation: tomato-spinner 600ms linear infinite;
@@ -1775,8 +1791,27 @@ input[type=radio]:disabled + span {
 }
 
 /* Preloader */
-#nprogress { pointer-events: none;}
-#nprogress .bar {background: #0088cc;position: absolute;z-index: 99;top: 58px;left: 0;width: 100%;height: 2px;}
+
+#nprogress { pointer-events: none; -webkit-pointer-events: none; }
+#nprogress .bar { 
+	background: #0088cc;
+	position: absolute;
+	z-index: 99;
+	top: 58px;
+	left: 0;
+	width: 0;
+	height: 2px;
+	-webkit-animation: nprogress-animation 5s linear 1;
+	animation: nprogress-animation 5s linear 1;
+}
+@-webkit-keyframes nprogress-animation {
+	0%   { width: 20%; }
+	100% { width: 100%; }
+}
+@keyframes nprogress-animation {
+	0%   { width: 20%; }
+	100% { width: 100%; }
+}
 
 /* Responsive stuff */
 @media (max-width: 960px) {
@@ -1786,8 +1821,14 @@ input[type=radio]:disabled + span {
 	.system-ui:before, .system-ui:after { display: none; }
 }
 
-@-webkit-keyframes tomato-spinner { 0%   { -webkit-transform: rotate(0deg); }  100% { -webkit-transform: rotate(360deg); } }
-@keyframes tomato-spinner { 0%   { transform: rotate(0deg); }  100% { transform: rotate(360deg); } }
+@-webkit-keyframes tomato-spinner {
+	0%   { -webkit-transform: rotate(0deg); }
+	100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes tomato-spinner {
+	0%   { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
 
 @media (min-width: 1200px) {
 	.fluid-grid { -moz-column-count:2; -moz-column-gap: 1%;	-moz-column-width: 50%; -webkit-column-count:2; -webkit-column-gap: 1%;	-webkit-column-width: 50%; column-count: 2;	column-gap: 1%;	column-width: 50%; }

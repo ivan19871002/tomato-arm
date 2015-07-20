@@ -139,7 +139,7 @@ No part of this file may be used without permission.
 					if (xob)
 						s = ((e.is_mounted == 0) ? '<% translate("No"); %>' : '<% translate("Yes"); %>') + '<br><small><% translate("Please wait"); %>...</small>';
 					else if (e.is_mounted == 0)
-						s = 'No<br><small><a href="javascript:mountHost(\'L' + i + '\',\'' + e.host + '\')" title="<% translate("Mount all Partitions of Storage Device"); %>" id="L' + i + '">[ <% translate("Mount"); %> ]</a></small>';
+						s = '<% translate("No"); %><br><small><a href="javascript:mountHost(\'L' + i + '\',\'' + e.host + '\')" title="<% translate("Mount all Partitions of Storage Device"); %>" id="L' + i + '">[ <% translate("Mount"); %> ]</a></small>';
 						else
 							s = '<% translate("Yes"); %><br><small><a href="javascript:umountHost(\'L' + i + '\',\'' + e.host + '\')" title="<% translate("Safely Remove Storage Device"); %>" id="L' + i + '">[ <% translate("Unmount"); %> ]</a></small>';
 				}
@@ -152,8 +152,8 @@ No part of this file may be used without permission.
 							p = parts[k];
 							if (p) {
 								desc = desc + '<br><% translate("Partition"); %> \'' + p[0] + '\'' + (p[3] != '' ? ' ' + p[3] : '') +
-								((p[5] != 0) ? ' (' + doScaleSize(p[5], 0) +
-									((p[1] == 1) ? ' / ' + doScaleSize(p[6], 0) + ' <% translate("free"); %>' : '') +
+								((p[5] != 0) ? ' (' + doScaleSize((p[5] - p[6]), 0) + 
+									((p[1] == 1) ? ' <% translate("of"); %> ' + doScaleSize(p[5], 0) + ' <% translate("used"); %>' : '') +
 									')' : '') + ' <% translate("is"); %> ' +
 								((p[1] != 0) ? '' : '<% translate("not"); %> ') + ((p[3] == '<% translate("swap"); %>') ? '<% translate("active"); %>' : '<% translate("mounted"); %>') +
 								((p[2] != '') ? ' <% translate("on"); %> ' + p[2] : '');
@@ -197,6 +197,7 @@ No part of this file may be used without permission.
 			E('_f_storage').disabled = b;
 
 			E('_f_ext3').disabled = b || a;
+			E('_f_ext4').disabled = b || a;
 			E('_f_fat').disabled = b || a;
 			/* LINUX26-BEGIN */
 			E('_f_idle_enable').disabled = b || a;

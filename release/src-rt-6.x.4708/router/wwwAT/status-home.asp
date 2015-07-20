@@ -234,6 +234,7 @@
 			<div class="content" id="sesdiv_system">
 				<div class="section"></div>
 				<script type="text/javascript">
+					var a = (nvstat.size - nvstat.free) / nvstat.size * 100.0;
 					createFieldTable('', [
 						{ title: '<% translate("Name"); %>', text: nvram.router_name },
 						{ title: '<% translate("Model"); %>', text: nvram.t_model_name },
@@ -249,8 +250,9 @@
 						{ title: '<% translate("Temperature"); %> HDD', rid: 'hddtemp', text: stats.hddtemp+'C'},
 						/* SMARTCTL-END */
 						{ title: '<% translate("CPU Load"); %> <small>(1 / 5 / 15 <% translate("mins"); %>)</small>', rid: 'cpu', text: stats.cpuload },
-						{ title: '<% translate("Total / Free Memory"); %>', rid: 'memory', text: stats.memory + '<div class="progress"><div class="bar" style="width: ' + stats.memoryperc + ';"></div></div>' },
-						{ title: '<% translate("Total / Free Swap"); %>', rid: 'swap', text: stats.swap + '<div class="progress"><div class="bar" style="width: ' + stats.swapperc + ';"></div></div>', hidden: (stats.swap == '') },
+						{ title: '<% translate("Memory Usage"); %>', rid: 'memory', text: stats.memory + '<div class="progress"><div class="bar" style="width: ' + stats.memoryperc + ';"></div></div>' },
+						{ title: '<% translate("SWAP Usage"); %>', rid: 'swap', text: stats.swap + '<div class="progress"><div class="bar" style="width: ' + stats.swapperc + ';"></div></div>', hidden: (stats.swap == '') },
+						{ title: '<% translate("NVRAM Usage"); %>', text: scaleSize(nvstat.size - nvstat.free) + ' <small>/</small> ' + scaleSize(nvstat.size) + ' (' + (a).toFixed(2) + '%) <div class="progress"><div class="bar" style="width: ' + (a).toFixed(2) + '%;"></div></div>' },
 						], '#sesdiv_system', 'data-table dataonly');
 				</script>
 			</div>

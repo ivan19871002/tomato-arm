@@ -35,9 +35,12 @@ No part of this file may be used without permission.
 				servern.disabled = b;
 				sec.disabled = b;
 				if (!b) {
-					if ((!v_nodelim(unc, quiet, 'UNC')) || (!v_nodelim(user, quiet, 'username')) || (!v_nodelim(pass, quiet, 'password')) ||
+					if ((!v_nodelim(unc, quiet, 'UNC')) ||
+						(!v_nodelim(user, quiet, 'username')) ||
+						(!v_nodelim(pass, quiet, 'password')) ||
 						(!v_nodelim(servern, quiet, 'Netbios name')) ||
-						(!v_nodelim(dom, quiet, 'domain')) || (!v_nodelim(exec, quiet, 'exec path'))) return 0;
+						(!v_nodelim(dom, quiet, 'domain')) ||
+						(!v_nodelim(exec, quiet, 'exec path'))) return 0;
 					if ((!v_length(user, quiet, 1)) || (!v_length(pass, quiet, 1))) return 0;
 					unc.value = unc.value.replace(/\//g, '\\');
 					if (!unc.value.match(/^\\\\.+\\/)) {
@@ -101,7 +104,7 @@ No part of this file may be used without permission.
 					{ title: '<% translate("Security"); %>', indent: 2, name: 'f_cifs1_sec', type: 'select',
 						options: [['','<% translate("Default (NTLM)"); %>'],['ntlmi','<% translate("NTLM and packet signing"); %>'],['ntlmv2','<% translate("NTLMv2"); %>'],['ntlmv2i','<% translate("NTLMv2 and packet signing"); %>'],['nontlm','<% translate("No NTLM"); %>'],['lanman','<% translate("LANMAN"); %>'],['none','<% translate("None"); %>']],
 						value: a[7] },
-					{ title: '<% translate("Total / Free Size"); %>', indent: 2, text: cifs1.size ? (scaleSize(cifs1.size) + ' / ' + scaleSize(cifs1.free)) +
+					{ title: '<% translate("CIFS1 Usage"); %>', indent: 2, text: cifs1.size ? (scaleSize(cifs1.size - cifs1.free) + ' / ' + scaleSize(cifs1.size)) +
 						' (<span class="txtcifs1"></span>) <div class="progress cifs1"><div class="bar"></div></div>' : '(<% translate("not mounted"); %>)' },
 				]) + '</div></div>';
 
@@ -117,7 +120,7 @@ No part of this file may be used without permission.
 					{ title: '<% translate("Security"); %>', indent: 2, name: 'f_cifs2_sec', type: 'select',
 						options: [['','<% translate("Default (NTLM)"); %>'],['ntlmi','<% translate("NTLM and packet signing"); %>'],['ntlmv2','<% translate("NTLMv2"); %>'],['ntlmv2i','<% translate("NTLMv2 and packet signing"); %>'],['nontlm','<% translate("No NTLM"); %>'],['lanman','<% translate("LANMAN"); %>'],['none','<% translate("None"); %>']],
 						value: b[7] },
-					{ title: '<% translate("Total / Free Size"); %>', indent: 2, text: cifs2.size ? (scaleSize(cifs2.size) + ' / ' + scaleSize(cifs2.free)) +
+					{ title: '<% translate("CIFS2 Usage"); %>', indent: 2, text: cifs2.size ? (scaleSize(cifs2.size - cifs2.free) + ' / ' + scaleSize(cifs2.size)) +
 						' (<span class="txtcifs2"></span>) <div class="progress cifs2"><div class="bar"></div></div>' : '(<% translate("not mounted"); %>)' }
 				]) + '</div></div>';
 

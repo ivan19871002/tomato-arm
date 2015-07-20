@@ -29,7 +29,7 @@ No part of this file may be used without permission.
 
 			var s = comma(MAX(Math.floor((bandwidth * rate) / 100), 1));
 			if (ceil > 0) s += ' - ' + MAX(Math.round((bandwidth * ceil) / 100), 1);
-			return s + ' <small>kbit/s</small>';
+			return s + ' <small><% translate("kbit/s"); %></small>';
 		}
 
 		function toggleFiltersVisibility(){
@@ -202,7 +202,7 @@ No part of this file may be used without permission.
 					/* REMOVE-BEGIN
 					!!TB - added qos_pfifo
 					REMOVE-END */
-					{ title: '<% translate("Qdisc Scheduler"); %>', name: 'qos_pfifo', type: 'select', options: [['0','<% translate("sfq"); %>'],['1','<% translate("pfifo"); %>']], value: nvram.qos_pfifo }
+					{ title: '<% translate("Qdisc Scheduler"); %>', name: 'qos_pfifo', type: 'select', options: [['0','sfq'],['1','pfifo'],['2','codel'],['3','fq_codel']], value: nvram.qos_pfifo }
 				]);
 			</script>
 		</div>
@@ -229,7 +229,7 @@ No part of this file may be used without permission.
 			<script type="text/javascript">
 				cc = nvram.qos_orates.split(/[,-]/);
 				f = [];
-				f.push({ title: '<% translate("Max Bandwidth Limit"); %>', name: 'qos_obw', type: 'text', maxlen: 6, size: 8, suffix: ' <small>kbit/s   (<% translate("Set to measured bandwidth less 15-30%"); %>)</small>', value: nvram.qos_obw });
+				f.push({ title: '<% translate("Max Bandwidth Limit"); %>', name: 'qos_obw', type: 'text', maxlen: 6, size: 8, suffix: ' <small><% translate("kbit/s"); %>   (<% translate("Set to measured bandwidth less 15-30%"); %>)</small>', value: nvram.qos_obw });
 				j = 0;
 				for (i = 0; i < 10; ++i) {
 					x = cc[j++] || 1;
@@ -250,7 +250,7 @@ No part of this file may be used without permission.
 			<script type="text/javascript">
 				allRates = nvram.qos_irates.split(',');
 				f = [];
-				f.push({ title: '<% translate("Max Bandwidth Limit"); %>', name: 'qos_ibw', type: 'text', maxlen: 6, size: 8, suffix: ' <small>kbit/s   (<% translate("Set to measured bandwidth less 15-30%"); %>)</small>', value: nvram.qos_ibw });
+				f.push({ title: '<% translate("Max Bandwidth Limit"); %>', name: 'qos_ibw', type: 'text', maxlen: 6, size: 8, suffix: ' <small><% translate("kbit/s"); %>   (<% translate("Set to measured bandwidth less 15-30%"); %>)</small>', value: nvram.qos_ibw });
 
 				for (i = 0; i < 10; ++i)
 				{

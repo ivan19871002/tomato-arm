@@ -57,13 +57,7 @@ No part of this file may be used without permission.
 			for (var i = 0; i < tabs.length; ++i)
 			{
 				var on = (name == tabs[i][0]);
-
-				if (on) {
-					$('#' + tabs[i][0] + '-tab').fadeIn();
-				} else {
-					$('#' + tabs[i][0] + '-tab').hide();
-				}
-
+				elem.display(tabs[i][0] + '-tab', on);
 			}
 
 			cookie.set('vpn_client_tab', name);
@@ -96,7 +90,7 @@ No part of this file may be used without permission.
 
 			E('_' + service + '_button').disabled = true;
 			form.submitHidden('service.cgi', {
-				_redirect: '/#vpn-client.asp',
+				_redirect: '#vpn-client.asp',
 				_sleep: '3',
 				_service: service + (isup ? '-stop' : '-start')
 			});
@@ -176,12 +170,12 @@ No part of this file may be used without permission.
 				elem.display(PR('_vpn_'+t+'_hmac'), auth == "tls");
 				elem.display(E(t+'_custom_crypto_text'), auth == "custom");
 				elem.display(PR('_f_vpn_'+t+'_bridge'), iface == "tap");
-				elem.display(PR('_vpn_'+t+'_br'), iface == "tap");
+				elem.display(PR('_vpn_'+t+'_br'), iface == "tap" && bridge > 0);
 				elem.display(E(t+'_bridge_warn_text'), !bridge);
 				elem.display(PR('_f_vpn_'+t+'_nat'), fw != "custom" && (iface == "tun" || !bridge));
 				elem.display(E(t+'_nat_warn_text'), fw != "custom" && (!nat || (auth == "secret" && iface == "tun")));
 				elem.display(PR('_vpn_'+t+'_local'), iface == "tun" && auth == "secret");
-				elem.display(PR('_f_vpn_'+t+'_local'), iface == "tap" && !bridge && auth == "custom");
+				elem.display(PR('_f_vpn_'+t+'_local'), iface == "tap" && !bridge && auth != "custom");
 
 				// Page Advanced
 				elem.display(PR('_vpn_'+t+'_adns'), PR('_vpn_'+t+'_reneg'), auth == "tls");
@@ -273,7 +267,7 @@ No part of this file may be used without permission.
 		}
 
 		RouteGrid.prototype.dataToView = function(data){
-			var temp = ['<input type=\'checkbox\' style="opacity:1" disabled'+(data[0]!=0?' checked':'')+'>',
+			var temp = ['<div class="checkbox c-checkbox"><label><input type=\'checkbox\' style="opacity:1" disabled'+(data[0]!=0?' checked':'')+'> <span></span></label></div>',
 				    ['<% translate("From Source IP"); %>', '<% translate("To Destination IP"); %>', '<% translate("To Domain"); %>'][data[1] - 1],
 				    data[2]
 				];
@@ -300,7 +294,6 @@ No part of this file may be used without permission.
 			for (i = 0; i < tabs.length; ++i)
 			{
 				if (routingTables[i].isEditing()) return;
-
 				t = tabs[i][0];
 
 				if ( E('_f_vpn_'+t+'_eas').checked )

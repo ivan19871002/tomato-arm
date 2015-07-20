@@ -243,14 +243,14 @@ No part of this file may be used without permission.
 							['css/green-scheme','<% translate("Green Color Scheme"); %>'],
 							['css/torquoise-scheme','<% translate("Torquoise Color Scheme"); %>'],
 							['css/cyan-scheme','<% translate("Cyan Color Scheme"); %>'],
-							['css/advanced-tomato','<% translate("AT 2.7"); %>']], value: nvram.web_css },
+							['css/advanced-tomato','<% translate("AT 2.8"); %>']], value: nvram.web_css },
 //							['ext/custom','<% translate("Custom"); %> (ext/custom.css)'],
 //							['online', 'On-line from ATTD']], value: nvram.web_css },
 						{ title: '<% translate("Default Navigation State"); %>', name: 'at_navi', type: 'select', help: '<% translate("You can always toggle navigation style by clicking an icon right to logo, but doing so won`t change default state"); %>.',
 							options: [['default', '<% translate("Default"); %>'], ['collapsed', '<% translate("Collapsed"); %>']], value: nvram.at_navi },
 						{ title: '<% translate("ATTD ID#"); %>', indent: 2, name: 'ttb_css', type: 'text', maxlen: 25, size: 30, value: nvram.ttb_css, suffix: 'Theme ID# from <a href="http://advancedtomato.com/themes/" target="_blank"><u><i>ATTD themes gallery</i></u></a>' },
 						{ title: '<% translate("Web GUI directory"); %>', name: 'web_dir', type: 'select', help: '<% translate("Experts only! This will change directory from which Tomato Web handler is reading the interface files from. You should only change this if you have another interface in specific directory"); %>',
-							options: [['default','<% translate("Default"); %>'], ['at','<% translate("Advanced Tomato"); %>'], ['jffs', 'Custom: /jffs/www (Experts Only!)'], ['opt', 'Custom: /opt/www (Experts Only!)'], ['tmp', 'Custom: /tmp/www (Experts Only!)']], value: nvram.web_dir, suffix: ' <small><% translate("Please be sure of your decision before change this settings"); %>!</small>' },
+							options: [['default','<% translate("Tomato"); %>'], ['at','<% translate("Advanced Tomato"); %>'], ['jffs', 'Custom: /jffs/www (Experts Only!)'], ['opt', 'Custom: /opt/www (Experts Only!)'], ['tmp', 'Custom: /tmp/www (Experts Only!)']], value: nvram.web_dir, suffix: ' <small><% translate("Please be sure of your decision before change this settings"); %>!</small>' },
 						{ title: '<% translate("Navigation Menu"); %>', help: "<% translate("This option allows you to add custom navigation links or rewrite existing ones. Only JSON format accepted"); %>!",
 							name: 'web_nav', type: 'textarea', style: 'width: 100%; height: 100px;', value: nvram.web_nav }
 					];

@@ -2,7 +2,7 @@
 include ../common.mak
 
 # BRANDING (0 to disable)
-HUAWEI = 0
+HUAWEI = 1
 XIAOMI = 0
 
 all:
@@ -241,7 +241,7 @@ ifneq ($(HUAWEI),1)
 	sed -i $(INSTALLDIR)/www-at/status-overview.asp -e "/HUAWEI-BEGIN/,/HUAWEI-END/d"
 else
 	cd $(INSTALLDIR)/www-at && \
-	sed -ie "s,Advanced<span>Tomato</span>,Huawei <span>WS880</span>," status-overview.asp
+	sed -i "s,Advanced<span>Tomato</span>,Huawei <span>WS880</span>," status-overview.asp
 	sed -i $(INSTALLDIR)/www-at/status-overview.asp -e "/ATOMATO-BEGIN/,/ATOMATO-END/d"
 endif
 
@@ -250,7 +250,7 @@ ifneq ($(XIAOMI),1)
 	sed -i $(INSTALLDIR)/www-at/status-overview.asp -e "/XIAOMI-BEGIN/,/XIAOMI-END/d"
 else
 	cd $(INSTALLDIR)/www-at && \
-	sed -ie "s,Advanced<span>Tomato</span>,Xiaomi <span>MiWiFi</span>," status-overview.asp
+	sed -i "s,Advanced<span>Tomato</span>,Xiaomi <span>MiWiFi</span>," status-overview.asp
 	sed -i $(INSTALLDIR)/www-at/status-overview.asp -e "/ATOMATO-BEGIN/,/ATOMATO-END/d"
 endif
 

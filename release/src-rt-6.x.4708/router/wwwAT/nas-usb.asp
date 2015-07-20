@@ -39,7 +39,7 @@ No part of this file may be used without permission.
 				eval(text);
 				if (usb.length == 1) {
 					if (usb[0] != 0)
-						ferror.set(a, '<% translate("The device is busy. Please make sure no applications are using it, and try again"); %>.', 0);
+						ferror.set(a, '<% translate("The device is busy. Please make sure no applications are using it, and try again."); %>', 0);
 				}
 				xob = null;
 				_forceRefresh();
@@ -63,7 +63,7 @@ No part of this file may be used without permission.
 				eval(text);
 				if (usb.length == 1) {
 					if (usb[0] == 0)
-						ferror.set(a, '<% translate("Failed to mount. Verify the device is plugged in, and try again"); %>.', 0);
+						ferror.set(a, '<% translate("Failed to mount. Verify the device is plugged in, and try again."); %>', 0);
 				}
 				xob = null;
 				_forceRefresh();

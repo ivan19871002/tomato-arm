@@ -1438,6 +1438,7 @@ static int init_nvram(void)
 			nvram_set("ohci_ports", "3-1 3-2");
 		}
 		break;
+
 	case MODEL_RTAC56U:
 		mfr = "Asus";
 		name = "RT-AC56U";
@@ -1483,6 +1484,7 @@ static int init_nvram(void)
 			nvram_unset("1:ledbh10");       // fixup 5 ghz led - from dd-wrt
 		}
 		break;
+
 	case MODEL_RTAC68U:
 		mfr = "Asus";
 		name = nvram_match("boardrev", "0x1103") ? "RT-AC68P" : "RT-AC68R/U";
@@ -1525,6 +1527,7 @@ static int init_nvram(void)
 			nvram_set("wl_country_code", "SG");
 		}
 		break;
+
 	case MODEL_R6250:
 	case MODEL_R6300v2:
 	case MODEL_R7000:
@@ -1822,6 +1825,7 @@ static int init_nvram(void)
 
 		}
 		break;
+
 	case MODEL_DIR868L:
 		mfr = "D-Link";
 		name = "DIR868L";
@@ -2103,6 +2107,7 @@ static int init_nvram(void)
 
 		}
 		break;
+
 	case MODEL_WS880:
 		mfr = "Huawei";
 		name = "WS880";
@@ -2362,6 +2367,7 @@ static int init_nvram(void)
 			nvram_set("1:xtalfreq", "40000");
 		}
 		break;
+
 	case MODEL_R1D:
 		mfr = "Xiaomi";
 		name = "MiWiFi";
@@ -2600,6 +2606,7 @@ static int init_nvram(void)
 			nvram_set("pci/1/1/xtalfreq", "0x40000");
 		}
 		break;
+
 	case MODEL_EA6700:
 		mfr = "Cisco Linksys";
 		if (strstr(nvram_safe_get("modelNumber"), "EA6500") != NULL)
@@ -3296,7 +3303,7 @@ static int init_nvram(void)
 		}
 		break;
 
-#endif
+#endif // CONFIG_BCMWL6A
 	case MODEL_RTN66U:
 		mfr = "Asus";
 #ifdef TCONFIG_AC66U

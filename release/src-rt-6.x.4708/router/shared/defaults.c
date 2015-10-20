@@ -118,6 +118,7 @@ struct nvram_tuple router_defaults[] = {
 	{ "modem_dev",			"ttyUSB0"			, 0 },
 	{ "modem_init",			"*99#"				, 0 },
 	{ "modem_apn",			"internet"			, 0 },
+	{ "modem_watchdog",		"2"				, 0 },
 
 	// PPPoE parameters
 	{ "pppoe_ifname",		""				, 0 },	// PPPoE enslaved interface
@@ -519,6 +520,7 @@ struct nvram_tuple router_defaults[] = {
 	{ "qos_rst",			"1"				, 0 },
 	{ "qos_udp",			"0"				, 0 },
 	{ "qos_icmp",			"1"				, 0 },
+	{ "qos_pfifo",			"3"				, 0 }, //Set FQ_Codel Default Qdisc Scheduler
 	{ "qos_reset",			"1"				, 0 },
 	{ "qos_obw",			"700"				, 0 },
 	{ "qos_ibw",			"16000"				, 0 },

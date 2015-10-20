@@ -53,6 +53,7 @@ WBR-G54                                   bcm94710ap   42                       
 WHR2-A54G54         BCM4704_BCM5325F      0x042f       42        0x10      0x0210      melco_id=290441dd
 WBR2-G54            BCM4712               0x0101       00        0x10      0x0188      buffalo_id=29bb0332
 WZR-G108            BCM4704_BCM5325F      0x042f       42        0x10      0x10        melco_id=30153  melco_id=31095 (source: BaoWeiQuan)
+WZR-1750DHP	    BCM4708		  0xF646	00	 0x1100	   0x0110	0:devid=0x4332
 
 WHR-G125			BCM5354G              0x048E       00        0x11      0x750       melco_id=32093
 
@@ -103,7 +104,7 @@ WNR3500Lv2			BCM47186              0x052b       3500(L)   02        0x710|0x1000
 WNR2000v2			BCM4716B0             0xe4cd       1         0x1700
 R7000				BCM4709               0x0665       32        0x1301    0x1000
 R6250				BCM4708               0x0646       679       0x1110 //same as R6300v2 well we use the same MODEL definition
-R6300v2				BCM4708               0x0646       679       0x1110
+R6300v2				BCM4708               0x0646       679       0x1110 // CH/Charter version has the same signature
 
 DIR-868L			BCM4708               0x0646       24        0x1110
 
@@ -228,7 +229,7 @@ int check_hw_type(void)
 #ifdef CONFIG_BCMWL6
 	case 0x0646:
 	case 0x0665: //R7000,R1D
-	case 0xf646: //EA6700
+	case 0xf646: //EA6700,WZR-1750
 	case 0xd646: //EA6900
 		return HW_BCM4708;
 #endif
@@ -367,10 +368,12 @@ int get_model(void)
 		if ((nvram_match("boardrev", "0x1103")) && (nvram_match("model", "RT-AC68U"))) return MODEL_RTAC68U;
 		if ((nvram_match("boardrev", "0x1110")) && (nvram_match("boardnum", "679")) && (nvram_match("board_id", "U12H245T00_NETGEAR"))) return MODEL_R6250;
 		if ((nvram_match("boardrev", "0x1110")) && (nvram_match("boardnum", "679")) && (nvram_match("board_id", "U12H240T00_NETGEAR"))) return MODEL_R6300v2;
+		if ((nvram_match("boardrev", "0x1110")) && (nvram_match("boardnum", "679")) && (nvram_match("board_id", "U12H240T70_NETGEAR"))) return MODEL_R6300v2;
 		if ((nvram_match("boardrev", "0x1301")) && (nvram_match("boardnum", "32"))) return MODEL_R7000;
 		if ((nvram_match("boardrev", "0x1110")) && (nvram_match("boardnum", "24"))) return MODEL_DIR868L;
 		if ((nvram_match("boardrev", "0x1101")) && (nvram_match("boardnum", "1234"))) return MODEL_WS880;
-		if ((nvram_match("boardtype","0xF646")) && (nvram_match("boardrev", "0x1100"))) return MODEL_EA6700;
+		if ((nvram_match("boardtype","0xF646")) && (nvram_match("boardnum", "01"))) return MODEL_EA6700;
+		if ((nvram_match("boardtype","0xF646")) && (nvram_match("boardnum", "00"))) return MODEL_WZR1750;
 		if ((nvram_match("boardtype","0xD646")) && (nvram_match("boardrev", "0x1100"))) return MODEL_EA6900;
 	}
 #endif

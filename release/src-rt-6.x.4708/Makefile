@@ -145,9 +145,13 @@ ifneq ($(ASUS_TRX),0)
 	ctools/trx -o image/linux-lzma.trx ctools/vmlinuz-lzma ctools/target.squashfs
 # for asus RT-N18U, RT-AC56U, RT-AC68U, RT-AC68R, RT-AC68P
 ifeq ($(ASUS_TRX),ASUS)
+ifeq ($(BCMSMP),y)
 	ctools/trx_asus -i image/linux-lzma.trx -r RT-AC56U,3.0.0.4,image/tomato-RT-AC56U-$(V1)$(V2)-$(current_BUILD_DESC).trx
 	ctools/trx_asus -i image/linux-lzma.trx -r RT-AC68U,3.0.0.4,image/tomato-RT-AC68U-$(V1)$(V2)-$(current_BUILD_DESC).trx
 	ctools/trx_asus -i image/linux-lzma.trx -r RT-N18U,3.0.0.4,image/tomato-RT-N18U-$(V1)$(V2)-$(current_BUILD_DESC).trx
+else
+	ctools/trx_asus -i image/linux-lzma.trx -r RT-N18U,3.0.0.4,image/tomato-RT-N18U-$(V1)$(V2)-$(current_BUILD_DESC)-NOSMP.trx
+endif
 endif
 # for dlink
 ifeq ($(ASUS_TRX),DLINK)
@@ -163,6 +167,11 @@ endif
 ifeq ($(ASUS_TRX),HUAWEI)
 	ctools/trx_asus -i image/linux-lzma.trx -r WS880,3.0.0.4,image/tomato-WS880-$(V1)$(V2)-$(current_BUILD_DESC).trx
 endif
+# for Buffalo
+ifeq ($(ASUS_TRX),BUFFALO)
+	ctools/trx_asus -i image/linux-lzma.trx -r WZR1750,3.0.0.4,image/tomato-WZR1750-$(V1)$(V2)-$(current_BUILD_DESC).trx
+endif
+
 #for linksys EA series -- EA6700 EA6500v2 EA6900
 ifeq ($(ASUS_TRX),LINKSYS)
 	ctools/trx_asus -i image/linux-lzma.trx -r EA6900,3.0.0.4,image/tomato-EA6900-$(V1)$(V2)-$(current_BUILD_DESC).trx
@@ -544,13 +553,13 @@ define RouterOptions
 		sed -i "/TCONFIG_USB_AUDIO/d" $(1); \
 		echo "TCONFIG_USB_AUDIO=y" >>$(1); \
 	fi; \
-	if [ "$(FANCTRL)" = "y" ]; then \
-		sed -i "/TCONFIG_FANCTRL/d" $(1); \
-		echo "TCONFIG_FANCTRL=y" >>$(1); \
-	fi; \
 	if [ "$(SATA)" = "y" ]; then \
 		sed -i "/TCONFIG_SMARTCTL/d" $(1); \
 		echo "TCONFIG_SMARTCTL=y" >>$(1); \
+	fi; \
+	if [ "$(FANCTRL)" = "y" ]; then \
+		sed -i "/TCONFIG_FANCTRL/d" $(1); \
+		echo "TCONFIG_FANCTRL=y" >>$(1); \
 	fi; \
 	)
 endef
@@ -888,6 +897,7 @@ define KernelConfig
 	if [ "$(SATA)" = "y" ]; then \
 		sed -i "/CONFIG_CMDLINE/d" $(1); \
 		echo "CONFIG_CMDLINE=\"root=\/dev\/mtdblock2 console=ttyS0,115200 init=\/sbin\/preinit earlyprintk debug libata.force=3.0Gbps\"" >>$(1); \
+		echo "# CONFIG_CMDLINE_FORCE is not set" >>$(1); \
 		sed -i "/CONFIG_SCSI_MOD/d" $(1); \
 		echo "CONFIG_SCSI_MOD=y" >>$(1); \
 		sed -i "/CONFIG_SCSI/d" $(1); \
@@ -958,6 +968,9 @@ endif
 e:
 	@$(MAKE) bin NTFS=y BBEXTRAS=y USBEXTRAS=y EBTABLES=y IPV6SUPP=y MEDIASRV=y  B=E BUILD_DESC="$(VPN)" CTF=y GRO=y USB="USB" PPTPD=y OPENVPN=y DNSSEC=y SNMP=y
 
+o:
+	@$(MAKE) bin OPENVPN=y NTFS=y BBEXTRAS=y USBEXTRAS=y EBTABLES=y MEDIASRV=y IPV6SUPP=y B=E BUILD_DESC="Custom" CTF=y GRO=y USB="USB" NOCAT=y BTCLIENT=y TR_EXTRAS=y DNSCRYPT=y PPTPD=y DNSSEC=y SNMP=y TINC=y TOR=y
+
 z:
 	@$(MAKE) bin OPENVPN=y NTFS=y BBEXTRAS=y USBEXTRAS=y EBTABLES=y MEDIASRV=y IPV6SUPP=y B=E BUILD_DESC="AIO" CTF=y GRO=y USB="USB" NOCAT=y BTCLIENT=y TR_EXTRAS=y DNSCRYPT=y UPS=n PPTPD=y DNSSEC=y TINC=n SNMP=y RAID=y NFS=y NANO=y TOR=y NGINX=y
 
@@ -969,6 +982,12 @@ ac68e:
 
 ac68z:
 	@$(MAKE) z ARM=y NVRAM_64K=y NAND=y BCMSMP=y ASUS_TRX="ASUS" TUXERA=y
+
+n18e:
+	@$(MAKE) e ARM=y NVRAM_64K=y NAND=y ARMCPUSMP="up" ASUS_TRX="ASUS" UFSD="ASUS"
+
+n18z:
+	@$(MAKE) z ARM=y NVRAM_64K=y NAND=y ARMCPUSMP="up" ASUS_TRX="ASUS" UFSD="ASUS"
 
 dir868l:
 	@$(MAKE) bin ARM=y NVRAM_SIZE=32 NAND=y BCMSMP=y ASUS_TRX="DLINK" CTF=y GRO=y NTFS=y BBEXTRAS=y USBEXTRAS=y EBTABLES=y IPV6SUPP=y MEDIASRV=y B=E BUILD_DESC="special" USB="USB" DNSSEC=y DNSCRYPT=y UPS=y NO_SSH=y NANO=y
@@ -997,6 +1016,12 @@ ws880z:
 ws880zz:
 	@$(MAKE) zz ARM=y NVRAM_64K=y NAND=y BCMSMP=y ASUS_TRX="HUAWEI" HFS=y TUXERA=y TUXERA_HFS=y USB_AUDIO=y
 
+wzr1750e:
+	@$(MAKE) e ARM=y NVRAM_64K=y NAND=y BCMSMP=y ASUS_TRX="BUFFALO"
+
+wzr1750z:
+	@$(MAKE) z ARM=y NVRAM_64K=y NAND=y BCMSMP=y ASUS_TRX="BUFFALO"
+
 ea6700e:
 	@$(MAKE) e ARM=y NVRAM_64K=y NAND=y BCMSMP=y ASUS_TRX="LINKSYS" FAILSAFE_UPGRADE=n
 
@@ -1005,6 +1030,9 @@ ea6700z:
 
 r1dz:
 	@$(MAKE) zz ARM=y NVRAM_64K=y BCMSMP=y XIAOMI_TRX="R1D" HFS=y TUXERA=y TUXERA_HFS=y SATA=y NO_JFFS=y FANCTRL=y USB_AUDIO=y
+
+r1do:
+	@$(MAKE) o ARM=y NVRAM_64K=y BCMSMP=y XIAOMI_TRX="R1D" SATA=y NO_JFFS=y FANCTRL=y
 
 setprofile:
 	echo '#ifndef TOMATO_PROFILE' > router/shared/tomato_profile.h
@@ -1062,6 +1090,8 @@ ifeq ($(CONFIG_LINUX26),y)
 	@echo "ASUS ARM Builds - RT-N18U, RT-AC56U, RT-AC68U, RT-AC68R, RT-AC68P"
 	@echo "ac68e         RT-N18U/AC56U/AC68U(R/P) build VPN"
 	@echo "ac68z         RT-N18U/AC56U/AC68U(R/P) build AIO"
+	@echo "n18e          RT-N18U without SMP build VPN"
+	@echo "n18z          RT-N18U without SMP build AIO"
 	@echo "DLINK ARM Builds"
 	@echo "dir868l       DLINK DIR868L"
 	@echo "NETGEAR ARM Builds"
@@ -1071,10 +1101,17 @@ ifeq ($(CONFIG_LINUX26),y)
 	@echo "r6250init     R6250 init build"
 	@echo "r6300v2init   R6300v2 init build"
 	@echo "Xiaomi ARM Builds"
-	@echo "r1dz          R1D custom build"
+	@echo "r1dz          R1D extended build"
+	@echo "r1do          R1D custom build"
 	@echo "HUAWEI ARM Builds"
 	@echo "ws880e        WS880 build VPN"
 	@echo "ws880z        WS880 build AIO"
+	@echo "BUFFALO ARM Builds"
+	@echo "wzr1750e      WZR-1750DHP build VPN"
+	@echo "wzr1750z      WZR-1750DHP build AIO"
+	@echo "LINKSYS ARM Builds"
+	@echo "ea6700e       EA6700/EA6500v2/EA6900 build VPN"
+	@echo "ea6700z       EA6700/EA6500v2/EA6900 build AIO"
 endif
 	@echo ""
 	@echo "..etc..      other build configs"

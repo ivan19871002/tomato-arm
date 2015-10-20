@@ -267,11 +267,11 @@ config TCONFIG_USB_AUDIO
 	bool "USB AUDIO Support"
 	default n
 
-config TCONFIG_FANCTRL
-	bool "FANCTRL"
- 	default n
-
 config TCONFIG_SMARTCTL
 	bool "SMARTCTL for SATA"
+ 	default n
+
+config TCONFIG_FANCTRL
+	bool "FANCTRL"
  	default n
 

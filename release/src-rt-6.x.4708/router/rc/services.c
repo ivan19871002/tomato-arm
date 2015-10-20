@@ -895,6 +895,7 @@ void stop_ipv6(void)
 	stop_ipv6_tunnel();
 	stop_dhcp6c();
 	eval("ip", "-6", "addr", "flush", "scope", "global");
+	eval("ip", "-6", "route", "flush", "scope", "global");
 }
 
 #endif
@@ -1507,19 +1508,17 @@ void start_ntpc(void)
 
 	stop_ntpc();
 
+	if (nvram_match("dnscrypt_proxy", "1"))
+		eval("ntp2ip");
+
 	if (nvram_get_int("ntp_updates") >= 0) {
-		strcpy(servers, nvram_safe_get("ntp_server"));
-
-		if (nvram_match("dnscrypt_proxy", "1"))
-			eval("ntp2ip");
-
-		xstart("ntpclient", "-h", servers, "-i", "3", "-l", "-s");
+		xstart("ntpsync", "--init");
 	}
 }
 
 void stop_ntpc(void)
 {
-	killall("ntpclient", SIGTERM);
+	killall("ntpsync", SIGTERM);
 }
 
 // -----------------------------------------------------------------------------
@@ -1675,11 +1674,6 @@ static void start_ftpd(void)
 		}
 	}
 
-#ifdef TCONFIG_SAMBASRV
-	if (nvram_match("smbd_cset", "utf8"))
-		fprintf(fp, "utf8=yes\n");
-#endif
-
 	if (nvram_invmatch("ftp_anonymous", "0"))
 	{
 		fprintf(fp,
@@ -1726,6 +1720,7 @@ static void start_ftpd(void)
 		"user_config_dir=%s\n"
 		"passwd_file=%s\n"
 		"listen%s=yes\n"
+		"listen%s=no\n"
 		"listen_port=%s\n"
 		"background=yes\n"
 		"isolate=no\n"
@@ -1741,8 +1736,10 @@ static void start_ftpd(void)
 		vsftpd_users, vsftpd_passwd,
 #ifdef TCONFIG_IPV6
 		ipv6_enabled() ? "_ipv6" : "",
+		ipv6_enabled() ? "" : "_ipv6",
 #else
 		"",
+		"_ipv6",
 #endif
 		nvram_get("ftp_port") ? : "21",
 		nvram_get_int("ftp_max"),

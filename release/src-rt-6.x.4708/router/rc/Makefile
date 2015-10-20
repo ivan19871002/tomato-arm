@@ -45,7 +45,6 @@ OBJS += blink_5g.o
 ifeq ($(TCONFIG_FANCTRL),y)
 OBJS += phy_tempsense.o
 endif
-
 ifeq ($(TCONFIG_USB),y)
 OBJS += usb.o
 endif

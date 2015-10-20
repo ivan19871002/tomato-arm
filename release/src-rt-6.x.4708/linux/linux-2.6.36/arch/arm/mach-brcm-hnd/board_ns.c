@@ -706,6 +706,7 @@ init_mtd_partitions(hndsflash_t *sfl_info, struct mtd_info *mtd, size_t size)
 	/* Setup nvram MTD partition */
 	bcm947xx_flash_parts[nparts].name = "nvram";
 	bcm947xx_flash_parts[nparts].size = ROUNDUP(nvram_space, mtd->erasesize);
+
 	/* R1D */
 	if (nvram_match("boardnum", "32") && nvram_match("boardtype", "0x0665")
 	        && nvram_match("boardrev", "0x1301") && nvram_match("model", "R1D")) {
@@ -716,6 +717,7 @@ init_mtd_partitions(hndsflash_t *sfl_info, struct mtd_info *mtd, size_t size)
 		else
 			bcm947xx_flash_parts[nparts].offset = size - bcm947xx_flash_parts[nparts].size;
 	}
+
 	nparts++;
 
 	return bcm947xx_flash_parts;

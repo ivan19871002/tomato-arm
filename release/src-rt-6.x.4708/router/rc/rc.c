@@ -23,12 +23,14 @@ static int rctest_main(int argc, char *argv[])
 		else if (strcmp(argv[1], "qos") == 0) {
 			start_qos();
 		}
+
 #ifdef TCONFIG_FANCTRL
 		else if (strcmp(argv[1], "phy_tempsense") == 0) {
 			stop_phy_tempsense();
 			start_phy_tempsense();
 		}
 #endif
+
 #ifdef TCONFIG_IPV6
 		else if (strcmp(argv[1], "6rd") == 0) {
 			stop_6rd_tunnel();

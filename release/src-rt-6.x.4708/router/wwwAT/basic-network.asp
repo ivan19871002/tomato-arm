@@ -33,7 +33,7 @@ No part of this file may be used without permission.
 	<script type="text/javascript" src="js/wireless.jsx?_http_id=<% nv(http_id); %>"></script>
 	<script type="text/javascript" src="js/interfaces.js"></script>
 	<script type='text/javascript'>
-		//	<% nvram("dhcp_lease,dhcp_num,dhcp_start,dhcpd_startip,dhcpd_endip,l2tp_server_ip,lan_gateway,lan_ipaddr,lan_netmask,lan_proto,lan_state,lan_desc,lan_invert,mtu_enable,ppp_demand,ppp_idletime,pppoe_lei,pppoe_lef,ppp_passwd,ppp_redialperiod,ppp_service,ppp_username,ppp_custom,pptp_server_ip,pptp_dhcp,wl_security_mode,wan_dns,dnscrypt_proxy,dnscrypt_priority,dnscrypt_port,dnscrypt_resolver,dnscrypt_log,dnscrypt_manual,dnscrypt_provider_name,dnscrypt_provider_key,dnscrypt_resolver_address,wan_gateway,wan_ipaddr,wan_mtu,wan_netmask,wan_proto,wan_wins,wl_wds_enable,wl_channel,wl_closed,wl_crypto,wl_key,wl_key1,wl_key2,wl_key3,wl_key4,wl_lazywds,wl_mode,wl_net_mode,wl_passphrase,wl_radio,wl_radius_ipaddr,wl_radius_port,wl_ssid,wl_wds,wl_wep_bit,wl_wpa_gtk_rekey,wl_wpa_psk,wl_radius_key,wl_auth,wl_hwaddr,wan_islan,t_features,wl_nbw_cap,wl_nctrlsb,wl_nband,wl_phytype,lan_ifname,lan_stp,lan1_ifname,lan1_ipaddr,lan1_netmask,lan1_proto,lan1_stp,dhcp1_start,dhcp1_num,dhcp1_lease,dhcpd1_startip,dhcpd1_endip,lan2_ifname,lan2_ipaddr,lan2_netmask,lan2_proto,lan2_stp,dhcp2_start,dhcp2_num,dhcp2_lease,dhcpd2_startip,dhcpd2_endip,lan3_ifname,lan3_ipaddr,lan3_netmask,lan3_proto,lan3_stp,dhcp3_start,dhcp3_num,dhcp3_lease,dhcpd3_startip,dhcpd3_endip,ppp_mlppp,modem_ipaddr,modem_pin,modem_dev,modem_init,modem_apn,cstats_enable,dnssec_enable"); %>
+		//	<% nvram("dhcp_lease,dhcp_num,dhcp_start,dhcpd_startip,dhcpd_endip,l2tp_server_ip,lan_gateway,lan_ipaddr,lan_netmask,lan_proto,lan_state,lan_desc,lan_invert,mtu_enable,ppp_demand,ppp_idletime,pppoe_lei,pppoe_lef,ppp_passwd,ppp_redialperiod,ppp_service,ppp_username,ppp_custom,pptp_server_ip,pptp_dhcp,wl_security_mode,wan_dns,dnscrypt_proxy,dnscrypt_priority,dnscrypt_port,dnscrypt_resolver,dnscrypt_log,dnscrypt_manual,dnscrypt_provider_name,dnscrypt_provider_key,dnscrypt_resolver_address,wan_gateway,wan_ipaddr,wan_mtu,wan_netmask,wan_proto,wan_wins,wl_wds_enable,wl_channel,wl_closed,wl_crypto,wl_key,wl_key1,wl_key2,wl_key3,wl_key4,wl_lazywds,wl_mode,wl_net_mode,wl_passphrase,wl_radio,wl_radius_ipaddr,wl_radius_port,wl_ssid,wl_wds,wl_wep_bit,wl_wpa_gtk_rekey,wl_wpa_psk,wl_radius_key,wl_auth,wl_hwaddr,wan_islan,t_features,wl_nbw_cap,wl_nctrlsb,wl_nband,wl_phytype,lan_ifname,lan_stp,lan1_ifname,lan1_ipaddr,lan1_netmask,lan1_proto,lan1_stp,dhcp1_start,dhcp1_num,dhcp1_lease,dhcpd1_startip,dhcpd1_endip,lan2_ifname,lan2_ipaddr,lan2_netmask,lan2_proto,lan2_stp,dhcp2_start,dhcp2_num,dhcp2_lease,dhcpd2_startip,dhcpd2_endip,lan3_ifname,lan3_ipaddr,lan3_netmask,lan3_proto,lan3_stp,dhcp3_start,dhcp3_num,dhcp3_lease,dhcpd3_startip,dhcpd3_endip,ppp_mlppp,modem_ipaddr,modem_pin,modem_dev,modem_init,modem_apn,modem_watchdog,cstats_enable,dnssec_enable"); %>
 
 		var lg = new TomatoGrid();
 		lg.setup = function() {
@@ -760,7 +760,8 @@ No part of this file may be used without permission.
 				_modem_pin: 1,
 				_modem_dev: 1,
 				_modem_init: 1,
-				_modem_apn: 1
+				_modem_apn: 1,
+				_modem_watchdog: 1
 			};
 
 			var wl_vis = [];
@@ -842,6 +843,7 @@ No part of this file may be used without permission.
 					vis._modem_dev = 0;
 					vis._modem_init = 0;
 					vis._modem_apn = 0;
+					vis._modem_watchdog = 0;
 					vis._pppoe_lei = 0;
 					vis._pppoe_lef = 0;
 					break;
@@ -866,6 +868,7 @@ No part of this file may be used without permission.
 					vis._modem_dev = 0;
 					vis._modem_init = 0;
 					vis._modem_apn = 0;
+					vis._modem_watchdog = 0;
 					break;
 				case 'pppoe':
 					vis._l2tp_server_ip = 0;
@@ -881,6 +884,7 @@ No part of this file may be used without permission.
 					vis._modem_dev = 0;
 					vis._modem_init = 0;
 					vis._modem_apn = 0;
+					vis._modem_watchdog = 0;
 					break;
 				case 'ppp3g':
 					vis._pppoe_lei = 0;
@@ -895,6 +899,7 @@ No part of this file may be used without permission.
 					vis._lan_gateway = 0;
 					vis._modem_ipaddr = 0;
 					vis._f_ppp_mlppp = 0;
+					vis._modem_watchdog = 0;
 					break;
 				case 'lte':
 					vis._pppoe_lei = 0;
@@ -934,6 +939,7 @@ No part of this file may be used without permission.
 					vis._modem_dev = 0;
 					vis._modem_init = 0;
 					vis._modem_apn = 0;
+					vis._modem_watchdog = 0;
 					break;
 				case 'pptp':
 					vis._pppoe_lei = 0;
@@ -949,6 +955,7 @@ No part of this file may be used without permission.
 					vis._modem_dev = 0;
 					vis._modem_init = 0;
 					vis._modem_apn = 0;
+					vis._modem_watchdog = 0;
 					break;
 				case 'l2tp':
 					vis._pppoe_lei = 0;
@@ -964,6 +971,7 @@ No part of this file may be used without permission.
 					vis._modem_dev = 0;
 					vis._modem_init = 0;
 					vis._modem_apn = 0;
+					vis._modem_watchdog = 0;
 					break;
 			}
 
@@ -1651,6 +1659,7 @@ No part of this file may be used without permission.
 						value: nvram.pppoe_lei },
 					{ title: '<% translate("LCP Echo Link fail limit"); %>', indent: 2, name: 'pppoe_lef', type: 'text', maxlen: 5, size: 7, suffix: ' <i>(<% translate("range"); %>: 1 - 10; <% translate("default"); %>: 5)</i>',
 						value: nvram.pppoe_lef },
+					{ title: '<% translate("Check Connection Every"); %>', name: 'modem_watchdog', type: 'text', maxlen: 6, size: 8, value: nvram.modem_watchdog, suffix: ' <i><% translate("minutes"); %> (<% translate("range"); %>: 0 - 30, <% translate("default"); %>: 2, <% translate("set to 0 to disable"); %>)</i>' },
 					{ title: '<% translate("MTU"); %>', multi: [
 						{ name: 'mtu_enable', type: 'select', options: [['0', '<% translate("Default"); %>'],['1','<% translate("Manual"); %>']], value: nvram.mtu_enable },
 						{ name: 'f_wan_mtu', type: 'text', maxlen: 4, size: 6, value: nvram.wan_mtu } ] },

@@ -262,6 +262,7 @@ characters=знаков
 characters. Only one IP or Domain per entry=символы. Допускаются один IP или домен на строку
 characters or less=или менее
 Check alive every=Проверять каждые
+Check Connection Every=Проверять каждые
 Check it for some ISP's, Snap (NZ), Internode (AU)=необходимо для нек. ISP, Snap (NZ), Internode (AU)
 Checkout my router=Отметить мой роутер
 Chipset=Архитектура

@@ -1681,7 +1681,7 @@ createFieldTable('', [
 		value: nvram.pppoe_lei },
 	{ title: '<% translate("LCP Echo Link fail limit"); %>', indent: 2, name: 'pppoe_lef', type: 'text', maxlen: 5, size: 7, suffix: ' <i>(<% translate("range"); %>: 1 - 10; <% translate("default"); %>: 5)</i>',
 		value: nvram.pppoe_lef },
-	{ title: '<% translate("Check Connection Every"); %>', name: 'modem_watchdog', type: 'text', maxlen: 6, size: 8, value: nvram.modem_watchdog, suffix: ' <i><% translate("minutes"); %> (<% translate("range"); %>: 0 - 30, <% translate("default"); %>: 2, <% translate("set 0 to disable"); %>)</i>' },
+	{ title: '<% translate("Check Connection Every"); %>', name: 'modem_watchdog', type: 'text', maxlen: 6, size: 8, value: nvram.modem_watchdog, suffix: ' <i><% translate("minutes"); %> (<% translate("range"); %>: 0 - 30, <% translate("default"); %>: 2, <% translate("set to 0 to disable"); %>)</i>' },
 	{ title: '<% translate("MTU"); %>', multi: [
 		{ name: 'mtu_enable', type: 'select', options: [['0', '<% translate("Default"); %>'],['1','<% translate("Manual"); %>']], value: nvram.mtu_enable },
 		{ name: 'f_wan_mtu', type: 'text', maxlen: 4, size: 6, value: nvram.wan_mtu } ] },

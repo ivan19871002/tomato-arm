@@ -479,7 +479,7 @@ function v_macip(e, quiet, bok, lan_ipaddr, lan_netmask)
 function fixIP(ip, x)
 {
 	var a, n, i;
-				a = ip;
+        a = ip;
         i = a.indexOf("<br>");
         if (i > 0)
                 a = a.slice(0,i);
@@ -680,7 +680,7 @@ function _v_subnet(e, ip, quiet)
 function v_subnet(e, quiet)
 {
 	if ((_v_subnet(e, e.value, quiet)) == null) return 0;
-	
+
 	return 1;
 }
 
@@ -818,8 +818,8 @@ function _v_ipv6_addr(e, ip, ipt, quiet)
 		if (ipv6ton(a) > ipv6ton(b)) return b + '-' + a;
 		return a + '-' + b;
 	}
-		
-		// mask matches
+
+	// mask matches
 	if ((ipt) && ip.match(/^([A-Fa-f0-9:]+)\/([A-Fa-f0-9:]+)$/)) {
 		a = RegExp.$1;
 		b = RegExp.$2;
@@ -832,7 +832,6 @@ function _v_ipv6_addr(e, ip, ipt, quiet)
 		ferror.clear(e);
 
 		return ip;
-		
 	}
 	
 	if ((ipt) && ip.match(/^([A-Fa-f0-9:]+)\/(\d+)$/)) {
@@ -2237,17 +2236,15 @@ var cookie = {
 	// The value 2147483647000 is ((2^31)-1)*1000, which is the number of
 	// milliseconds (minus 1 second) which correlates with the year 2038 counter
 	// rollover. This effectively makes the cookie never expire.
-	
+
 	set: function(key, value, days) {
 		document.cookie = 'tomato_' + encodeURIComponent(key) + '=' + encodeURIComponent(value) + '; expires=' +
 		new Date(2147483647000).toUTCString() + '; path=/';
 	},
-
 	get: function(key) {
 		var r = ('; ' + document.cookie + ';').match('; tomato_' + encodeURIComponent(key) + '=(.*?);');
 		return r ? decodeURIComponent(r[1]) : null;
 	},
-	
 	unset: function(key) {
 		document.cookie = 'tomato_' + encodeURIComponent(key) + '=; expires=' +
 		(new Date(1)).toUTCString() + '; path=/';
@@ -2424,9 +2421,9 @@ function navi()
 			['<% translate("Last 24 Hours"); %>',	'24.asp'],
 			['<% translate("Daily"); %>',			'daily.asp'],
 			['<% translate("Weekly"); %>',			'weekly.asp'],
-			['<% translate("Monthly"); %>',			'monthly.asp'] 
+			['<% translate("Monthly"); %>',			'monthly.asp']
 			] ],
-		['<% translate("IP Traffic"); %>',			'ipt', 0,	[
+		['<% translate("IP Traffic"); %>',			'ipt', 0, [
 			['<% translate("Real-Time"); %>',		'realtime.asp'],
 			['<% translate("Last 24 Hours"); %>',		'24.asp'],
 			['<% translate("View Graphs"); %>',		'graphs.asp'],
@@ -2458,6 +2455,7 @@ function navi()
 			['<% translate("MAC Address"); %>',		'mac.asp'],
 			['<% translate("Miscellaneous"); %>',	'misc.asp'],
 			['<% translate("Routing"); %>',			'routing.asp'],
+			['<% translate("MultiWAN Routing"); %>',		'pbr.asp'],
 /* TOR-BEGIN */
 			['<% translate("TOR Project"); %>',			'tor.asp'],
 /* TOR-END */
@@ -2521,7 +2519,6 @@ REMOVE-END */
 /* BT-END */
 			] ],
 /* USB-END */
-
 /* VPN-BEGIN */
 		['<% translate("VPN Tunneling"); %>',			'vpn', 0, [
 /* OPENVPN-BEGIN */
@@ -2826,6 +2823,7 @@ function isLocal()
 function console(s)
 {
 }
+
 
 
 

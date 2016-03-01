@@ -1,8 +1,20 @@
 #!/bin/sh
-SRC=/home/tomato-arm/release/src-rt-6.x.4708
+SRC=`pwd`/release/src-rt-6.x.4708
+
+#
+# TOOLCHAIN:
+#
 sudo ln -sf $SRC/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3 /opt/hndtools-arm-linux-2.6.36-uclibc-4.5.3
-sudo ln -sf $SRC/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3 /projects/hnd/tools/linux/hndtools-arm-linux-2.6.36-uclibc-4.5.3
-sudo ln -sf /usr/lib/libmpc.so.3 /usr/lib/libmpc.so.2
+#sudo mkdir -p /projects/hnd/tools/linux
+#sudo ln -sf $SRC/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3 /projects/hnd/tools/linux/hndtools-arm-linux-2.6.36-uclibc-4.5.3
+
+# SuSE x64 32bit libs for toolchain
+# sudo zypper install libelf1-32bit
+# sudo ln -sf /usr/lib/libmpc.so.3 /usr/lib/libmpc.so.2
+
+# Ubuntu 14.04 LTS x64 32bit libs for toolchain
+# sudo apt-get install libelf1:i386 zlib1g:i386
+
 export PATH=$PATH:/opt/hndtools-arm-linux-2.6.36-uclibc-4.5.3/bin
 export LANG=c
 cd $SRC
@@ -10,15 +22,19 @@ cd $SRC
 # git pull
 EXTENDNO=`git rev-parse --verify HEAD --short`
 
+#
+# TARGETS:
+#
+
 # Huawei build
 sed -ie "s|HUAWEI = 0|HUAWEI = 1|" $SRC/router/wwwAT/Makefile
 sed -ie "s|XIAOMI = 1|XIAOMI = 0|" $SRC/router/wwwAT/Makefile
-#make V1=ML- V2=$EXTENDNO ws880e
-make V1=ML- V2=$EXTENDNO ws880z
-#make V1=ML- V2=$EXTENDNO ws880zz
+# make V1=ML- V2=$EXTENDNO ws880e	# VPN
+# make V1=ML- V2=$EXTENDNO ws880z	# AIO
+make V1=ML- V2=$EXTENDNO ws880zz	# AIO Custom (no NGINX and SNMP)
 
 # Xiaomi build
-#sed -ie "s|HUAWEI = 1|HUAWEI = 0|" $SRC/router/wwwAT/Makefile
-#sed -ie "s|XIAOMI = 0|XIAOMI = 1|" $SRC/router/wwwAT/Makefile
-#make V1=ML- V2=$EXTENDNO r1dz
+# sed -ie "s|HUAWEI = 1|HUAWEI = 0|" $SRC/router/wwwAT/Makefile
+# sed -ie "s|XIAOMI = 0|XIAOMI = 1|" $SRC/router/wwwAT/Makefile
+# make V1=ML- V2=$EXTENDNO r1dz	# AIO Custom
 

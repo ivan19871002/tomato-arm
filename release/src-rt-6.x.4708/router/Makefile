@@ -1141,6 +1141,10 @@ libnfnetlink-install:
 		ln -sf libnfnetlink.so.0.2.0 libnfnetlink.so.0 && \
 		ln -sf libnfnetlink.so.0.2.0 libnfnetlink.so
 
+libnfnetlink-clean:
+	-@$(MAKE) -C libnfnetlink clean
+	-@rm -f libnfnetlink/stamp-h1
+
 miniupnpd-config:
 	@cd miniupnpd && ./genconfig.sh --leasefile --vendorcfg
 
@@ -2602,7 +2606,7 @@ sd-idle-install: sd-idle/stamp-h1
 	$(STRIP) -s $(INSTALLDIR)/sd-idle/usr/bin/sd-idle
 
 snmp/stamp-h1:
-	cd snmp && \
+	cd snmp && aclocal && \
 	CFLAGS="-Os -Wall $(EXTRACFLAGS)" \
 	$(CONFIGURE) --prefix=/usr --with-endianness=little --enable-mini-agent --disable-debugging \
 	--disable-privacy --without-opaque-special-types --with-persistent-directory=/tmp/snmp-persist \
@@ -2759,6 +2763,7 @@ libmnl-install: libmnl
 libmnl-clean:
 	-@$(MAKE) -C libmnl clean
 	-@rm -rf libmnl/staged
+	-@rm -f libmnl/stamp-h1
 
 ipset/stamp-h1: libmnl
 	cd $(TOP)/ipset && CC=$(CC) STRIP=$(STRIP) \

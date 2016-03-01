@@ -133,6 +133,7 @@ function init()
 - <% translate("3G Modem support"); %> (<% translate("big thanks for"); %> @LDevil)<br>
 - <% translate("4G/LTE Modem support"); %><br>
 <!-- USB-END -->
+- MutliWAN feature (written by @Arctic, modified by @Shibby)<br>
 <!-- LINUX26-END -->
 <!-- SNMP-BEGIN -->
 - <% translate("SNMP integration and GUI"); %><br>
@@ -147,7 +148,7 @@ function init()
 - <% translate("TOR Project integration and GUI"); %><br>
 <!-- TOR-END -->
 <!-- OPENVPN-BEGIN -->
-- OpenVPN: Routing Policy
+- OpenVPN: Routing Policy<br>
 <!-- OPENVPN-END -->
 - <% translate("TomatoAnon project integration and GUI"); %><br>
 - <% translate("TomatoThemeBase project integration and GUI"); %><br>

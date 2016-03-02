@@ -152,7 +152,7 @@ function save()
 <body>
 <form id='_fom' method='post' action='tomato.cgi'>
 <table id='container' cellspacing=0>
-<tr><td colspan=2 id='header'>ss='title'><%
+<tr><td colspan=2 id='header'>
 	<div class='title'>Tomato</div>
 	<div class='version'><% translate("Version"); %> <% version(); %></div>
 </td></tr>
@@ -185,7 +185,7 @@ for (var uidx = 0; uidx < wl_ifaces.length; ++uidx) {
 <script type='text/javascript'>
 
 var f = [];
-for (var uidx = 1; uidx <= nvram.mwan_num; ++uidx){
+for (var uidx = 1; uidx <= nvram.mwan_num; ++uidx) {
 	var u = (uidx>1) ? uidx : '';
 	f.push(
 		{ title: 'WAN'+u+' <% translate("Port"); %>', indent: 1, name: 'f_wan'+u+'_hwaddr', type: 'text', maxlen: 17, size: 20,

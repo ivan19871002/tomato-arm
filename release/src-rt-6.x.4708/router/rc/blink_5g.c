@@ -132,9 +132,8 @@ int blink_5g_main(int argc, char *argv[])
 			}
 			led(LED_5G, LED_ON);
 		}
-		else
-			usleep(50000);
 
+		usleep(50000);
 	}
 }
 

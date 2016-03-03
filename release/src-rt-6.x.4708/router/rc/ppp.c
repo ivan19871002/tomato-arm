@@ -36,7 +36,8 @@
 #include <sys/ioctl.h>
 
 void ppp_prefix(char *wan_device, char *prefix)
-{	
+{
+	if (!wan_device || wan_device == "") return strcpy(prefix, "wan");	// failsafe (in case *wan_device is empty return "wan")
 	if(!strcmp(wan_device, nvram_safe_get("wan_ifnameX"))) strcpy(prefix, "wan");
 	if(!strcmp(wan_device, nvram_safe_get("wan2_ifnameX"))) strcpy(prefix, "wan2");
 #ifdef TCONFIG_MULTIWAN

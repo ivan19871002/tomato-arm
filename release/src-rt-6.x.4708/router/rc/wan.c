@@ -132,9 +132,11 @@ static int config_pppd(int wan_proto, int num, char *prefix) //static int config
 		fprintf(fp,
 			"unit %d\n"
 			"user '%s'\n"
+			"password '%s'\n"	// Don't rely on pap/chap secrets (useless)
 			"lcp-echo-adaptive\n",	// Suppress LCP echo-requests if traffic was received
 			num,
-			nvram_safe_get(strcat_r(prefix, "_ppp_username", tmp))); //"ppp_usrename" -> strcat_r(prefix, "_ppp_username", tmp
+			nvram_safe_get(strcat_r(prefix, "_ppp_username", tmp)), //"ppp_usrename" -> strcat_r(prefix, "_ppp_username", tmp
+			nvram_safe_get(strcat_r(prefix, "_ppp_passwd", tmp))); //"ppp_passwd" -> strcat_r(prefix, "_ppp_passwd", tmp
 #ifdef LINUX26
 #ifdef TCONFIG_USB
 	}
@@ -196,12 +198,12 @@ static int config_pppd(int wan_proto, int num, char *prefix) //static int config
 		break;
 	case WP_PPPOE:
 		fprintf(fp,
-			"password '%s'\n"
+//			"password '%s'\n"
 			"plugin rp-pppoe.so\n"
 			"nomppe nomppc\n"
 			"nic-%s\n"
 			"mru %d mtu %d\n",
-			nvram_safe_get(strcat_r(prefix, "_ppp_passwd", tmp)), //"ppp_passwd"
+//			nvram_safe_get(strcat_r(prefix, "_ppp_passwd", tmp)), //"ppp_passwd"
 			nvram_safe_get(strcat_r(prefix, "_ifname", tmp)), //"wan_ifname"
 			nvram_get_int(strcat_r(prefix, "_mtu", tmp)),
 			nvram_get_int(strcat_r(prefix, "_mtu", tmp)));  //"wan_mtu
@@ -300,7 +302,7 @@ static int config_pppd(int wan_proto, int num, char *prefix) //static int config
 	fprintf(fp, "%s\n", nvram_safe_get(strcat_r(prefix, "_ppp_custom", tmp))); //"ppp_custom"
 
 	fclose(fp);
-	make_secrets(prefix);
+//	make_secrets(prefix);
 
 	TRACE_PT("end\n");
 	return 0;

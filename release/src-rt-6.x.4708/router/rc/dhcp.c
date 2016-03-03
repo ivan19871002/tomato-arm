@@ -485,7 +485,7 @@ void start_dhcpc(char *prefix)
 		dhcpcpid_file
 		);
 
-	mwanlog(LOG_DEBUG, "MultiWAN: start_dhcpc(%s), cmd = \"/bin/sh -c %s\"", prefix, cmd);
+	mwanlog(LOG_DEBUG, "start_dhcpc, prefix = %s, cmd = /bin/sh -c %s", prefix, cmd);
 	xstart("/bin/sh", "-c", cmd);
 
 	TRACE_PT("end\n");

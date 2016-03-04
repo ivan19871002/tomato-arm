@@ -104,7 +104,7 @@ int blink_main(int argc, char *argv[])
 				led(ledindex, LED_ON);
 				usleep((useconds_t)(0.5 * (1.0/currblinkspeed) * 1E6));
 			}
-
+			// wait 50 ms
 			usleep(50000);
 		} else {
 			// Get Radio Status ... only blink if Radio is Enabled (otherwise, just turn the LED off)

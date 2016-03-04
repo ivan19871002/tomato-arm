@@ -46,11 +46,9 @@ int get_lanports_status(void)
 {
 	int r = 0;
 	FILE *f;
-	char s[32], a[16];
+	char s[128], a[16];
 
-	system("/usr/sbin/robocfg showports > /tmp/ethernet.state.log");
-
-	if ((f = fopen("/tmp/ethernet.state.log", "r")) != NULL) {
+	if ((f = popen("/usr/sbin/robocfg showports", "r")) != NULL) {
 		while (fgets(s, sizeof(s), f)) {
 			if ((sscanf(s, "Port 1: %s", a) == 1) ||
 			    (sscanf(s, "Port 2: %s", a) == 1) ||
@@ -73,6 +71,7 @@ int blink_5g_main(int argc, char *argv[])
 	static unsigned int data_5g = 0;
 	unsigned long count_5g;
 	int i;
+	int model;
 	static int j;
 	static int status = -1;
 	static int status_old;
@@ -84,9 +83,10 @@ int blink_5g_main(int argc, char *argv[])
 	char *tmp_interface = nvram_get("blink_5g_interface");
 	if(tmp_interface)
 		strncpy(interface,tmp_interface, INTERFACE_MAXLEN);
+	model = get_model();
 	// check data per 10 count
 	while(1){
-		if (get_model() == MODEL_WS880) {
+		if (model == MODEL_WS880) {	// LAN check / LED control
 			sleep(5);
 			if (get_lanports_status()) {
 				led(LED_BRIDGE, LED_ON);
@@ -110,7 +110,8 @@ int blink_5g_main(int argc, char *argv[])
 		}
 		else 
 			blink_5g = 0;
-		led(LED_5G, LED_ON);
+
+		led(LED_5G, LED_ON);		// 5G Wi-Fi LED control
 
 		if(blink_5g) {
 			j = rand_seed_by_time() % 3;
@@ -132,8 +133,7 @@ int blink_5g_main(int argc, char *argv[])
 			}
 			led(LED_5G, LED_ON);
 		}
-
+		// else // wait 50ms
 		usleep(50000);
 	}
 }
-

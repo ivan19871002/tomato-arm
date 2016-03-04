@@ -126,6 +126,8 @@ static int config_pppd(int wan_proto, int num, char *prefix) //static int config
 
 		if (strlen(nvram_get(strcat_r(prefix, "_ppp_username", tmp))) >0 ) //if (strlen(nvram_get("ppp_username")) >0 )
 			fprintf(fp, "user '%s'\n", nvram_get(strcat_r(prefix, "_ppp_username", tmp)));// "ppp_username" -> strcat_r(prefix, "_ppp_username", tmp)
+		if (strlen(nvram_get(strcat_r(prefix, "_ppp_passwd", tmp))) >0 )
+			fprintf(fp, "password '%s'\n", nvram_get(strcat_r(prefix, "_ppp_passwd", tmp)));
 	} else {
 #endif
 #endif

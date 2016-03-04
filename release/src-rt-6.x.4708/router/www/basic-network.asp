@@ -76,7 +76,7 @@ function refresh_sta_list()
 	}
 	sta_list[u+1] = new Array();
 	sta_list[u+1][0] = '';
-	sta_list[u+1][1] = 'Disabled';
+	sta_list[u+1][1] = '<% translate("Disabled"); %>';
 }
 
 
@@ -1967,7 +1967,7 @@ createFieldTable('', [
 /* MULTIWAN-BEGIN */
 										    ,['3','3 <% translate("WAN"); %>'],['4','4 <% translate("WAN"); %>']
 /* MULTIWAN-END */
-		], value: nvram.mwan_num, suffix: ' <small>Please configure <a href="advanced-vlan.asp">VLAN</a> first</small>' },
+		], value: nvram.mwan_num, suffix: ' <small><% translate("Please configure"); %> <a href="advanced-vlan.asp">VLAN</a></small>' },
 	{ title: '<% translate("Check connections every"); %>', name: 'mwan_cktime', type: 'select', options: [
 		['0','<% translate("Disabled"); %>'],['60','1 <% translate("minute"); %>'],['120','2 <% translate("minutes"); %> *'],['180','3 <% translate("minutes"); %>'],['300','5 <% translate("minutes"); %>'],
 		['600','10 <% translate("minutes"); %>'],['900','15 <% translate("minutes"); %>'],['1800','30 <% translate("minutes"); %>'],['3600','1 <% translate("hour"); %>']],
@@ -2015,12 +2015,12 @@ for(var uidx = 1; uidx <= maxwan_num; ++uidx) {
 		{ title: '<% translate("Password"); %>', name: 'wan'+u+'_ppp_passwd', type: 'password', maxlen: 60, size: 64, peekaboo: 1, value: nvram['wan'+u+'_ppp_passwd'] },
 		{ title: '<% translate("Service Name"); %>', name: 'wan'+u+'_ppp_service', type: 'text', maxlen: 50, size: 64, value: nvram['wan'+u+'_ppp_service'] },
 		{ title: '<% translate("L2TP Server"); %>', name: 'wan'+u+'_l2tp_server_ip', type: 'text', maxlen: 128, size: 64, value: nvram['wan'+u+'_l2tp_server_ip'] },
+		{ title: '<% translate("PPTP Gateway"); %>', name: 'wan'+u+'_pptp_server_ip', type: 'text', maxlen: 128, size: 64, value: nvram['wan'+u+'_pptp_server_ip'] },
 		{ title: '<% translate("Use DHCP"); %>', name: 'f_wan'+u+'_pptp_dhcp', type: 'checkbox', value: (nvram['wan'+u+'_pptp_dhcp'] == 1) },
 		{ title: '<% translate("IP Address"); %>', name: 'wan'+u+'_ipaddr', type: 'text', maxlen: 15, size: 17, value: nvram['wan'+u+'_ipaddr'] },
 		{ title: '<% translate("Subnet Mask"); %>', name: 'wan'+u+'_netmask', type: 'text', maxlen: 15, size: 17, value: nvram['wan'+u+'_netmask'] },
 		{ title: '<% translate("Gateway"); %>', name: 'wan'+u+'_gateway', type: 'text', maxlen: 15, size: 17, value: nvram['wan'+u+'_gateway'] },
-		{ title: '<% translate("PPTP Gateway"); %>', name: 'wan'+u+'_pptp_server_ip', type: 'text', maxlen: 128, size: 64, value: nvram['wan'+u+'_pptp_server_ip'] },
-		{ title: '<% translate("Options"); %>', name: 'wan'+u+'_ppp_custom', type: 'text', maxlen: 256, size: 64, value: nvram['wan'+u+'_ppp_custom'] },
+		{ title: '<% translate("Options"); %> (PPP)', name: 'wan'+u+'_ppp_custom', type: 'text', maxlen: 256, size: 64, value: nvram['wan'+u+'_ppp_custom'] },
 		{ title: '<% translate("DNS Server"); %>', name: 'wan'+u+'_dns_auto', type: 'select', options: [['1', '<% translate("Auto"); %>'], ['0', '<% translate("Manual"); %>']], value: nvram['wan'+u+'_dns_auto']},
 		{ title: '<% translate("DNS"); %> 1', indent: 2, name: 'f_wan'+u+'_dns_1', type: 'text', maxlen: 15, size: 17, value: dns[0] || '0.0.0.0' },
 		{ title: '<% translate("DNS"); %> 2', indent: 2, name: 'f_wan'+u+'_dns_2', type: 'text', maxlen: 15, size: 17, value: dns[1] || '0.0.0.0' },

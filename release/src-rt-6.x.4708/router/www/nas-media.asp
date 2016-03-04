@@ -298,8 +298,8 @@ createFieldTable('', [
 			['*user','<% translate("Custom Path"); %>']], value: loc },
 		{ name: 'f_user', type: 'text', maxlen: 256, size: 60, value: nvram.ms_dbdir }
 	] },
-	{ title: '<% translate("Scan Media at Startup"); %>*', indent: 2, name: 'f_ms_sas', type: 'checkbox', value: nvram.ms_sas == '1', hidden: 1 },
-	{ title: '<% translate("Rescan on the next run"); %>*', indent: 2, name: 'f_ms_rescan', type: 'checkbox', value: 0,
+	{ title: '<% translate("Scan Media at Startup"); %> *', indent: 2, name: 'f_ms_sas', type: 'checkbox', value: nvram.ms_sas == '1', hidden: 1 },
+	{ title: '<% translate("Rescan on the next run"); %> *', indent: 2, name: 'f_ms_rescan', type: 'checkbox', value: 0,
 		suffix: '<br><small>* <% translate("Media scan may take considerable time to complete"); %>.</small>' },
 	null,
 	{ title: '<% translate("TiVo Support"); %>', name: 'f_ms_tivo', type: 'checkbox', value: nvram.ms_tivo == '1' },

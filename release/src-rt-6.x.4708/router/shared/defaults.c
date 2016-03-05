@@ -144,7 +144,7 @@ struct nvram_tuple router_defaults[] = {
 	{ "dhcp_domain",		"wan"				, 0 },	// Use WAN domain name first if available (wan|lan)
 	{ "wan_get_dns",		""				, 0 },	// DNS IP address which get by dhcpc // Add
 	{ "wan_routes",			""				, 0 },
-	{ "wan_msroutes",		""				, 0 },
+//	{ "wan_msroutes",		""				, 0 },	// Obsolete
 
 	{ "dhcp1_start",		""				, 0 },
 	{ "dhcp1_num",			""				, 0 },
@@ -850,7 +850,7 @@ struct nvram_tuple router_defaults[] = {
 #endif
 #endif //TCONFIG_NTFS
 #ifdef TCONFIG_HFS
-	{ "usb_fs_hfs",			"0"				, 0 }, //!Victek
+	{ "usb_fs_hfs",			"1"				, 0 }, //!Victek
 #ifdef TCONFIG_TUXERA_HFS
 	{ "usb_hfs_driver",		"tuxera"			, 0 },
 #elif TCONFIG_UFSD

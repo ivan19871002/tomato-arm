@@ -1,5 +1,8 @@
 #!/bin/sh
 
+if [ -f /tmp/ethernet.state.tmp ]; then
+    rm /tmp/ethernet.state.tmp
+fi
 if [ -f /tmp/ethernet.state1 ]; then
     rm /tmp/ethernet.state1
 fi
@@ -61,6 +64,9 @@ fi
 
 cat /tmp/ethernet.state3 >> /tmp/ethernet.state
 
+if [ -f /tmp/ethernet.state.tmp ]; then
+    rm /tmp/ethernet.state.tmp
+fi
 if [ -f /tmp/ethernet.state1 ]; then
     rm /tmp/ethernet.state1
 fi

@@ -35,7 +35,9 @@
 
 #include <sys/ioctl.h>
 
-/* // OBSOLETE 
+#define mwanlog(level,x...) if(nvram_get_int("mwan_debug")>=level) syslog(level, x)
+
+/* // OBSOLETE
 void ppp_prefix(char *wan_device, char *prefix)
 {
 	if (!wan_device || wan_device == "") {	// in case DEVICE is empty (PPTP/L2TP)
@@ -51,8 +53,8 @@ void ppp_prefix(char *wan_device, char *prefix)
 	else if(!strcmp(wan_device, nvram_safe_get("wan3_ifnameX"))) strcpy(prefix, "wan3");
 	else if(!strcmp(wan_device, nvram_safe_get("wan4_ifnameX"))) strcpy(prefix, "wan4");
 #endif
-	else strcpy(prefix, "wan");	// all others: DEVICE="/dev/ttyUSB0" (3G) etc
-	mwanlog(LOG_DEBUG,"### ppp_prefix: DEVICE = %s, prefix = %s", wan_device, prefix);
+	else strcpy(prefix, "wan");	// default is wan
+	mwanlog(LOG_DEBUG,"### OUT ppp_prefix: wan_device = %s, prefix = %s", wan_device, prefix);
 }
 */
 
@@ -62,7 +64,7 @@ int ipup_main(int argc, char **argv)
 	char *value;
 	char buf[256];
 	const char *p;
-	
+
 	char prefix[] = "wanXX";
 	char tmp[100];
 	char ppplink_file[256];
@@ -70,12 +72,15 @@ int ipup_main(int argc, char **argv)
 	TRACE_PT("begin\n");
 
 	killall("listen", SIGKILL);
-	
+
 	if (!wait_action_idle(10)) return -1;
+
+	mwanlog(LOG_DEBUG,"IN ipup_main IFNAME=%s DEVICE=%s LINKNAME=%s IPREMOTE=%s IPLOCAL=%s DNS1=%s DNS2=%s", getenv("IFNAME"), getenv("DEVICE"), getenv("LINKNAME"), getenv("IPREMOTE"), getenv("IPLOCAL"), getenv("DNS1"), getenv("DNS2"));
 
 	wan_ifname = safe_getenv("IFNAME");
 	//ppp_prefix(safe_getenv("DEVICE"), prefix);
 	strcpy(prefix, safe_getenv("LINKNAME"));
+	mwanlog(LOG_DEBUG,"ipup_main, wan_ifname = %s, prefix = %s.", wan_ifname, prefix);
 	if ((!wan_ifname) || (!*wan_ifname)) return -1;
 	nvram_set(strcat_r(prefix, "_iface", tmp), wan_ifname);	// ppp#
 	nvram_set(strcat_r(prefix, "_pppd_pid", tmp), safe_getenv("PPPD_PID"));	
@@ -129,6 +134,7 @@ int ipup_main(int argc, char **argv)
 	if ((value = getenv("SRV_NAME"))) nvram_set(strcat_r(prefix, "_ppp_get_srv", tmp), value);
 	if ((value = getenv("MTU"))) nvram_set(strcat_r(prefix, "_run_mtu", tmp), value);
 
+	mwanlog(LOG_DEBUG,"OUT ipup_main: start_wan_done(wan_ifname = %s, prefix = %s) ...", wan_ifname, prefix);
 	start_wan_done(wan_ifname,prefix);
 
 	TRACE_PT("end\n");
@@ -141,7 +147,7 @@ int ipdown_main(int argc, char **argv)
 	char prefix[] = "wanXX";
 	char tmp[100];
 	char ppplink_file[256];
-	
+
 	TRACE_PT("begin\n");
 
 	//ppp_prefix(safe_getenv("DEVICE"), prefix);
@@ -163,6 +169,7 @@ int ipdown_main(int argc, char **argv)
 	nvram_set(strcat_r(prefix, "_pppd_pid", tmp),"");
 
 	if (proto == WP_L2TP || proto == WP_PPTP) {
+
 		/* clear dns from the resolv.conf */
 		nvram_set(strcat_r(prefix, "_get_dns", tmp),"");
 		dns_to_resolv();
@@ -270,11 +277,11 @@ int set_pppoepid_main(int argc, char **argv)
 	nvram_set(strcat_r(prefix, "_pppoe_pid0", tmp), getenv("PPPD_PID"));
 	nvram_set(strcat_r(prefix, "_pppoe_ifname0", tmp), getenv("IFNAME"));
 	nvram_set(strcat_r(prefix, "_iface", tmp), getenv("IFNAME"));
-	
+
 	TRACE_PT("IFNAME=%s DEVICE=%s\n", getenv("IFNAME"), getenv("DEVICE"));
 	return 0;
 }
-	
+
 int pppoe_down_main(int argc, char **argv)
 {
 	if (argc < 2) return 0;
@@ -289,7 +296,7 @@ int pppoe_down_main(int argc, char **argv)
 	if ((nvram_get_int(strcat_r(prefix, "_ppp_demand", tmp))) && (nvram_match("action_service", "")))	{
 		stop_singe_pppoe(0,prefix);
 		start_pppoe(0,prefix);
-		
+
 		stop_dnsmasq();
 		dns_to_resolv();
 		start_dnsmasq();

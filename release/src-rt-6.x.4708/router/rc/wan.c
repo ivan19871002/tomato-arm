@@ -43,7 +43,7 @@
 #include <bcmdevs.h>
 
 #define mwanlog(level,x...) if(nvram_get_int("mwan_debug")>=level) syslog(level, x)
-
+/* // OBSOLETE
 static void make_secrets(char *prefix) //static void make_secrets(void)
 {
 	FILE *f;
@@ -72,7 +72,7 @@ static void make_secrets(char *prefix) //static void make_secrets(void)
 	}
 	chmod(secrets_file, 0600);
 }
-
+*/
 // -----------------------------------------------------------------------------
 
 static int config_pppd(int wan_proto, int num, char *prefix) //static int config_pppd(int wan_proto, int num)

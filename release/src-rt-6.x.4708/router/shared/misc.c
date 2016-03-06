@@ -254,8 +254,8 @@ void notice_set(const char *path, const char *format, ...)
 
 
 #define mwanlog(level,x...) if(nvram_get_int("mwan_debug")>=level) syslog(level, x)
-#define _x_dprintf(args...)	syslog(LOG_DEBUG, args);
-//#define _x_dprintf(args...)	do { } while (0);
+//#define _x_dprintf(args...)	syslog(LOG_DEBUG, args);
+#define _x_dprintf(args...)	do { } while (0);
 
 int wan_led(int *mode) // mode: 0 - OFF, 1 - ON
 {
@@ -294,7 +294,7 @@ int wan_led(int *mode) // mode: 0 - OFF, 1 - ON
 	return mode;
 }
 
-int get_wanupx(char *prefix)	// return 0 if no other active WAN, 1 if any
+int wan_led_off(char *prefix)	// off WAN LED only if no other WAN active
 {
 	char tmp[100];
 	const char *names[] = {	// FIXME: hardcoded to 4 WANs
@@ -307,31 +307,24 @@ int get_wanupx(char *prefix)	// return 0 if no other active WAN, 1 if any
 		NULL
 	};
 	int i;
-	int count = 0; // default is 0 (NOT UP)
+	int count = 0; // default is 0 (LED_OFF)
 
 	for (i = 0; names[i] != NULL; ++i) {
 		if (strcmp(prefix, names[i]) == 0) continue; // only check others
-		switch (get_wanx_proto(prefix)) {
+		switch (get_wanx_proto(names[i])) {
 		case WP_DISABLED:
-			continue;
-		case WP_STATIC:
-		case WP_DHCP:
-		case WP_LTE:
-			if (!nvram_match(strcat_r(names[i], "_ipaddr", tmp), "0.0.0.0")) { // have IP, assume ON (FIXME: buggy logic)
-				mwanlog(LOG_DEBUG, "### get_wanupx, prefix = %s, i = %d, %s_ipaddr found, set INTERNET ON", prefix, i, names[i]);
-				count = 1;
-			}
-		case WP_L2TP:
-		case WP_PPTP:
-		case WP_PPPOE:
-		case WP_PPP3G:
-			if (nvram_contains_word(strcat_r(names[i], "_iface", tmp), "ppp")) { // have PPP IFACE, assume ON (FIXME: buggy logic)
-				mwanlog(LOG_DEBUG, "### get_wanupx, prefix = %s, i = %d, PPP %s_iface found, set INTERNET ON", prefix, i, names[i]);
-				count = 1;
-			}
+			continue;	// WAN is disabled - skip
+		default:
+			count += check_wanup(names[i]);
 		}
 	}
-	return count;
+
+	if (count > 0) {
+		mwanlog(LOG_DEBUG, "### wan_led_off: COUNT:%d, stay ON", count);
+		return count; // do not LED OFF
+	}
+	else
+		return wan_led(LED_OFF); // LED OFF
 }
 
 int check_wanup(char *prefix)
@@ -350,7 +343,7 @@ int check_wanup(char *prefix)
 	proto = get_wanx_proto(prefix);
 	if (proto == WP_DISABLED)
 	{
-		wan_led(LED_OFF); // LED OFF
+		wan_led_off(prefix); // LED OFF?
 		return 0;
 	}
 
@@ -364,19 +357,19 @@ int check_wanup(char *prefix)
 				name = psname(atoi(buf1), buf2, sizeof(buf2));
 				memset(pppd_name, 0, 256);
 				sprintf(pppd_name, "pppd%s", prefix);
-				mwanlog(LOG_INFO, "### check_wanup: pppd name=%s, psname=%s", pppd_name, name);
+				// mwanlog(LOG_INFO, "### check_wanup: pppd name=%s, psname=%s", pppd_name, name);
 				if (strcmp(name, pppd_name) == 0) up = 1;
 				if (proto == WP_L2TP) {
 					sprintf(pppd_name, "pppd");
-					mwanlog(LOG_INFO, "### check_wanup: L2TP pppd name=%s, psname=%s", pppd_name, name);
+					//mwanlog(LOG_INFO, "### check_wanup: L2TP pppd name=%s, psname=%s", pppd_name, name);
 					if (strcmp(name, pppd_name) == 0) up = 1;
 				}
 			}
 			else {
-				_dprintf("%s: error reading %s\n", __FUNCTION__, buf2);
+				_x_dprintf("%s: error reading %s\n", __FUNCTION__, buf2);
 			}
 			if (!up) {
-				// unlink(ppplink_file); // TEMP DEBUG L2TP
+				//unlink(ppplink_file);	// can break other ppp logic in case of false condition
 				_x_dprintf("required daemon not found, assuming link is dead\n");
 			}
 		}
@@ -404,12 +397,11 @@ int check_wanup(char *prefix)
 			_x_dprintf("%s: !IFF_UP\n", __FUNCTION__);
 		}
 	}
-	// LED ON/OFF
-	if (up) {
-		wan_led(up); // ON
-	} else {
-		if (!get_wanupx(prefix)) wan_led(up); // OFF LED if no other WAN active
-	}
+	// LED control
+	if (up)
+		wan_led(up); // LED ON!
+	else
+		wan_led_off(prefix); // LED OFF?
 
 	return up;
 }

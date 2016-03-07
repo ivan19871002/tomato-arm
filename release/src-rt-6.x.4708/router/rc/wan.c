@@ -656,13 +656,12 @@ void start_l2tp(char *prefix)
 	if (config_pppd(WP_L2TP, 0, prefix) != 0)	// ppp options
 		return;
 
-	demand = nvram_get_int(strcat_r(prefix, "_ppp_demand", tmp)); //"ppp_demand"
-
 	enable_ip_forward();
 
 	mwanlog(LOG_DEBUG, "start_l2tp, cmd: xl2tpd -c /etc/xl2tpd.conf");
 	eval("xl2tpd", "-c", "/etc/xl2tpd.conf");
 
+	demand = nvram_get_int(strcat_r(prefix, "_ppp_demand", tmp)); //"ppp_demand"
 	if (demand) {
 		eval("listen", nvram_safe_get("lan_ifname"), prefix);
 	}

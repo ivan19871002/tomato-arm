@@ -118,7 +118,7 @@ function init()
 
 <b>"Shibby" <% translate("features"); %>:</b><br>
 <!-- BBT-BEGIN -->
-- <% translate("Transmission 2.84 integration"); %><br>
+- <% translate("Transmission 2.92 integration"); %><br>
 <!-- BBT-END -->
 <!-- BT-BEGIN -->
 - <% translate("GUI for Transmission"); %><br>

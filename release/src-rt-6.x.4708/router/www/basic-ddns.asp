@@ -389,7 +389,7 @@ createFieldTable('', [
 		value: a ? 'custom' : nvram.ddnsx_ip },
 	{ title: '<% translate("Custom IP address"); %>', indent: 2, name: 'f_custom_ip', type: 'text', maxlen: 15, size: 20,
 		value: a ? nvram.ddnsx_ip : '', hidden: !a },
-	{ title: '<% translate("Auto refresh every"); %>', name: 'ddnsx_refresh', type: 'text', maxlen: 8, size: 8, suffix: ' <% translate("days"); %> <small>(0 = <% translate("disable"); %>)</small>', value: fixInt(nvram.ddnsx_refresh, 0, 90, 28) }
+	{ title: '<% translate("Auto refresh every"); %>', name: 'ddnsx_refresh', type: 'text', maxlen: 8, size: 8, suffix: '<small> <% translate("days"); %> (0 = <% translate("disable"); %>)</small>', value: fixInt(nvram.ddnsx_refresh, 0, 90, 28) }
 ]);
 </script>
 </div>

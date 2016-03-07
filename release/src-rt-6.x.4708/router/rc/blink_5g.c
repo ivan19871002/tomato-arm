@@ -35,7 +35,7 @@ static unsigned long get_5g_count()
 		if(strcmp(ifname, interface)) continue;
 
 		if(sscanf(p+1, "%lu%*u%*u%*u%*u%*u%*u%*u%*u%lu", &counter1, &counter2)!=2) continue;
-
+		break;
 	}
 	fclose(f);
 
@@ -108,12 +108,12 @@ int blink_5g_main(int argc, char *argv[])
 			blink_5g = 1;
 			data_5g = count_5g;
 		}
-		else 
+		else
 			blink_5g = 0;
 
-		led(LED_5G, LED_ON);		// 5G Wi-Fi LED control
+		led(LED_5G, LED_ON);	// 5G Wi-Fi LED control
 
-		if(blink_5g) {
+		if(blink_5g) {		// Blink 5G LED	
 			j = rand_seed_by_time() % 3;
 			for(i=0;i<10;i++) {
 				usleep(33*1000);

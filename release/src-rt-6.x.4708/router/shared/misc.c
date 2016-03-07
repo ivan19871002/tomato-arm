@@ -252,7 +252,6 @@ void notice_set(const char *path, const char *format, ...)
 	if (buf[0]) syslog(LOG_INFO, "notice[%s]: %s", path, buf);
 }
 
-
 #define mwanlog(level,x...) if(nvram_get_int("mwan_debug")>=level) syslog(level, x)
 //#define _x_dprintf(args...)	syslog(LOG_DEBUG, args);
 #define _x_dprintf(args...)	do { } while (0);

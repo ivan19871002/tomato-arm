@@ -1975,7 +1975,7 @@ createFieldTable('', [
 	{ title: '<% translate("Check connections every"); %>', name: 'mwan_cktime', type: 'select', options: [
 		['0','<% translate("Disabled"); %>'],['60','1 <% translate("minute"); %>'],['120','2 <% translate("minutes"); %>'],['180','3 <% translate("minutes"); %>'],['300','5 <% translate("minutes"); %>'],
 		['600','10 <% translate("minutes"); %>'],['900','15 <% translate("minutes"); %>'],['1800','30 <% translate("minutes"); %>'],['3600','1 <% translate("hour"); %>']],
-		suffix: ' <small>(<% translate("when the network conditionsis poor, try use long detection period"); %>)</small>',
+		suffix: ' <small>(<% translate("when the network conditions poor, try use long detection period"); %>)</small>',
 		value: nvram.mwan_cktime },
 	{ title: '<% translate("Method"); %>', indent: 2, name: 'mwan_ckmtd', type: 'select', options: [['1','Ping'],['2','Traceroute']], value: nvram.mwan_chmtd },
 	{ title: '<% translate("Target"); %> 1', indent: 2, name: 'f_mwan_ckdst_1', type: 'text', maxlen: 30, size: 30, value: ckdst[0] || ''},

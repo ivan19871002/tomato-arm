@@ -547,7 +547,7 @@ REMOVE-END */
 // Modifications to enable Native VLAN support(allow one untagged vlan per port) by default
     if ((f[COL_P0].checked == 1) && (this.countElem(COL_P0,1)>0)) {
       if (((this.countElem(COL_P0,1)-1) >= this.countElem(COL_P0T,1)) && (f[COL_P0T].checked==0)) {
-          ferror.set(f[COL_P0T], '<% translate("Only one untagged VLAN per port is allowed (Native VLAN); %>', quiet);
+          ferror.set(f[COL_P0T], '<% translate("Only one untagged VLAN per port is allowed (Native VLAN)"; %>', quiet);
           valid=0;
       } else {
           ferror.clear(f[COL_P0T]);

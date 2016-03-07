@@ -310,12 +310,27 @@ int wan_led_off(char *prefix)	// off WAN LED only if no other WAN active
 	int count = 0; // default is 0 (LED_OFF)
 
 	for (i = 0; names[i] != NULL; ++i) {
-		if (strcmp(prefix, names[i]) == 0) continue; // only check others
+		if (!strcmp(prefix, names[i])) continue; // only check others
 		switch (get_wanx_proto(names[i])) {
 		case WP_DISABLED:
 			continue;	// WAN is disabled - skip
+		case WP_STATIC:
+		case WP_DHCP:
+		case WP_LTE:
+			if (!nvram_match(strcat_r(names[i], "_ipaddr", tmp), "0.0.0.0")) { // have IP, assume ON (FIXME: buggy logic)
+				mwanlog(LOG_DEBUG, "### get_wanupx, prefix = %s, i = %d, %s_ipaddr found, set INTERNET ON", prefix, i, names[i]);
+				count = 1;
+			}
+		case WP_L2TP:
+		case WP_PPTP:
+		case WP_PPPOE:
+		case WP_PPP3G:
+			if (nvram_contains_word(strcat_r(names[i], "_iface", tmp), "ppp")) { // have PPP IFACE, assume ON (FIXME: buggy logic)
+				mwanlog(LOG_DEBUG, "### get_wanupx, prefix = %s, i = %d, PPP %s_iface found, set INTERNET ON", prefix, i, names[i]);
+				count = 1;
+			}
 		default:
-			count += check_wanup(names[i]);
+			continue;
 		}
 	}
 

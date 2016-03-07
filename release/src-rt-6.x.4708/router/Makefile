@@ -2693,7 +2693,7 @@ dnscrypt-install: dnscrypt
 
 dnscrypt-clean:
 	-@$(MAKE) -C dnscrypt clean
-	@rm -rf dnscrypt/stamp-h1 dnscrypt/src/dnscrypt-proxy/.deps dnscrypt/Makefile
+	@rm -rf dnscrypt/stamp-h1 dnscrypt/src/dnscrypt-proxy/.deps dnscrypt/Makefile dnscrypt/src/libevent-modified/stamp-h1
 
 tor/stamp-h1: openssl zlib libevent
 	cd $(TOP)/tor && CC=$(CC) STRIP=$(STRIP) \

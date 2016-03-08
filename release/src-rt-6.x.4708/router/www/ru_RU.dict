@@ -1244,7 +1244,7 @@ the tag contains only user priority information=тег содержит толь
 To prevent 802.1Q compatibility issues, avoid using VID <b>0</b> as 802.1Q specifies that frames with a tag of <b>0</b> do not belong to any VLAN=Во избежание проблем с 802.1Q, не используйте VID «0» — 802.1Q определяет фреймы с тегом «0» как не принадлежащие ни к одному VLAN
 
 It may be also recommended to avoid using VID=Так же рекомендуется избегать использования VID
-as some vendors consider it special/reserved (for management purposes)=— некоторые производители так же используют его для управления
+as some vendors consider it special/reserved (for management purposes)=— некоторые производители используют его для управления устройством
 
 It may be also recommended to avoid using VID <b>1</b> as some vendors consider it special/reserved (for management purposes)=Так же рекомендуется избегать использования VID «1», так как некоторые производители так же используют его (для управления)
 
@@ -1645,22 +1645,22 @@ set to '0' to use 'regular' VLAN/VID mappings instead=установите «0»
 Warning: this hasn`t been verified/tested on anything but a Cisco/Linksys E3000 and may not be supported by your particular device/model=Предупреждение: эта функция была проверена только на Cisco/Linksys E3000 и может не работать на других устройствах
 see notes on 'VID Offset' below=смотрите заметки в блоке «Смещение VID» ниже
 set=установлены
-but might be=но могут быть
+but might be=однако могут быть
 recreated=пересозданы
 by the WL driver=WL-драйвером
-so that previously defined/saved settings might need to be updated/changed accordingly on=и может потребоваться обновление/изменение настроек в разделе
+so that previously defined/saved settings might need to be updated/changed accordingly on=Вам может потребоваться обновление/изменение настроек в разделе
 DSCP value=Значение DSCP
 Virtual Interfaces=Виртульные интерфейсы
 Wireless Interfaces Details=Информация об интерфейсах Wi-Fi
 Virtual Wireless Interfaces=Виртульные интерфейсы Wi-Fi
 If this VIF should be active and brought online=Если этот вирутальный интерфейс должен быть активен
-This web interface allows configuring a maximum of 4 VIFs for each physical wireless interface available - up to 3 extra VIFs can be defined in addition to the primary VIF (<i>on devices with multiple VIF capabilities</i>)=Эта страница позволяет настроить до 4-х виртуальных интерфейсов для каждого физического интерфейса Wi-Fi. До 3-х дополнительных виртуальных интерфейса может быть добавлено к основному (<i>на устройствах, поддерживающих эту функцию</i>)
-This web interface allows configuring a maximum of 4 VIFs for each physical wireless interface available=Эта страница позволяет настроить до 4-х виртуальных интерфейсов для каждого физического интерфейса Wi-Fi
-up to 3 extra VIFs can be defined in addition to the primary VIF=до 3-х дополнительных виртуальных интерфейса может быть добавлено к основному
+This web interface allows configuring a maximum of 4 VIFs for each physical wireless interface available - up to 3 extra VIFs can be defined in addition to the primary VIF (<i>on devices with multiple VIF capabilities</i>)=Вы можете настроить до 4-х виртуальных интерфейсов для каждого физического интерфейса Wi-Fi. До 3-х дополнительных виртуальных интерфейсов может быть добавлено к основному (<i>на устройствах, поддерживающих эту функцию</i>)
+This web interface allows configuring a maximum of 4 VIFs for each physical wireless interface available=Вы можете настроить до 4-х виртуальных интерфейсов для каждого физического интерфейса Wi-Fi
+up to 3 extra VIFs can be defined in addition to the primary VIF=до 3-х дополнительных виртуальных интерфейсов может быть добавлено к основному
 on devices with multiple VIF capabilities=на устройствах, поддерживающих эту функцию
 Which LAN bridge this VIF should be assigned=К какому мосту LAN должен быть подключен этот виртуальный интерфейс
 Interface mode: Access Point, WDS, Wireless Client, etc=Режим работы: Точка доступа, WDS, Беспроводной клиент и так далее
-By definition, configuration settings for the=По определению, настройки
+By definition, configuration settings for the=Настройки
 primary VIF=главного виртуального интерфейса
 of any physical wireless interfaces shouldn't be touched here=для любого физического интерфейса Wi-Fi не должны меняться в этом разделе
 use the=используйте

@@ -977,13 +977,13 @@ if(port_vlan_supported) vlg.setup();
 <li><% translate("If you notice that the order of the Lan Ports are incorrectly mapped"); %>, <a href='http://www.linksysinfo.org/index.php?threads/can-vlan-gui-port-order-be-corrected.70160/#post-247634/'> <b><% translate("Please Follow these Instructions to get it corrected"); %></b></a>.</li>
 <br>
 <li><b><% translate("VLAN"); %></b> - <% translate("Unique identifier of a VLAN"); %>.</li>
-<li><b><% translate("VID"); %></b> - <% translate("Allows overriding 'traditional' VLAN/VID mapping with arbitrary VIDs for each VLAN"); %> (<% translate("set to '0' to use 'regular' VLAN/VID mappings instead"); %>)</li>
+<li><b><% translate("VID"); %></b> - <% translate("Allows overriding 'traditional' VLAN/VID mapping with arbitrary VIDs for each VLAN"); %> (<% translate("set to '0' to use 'regular' VLAN/VID mappings instead"); %>).</li>
 <li><b><% translate("Tagged"); %></b> - <% translate("Enable 802.1Q tagging of ethernet frames on a particular port/VLAN"); %>.</li>
 <li><b><% translate("Default"); %></b> - <% translate("VLAN ID assigned to untagged frames received by the router"); %>.</li>
-<li><b><% translate("Bridge"); %></b> - <% translate("Determines if this VLAN ID should be treated as WAN, part of a LAN bridge or just left alone (i.e. member of a 802.1Q trunk, being managed manually via scripts, etc...)"); %>.</li>
+<li><b><% translate("Bridge"); %></b> - <% translate("Determines if this VLAN ID should be treated as WAN, part of a LAN bridge or just left alone (i.e. member of a 802.1Q trunk, being managed manually via scripts, etc...)"); %></li>
 </ul>
 <ul>
-<li><b<% translate("Wireless"); %></b> - <% translate("Assignments of wireless interfaces to different LAN briges. You should probably be using and/or check things on"); %> <a href=advanced-wlanvifs.asp><% translate("Advanced"); %>/<% translate("Virtual Wireless"); %></a> <% translate("and"); %> <a href=basic-network.asp><% translate("Basic"); %>/<% translate("Network"); %></a>.</li>
+<li><b><% translate("Wireless"); %></b> - <% translate("Assignments of wireless interfaces to different LAN briges. You should probably be using and/or check things on"); %> <a href=advanced-wlanvifs.asp><% translate("Advanced"); %>/<% translate("Virtual Wireless"); %></a> <% translate("and"); %> <a href=basic-network.asp><% translate("Basic"); %>/<% translate("Network"); %></a>.</li>
 </ul>
 
 <ul>

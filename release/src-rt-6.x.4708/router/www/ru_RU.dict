@@ -1220,7 +1220,7 @@ Cannot add more than one entry with VID=Не возможно добавить �
 Only one VID can be used as=Только один VID может быть выбран для
 at any time=единовременно
 One and only one VID can be used for=Только один VID может быть выбран для сети
-If you notice that the order of the Lan Ports are incorrectly mapped=Если порядок портов не соотвествует действительности
+If you notice that the order of the Lan Ports are incorrectly mapped=Если порядок портов не соотвествует фактическому
 Please Follow these Instructions to get it corrected=выполните инструкции для исправления
 Port Numbers on Router Case (Left -> Right viewed from Front)=Номера портов на роутере (слева направо)
 Include Router Brand/Model=Название / модель роутера
@@ -1230,21 +1230,21 @@ Which ethernet ports on the router should be members of this VLAN=Какой и�
 Enable 802.1Q tagging of ethernet frames on a particular port/VLAN=Включить тегирование 802.1Q на определенном порту/VLAN
 not known to be supported on this model=не поддержвается на данном оборудовании
 
-VLAN ID assigned to untagged frames received by the router=VLAN ID, назначенный для не тегированных фреймов, полученных роутером
+VLAN ID assigned to untagged frames received by the router=VLAN ID, который будет присвоен полученным роутером нетегированным фреймам
 
 Determines if this VLAN ID should be treated as WAN, part of a LAN bridge or just left alone (i.e. member of a 802.1Q trunk, being managed manually via scripts, etc...)=Определяет, должен ли данный VLAN ID быть отнесен к WAN, мосту LAN или оставлен как есть (например, он является частью 802.1Q транка, обрабатываемого отдельным ПО/скриптом и т.д.)
 
 Other relevant notes/hints=Другие полезные советы
 
 To prevent 802.1q compatibility issues, avoid using VID=Во избежание проблем с 802.1q, не используйте VID
-as 802.1q specifies that frames with a tag of=так как 802.1q определяет фреймы с тегом
+as 802.1q specifies that frames with a tag of=— 802.1q определяет фреймы с тегом
 do not belong to any VLAN=как не принадлежащие ни к одному VLAN
 the tag contains only user priority information=тег содержит только информацию о приоритете
 
-To prevent 802.1Q compatibility issues, avoid using VID <b>0</b> as 802.1Q specifies that frames with a tag of <b>0</b> do not belong to any VLAN=Во избежание проблем с 802.1Q, не используйте VID «0», так как 802.1Q определяет фреймы с тегом «0» как не принадлежащие ни к одному VLAN
+To prevent 802.1Q compatibility issues, avoid using VID <b>0</b> as 802.1Q specifies that frames with a tag of <b>0</b> do not belong to any VLAN=Во избежание проблем с 802.1Q, не используйте VID «0» — 802.1Q определяет фреймы с тегом «0» как не принадлежащие ни к одному VLAN
 
 It may be also recommended to avoid using VID=Так же рекомендуется избегать использования VID
-as some vendors consider it special/reserved (for management purposes)=так как некоторые производители так же используют его (для управления)
+as some vendors consider it special/reserved (for management purposes)=— некоторые производители так же используют его для управления
 
 It may be also recommended to avoid using VID <b>1</b> as some vendors consider it special/reserved (for management purposes)=Так же рекомендуется избегать использования VID «1», так как некоторые производители так же используют его (для управления)
 
@@ -1640,8 +1640,8 @@ for VLAN and VID assignments. This allows using VIDs larger than 15 on (older) d
 in contiguous blocks/ranges with up to 16 VLANs/VIDs=в последовательном блоке/диапазоне, содержащем до 16 VLAN/VID
 Set to '0' (zero) to disable this feature and VLANs will have the very same/identical value for its VID, as usual (from 0 to 15)=Укажите «0» (ноль) для отключения данной функции, VLAN-ы будут иметь стандартное значение VID (от «0» до «15»)
 experimental=экспериментально
-Allows overriding 'traditional' VLAN/VID mapping with arbitrary VIDs for each VLAN=Позволяет переопределить «стандартные» VLAN/VID назначения указанными VIDs для каждого VLAN
-set to '0' to use 'regular' VLAN/VID mappings instead=установите «0» для использования «стандартных» VLAN/VID назначений
+Allows overriding 'traditional' VLAN/VID mapping with arbitrary VIDs for each VLAN=Позволяет переопределить VLAN/VID назначения указанными VID для каждого VLAN
+set to '0' to use 'regular' VLAN/VID mappings instead=установите «0» для использования стандартного VLAN/VID соотвествия
 Warning: this hasn`t been verified/tested on anything but a Cisco/Linksys E3000 and may not be supported by your particular device/model=Предупреждение: эта функция была проверена только на Cisco/Linksys E3000 и может не работать на других устройствах
 see notes on 'VID Offset' below=смотрите заметки в блоке «Смещение VID» ниже
 set=установлены

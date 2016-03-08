@@ -253,8 +253,8 @@ void notice_set(const char *path, const char *format, ...)
 }
 
 #define mwanlog(level,x...) if(nvram_get_int("mwan_debug")>=level) syslog(level, x)
-//#define _x_dprintf(args...)	syslog(LOG_DEBUG, args);
-#define _x_dprintf(args...)	do { } while (0);
+#define _x_dprintf(args...)	mwanlog(LOG_DEBUG, args);
+//#define _x_dprintf(args...)	do { } while (0);
 
 int wan_led(int *mode) // mode: 0 - OFF, 1 - ON
 {
@@ -310,6 +310,7 @@ int wan_led_off(char *prefix)	// off WAN LED only if no other WAN active
 
 	for (i = 0; names[i] != NULL; ++i) {
 		if (!strcmp(prefix, names[i])) continue; // only check others
+		mwanlog(LOG_DEBUG, "### wan_led_off: check %s aliveness...", names[i]);
 		switch (get_wanx_proto(names[i])) {
 		case WP_DISABLED:
 			break;	// WAN is disabled - skip
@@ -336,11 +337,11 @@ int wan_led_off(char *prefix)	// off WAN LED only if no other WAN active
 	}
 
 	if (count > 0) {
-		mwanlog(LOG_DEBUG, "wan_led_off: active WANs count:%d, stay ON", count);
+		mwanlog(LOG_DEBUG, "wan_led_off: %s, active WANs count:%d, stay ON", prefix, count);
 		return count; // do not LED OFF
 	}
 	else {
-		mwanlog(LOG_DEBUG, "wan_led_off: no other active WANs, turn OFF", count);
+		mwanlog(LOG_DEBUG, "wan_led_off: %s, no other active WANs, turn OFF", prefix, count);
 		return wan_led(LED_OFF); // LED OFF
 	}
 }

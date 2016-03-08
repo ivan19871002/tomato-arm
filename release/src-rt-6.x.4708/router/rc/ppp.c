@@ -197,9 +197,9 @@ int ipdown_main(int argc, char **argv)
 
 	mwan_load_balance();
 
-	/* clear active interface from nvram on disconnect */
+	/* clear active interface from nvram on disconnect. iface mandatory for mwan load balance */
 	mwanlog(LOG_DEBUG,"### ipdown_main, remove %s_iface, %s_pppd_pid", prefix, prefix);
-	nvram_set(strcat_r(prefix, "_iface", tmp),"");	// ppp#
+	//nvram_set(strcat_r(prefix, "_iface", tmp),"");	// ppp#
 	nvram_set(strcat_r(prefix, "_pppd_pid", tmp),"");
 
 	return 1;

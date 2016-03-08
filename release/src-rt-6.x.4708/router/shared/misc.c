@@ -261,9 +261,9 @@ int wan_led(int *mode) // mode: 0 - OFF, 1 - ON
 	int model;
 
 	if (mode) {
-		mwanlog(LOG_DEBUG, "### wan_led: led(INTERNET,ON)");
+		mwanlog(LOG_DEBUG, "wan_led: led(INTERNET,ON)");
 	} else {
-		mwanlog(LOG_DEBUG, "### wan_led: led(INTERNET,OFF)");
+		mwanlog(LOG_DEBUG, "wan_led: led(INTERNET,OFF)");
 	}
 
 	model = get_model();
@@ -312,33 +312,37 @@ int wan_led_off(char *prefix)	// off WAN LED only if no other WAN active
 		if (!strcmp(prefix, names[i])) continue; // only check others
 		switch (get_wanx_proto(names[i])) {
 		case WP_DISABLED:
-			continue;	// WAN is disabled - skip
+			break;	// WAN is disabled - skip
 		case WP_STATIC:
 		case WP_DHCP:
 		case WP_LTE:
 			if (!nvram_match(strcat_r(names[i], "_ipaddr", tmp), "0.0.0.0")) { // have IP, assume ON (FIXME: buggy logic)
-				mwanlog(LOG_DEBUG, "### get_wanupx, prefix = %s, i = %d, %s_ipaddr found, set INTERNET ON", prefix, i, names[i]);
-				count = 1;
+				mwanlog(LOG_DEBUG, "wan_led_off, i = %d, prefix = %s, %s_ipaddr found, set INTERNET ON", i, prefix, names[i]);
+				++count;
 			}
+			break;
 		case WP_L2TP:
 		case WP_PPTP:
 		case WP_PPPOE:
 		case WP_PPP3G:
 			if (nvram_contains_word(strcat_r(names[i], "_iface", tmp), "ppp")) { // have PPP IFACE, assume ON (FIXME: buggy logic)
-				mwanlog(LOG_DEBUG, "### get_wanupx, prefix = %s, i = %d, PPP %s_iface found, set INTERNET ON", prefix, i, names[i]);
-				count = 1;
+				mwanlog(LOG_DEBUG, "wan_led_off, i = %d, prefix = %s, PPP %s_iface found, set INTERNET ON", i, prefix, names[i]);
+				++count;
 			}
+			break
 		default:
-			continue;
+			break;
 		}
 	}
 
 	if (count > 0) {
-		mwanlog(LOG_DEBUG, "### wan_led_off: COUNT:%d, stay ON", count);
+		mwanlog(LOG_DEBUG, "wan_led_off: active WANs count:%d, stay ON", count);
 		return count; // do not LED OFF
 	}
-	else
+	else {
+		mwanlog(LOG_DEBUG, "wan_led_off: no other active WANs, turn OFF", count);
 		return wan_led(LED_OFF); // LED OFF
+	}
 }
 
 int check_wanup(char *prefix)

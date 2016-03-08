@@ -329,7 +329,7 @@ int wan_led_off(char *prefix)	// off WAN LED only if no other WAN active
 				mwanlog(LOG_DEBUG, "wan_led_off, i = %d, prefix = %s, PPP %s_iface found, set INTERNET ON", i, prefix, names[i]);
 				++count;
 			}
-			break
+			break;
 		default:
 			break;
 		}

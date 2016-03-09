@@ -1168,7 +1168,7 @@ void start_wan_done(char *wan_ifname, char *prefix)
 
 	do_static_routes(1);
 	// and routes supplied via DHCP
-	do_wan_routes(using_dhcpc(prefix) ? nvram_safe_get(strcat_r(prefix, "_ifname",tmp)) : nvram_safe_get("wan_ifname"), 0, 1, prefix); //"wan_ifname"
+	do_wan_routes(using_dhcpc(prefix) ? nvram_safe_get(strcat_r(prefix, "_ifname",tmp)) : wan_ifname, 0, 1, prefix); //"wan_ifname"
 	if(!strcmp(prefix,"wan")){
 		stop_zebra();
 		start_zebra();

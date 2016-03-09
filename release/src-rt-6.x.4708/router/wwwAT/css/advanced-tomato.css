@@ -442,7 +442,7 @@ small { font-size: 80%; }
 	width:60px;
 }
 
-.top-header .logo.collapsed a svg {
+.top-header a .logo.collapsed svg {
 	margin:15px 0 0;
 	display: inline-block;
 }

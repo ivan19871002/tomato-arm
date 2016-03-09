@@ -1,7 +1,7 @@
 .top-header .logo {
 /*	background: #c0392b; */
 }
-.top-header .logo.collapsed a svg {
+.top-header a .logo.collapsed svg {
 	fill: #e74c3c;
 }
 

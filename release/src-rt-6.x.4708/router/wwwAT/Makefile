@@ -1,4 +1,3 @@
-
 include ../common.mak
 
 # BRANDING (0 to disable)
@@ -51,6 +50,20 @@ else
 	cd  $(INSTALLDIR)/www-at && \
 	for F in $(wildcard *.asp *.js); do \
 		sed -i $$F -e "/LINUX24-BEGIN/,/LINUX24-END/d"; \
+	done
+endif
+
+#only include  MultiWAN options if MULTIWAN is configured in.
+ifneq ($(TCONFIG_MULTIWAN),y)
+	cd $(INSTALLDIR)/www-at && \
+	for F in $(wildcard *.asp *.js *.jsx); do \
+		sed -i $$F -e "/MULTIWAN-BEGIN/,/MULTIWAN-END/d"; \
+	done
+# or remove dualwan options
+else
+	cd $(INSTALLDIR)/www-at && \
+	for F in $(wildcard *.asp *.js *.jsx); do \
+		sed -i $$F -e "/DUALWAN-BEGIN/,/DUALWAN-END/d"; \
 	done
 endif
 
@@ -372,6 +385,8 @@ endif
 		-e "/HUAWEI-BEGIN/d"	-e "/HUAWEI-END/d"\
 		-e "/SMARTCTL-BEGIN/d"	-e "/SMARTCTL-END/d"\
 		-e "/MICROSD-BEGIN/d"	-e "/MICROSD-END/d"\
+		-e "/MULTIWAN-BEGIN/d"	-e "/MULTIWAN-END/d"\
+		-e "/DUALWAN-BEGIN/d"	-e "/DUALWAN-END/d"\
 		|| true; \
 	done
 

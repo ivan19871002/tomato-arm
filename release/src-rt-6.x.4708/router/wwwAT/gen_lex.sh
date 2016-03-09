@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 DIR=`pwd`
 ALL=en_EN.all_pages_strings
 LEX=en_EN.dict

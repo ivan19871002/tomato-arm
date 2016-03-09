@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=960">
 		<meta http-equiv="content-type" content="text/html;charset=utf-8">
 		<meta name="robots" content="noindex,nofollow">
-		<title>[<% ident(); %>] Basic</title>
+		<title>[<% ident(); %>] <% translate("Basic"); %></title>
 		<link href="css/reset.css" rel="stylesheet">
 		<link href="css/style.css" rel="stylesheet">
 		<link rel="shortcut icon" href="/favicon.ico" />
@@ -24,11 +24,21 @@
 			// Fix for system data display
 			var refTimer, wl_ifaces = {}, ajaxLoadingState = false, gui_version = "<% version(0); %>", lastjiffiestotal = 0, lastjiffiesidle = 0, lastjiffiesusage = 100;
 			$(document).ready(function() {
+				// Attempt match
+				match_regex = gui_version.match(/^1\.28\.[0-9]{1}([0-9]{3}).?(\w*) (.*)/);
+				// Check matches
+				if ( match_regex == null || match_regex[1] == null ) { 
+					gui_version = '<% translate("More Info"); %>'
+				} else {
+					gui_version = 'v' + match_regex[1] + ' ' + match_regex[2];
+				}
 
-				gui_version = gui_version.match(/^1.28\.0000 (MIPSR2\-|\-)?(.*)/)[2] || '';
+				// Write version & initiate GUI functions & binds
 				$('#gui-version').html('<i class="icon-info-alt"></i> <span class="nav-collapse-hide">' + gui_version + '</span>');
-				AdvancedTomato();
 
+				//gui_version = gui_version.match(/^1.28\.0000 (MIPSR2\-|\-)?(.*)/)[2] || '';
+				//$('#gui-version').html('<i class="icon-info-alt"></i> <span class="nav-collapse-hide">' + gui_version + '</span>');
+				AdvancedTomato();
 			});
 		</script>
 	</head>
@@ -37,8 +47,8 @@
 
 			<div class="top-header">
 
-				<div class="logo">
-					<a href="/">
+				<a href="/">
+					<div class="logo">
 /* ATOMATO-BEGIN */
 <!-- AT LOGO -->						<svg version="1.1" id="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 							width="26px" height="26px" viewBox="0 0 32 32" enable-background="new 0 0 32 32" xml:space="preserve">
@@ -86,9 +96,9 @@
 </svg>
 /* HUAWEI-END */
 						<h1 class="nav-collapse-hide">Advanced<span>Tomato</span></h1>
-					</a>
-					<h2 class="currentpage nav-collapse-hide"></h2>
-				</div>
+						<h2 class="currentpage nav-collapse-hide"></h2>
+					</div>
+				</a>
 
 				<div class="left-container">
 					<a data-toggle="tooltip" title="<% translate("Toggle Collapsed Navigation"); %>" href="#" class="toggle-nav"><i class="icon-align-left"></i></a>

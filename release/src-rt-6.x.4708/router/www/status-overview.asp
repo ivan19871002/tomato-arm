@@ -60,7 +60,7 @@ for (var uidx = 1; uidx <= nvram.mwan_num; ++uidx) {
 	u = (uidx>1) ? uidx : '';
 	proto = nvram['wan'+u+'_proto'];
 	if (proto != 'disabled') show_langateway = 0;
-	show_dhcpc[uidx-1] = ((proto == 'dhcp') || (proto == 'lte') || (((proto == 'l2tp') || (proto == 'pptp')) && (nvram.pptp_dhcp == '1')));
+	show_dhcpc[uidx-1] = ((proto == 'dhcp') || (proto == 'lte') || (((proto == 'l2tp') || (proto == 'pptp') || (proto == 'pppoe')) && (nvram['wan'+u+'pptp_dhcp'] == '1')));
 	show_codi[uidx-1] = ((proto == 'pppoe') || (proto == 'l2tp') || (proto == 'pptp') || (proto == 'ppp3g'));
 }
 

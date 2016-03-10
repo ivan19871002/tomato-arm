@@ -108,8 +108,12 @@ endif
 beta = $(if $(filter $(TOMATO_EXPERIMENTAL),1),-beta,)
 
 tomato_ver:
-	@echo ""
+	@echo "### GEN VERSION ###"
 	@btools/uversion.pl --gen $(V1) $(mips_rev)$(beta)$(V2) $(ND) $(current_BUILD_USB) $(current_BUILD_DESC)
+ifneq ($(BUILDNR),)
+	@echo "### BUILD: $(BUILDNR) ###"
+	@sed -i "s|0000|$(BUILDNR)|g" router/shared/tomato_version.h
+endif
 
 ifeq ($(TOMATO_BUILD),)
 

@@ -188,6 +188,13 @@
 							$('#b_wl'+uidx+'_enable').show();
 							$('#b_wl'+uidx+'_disable').hide();
 						}
+
+					} else {
+
+						// Interface disabled, hide enable/disable
+						$('#b_wl'+uidx+'_enable').hide();
+						$('#b_wl'+uidx+'_disable').hide();
+
 					}
 
 					c('channel'+uidx, stats.channel[uidx]);
@@ -237,7 +244,7 @@
 
 	<div class="fluid-grid">
 
-		<div class="box" id="System" data-box="home_systembox">
+		<div class="box" data-box="home_systembox">
 			<div class="heading"><% translate("System"); %></div>
 			<div class="content" id="sesdiv_system">
 				<div class="section"></div>
@@ -267,6 +274,7 @@
 		</div>
 
 		<!-- WAN -->
+		<div id="wan-interfaces"></div>
 		<script type='text/javascript'>
 
 		for (var uidx = 1; uidx <= nvram.mwan_num; ++uidx) {
@@ -288,14 +296,15 @@ data+=	'<div class="box" id="wan'+u+'-title" data-box="home_wanbox">';
 						{ title: '<% translate("IPv6 Address"); %>', rid: 'ip6_wan', text: stats.ip6_wan, hidden: (stats.ip6_wan == '') },
 						/* IPV6-END */
 						{ title: '<% translate("DNS"); %>', rid: 'wan'+u+'dns', text: stats.dns[uidx-1] },
-						{ title: '<% translate("MTU"); %>', text: nvram['wan'+u+'_run_mtu'] }, null,
+						{ title: '<% translate("MTU"); %>', text: nvram['wan'+u+'_run_mtu'] },
+						null,	// GAP
 						{ title: '<% translate("Status"); %>', rid: 'wan'+u+'status', text: ((stats.wanstatus[uidx-1] == 'Connected') ? '<% translate("Connected"); %> <i class="icon-globe"></i>' : stats.wanstatus[uidx-1] + ' <i class="icon-cancel icon-red"></i>') },
 						{ title: '<% translate("Connection Uptime"); %>', rid: 'wan'+u+'uptime', text: stats.wanuptime[uidx-1] },
 						{ title: '<% translate("Remaining Lease Time"); %>', rid: 'wan'+u+'lease', text: stats.wanlease[uidx-1], ignore: !show_dhcpc[uidx-1] }
 						], null, 'data-table dataonly');
 
-			data+=	'<button type="button" class="btn btn-primary pull-left" onclick="wan_connect('+uidx+')" value="Connect" id="b'+u+'_connect" style="display:none"><% translate("Connect"); %> <i class="icon-check"></i></button>';
-			data+=	'<button type="button" class="btn btn-danger pull-left" onclick="wan_disconnect('+uidx+')" value="Disconnect" id="b'+u+'_disconnect" style="display:none"><% translate("Disconnect"); %> <i class="icon-cancel"></i></button>';
+			data+=	'<button type="button" class="btn btn-primary pull-left" onclick="wan_connect('+uidx+')" value="<% translate("Connect"); %>" id="b'+u+'_connect" style="display:none"><% translate("Connect"); %> <i class="icon-check"></i></button>';
+			data+=	'<button type="button" class="btn btn-danger pull-left" onclick="wan_disconnect('+uidx+')" value="<% translate("Disconnect"); %>" id="b'+u+'_disconnect" style="display:none"><% translate("Disconnect"); %> <i class="icon-disable"></i></button>';
 
 			data+=	'<div id="b'+u+'_dhcpc" class="btn-group pull-left" style="margin-left: 5px; display:none;">';
 				data+=	'<button type="button" class="btn" onclick="dhcpc("renew","wan'+u+'")" value="<% translate("Renew"); %>"><% translate("Renew"); %></button>';
@@ -307,7 +316,7 @@ data+=	'<div class="box" id="wan'+u+'-title" data-box="home_wanbox">';
 	data+=	'</div>';
 data+=	'</div>';
 
-		$('#System').after(data);	
+		$('#wan-interfaces').append(data);	
 		}
 		</script>
 
@@ -319,14 +328,38 @@ data+=	'</div>';
 		</div>
 
 		<div class="box" id="LAN-settings" data-box="home_lanbox">
-			<div class="heading"><% translate("LAN"); %> </div>
+			<div class="heading"><% translate("LAN"); %></div>
 			<div class="content" id="sesdiv_lan">
 				<script type="text/javascript">
 
-					/* VLAN-BEGIN */
+					function h_countbitsfromleft(num) {
+						if (num == 255 ){
+							return(8);
+						}
+						var i = 0;
+						var bitpat=0xff00; 
+						while (i < 8){
+							if (num == (bitpat & 0xff)){
+								return(i);
+							}
+							bitpat=bitpat >> 1;
+							i++;
+						}
+						return(Number.NaN);
+					}
+
+					function numberOfBitsOnNetMask(netmask) {
+						var total = 0;
+						var t = netmask.split('.');
+						for (var i = 0; i<= 3 ; i++) {
+							total += h_countbitsfromleft(t[i]);
+						}
+						return total;
+					}
+
 					var s='';
 					var t='';
-					for (var i = 0 ; i <= MAX_BRIDGE_ID; i++) {
+					for (var i = 0 ; i <= MAX_BRIDGE_ID ; i++) {
 						var j = (i == 0) ? '' : i.toString();
 						if (nvram['lan' + j + '_ifname'].length > 0) {
 							if (nvram['lan' + j + '_proto'] == 'dhcp') {
@@ -335,44 +368,21 @@ data+=	'</div>';
 									nvram['dhcpd' + j + '_startip'] = x + nvram['dhcp' + j + '_start'];
 									nvram['dhcpd' + j + '_endip'] = x + ((nvram['dhcp' + j + '_start'] * 1) + (nvram['dhcp' + j + '_num'] * 1) - 1);
 								}
-								s += ((s.length>0)&&(s.charAt(s.length-1) != ' ')) ? ', ' : '';
-								s += '<a class="ajaxload" href="#status-devices.asp">' + nvram['dhcpd' + j + '_startip'] + ' - ' + nvram['dhcpd' + j + '_endip'] + '</a> <% translate("on LAN"); %>' + j + ' (br' + i + ')';
+								s += ((s.length>0)&&(s.charAt(s.length-1) != ' ')) ? '<br>' : '';
+								s += '<b>LAN' + j + '</b> (br' + i + ') - ' + nvram['dhcpd' + j + '_startip'] + ' - ' + nvram['dhcpd' + j + '_endip'];
 							} else {
-								s += ((s.length>0)&&(s.charAt(s.length-1) != ' ')) ? ', ' : '';
-								s += '<% translate("Disabled on LAN"); %>' + j + ' (br' + i + ')';
+								s += ((s.length>0)&&(s.charAt(s.length-1) != ' ')) ? '<br>' : '';
+								s += '<b>LAN' + j + '</b> (br' + i + ') - <% translate("Disabled"); %>';
 							}
-							t += ((t.length>0)&&(t.charAt(t.length-1) != ' ')) ? ', ' : '';
-							t += nvram['lan' + j + '_ipaddr'] + '/' + numberOfBitsOnNetMask(nvram['lan' + j + '_netmask']) + ' <% translate("on LAN"); %>' + j + ' (br' + i + ')';
-						}
-					}
+							t += ((t.length>0)&&(t.charAt(t.length-1) != ' ')) ? '<br>' : '';
+							t += '<b>LAN' + j + '</b> (br' + i + ') - ' + nvram['lan' + j + '_ipaddr'] + '/' + numberOfBitsOnNetMask(nvram['lan' + j + '_netmask']);
 
-					createFieldTable('', [
-						{ title: '<% translate("Gateway"); %>', text: nvram.lan_gateway, ignore: nvram.wan_proto != 'disabled' },
-						/* IPV6-BEGIN */
-						{ title: '<% translate("Router IPv6 Address"); %>', rid: 'ip6_lan', text: stats.ip6_lan, ignore: stats.ip6_lan == '' },
-						{ title: '<% translate("IPv6 Link-local Address"); %>', rid: 'ip6_lan_ll', text: stats.ip6_lan_ll, ignore: stats.ip6_lan_ll == '' },
-						/* IPV6-END */
-						{ title: '<% translate("DNS"); %>', rid: 'dns', text: stats.dns, ignore: nvram.wan_proto != 'disabled' },
-						{ title: '<% translate("DHCP"); %>', text: s }
-						], '#sesdiv_lan', 'data-table dataonly');
-					/* VLAN-END */
-
-					/* NOVLAN-BEGIN */
-					if (nvram.lan_proto == 'dhcp') {
-						if ((!fixIP(nvram.dhcpd_startip)) || (!fixIP(nvram.dhcpd_endip))) {
-							var x = nvram.lan_ipaddr.split('.').splice(0, 3).join('.') + '.';
-							nvram.dhcpd_startip = x + nvram.dhcp_start;
-							nvram.dhcpd_endip = x + ((nvram.dhcp_start * 1) + (nvram.dhcp_num * 1) - 1);
 						}
-						s = '<a class="ajaxload" href="#status-devices.asp">' + nvram.dhcpd_startip + ' - ' + nvram.dhcpd_endip + '</a>';
-					}
-					else {
-						s = 'Disabled';
-					}
+					}	
 					createFieldTable('', [
 						{ title: '<% translate("Router MAC Address"); %>', text: nvram.et0macaddr },
 						{ title: '<% translate("Router IP Address"); %>', text: nvram.lan_ipaddr },
-						{ title: '<% translate("Subnet Mask"); %>', text: nvram.lan_netmask },
+//						{ title: '<% translate("Subnet Mask"); %>', text: nvram.lan_netmask },
 						{ title: '<% translate("Gateway"); %>', text: nvram.lan_gateway, ignore: nvram.wan_proto != 'disabled' },
 						/* IPV6-BEGIN */
 						{ title: '<% translate("Router IPv6 Address"); %>', rid: 'ip6_lan', text: stats.ip6_lan, hidden: (stats.ip6_lan == '') },
@@ -381,12 +391,13 @@ data+=	'</div>';
 						{ title: '<% translate("DNS"); %>', rid: 'dns', text: stats.dns, ignore: nvram.wan_proto != 'disabled' },
 						{ title: '<% translate("DHCP"); %>', text: s }
 						], '#sesdiv_lan', 'data-table dataonly');
-					/* NOVLAN-END */
 
 				</script>
 			</div>
 		</div>
 
+		<!-- Wi-Fi -->
+		<div id="wi-fi-interfaces"></div>
 		<script type="text/javascript">
 
 			for (var uidx = 0; uidx < wl_ifaces.length; ++uidx) {
@@ -433,7 +444,8 @@ data+=	'</div>';
 				data += '<button type="button" class="btn btn-primary" onclick="wlenable('+uidx+', 1)" id="b_wl'+uidx+'_enable" value="Enable"><% translate("Enable"); %> <i class="icon-check"></i></button>';
 				data += '<button type="button" class="btn btn-danger" onclick="wlenable('+uidx+', 0)" id="b_wl'+uidx+'_disable" value="Disable"><% translate("Disable"); %> <i class="icon-disable"></i></button>';
 				data += '</div></div></div>';
-				$('#LAN-settings').after(data);
+				
+				$('#wi-fi-interfaces').append(data);
 			}
 		</script>
 	</div>

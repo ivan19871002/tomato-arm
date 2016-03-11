@@ -32,18 +32,18 @@
 
 @font-face {
 	font-family: "advancedtomato";
-	src:url("fonts/advancedtomato.eot");
+	src:url("fonts/advancedtomato.svg#advancedtomato") format("svg");
 	src:url("fonts/advancedtomato.eot?#iefix") format("embedded-opentype"),
 		url("fonts/advancedtomato.woff") format("woff"),
 		url("fonts/advancedtomato.ttf") format("truetype"),
-		url("fonts/advancedtomato.svg#advancedtomato") format("svg");
+		url("fonts/advancedtomato.eot");
 	font-weight: normal;
 	font-style: normal;
 
 }
 
 /* CSS */
-html { font-size: 62.5%; }
+html { font-size: 62.5%; -webkit-font-smoothing: antialiased; }
 body {
 	font-size: 12px;
 	font-family: "Neo Sans Cyr", Roboto, "Helvetica Neue", Helvetica, sans-serif;
@@ -1804,14 +1804,12 @@ input[type=radio]:disabled + span {
 	-webkit-animation: nprogress-animation 5s linear 1;
 	animation: nprogress-animation 5s linear 1;
 }
-@-webkit-keyframes nprogress-animation {
-	0%   { width: 20%; }
-	100% { width: 100%; }
-}
-@keyframes nprogress-animation {
-	0%   { width: 20%; }
-	100% { width: 100%; }
-}
+
+@-webkit-keyframes nprogress-animation { from { width: 15%; } to { width: 100%; } }
+@keyframes nprogress-animation { from { width: 15%; } to { width: 100%; } }
+
+@-webkit-keyframes tomato-spinner { from { -webkit-transform: rotate(0deg); } to { -webkit-transform: rotate(360deg); } }
+@keyframes tomato-spinner { from { -webkit-transform: rotate(0deg); transform: rotate(0deg); } to { -webkit-transform: rotate(360deg); transform: rotate(360deg); } }
 
 /* Responsive stuff */
 @media (max-width: 960px) {
@@ -1819,15 +1817,6 @@ input[type=radio]:disabled + span {
 	.links ul li a { font-size: 0; }
 	.links ul li a i { font-size: 16px; }
 	.system-ui:before, .system-ui:after { display: none; }
-}
-
-@-webkit-keyframes tomato-spinner {
-	0%   { -webkit-transform: rotate(0deg); }
-	100% { -webkit-transform: rotate(360deg); }
-}
-@keyframes tomato-spinner {
-	0%   { transform: rotate(0deg); }
-	100% { transform: rotate(360deg); }
 }
 
 @media (min-width: 1200px) {

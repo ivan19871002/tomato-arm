@@ -37,8 +37,14 @@ No part of this file may be used without permission.
 		}
 	</style>
 	<script type="text/javascript">
-		// <% nvram("at_update,tomatoanon_answer,qos_classnames,web_svg,qos_enable,qos_obw,qos_ibw"); %>
+		// <% nvram("at_update,tomatoanon_answer,qos_classnames,web_svg,qos_enable,wan_qos_obw,wan_qos_ibw"); %>
 		//<% qrate(); %>
+		qrates_out = [0,0,0,0,0,0,0,0,0,0,0];
+		qrates_in = [0,0,0,0,0,0,0,0,0,0,0];
+		for(var i=0; i < 10; i++){
+			qrates_out[i] = qrates1_out[i]+qrates2_out[i]+qrates3_out[i]+qrates4_out[i];
+			qrates_in[i] = qrates1_in[i]+qrates2_in[i]+qrates3_in[i]+qrates4_in[i];
+		}
 
 		var svgReady = 0;
 
@@ -98,8 +104,8 @@ No part of this file may be used without permission.
 			}
 			E('ccnt-total').innerHTML = totalConnections;
 
-			obwrate = nvram.qos_obw * 1000;
-			ibwrate = nvram.qos_ibw * 1000;
+			obwrate = nvram.wan_qos_obw * 1000;
+			ibwrate = nvram.wan_qos_ibw * 1000;
 
 			if(toggle == false)
 			{
@@ -154,6 +160,10 @@ No part of this file may be used without permission.
 			qrates_out = [];
 			qrates_in = [];
 
+			for(var i=0; i < 10; i++){
+				qrates_out[i] = qrates1_out[i]+qrates2_out[i]+qrates3_out[i]+qrates4_out[i];
+				qrates_in[i] = qrates1_in[i]+qrates2_in[i]+qrates3_in[i]+qrates4_in[i];
+			}
 			try
 			{
 				eval(text);

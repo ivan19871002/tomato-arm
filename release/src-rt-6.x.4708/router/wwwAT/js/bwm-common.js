@@ -247,7 +247,7 @@ function loadData() {
 				/* REMOVE-BEGIN
 				//			else if (i == nvram.wl_ifname) {
 				REMOVE-END */
-				t = 'WL <small>(' + i + ')</small>';
+				t = 'Wi-Fi <small>(' + i + ')</small>';
 			}
 
 			if (i == 'imq1')	{
@@ -258,9 +258,13 @@ function loadData() {
 				t = 'Lim. IN <small>(' + i + ')</small>';
 			}
 
+			if (i == 'br0')	{
+				t = 'LAN <small>(' + i + ')</small>';
+			}
+
 			else if ((nvram.wan_proto == 'pptp') || (nvram.wan_proto == 'pppoe') || (nvram.wan_proto == 'l2tp') || (nvram.wan_proto == 'ppp3g')) {
-				if (nvram.wan_iface == i) t = 'WAN <small>(' + i + ')</small>';
-				else if (nvram.wan_ifname == i && ((nvram.wan_proto != 'pppoe') && (nvram.wan_proto != 'ppp3g'))) t = 'MAN <small>(' + i + ')</small>';
+				if (nvram.wan_iface == i || nvram.wan2_iface == i || nvram.wan3_iface == i || nvram.wan4_iface == i) t = 'WAN <small>(' + i + ')</small>';
+				else if ((nvram.wan_ifname == i || nvram.wan2_ifname == i || nvram.wan3_ifname == i || nvram.wan4_ifname == i) && ((nvram.wan_proto != 'pppoe') && (nvram.wan_proto != 'ppp3g'))) t = 'MAN <small>(' + i + ')</small>';
 			}
 			else if (nvram.wan_proto != 'disabled') {
 				if (nvram.wan_ifname == i) t = 'WAN <small>(' + i + ')</small>';
@@ -367,11 +371,13 @@ function populateCache() {
 
 	for (var i = 0 ; i <= MAX_BRIDGE_ID ; i++) {
 		var j = (i == 0) ? '' : i.toString();
+		var lannr = (i == 0) ? '' : (i + 1).toString();
 		if (nvram['lan' + j + '_ipaddr'] != null)
 			if (nvram['lan' + j + '_netmask'] != null)
 				if (nvram['lan' + j + '_ipaddr'] != '')
 					if (nvram['lan' + j + '_netmask'] != '') {
-						hostnamecache[getNetworkAddress(nvram['lan' + j + '_ipaddr'], nvram['lan' + j + '_netmask'])] = 'LAN' + j;
+						hostnamecache[getNetworkAddress(nvram['lan' + j + '_ipaddr'], nvram['lan' + j + '_netmask'])] = 'LAN' + lannr;
 					}
 	}
 }
+

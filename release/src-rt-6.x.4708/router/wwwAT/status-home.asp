@@ -244,6 +244,7 @@
 
 	<div class="fluid-grid">
 
+		<!-- SYS -->
 		<div class="box" data-box="home_systembox">
 			<div class="heading"><% translate("System"); %></div>
 			<div class="content" id="sesdiv_system">
@@ -282,10 +283,10 @@
 		var u = (uidx>1) ? uidx : '';
 		var data = "";
 
-data+=	'<div class="box" id="wan'+u+'-title" data-box="home_wanbox">';
-	data+=	'<div class="heading"><% translate("WAN"); %>'+u+'</div>';
-	data+=	'<div class="content" id="sesdiv_wan'+u+'">';
-		data+=	'<div class="WANField"></div>';
+		data+=	'<div class="box" id="wan'+u+'-title" data-box="home_wanbox">';
+			data+=	'<div class="heading"><% translate("WAN"); %>'+u+'</div>';
+			data+=	'<div class="content" id="sesdiv_wan'+u+'">';
+				data+=	'<div class="WANField"></div>';
 				data+=	createFieldTable('', [
 						{ title: '<% translate("MAC Address"); %>', text: nvram['wan'+u+'_hwaddr'] },
 						{ title: '<% translate("Connection Type"); %>', text: { 'dhcp':'DHCP', 'static':'Static IP', 'pppoe':'PPPoE', 'pptp':'PPTP', 'l2tp':'L2TP', 'ppp3g':'3G Modem', 'lte':'4G/LTE' }[nvram['wan'+u+'_proto']] || '-' },
@@ -311,15 +312,16 @@ data+=	'<div class="box" id="wan'+u+'-title" data-box="home_wanbox">';
 				data+=	'<button type="button" class="btn" onclick="dhcpc("release","wan'+u+'")" value="<% translate("Release"); %>"><% translate("Release"); %></button>';
 			data+=	'</div>';
 
-		data+=	'<div class="clearfix"></div>';
+			data+=	'<div class="clearfix"></div>';
 
-	data+=	'</div>';
-data+=	'</div>';
+			data+=	'</div>';
+		data+=	'</div>';
 
-		$('#wan-interfaces').append(data);	
+		$('#wan-interfaces').append(data);
 		}
 		</script>
 
+		<!-- PORTS -->
 		<div class="box" id="ethernetPorts" data-box="home_ethports">
 			<div class="heading"><% translate("Ethernet Ports State"); %>
 				<a class="ajaxload pull-right" data-toggle="tooltip" title="<% translate("Configure Settings"); %>" href="#basic-network.asp"><i class="icon-system"></i></a>
@@ -327,6 +329,7 @@ data+=	'</div>';
 			<div class="content" id="sesdiv_lan-ports"></div>
 		</div>
 
+		<!-- LAN -->
 		<div class="box" id="LAN-settings" data-box="home_lanbox">
 			<div class="heading"><% translate("LAN"); %></div>
 			<div class="content" id="sesdiv_lan">
@@ -361,6 +364,7 @@ data+=	'</div>';
 					var t='';
 					for (var i = 0 ; i <= MAX_BRIDGE_ID ; i++) {
 						var j = (i == 0) ? '' : i.toString();
+						var lannr = (i == 0) ? '' : (i + 1).toString();	// LAN1->LAN2
 						if (nvram['lan' + j + '_ifname'].length > 0) {
 							if (nvram['lan' + j + '_proto'] == 'dhcp') {
 								if ((!fixIP(nvram.dhcpd_startip)) || (!fixIP(nvram.dhcpd_endip))) {
@@ -369,16 +373,16 @@ data+=	'</div>';
 									nvram['dhcpd' + j + '_endip'] = x + ((nvram['dhcp' + j + '_start'] * 1) + (nvram['dhcp' + j + '_num'] * 1) - 1);
 								}
 								s += ((s.length>0)&&(s.charAt(s.length-1) != ' ')) ? '<br>' : '';
-								s += '<b>LAN' + j + '</b> (br' + i + ') - ' + nvram['dhcpd' + j + '_startip'] + ' - ' + nvram['dhcpd' + j + '_endip'];
+								s += '<b>LAN' + lannr + '</b> (br' + i + ') - ' + nvram['dhcpd' + j + '_startip'] + ' - ' + nvram['dhcpd' + j + '_endip'];
 							} else {
 								s += ((s.length>0)&&(s.charAt(s.length-1) != ' ')) ? '<br>' : '';
-								s += '<b>LAN' + j + '</b> (br' + i + ') - <% translate("Disabled"); %>';
+								s += '<b>LAN' + lannr + '</b> (br' + i + ') - <% translate("Disabled"); %>';
 							}
 							t += ((t.length>0)&&(t.charAt(t.length-1) != ' ')) ? '<br>' : '';
-							t += '<b>LAN' + j + '</b> (br' + i + ') - ' + nvram['lan' + j + '_ipaddr'] + '/' + numberOfBitsOnNetMask(nvram['lan' + j + '_netmask']);
+							t += '<b>LAN' + lannr + '</b> (br' + i + ') - ' + nvram['lan' + j + '_ipaddr'] + '/' + numberOfBitsOnNetMask(nvram['lan' + j + '_netmask']);
 
 						}
-					}	
+					}
 					createFieldTable('', [
 						{ title: '<% translate("Router MAC Address"); %>', text: nvram.et0macaddr },
 						{ title: '<% translate("Router IP Address"); %>', text: nvram.lan_ipaddr },

@@ -36,7 +36,7 @@ No part of this file may be used without permission.
 	<script type="text/javascript" src="js/wireless.jsx?_http_id=<% nv(http_id); %>"></script>
 	<script type="text/javascript" src="js/interfaces.js"></script>
 	<script type="text/javascript">
-		<% nvram ("vlan0ports,vlan1ports,vlan2ports,vlan3ports,vlan4ports,vlan5ports,vlan6ports,vlan7ports,vlan8ports,vlan9ports,vlan10ports,vlan11ports,vlan12ports,vlan13ports,vlan14ports,vlan15ports,vlan0hwname,vlan1hwname,vlan2hwname,vlan3hwname,vlan4hwname,vlan5hwname,vlan6hwname,vlan7hwname,vlan8hwname,vlan9hwname,vlan10hwname,vlan11hwname,vlan12hwname,vlan13hwname,vlan14hwname,vlan15hwname,wan_ifnameX,manual_boot_nv,boardtype,boardflags,trunk_vlan_so,lan_ifname,lan_ifnames,lan1_ifname,lan1_ifnames,lan2_ifname,lan2_ifnames,lan3_ifname,lan3_ifnames,boardrev,boardnum,vlan0tag,vlan0vid,vlan1vid,vlan2vid,vlan3vid,vlan4vid,vlan5vid,vlan6vid,vlan7vid,vlan8vid,vlan9vid,vlan10vid,vlan11vid,vlan12vid,vlan13vid,vlan14vid,vlan15vid,model");%>
+		<% nvram ("vlan0ports,vlan1ports,vlan2ports,vlan3ports,vlan4ports,vlan5ports,vlan6ports,vlan7ports,vlan8ports,vlan9ports,vlan10ports,vlan11ports,vlan12ports,vlan13ports,vlan14ports,vlan15ports,vlan0hwname,vlan1hwname,vlan2hwname,vlan3hwname,vlan4hwname,vlan5hwname,vlan6hwname,vlan7hwname,vlan8hwname,vlan9hwname,vlan10hwname,vlan11hwname,vlan12hwname,vlan13hwname,vlan14hwname,vlan15hwname,wan_ifnameX,wan2_ifnameX,wan3_ifnameX,wan4_ifnameX,manual_boot_nv,boardtype,boardflags,trunk_vlan_so,lan_ifname,lan_ifnames,lan1_ifname,lan1_ifnames,lan2_ifname,lan2_ifnames,lan3_ifname,lan3_ifnames,boardrev,boardnum,vlan0tag,vlan0vid,vlan1vid,vlan2vid,vlan3vid,vlan4vid,vlan5vid,vlan6vid,vlan7vid,vlan8vid,vlan9vid,vlan10vid,vlan11vid,vlan12vid,vlan13vid,vlan14vid,vlan15vid,model");%>
 
 		var port_vlan_supported = 0;
 		var trunk_vlan_supported = 0;
@@ -316,6 +316,11 @@ No part of this file may be used without permission.
 				fom['vlan' + i + 'vid'].value = '';
 			}
 			fom['wan_ifnameX'].value = '';
+			fom['wan2_ifnameX'].value = '';
+			/* MULTIWAN-BEGIN */
+			fom['wan3_ifnameX'].value = '';
+			fom['wan4_ifnameX'].value = '';
+			/* MULTIWAN-END */
 			fom['lan_ifnames'].value = '';
 			fom['lan1_ifnames'].value = '';
 			fom['lan2_ifnames'].value = '';
@@ -368,6 +373,11 @@ No part of this file may be used without permission.
 				fom['lan1_ifnames'].value += (d[i][COL_BRI] == '4') ? 'vlan'+d[i][0] : '';
 				fom['lan2_ifnames'].value += (d[i][COL_BRI] == '5') ? 'vlan'+d[i][0] : '';
 				fom['lan3_ifnames'].value += (d[i][COL_BRI] == '6') ? 'vlan'+d[i][0] : '';
+				fom['wan2_ifnameX'].value += (d[i][COL_BRI] == '7') ? 'vlan'+d[i][0] : '';
+				/* MULTIWAN-BEGIN */
+				fom['wan3_ifnameX'].value += (d[i][COL_BRI] == '8') ? 'vlan'+d[i][0] : '';
+				fom['wan4_ifnameX'].value += (d[i][COL_BRI] == '9') ? 'vlan'+d[i][0] : '';
+				/* MULTIWAN-END */
 			}
 
 			for (var uidx = 0; uidx < wl_ifaces.length; ++uidx) {
@@ -475,8 +485,11 @@ No part of this file may be used without permission.
 					{ type: 'checkbox', prefix: '<div class="centered">', suffix: '</div>' },
 					{ type: 'checkbox', prefix: '<div class="centered">', suffix: '</div>' },
 					{ type: 'checkbox', prefix: '<div class="centered">', suffix: '</div>' },
-					{ type: 'select', options: [[1,'<% translate("none"); %>'],[2,'<% translate("WAN"); %>'],[3, 'LAN (br0)'],[4, 'LAN1 (br1)'],[5, 'LAN2 (br2)'],[6, 'LAN3 (br3)']], prefix: '<div class="centered">', suffix: '</div>' }]);
-
+					{ type: 'select', options: [[1,'<% translate("none"); %>'],[2,'<% translate("WAN"); %>'],[3, '<% translate("LAN"); %> (br0)'],[4, '<% translate("LAN1"); %> (br1)'],[5, '<% translate("LAN2"); %> (br2)'],[6, '<% translate("LAN3"); %> (br3)'],[7, '<% translate("WAN2"); %>'],
+					/* MULTIWAN-BEGIN */
+					[8, '<% translate("WAN3"); %>'],[9, '<% translate("WAN4"); %>']
+					/* MULTIWAN-END */
+					], prefix: '<div class="centered">', suffix: '</div>' }]);
 				this.headerSet(['VLAN', 'VID', '<% translate("Port"); %> 1', '<% translate("Tagged"); %>', '<% translate("Port"); %> 2', '<% translate("Tagged"); %>', '<% translate("Port"); %> 3', '<% translate("Tagged"); %>', '<% translate("Port 4"); %>', '<% translate("Tagged"); %>', 'WAN <% translate("Port"); %>', '<% translate("Tagged"); %>', '<% translate("Default"); %>','<% translate("Bridge"); %>']);
 
 				vlg.populate();
@@ -522,6 +535,11 @@ No part of this file may be used without permission.
 
 				// WAN port
 				bridged[parseInt(nvram['wan_ifnameX'].replace('vlan',''))] = '2';
+				bridged[parseInt(nvram['wan2_ifnameX'].replace('vlan',''))] = '7';
+				/* MULTIWAN-BEGIN */
+				bridged[parseInt(nvram['wan3_ifnameX'].replace('vlan',''))] = '8';
+				bridged[parseInt(nvram['wan4_ifnameX'].replace('vlan',''))] = '9';
+				/* MULTIWAN-END */
 
 				// go thru all possible VLANs
 				for (var i = 0 ; i <= MAX_VLAN_ID ; i++) {
@@ -582,6 +600,22 @@ No part of this file may be used without permission.
 			{
 				return this.countElem(COL_BRI,2);
 			}
+
+			vlg.countWan2 = function()
+			{
+				return this.countElem(COL_BRI,7);
+  			}
+			/* MULTIWAN-BEGIN */
+  			vlg.countWan3 = function()
+  			{
+				return this.countElem(COL_BRI,8);
+  			}
+
+			vlg.countWan4 = function()
+  			{
+				return this.countElem(COL_BRI,9);
+			}
+			/* MULTIWAN-END */
 
 			vlg.countLan = function(l)
 			{
@@ -705,6 +739,28 @@ No part of this file may be used without permission.
 				} else {
 					ferror.clear(f[COL_BRI]);
 				}
+				if ((this.countWan2() > 0) && (f[COL_BRI].selectedIndex == 6)) {
+				  ferror.set(f[COL_BRI],'Only one VID can be used as WAN2 at any time', quiet);
+				  valid = 0;
+				} else {
+				  ferror.clear(f[COL_BRI]);
+				}
+
+				/* MULTIWAN-BEGIN */
+				if ((this.countWan3() > 0) && (f[COL_BRI].selectedIndex == 7)) {
+				  ferror.set(f[COL_BRI],'Only one VID can be used as WAN3 at any time', quiet);
+				  valid = 0;
+				} else {
+				  ferror.clear(f[COL_BRI]);
+				}
+
+				if ((this.countWan4() > 0) && (f[COL_BRI].selectedIndex == 8)) {
+				  ferror.set(f[COL_BRI],'Only one VID can be used as WAN4 at any time', quiet);
+				  valid = 0;
+				} else {
+				  ferror.clear(f[COL_BRI]);
+				}
+				/* MULTIWAN-END */
 
 				for(var i=0; i<4; i++) {
 					if ((this.countLan(i) > 0) && (f[COL_BRI].selectedIndex == (i+2))) {
@@ -732,7 +788,11 @@ No part of this file may be used without permission.
 					(data[COL_P4].toString() != '0') ? '<% translate("Yes"); %>' : '',
 					(data[COL_P4T].toString() != '0') ? '<% translate("On"); %>' : '',
 					(data[COL_VID_DEF].toString() != '0') ? '*' : '',
-					['', 'WAN', 'LAN (br0)', 'LAN1 (br1)', 'LAN2 (br2)', 'LAN3 (br3)' ][data[COL_BRI] - 1]];
+					['', '<% translate("WAN"); %>', '<% translate("LAN"); %> (br0)', '<% translate("LAN1"); %> (br1)', '<% translate("LAN2"); %> (br2)', '<% translate("LAN3"); %> (br3)', '<% translate("WAN2"); %>'
+					/* MULTIWAN-BEGIN */
+					, '<% translate("WAN3"); %>', '<% translate("WAN4"); %>'
+					/* MULTIWAN-END */
+					][data[COL_BRI] - 1]];
 			}
 
 			vlg.dataToFieldValues = function (data) {
@@ -956,6 +1016,11 @@ No part of this file may be used without permission.
 		<input type="hidden" name="vlan15hwname">
 
 		<input type="hidden" name="wan_ifnameX">
+		<input type='hidden' name="wan2_ifnameX">
+		<!-- MULTIWAN-BEGIN -->
+		<input type='hidden' name="wan3_ifnameX">
+		<input type='hidden' name="wan4_ifnameX">
+		<!-- MULTIWAN-END -->
 		<input type="hidden" name="manual_boot_nv">
 		<input type="hidden" name="lan_ifnames">
 		<input type="hidden" name="lan1_ifnames">
@@ -1005,7 +1070,7 @@ No part of this file may be used without permission.
 						var u = wl_fface(uidx);
 						f.push(
 							{ title: ('<% translate("Bridge"); %> ' + wl_ifaces[uidx][0] + ' <% translate("to"); %>'), name: ('f_bridge_wlan'+u+'_to'), type: 'select',
-								options: [[0,'LAN (br0)'],[1,'LAN1  (br1)'],[2,'LAN2 (br2)'],[3,'LAN3 (br3)'],[4,'<% translate("none"); %>']], value: 4 } );
+								options: [[0,'<% translate("LAN"); %> (br0)'],[1,'<% translate("LAN1"); %> (br1)'],[2,'<% translate("LAN2"); %> (br2)'],[3,'<% translate("LAN3"); %> (br3)'],[4,'<% translate("none"); %>']], value: 4 } );
 					}
 					$('.section.wifi').forms(f);
 					if(port_vlan_supported) vlg.setup();
@@ -1016,7 +1081,7 @@ No part of this file may be used without permission.
 				<div class="section" id="sesdiv_notes" style="display:none">
 					<ul>
 						<li><b>VLAN</b> - <% translate("Unique identifier of a VLAN"); %>.</li>
-						<li><b>VID</b> - <i><% translate("EXPERIMENTAL"); %></i> - <% translate("Allows overriding 'traditional' VLAN/VID mapping with arbitrary VIDs for each VLAN"); %> (<% translate("set to '0' to use 'regular' VLAN/VID mappings instead"); %>). <% translate("Warning: this hasn`t been verified/tested on anything but a Cisco/Linksys E3000 and may not be supported by your particular device/model"); %> (<small><b><i><% translate("see notes on 'VID Offset' below"); %></i></b></small>).</li>
+						<li><b>VID</b> - <% translate("Allows overriding 'traditional' VLAN/VID mapping with arbitrary VIDs for each VLAN"); %> (<% translate("set to '0' to use 'regular' VLAN/VID mappings instead"); %>).</li>
 						<li><b><% translate("Ports"); %> 1-4 &amp; WAN</b> - <% translate("Which ethernet ports on the router should be members of this VLAN"); %>.</li>
 						<li><b><% translate("Tagged"); %></b> - <% translate("Enable 802.1Q tagging of ethernet frames on a particular port/VLAN"); %> <span id="trunk_vlan_supported_message"></span>
 							<script type="text/javascript">
@@ -1029,7 +1094,7 @@ No part of this file may be used without permission.
 					</ul>
 
 					<ul>
-						<li><b><% translate("VID Offset"); %></b> - <i><% translate("EXPERIMENTAL"); %></i> - <% translate("First 802.1Q VLAN tag to be used as"); %> <i><% translate("base/initial tag/VID"); %></i> <% translate("for VLAN and VID assignments. This allows using VIDs larger than 15 on (older) devices such as the Linksys WRT54GL v1.1"); %> (<% translate("in contiguous blocks/ranges with up to 16 VLANs/VIDs"); %>). <% translate("Set to '0' (zero) to disable this feature and VLANs will have the very same/identical value for its VID, as usual (from 0 to 15)"); %>.</li>
+						<li><b><% translate("VID Offset"); %></b> - <% translate("First 802.1Q VLAN tag to be used as"); %> <i><% translate("base/initial tag/VID"); %></i> <% translate("for VLAN and VID assignments. This allows using VIDs larger than 15 on (older) devices such as the Linksys WRT54GL v1.1"); %> (<% translate("in contiguous blocks/ranges with up to 16 VLANs/VIDs"); %>). <% translate("Set to '0' (zero) to disable this feature and VLANs will have the very same/identical value for its VID, as usual (from 0 to 15)"); %>.</li>
 					</ul>
 
 					<ul>
@@ -1042,10 +1107,6 @@ No part of this file may be used without permission.
 							<li><% translate("One VID <i>must</i> be assigned to WAN"); %>.</li>
 							<li><% translate("One VID <i>must</i> be selected as the default"); %>.</li>
 
-						</ul>
-						<ul>
-							<li><% translate("This is an <b>experimental</b> feature and hasn't been tested in anything but a Linksys WRT54GL v1.1 running a Teaman-ND K24 build and a Cisco/Linksys E3000 running a Teaman-RT K26 build"); %>.</li>
-							<li><% translate("There's lots of things that could go wrong, please do think about what you're doing and take a backup before hitting the 'Save' button on this page"); %>!</li>
 						</ul>
 					</ul>
 

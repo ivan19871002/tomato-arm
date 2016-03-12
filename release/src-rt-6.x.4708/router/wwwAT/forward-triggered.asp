@@ -85,7 +85,7 @@ No part of this file may be used without permission.
 				{ type: 'text', maxlen: 16 },
 				{ type: 'text', maxlen: 16 },
 				{ type: 'text', maxlen: 32 }]);
-			this.headerSet(['On', 'Protocol', 'Trigger Ports', 'Forwarded Ports','<% translate("Description"); %>']);
+			this.headerSet(['<% translate("On"); %>', '<% translate("Protocol"); %>', '<% translate("Trigger Ports"); %>', '<% translate("Forwarded Ports"); %>','<% translate("Description"); %>']);
 			var nv = nvram.trigforward.split('>');
 			for (var i = 0; i < nv.length; ++i) {
 				var r;
@@ -133,17 +133,17 @@ No part of this file may be used without permission.
 	<input type="hidden" name="trigforward">
 
 	<div class="box">
-		<div class="heading">Triggered Port-Forwarding</div>
+		<div class="heading"><% translate("Triggered Port Forwarding"); %></div>
 		<div class="content">
 			<table class="line-table" id="tg-grid"></table><br /><hr>
 
 			<h4><% translate("Notes"); %></h4>
-			<div class="section" id="sesdiv_notes" >
+			<div class="section" id="sesdiv_notes">
 				<ul>
-					<li>Use "-" to specify a range of ports (200-300).
-					<li>Trigger Ports are the initial LAN to WAN "trigger".
-					<li>Forwarded Ports are the WAN to LAN ports that are opened if the "trigger" is activated.
-					<li>These ports are automatically closed after a few minutes of inactivity.
+					<li><% translate("Use '-' to specify a range of ports"); %> (200-300).</li>
+					<li><% translate("Trigger Ports are the initial LAN to WAN 'trigger'"); %>.</li>
+					<li><% translate("Forwarded Ports are the WAN to LAN ports that are opened if the 'trigger' is activated"); %>.</li>
+					<li><% translate("These ports are automatically closed after a few minutes of inactivity"); %>.</li>
 				</ul>
 			</div>
 		</div>

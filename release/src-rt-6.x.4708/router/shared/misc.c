@@ -252,9 +252,10 @@ void notice_set(const char *path, const char *format, ...)
 	if (buf[0]) syslog(LOG_INFO, "notice[%s]: %s", path, buf);
 }
 
-#define mwanlog(level,x...) if(nvram_get_int("mwan_debug")>=level) syslog(level, x)
-#define _x_dprintf(args...)	mwanlog(LOG_DEBUG, args);
-//#define _x_dprintf(args...)	do { } while (0);
+//#define mwanlog(level,x...) if(nvram_get_int("mwan_debug")>=level) syslog(level, x)
+//#define _x_dprintf(args...)	mwanlog(LOG_DEBUG, args);
+#define _x_dprintf(args...)	do { } while (0);
+#define mwanlog(level,x...)	do { } while (0);
 
 int wan_led(int *mode) // mode: 0 - OFF, 1 - ON
 {

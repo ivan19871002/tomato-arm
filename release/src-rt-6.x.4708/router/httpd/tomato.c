@@ -1002,6 +1002,14 @@ static const nvset_t nvset_list[] = {
 	{ "dr_lan3_rx",			V_LENGTH(0, 32)		},
 	{ "dr_wan_tx",			V_LENGTH(0, 32)		},
 	{ "dr_wan_rx",			V_LENGTH(0, 32)		},
+	{ "dr_wan2_tx",			V_LENGTH(0, 32)		},
+	{ "dr_wan2_rx",			V_LENGTH(0, 32)		},
+#ifdef TCONFIG_MULTIWAN
+	{ "dr_wan3_tx",			V_LENGTH(0, 32)		},
+	{ "dr_wan3_rx",			V_LENGTH(0, 32)		},
+	{ "dr_wan4_tx",			V_LENGTH(0, 32)		},
+	{ "dr_wan4_rx",			V_LENGTH(0, 32)		},
+#endif
 #endif
 
 // advanced-access

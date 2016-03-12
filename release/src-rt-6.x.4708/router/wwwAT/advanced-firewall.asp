@@ -133,9 +133,9 @@ No part of this file may be used without permission.
 					{ title: '<% translate("Enable IGMPproxy"); %>', name: 'f_multicast', type: 'checkbox', value: nvram.multicast_pass == '1' },
 					/* VLAN-BEGIN */
 					{ title: '<% translate("LAN"); %>', indent: 2, name: 'f_multicast_lan', type: 'checkbox', value: (nvram.multicast_lan == '1') },
-					{ title: 'LAN1', indent: 2, name: 'f_multicast_lan1', type: 'checkbox', value: (nvram.multicast_lan1 == '1') },
-					{ title: 'LAN2', indent: 2, name: 'f_multicast_lan2', type: 'checkbox', value: (nvram.multicast_lan2 == '1') },
-					{ title: 'LAN3', indent: 2, name: 'f_multicast_lan3', type: 'checkbox', value: (nvram.multicast_lan3 == '1') },
+					{ title: '<% translate("LAN1"); %>', indent: 2, name: 'f_multicast_lan1', type: 'checkbox', value: (nvram.multicast_lan1 == '1') },
+					{ title: '<% translate("LAN2"); %>', indent: 2, name: 'f_multicast_lan2', type: 'checkbox', value: (nvram.multicast_lan2 == '1') },
+					{ title: '<% translate("LAN3"); %>', indent: 2, name: 'f_multicast_lan3', type: 'checkbox', value: (nvram.multicast_lan3 == '1') },
 					/* VLAN-END */
 					{ title: '<% translate("Enable Udpxy"); %>', name: 'f_udpxy_enable', type: 'checkbox', value: (nvram.udpxy_enable == '1') },
 					{ title: '<% translate("Enable client statistics"); %>', indent: 2, name: 'f_udpxy_stats', type: 'checkbox', value: (nvram.udpxy_stats == '1') },

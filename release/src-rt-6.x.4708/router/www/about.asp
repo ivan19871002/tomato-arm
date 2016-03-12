@@ -133,13 +133,13 @@ function init()
 - <% translate("3G Modem support"); %> (<% translate("big thanks for"); %> @LDevil)<br>
 - <% translate("4G/LTE Modem support"); %><br>
 <!-- USB-END -->
-- MutliWAN feature (written by @Arctic, modified by @Shibby)<br>
+- <% translate("MutliWAN feature"); %> (<% translate("written by"); %> @Arctic, <% translate("modified by"); %> @Shibby)<br>
 <!-- LINUX26-END -->
 <!-- SNMP-BEGIN -->
 - <% translate("SNMP integration and GUI"); %><br>
 <!-- SNMP-END -->
 <!-- UPS-BEGIN -->
-- <% translate("APCUPSD integration and GUI"); %> (<% translate("implemented by @arrmo"); %>)<br>
+- <% translate("APCUPSD integration and GUI"); %> (<% translate("implemented by"); %> @arrmo)<br>
 <!-- UPS-END -->
 <!-- DNSCRYPT-BEGIN -->
 - <% translate("DNScrypt-proxy 1.4.0 integration and GUI"); %><br>
@@ -153,7 +153,7 @@ function init()
 - <% translate("TomatoAnon project integration and GUI"); %><br>
 - <% translate("TomatoThemeBase project integration and GUI"); %><br>
 - <% translate("Ethernet Ports State"); %><br>
-- <% translate("Extended MOTD"); %> (<% translate("written by @Monter, modified by @Shibby"); %>)<br>
+- <% translate("Extended MOTD"); %> (<% translate("written by"); %> @Monter, <% translate("modified by"); %> @Shibby)<br>
 - <% translate("Webmon Backup Script"); %><br>
 <i><% translate("Copyright"); %> (C) 2011-2014 Michał Rupental</i><br>
 <a href='http://openlinksys.info' target='_new'>http://openlinksys.info</a><br>
@@ -165,7 +165,7 @@ function init()
 - <% translate("Captive Portal. (Based in NocatSplash)"); %><br>
 <!-- NOCAT-END -->
 <!-- NGINX-BEGIN -->
-- <% translate("Web Server"); %>. (NGinX)<br>
+- <% translate("NGINX Web Server"); %><br>
 <!-- NGINX-END -->
 <!-- HFS-BEGIN -->
 - <% translate("HFS / HFS+ filesystem integration"); %><br>
@@ -208,7 +208,7 @@ function init()
 - <% translate("Configurable QOS class names"); %><br>
 - <% translate("Comprehensive QOS rule examples set by default"); %><br>
 - <% translate("GPT support for HDD by Yaniv Hamo"); %><br>
-- <% translate("Tools-System refresh timer"); %><br>
+- <% translate("Tools - System refresh timer"); %><br>
 <i><% translate("Copyright"); %> (C) 2011 Toastman</i><br>
 <a href='http://www.linksysinfo.org/index.php?threads/using-qos-tutorial-and-discussion.28349/' target='_new'><% translate("Using QoS"); %> - <% translate("Tutorial and discussion"); %></a><br>
 <br>
@@ -250,7 +250,7 @@ function init()
 - <% translate("Revised IP/MAC Bandwidth Limiter"); %><br>
 <br>
 
-<b><% translate("Special thanks"); %>:</b><br>
+<b><% translate("Special Thanks"); %>:</b><br>
 <% translate("We want to express our gratitude to all people not mentioned here but contributed with patches, new models additions, bug solving and updates to Tomato firmware"); %>.<br>
 <br>
 

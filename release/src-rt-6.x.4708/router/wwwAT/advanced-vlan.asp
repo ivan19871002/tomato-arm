@@ -599,14 +599,14 @@
 				}
 
 				if ((this.countWan() > 0) && (f[COL_BRI].selectedIndex == 1)) {
-					ferror.set(f[COL_BRI],'<% translate("Only one VID can be used as WAN at any time"); %>', quiet);
+					ferror.set(f[COL_BRI],'<% translate("Only one VID can be used as"); %> WAN <% translate("at any time"); %>"); %>', quiet);
 					valid = 0;
 				} else {
 					ferror.clear(f[COL_BRI]);
 				}
 
 				if ((this.countWan2() > 0) && (f[COL_BRI].selectedIndex == 6)) {
-				  ferror.set(f[COL_BRI],'Only one VID can be used as WAN2 at any time', quiet);
+				  ferror.set(f[COL_BRI],'<% translate("Only one VID can be used as"); %> WAN2 <% translate("at any time"); %>', quiet);
 				  valid = 0;
 				} else {
 				  ferror.clear(f[COL_BRI]);
@@ -614,14 +614,14 @@
 
 				/* MULTIWAN-BEGIN */
 				if ((this.countWan3() > 0) && (f[COL_BRI].selectedIndex == 7)) {
-				  ferror.set(f[COL_BRI],'Only one VID can be used as WAN3 at any time', quiet);
+				  ferror.set(f[COL_BRI],'<% translate("Only one VID can be used as"); %> WAN3 <% translate("at any time"); %>', quiet);
 				  valid = 0;
 				} else {
 				  ferror.clear(f[COL_BRI]);
 				}
 
 				if ((this.countWan4() > 0) && (f[COL_BRI].selectedIndex == 8)) {
-				  ferror.set(f[COL_BRI],'Only one VID can be used as WAN4 at any time', quiet);
+				  ferror.set(f[COL_BRI],'<% translate("Only one VID can be used as"); %> WAN4 <% translate("at any time"); %>', quiet);
 				  valid = 0;
 				} else {
 				  ferror.clear(f[COL_BRI]);
@@ -630,7 +630,7 @@
 
 				for(var i=0; i<4; i++) {
 					if ((this.countLan(i) > 0) && (f[COL_BRI].selectedIndex == (i+2))) {
-						ferror.set(f[COL_BRI],'<% translate("One and only one VID can be used for LAN"); %>' + ((i==0) ? '' : i ) + ' (br'+i+') at any time', quiet);
+						ferror.set(f[COL_BRI],'<% translate("One and only one VID can be used for"); %> LAN' + ((i==0) ? '' : i ) + ' (br'+i+') <% translate("at any time"); %>', quiet);
 						valid = 0;
 					} else {
 						ferror.clear(f[COL_BRI]);
@@ -911,13 +911,12 @@
 		<input type="hidden" name="vlan14vid">
 		<input type="hidden" name="vlan15vid">
 		
-		<div class="alert alert-warning" style='display:none' id='unknown_router'>
-			<h5><center><% translate("!! Unknown Port Mapping Using Default !!"); %></center></h5>
-			<center><a href='http://www.linksysinfo.org/index.php?threads/can-vlan-gui-port-order-be-corrected.70160/#post-247634/'> <b><% translate("Please Follow these Instructions to get it corrected"); %>.</b></a>
-				<br><br> <% translate("Include Router Brand/Model"); %> (<% nv('t_model_name'); %>),
-				<br> <% translate("Results from 'robocfg show' - VLANs section only"); %> &amp;
-				<br> <% translate("Port Numbers on Router Case (Left -> Right viewed from Front)"); %>.
-			</center>
+		<div class="alert alert-warning icon" style='display:none' id='unknown_router'>
+			<h5><% translate("!! Unknown Port Mapping Using Default !!"); %></h5>
+			<a href='http://www.linksysinfo.org/index.php?threads/can-vlan-gui-port-order-be-corrected.70160/#post-247634/'> <b><% translate("Please Follow these Instructions to get it corrected"); %>.</b></a><br />
+				<% translate("Include Router Brand/Model"); %> (<% nv('t_model_name'); %>),
+				<% translate("Results from 'robocfg show' - VLANs section only"); %> &amp;
+				<% translate("Port Numbers on Router Case (Left -> Right viewed from Front)"); %>.
 		</div>
 
 		<div id="sesdiv" class="box" style="display:none">
@@ -965,7 +964,10 @@
 		<div class="box">
 			<div class="heading"><% translate("Notes"); %> <a class="pull-right" data-toggle="tooltip" title="<% translate("Hide/Show Notes"); %>" href="javascript:toggleVisibility('notes');"><span id="sesdiv_notes_showhide"><i class="icon-chevron-up"></i></span></a></div>
 			<div class="section content" id="sesdiv_notes" style="display:none">
+
 				<ul>
+					<li><% translate("If you notice that the order of the Lan Ports are incorrectly mapped"); %>, <a href='http://www.linksysinfo.org/index.php?threads/can-vlan-gui-port-order-be-corrected.70160/#post-247634/'> <b><% translate("Please Follow these Instructions to get it corrected"); %></b></a>.</li>
+					<br>
 					<li><b>VLAN</b> - <% translate("Unique identifier of a VLAN"); %>.</li>
 					<li><b>VID</b> - <% translate("Allows overriding 'traditional' VLAN/VID mapping with arbitrary VIDs for each VLAN"); %> (<% translate("set to '0' to use 'regular' VLAN/VID mappings instead"); %>).</li>
 					<li><b><% translate("Ports"); %> 1-4 &amp; WAN</b> - <% translate("Which ethernet ports on the router should be members of this VLAN"); %>.</li>

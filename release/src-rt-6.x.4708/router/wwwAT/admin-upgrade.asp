@@ -137,7 +137,7 @@ No part of this file may be used without permission.
 	</div>
 
 	/* JFFS2-BEGIN */
-	<div class="alert alert-error" style="display:none;" id="jwarn">
+	<div class="alert alert-error icon" style="display:none;" id="jwarn">
 		<h5><% translate("Upgrade forbidden"); %>!</h5>
 		<% translate("An upgrade may overwrite the JFFS partition currently in use. Before upgrading, please backup the contents of the JFFS partition, disable it, then reboot the router"); %>.
 		<a href="/#admin-jffs2.asp"><% translate("Disable"); %> &raquo;</a>

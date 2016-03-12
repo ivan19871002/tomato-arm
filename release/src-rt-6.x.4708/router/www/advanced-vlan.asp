@@ -993,8 +993,8 @@ if(port_vlan_supported) vlg.setup();
 <li><% translate("One VID"); %> <i><% translate("must"); %></i> <% translate("be selected as the default"); %>.</li>
 <script type='text/javascript'>
 if(trunk_vlan_supported) {
-  W('<li><% translate("To prevent 802.1q compatibility issues, avoid using VID"); %> "0" <% translate("as 802.1q specifies that frames with a tag of"); %> "0" <% translate("do not belong to any VLAN"); %> (<% translate("the tag contains only user priority information"); %>).</li>');
-  W('<li><% translate("It may be also recommended to avoid using VID"); %> "1" <% translate("as some vendors consider it special/reserved (for management purposes)"); %>.</li>');
+  W('<li><% translate("To prevent 802.1Q compatibility issues, avoid using VID <b>0</b> as 802.1Q specifies that frames with a tag of <b>0</b> do not belong to any VLAN"); %> (<% translate("the tag contains only user priority information"); %>).</li>');
+  W('<li><% translate("It may be also recommended to avoid using VID <b>1</b> as some vendors consider it special/reserved (for management purposes)"); %>.</li>');
 }
 </script>
 </ul>

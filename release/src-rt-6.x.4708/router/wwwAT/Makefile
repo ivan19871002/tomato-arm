@@ -149,6 +149,7 @@ ifneq ($(TCONFIG_NGINX),y)
 	rm -f  $(INSTALLDIR)/www-at/index.html
 	rm -f  $(INSTALLDIR)/www-at/phpinfo.php
 	rm -f  $(INSTALLDIR)/www-at/adminer.php
+	rm -f  $(INSTALLDIR)/www-at/adminer.css
 	sed -i  $(INSTALLDIR)/www-at/tomato.asp -e "/NGINX-BEGIN/,/NGINX-END/d"
 	sed -i  $(INSTALLDIR)/www-at/about.asp -e "/NGINX-BEGIN/,/NGINX-END/d"
 endif
@@ -403,10 +404,26 @@ endif
 		[ -f  $(INSTALLDIR)/www-at/$$F ] && $(TOP)/wwwAT/remcoms2.sh  $(INSTALLDIR)/www-at/$$F c; \
 	done
 
-	# Copy over the directories needed for the new AdvancedTomato stuff (img, css and js)
+# Copy over the directories needed for the new AdvancedTomato stuff (img, css and js)
 	mkdir -p  $(INSTALLDIR)/www-at/img
 	cp -r img/*  $(INSTALLDIR)/www-at/img/.
 	mkdir -p  $(INSTALLDIR)/www-at/css
 	cp -r css/*  $(INSTALLDIR)/www-at/css/.
 	mkdir -p  $(INSTALLDIR)/www-at/js
 	cp -r js/*  $(INSTALLDIR)/www-at/js/.
+
+# final cleanup it
+	for F in $(wildcard *.css); do \
+		sed '/^\/\*\s*$$/,/\*\//! { s/\s\+/ /g; s/^\s\+//; s/\s\+$$//; /^$$/d }' < $$F >  $(INSTALLDIR)/www-at/css/$$F; \
+	done
+	for F in $(wildcard *.js *.jsx); do \
+		sed '/^\/\*\s*$$/,/\*\//! { s/^\s\+//; s/\s\+$$//; /^\/\/ --\+\s*/d; /^$$/d }' < $$F >  $(INSTALLDIR)/www-at/js/$$F; \
+	done
+
+	# remove C-style comments from java files. All "control" comments have been processed by now.
+	for F in $(wildcard *.js *.jsx); do \
+		[ -f $(INSTALLDIR)/www-at/js/$$F ] && $(TOP)/www-at/remcoms2.sh $(INSTALLDIR)/www-at/js/$$F c; \
+	done
+	# leftovers
+	find $(INSTALLDIR)/www-at -name "*~" -print0 | xargs -0 rm -f;
+

@@ -387,3 +387,7 @@ endif
 	for F in $(wildcard *.js *.jsx); do \
 		[ -f $(INSTALLDIR)/www/$$F ] && $(TOP)/www/remcoms2.sh $(INSTALLDIR)/www/$$F c; \
 	done
+
+	# not used lang files
+	@rm -f $(INSTALLDIR)/www/zh_CN.txt
+

@@ -27,26 +27,18 @@ VER="134-ML"
 export BUILDNR="0134"
 EXTENDNO=`git rev-parse --verify HEAD --short`
 
-# UNBRANDING
-sed -i "s|HUAWEI = 1|HUAWEI = 0|" $SRC/router/wwwAT/Makefile
+# BRANDING
+sed -i "s|HUAWEI = 0|HUAWEI = 1|" $SRC/router/wwwAT/Makefile
 sed -i "s|XIAOMI = 1|XIAOMI = 0|" $SRC/router/wwwAT/Makefile
 
 # CLEAN
 make clean
 
 #
-# TARGETS (see release/src-rt-6.x.4708/Makefile):
+# TARGETS:
 #
 
-# Huawei build
-# make V1=$VER- V2=$EXTENDNO ws880e	# VPN
-# make V1=$VER- V2=$EXTENDNO ws880z	# AIO
-# make V1=$VER- V2=$EXTENDNO ws880zz	# AIO Custom (no NGINX and SNMP)
+# make V1=ML- V2=$EXTENDNO ws880e	# VPN
+# make V1=ML- V2=$EXTENDNO ws880z	# AIO
+make V1=$VER- V2=$EXTENDNO ws880zz	# AIO Custom (no NGINX and SNMP)
 
-# Xiaomi build
-# make V1=ML-$VER- V2=$EXTENDNO r1dz	# AIO Custom EX
-
-# Netgear build
-# make V1=ML-$VER- V2=$EXTENDNO r7000init	# AIO initial
-
-# ETC...

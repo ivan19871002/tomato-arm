@@ -2,6 +2,13 @@
 3G only=Только 3G
 4G/3G only=Только 4G/3G
 4G only=Только 4G
+LAN=LAN
+LAN1=LAN2
+LAN2=LAN3
+LAN3=LAN4
+MAN=MAN
+VLAN=VLAN
+WAN=WAN
 added=добавлено
 removed=удалено
 and=и
@@ -64,7 +71,7 @@ Downloaded=Получено
 Hide=Скрыть
 Logout=Выход
 None=Нет
-Notes=Заметки
+Notes=Информация
 Now=cейчас
 Off=Выкл.
 On=Вкл.
@@ -838,8 +845,8 @@ D Port=DST-порт
 UL Rate=UL-Rate
 DL Rate=DL-Rate
 Loading=Загрузка
-View Details=Подробно
-Details=Подробно
+View Details=Статистика
+Details=Статистика
 Unclassified=Нет класса
 Bytes Out=Отправлено,&nbsp;Байт
 Bytes In=Получено,&nbsp;Байт
@@ -1207,7 +1214,6 @@ Destination address inside the LAN=Адрес назначения в локал
 IMQ Enable=Включить IMQ
 Set IMQ Numdevs=Установить кол-во устройств IMQ
 May take effect after reboot=Для применения значений потребуется перезагрузка
-VLAN=VLAN
 Cannot proceed: one VID must be assigned to WAN=Не возможно применить: как минимум 1 VID должен быть задан для WAN
 Cannot proceed: two or more LAN bridges have conflicting IP addresses or overlapping subnets=Не возможно применить: два или более моста имеют конфликтующие адреса или пересекающиеся подсети
 Cannot proceed: one and only one VID must be assigned to the primary LAN=Не возможно применить: только один VID должен быт назначен для основной сети LAN
@@ -1221,39 +1227,32 @@ Only one VID can be used as=Только один VID может быть выб
 at any time=единовременно
 One and only one VID can be used for=Только один VID может быть выбран для сети
 If you notice that the order of the Lan Ports are incorrectly mapped=Если порядок портов не соотвествует фактическому
-Please Follow these Instructions to get it corrected=выполните инструкции для исправления
-Port Numbers on Router Case (Left -> Right viewed from Front)=Номера портов на роутере (слева направо)
-Include Router Brand/Model=Название / модель роутера
+Unknown Port Mapping Using Default=Неизвестное устройство
+Please Follow these Instructions to get it corrected=Информация для исправления
+Include Router Brand/Model=Укажите модель роутера
+Results from=вывод команды
+VLANs section only=в разделе VLANs
+Port Numbers on Router Case (Left -> Right viewed from Front)=номера портов на роутере (слева направо)
 Bridge WLAN to=Подключить WLAN к
 Unique identifier of a VLAN=Уникальный идентификатор VLAN
 Which ethernet ports on the router should be members of this VLAN=Какой из портов роутера должен содержать данный VLAN
 Enable 802.1Q tagging of ethernet frames on a particular port/VLAN=Включить тегирование 802.1Q на определенном порту/VLAN
 not known to be supported on this model=не поддержвается на данном оборудовании
-
 VLAN ID assigned to untagged frames received by the router=VLAN ID, который будет присвоен полученным роутером нетегированным фреймам
-
 Determines if this VLAN ID should be treated as WAN, part of a LAN bridge or just left alone (i.e. member of a 802.1Q trunk, being managed manually via scripts, etc...)=Определяет, должен ли данный VLAN ID быть отнесен к WAN, мосту LAN или оставлен как есть (например, он является частью 802.1Q транка, обрабатываемого отдельным ПО/скриптом и т.д.)
-
-Other relevant notes/hints=Другие полезные советы
-
+Other relevant notes/hints=Полезные советы
 To prevent 802.1q compatibility issues, avoid using VID=Во избежание проблем с 802.1q, не используйте VID
 as 802.1q specifies that frames with a tag of=— 802.1q определяет фреймы с тегом
 do not belong to any VLAN=как не принадлежащие ни к одному VLAN
+To prevent 802.1Q compatibility issues, avoid using VID <b>0</b> as 802.1Q specifies that frames with a tag of <b>0</b> do not belong to any VLAN=Во избежание проблем с 802.1Q, не используйте VID <b>0</b> — 802.1Q определяет фреймы с тегом <b>0</b> как не принадлежащие ни к одному VLAN
 the tag contains only user priority information=тег содержит только информацию о приоритете
-
-To prevent 802.1Q compatibility issues, avoid using VID <b>0</b> as 802.1Q specifies that frames with a tag of <b>0</b> do not belong to any VLAN=Во избежание проблем с 802.1Q, не используйте VID «0» — 802.1Q определяет фреймы с тегом «0» как не принадлежащие ни к одному VLAN
-
 It may be also recommended to avoid using VID=Так же рекомендуется избегать использования VID
 as some vendors consider it special/reserved (for management purposes)=— некоторые производители используют его для управления устройством
-
-It may be also recommended to avoid using VID <b>1</b> as some vendors consider it special/reserved (for management purposes)=Так же рекомендуется избегать использования VID «1», так как некоторые производители так же используют его (для управления)
-
+It may be also recommended to avoid using VID <b>1</b> as some vendors consider it special/reserved (for management purposes)=Так же рекомендуется избегать использования VID <b>1</b> — некоторые производители используют его для управления устройством
 This is an=Это
 experimental=экспериментальная
 feature and hasn't been tested in anything but a Linksys WRT54GL v1.1 running a Teaman-ND K24 build and a Cisco/Linksys E3000 running a Teaman-RT K26 build=функция. Она была проверена только на Linksys WRT54GL и Cisco/Linksys E3000
-
 This is an <b>experimental</b> feature and hasn't been tested in anything but a Linksys WRT54GL v1.1 running a Teaman-ND K24 build and a Cisco/Linksys E3000 running a Teaman-RT K26 build=Это <b>экспериментальная</b> функция. Она была проверена только на Linksys WRT54GL и Cisco/Linksys E3000
-
 There's lots of things that could go wrong, please do think about what you're doing and take a backup before hitting the 'Save' button on this page=Вполне возможно некорректное поведение роутера. Пожалуйста, удостоверьтесь в выборе настроек перед нажатием «Сохранить» на этой странице
 Trunk VLAN support override (experimental)=Поддержка VLAN транков (экспериментально)
 This feature is not supported on this router=Эта функция не поддерживается роутером
@@ -1591,8 +1590,8 @@ See also the=Смотрите так же
 Advanced DHCP/DNS=Расширенные настройки DHCP/DNS
 settings page for more DHCP-related configuration options=для установки дополнительных опций DHCP
 To enable/enforce static ARP binding for a particular device, it must have only one MAC associated with that particular IP address (i.e. you can't have two MAC addresses linked to the same hostname/device in the table above)=Для постоянной привязки ARP, устройство должно иметь только один MAC ассоциированным с IP-адресом (то есть вы не можете иметь для этого устройства несколько MAC привязанных к имени хоста в таблице выше)
-When ARP binding is enabled for a particular MAC/IP address pair, that device will always be shown as 'active' in the=Когда задана привязка ARP для конкретного MAC/IP, он всегда будет отображаться как активный в таблице
-table.=.
+When ARP binding is enabled for a particular MAC/IP address pair, that device will always be shown as 'active' in the=Когда задана привязка ARP для конкретного MAC/IP, он всегда будет отображаться как активный на странице
+table.=
 To specify multiple hostnames for a device, separate them with spaces=Для задания нескольких имен, разделяйте их пробелами
 Unique identifier associated to a network interface on this particular device=Уникальный идентификатор, ассоциированный с сетевым интерфейсом на этом устройстве
 Enforce static ARP binding of this particular IP/MAC address pair=Создать постоянную ARP-запись для этого IP/MAC
@@ -2154,6 +2153,11 @@ works only with non-Hilink modems=не применимо к модемам Hili
 
 
 ### ADVANCED TOMATO ###
+AdvancedTomato version=AdvancedTomato версии
+has been released and it is available for download=доступна для загрузки
+Click here to find out more=Дополнительные сведения
+GHz=ГГц
+Mbps=Мбит/с
 in seconds=в секундах
 Allows configuring extra WINS servers for VPN clients, in addition to the WINS server defined on=Позволяет определить дополнительные серверы WINS для VPN-клиентов, помимо указанного на странице
 Allows defining DNS servers manually (if none are set, the router/local IP address should be used by VPN clients)=Позволяет задать серверы DNS (если не указаны, будет использоваться локальный IP-адрес роутера)
@@ -2275,7 +2279,7 @@ Monthly Bandwidth=Загрузка сети по месяцам
 Monthly IP Traffic=Статистика IP по месяцам
 Reload Information=Обновить инфо.
 No Limit=Без ограничений
-The bandwitdh will be shared by all hosts in=Полоса будет разделена между всеми клиентами в
+The bandwidth will be shared by all hosts in=Полоса будет разделена между всеми клиентами в
 Auto refresh graphs=Авто-обновление
 Address to be used at the local end of the tunnelled PPP links between the server and the VPN clients=Этот адрес будет использоваться на локальной стороне PPP-соединений между сервером и VPN-клиентами
 Enable this option if you need more than one NAS process running (i.e. to handle WPAx encryption on more than one WLVIF)=Включите, если необходимо более одного NAS (например, для обеспечения шифрования WPAx на нескольких виртуальных интерфейсах Wi-Fi)

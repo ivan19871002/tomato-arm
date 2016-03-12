@@ -165,10 +165,10 @@ function init()
 
 <div>
 <ul>
-<li><% translate("Use '-' to specify a range of ports"); %> (200-300).
-<li><% translate("Trigger Ports are the initial LAN to WAN 'trigger'"); %>.
-<li><% translate("Forwarded Ports are the WAN to LAN ports that are opened if the 'trigger' is activated"); %>.
-<li><% translate("These ports are automatically closed after a few minutes of inactivity"); %>.
+<li><% translate("Use '-' to specify a range of ports"); %> (200-300).</li>
+<li><% translate("Trigger Ports are the initial LAN to WAN 'trigger'"); %>.</li>
+<li><% translate("Forwarded Ports are the WAN to LAN ports that are opened if the 'trigger' is activated"); %>.</li>
+<li><% translate("These ports are automatically closed after a few minutes of inactivity"); %>.</li>
 </ul>
 </div>
 

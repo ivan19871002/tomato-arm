@@ -44,7 +44,7 @@
 </style>
 
 <script type='text/javascript'>
-// <% nvram("qos_classnames,web_svg,qos_enable,qos_obw,qos_ibw"); %>
+// <% nvram("qos_classnames,web_svg,qos_enable,wan_qos_obw,wan_qos_ibw"); %>
 
 //<% qrate(); %>
 

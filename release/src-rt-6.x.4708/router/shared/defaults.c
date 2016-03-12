@@ -596,6 +596,14 @@ struct nvram_tuple router_defaults[] = {
 	{ "dr_lan3_rx",			"0"				, 0 },	// Dynamic-Routing LAN in
 	{ "dr_wan_tx",			"0"				, 0 },	// Dynamic-Routing WAN out
 	{ "dr_wan_rx",			"0"				, 0 },	// Dynamic-Routing WAN in
+	{ "dr_wan2_tx",			"0"				, 0 },	// Dynamic-Routing WAN out
+	{ "dr_wan2_rx",			"0"				, 0 },	// Dynamic-Routing WAN in
+#ifdef TCONFIG_MULTIWAN
+	{ "dr_wan3_tx",			"0"				, 0 },	// Dynamic-Routing WAN out
+	{ "dr_wan3_rx",			"0"				, 0 },	// Dynamic-Routing WAN in
+	{ "dr_wan4_tx",			"0"				, 0 },	// Dynamic-Routing WAN out
+	{ "dr_wan4_rx",			"0"				, 0 },	// Dynamic-Routing WAN in
+#endif
 #endif
 
 // advanced-vlan

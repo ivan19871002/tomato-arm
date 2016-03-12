@@ -20,6 +20,10 @@ export LANG=c
 cd $SRC
 # echo " ---- Update sources from GIT ---- "
 # git pull
+
+### VERSION
+VER="134-ML"
+export BUILDNR="0134"
 EXTENDNO=`git rev-parse --verify HEAD --short`
 
 #

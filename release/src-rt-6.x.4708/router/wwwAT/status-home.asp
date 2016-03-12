@@ -161,7 +161,7 @@
 				c('wan'+u+'netmask', stats.wannetmask[uidx-1]);
 				c('wan'+u+'gateway', stats.wangateway[uidx-1]);
 				c('wan'+u+'dns', stats.dns[uidx-1]);
-				c('wan'+u+'status', ((stats.wanstatus[uidx-1] == 'Connected') ? '<span class="text-green"><% translate("Connected"); %></span> <i class="icon-globe"></i>' : '<span class="text-red">' + stats.wanstatus[uidx-1] + '</span> <i class="icon-cancel"></i>'));
+				c('wan'+u+'status', ((stats.wanstatus[uidx-1] == 'Connected') ? '<% translate("Connected"); %> <span class="text-green"><i class="icon-globe"></i></span>' : (stats.wanstatus[uidx-1] == 'Disconnected') ? '<b><% translate("Disconnected"); %></b> <span class="text-red"><i class="icon-cancel"></i></span>' : '<b>' + stats.wanstatus[uidx-1] + '</b>'));
 				c('wan'+u+'uptime', stats.wanuptime[uidx-1]);
 				if (show_dhcpc[uidx-1]) c('wan'+u+'lease', stats.wanlease[uidx-1]);
 				if (show_codi[uidx-1]) {
@@ -177,7 +177,7 @@
 
 			for (uidx = 0; uidx < wl_ifaces.length; ++uidx) {
 				if (wl_sunit(uidx)<0) {
-					c('radio'+uidx, wlstats[uidx].radio ? '<span class="text-green"><% translate("Enabled"); %> <i class="icon-check"></i></span>' : '<span class="text-red"><% translate("Disabled"); %> <i class="icon-cancel"></i></span>');
+					c('radio'+uidx, wlstats[uidx].radio ? '<% translate("Enabled"); %> <span class="text-green"><i class="icon-check"></i></span>' : '<b><% translate("Disabled"); %></b> <span class="text-red"><i class="icon-cancel"></i></span>');
 					c('rate'+uidx, wlstats[uidx].rate);
 
 					if (show_radio[uidx]) {
@@ -299,7 +299,7 @@
 						{ title: '<% translate("DNS"); %>', rid: 'wan'+u+'dns', text: stats.dns[uidx-1] },
 						{ title: '<% translate("MTU"); %>', text: nvram['wan'+u+'_run_mtu'] },
 						null,	// GAP
-						{ title: '<% translate("Status"); %>', rid: 'wan'+u+'status', text: ((stats.wanstatus[uidx-1] == 'Connected') ? '<% translate("Connected"); %> <i class="icon-globe"></i>' : stats.wanstatus[uidx-1] + ' <i class="icon-cancel icon-red"></i>') },
+						{ title: '<% translate("Status"); %>', rid: 'wan'+u+'status', text: ((stats.wanstatus[uidx-1] == 'Connected') ? '<% translate("Connected"); %> <span class="text-green"><i class="icon-globe"></i></span>' : (stats.wanstatus[uidx-1] == 'Disconnected') ? '<b><% translate("Disconnected"); %></b> <span class="text-red"><i class="icon-cancel"></i></span>' : '<b>' + stats.wanstatus[uidx-1] + '</b>') },
 						{ title: '<% translate("Connection Uptime"); %>', rid: 'wan'+u+'uptime', text: stats.wanuptime[uidx-1] },
 						{ title: '<% translate("Remaining Lease Time"); %>', rid: 'wan'+u+'lease', text: stats.wanlease[uidx-1], ignore: !show_dhcpc[uidx-1] }
 						], null, 'data-table dataonly');
@@ -428,12 +428,12 @@
 					{ title: '<% translate("Wireless Mode"); %>', text: wmode },
 					{ title: '<% translate("Wireless Network Mode"); %>', text: bgmo[nvram['wl'+u+'_net_mode']], ignore: (wl_sunit(uidx)>=0) },
 					{ title: '<% translate("Interface Status"); %>', rid: 'ifstatus'+uidx, text: wlstats[uidx].ifstatus },
-					{ title: '<% translate("Radio"); %>', rid: 'radio'+uidx, text: (wlstats[uidx].radio == 0) ? '<span class="text-red"><% translate("Disabled"); %> <i class="icon-cancel"></i></span>' : '<span class="text-green"><% translate("Enabled"); %> <i class="icon-check"></i></span>', ignore: (wl_sunit(uidx)>=0) },
+					{ title: '<% translate("Radio"); %>', rid: 'radio'+uidx, text: (wlstats[uidx].radio == 0) ? '<b><% translate("Disabled"); %></b> <span class="text-red"><i class="icon-cancel"></i></span>' : '<% translate("Enabled"); %> <span class="text-green"><i class="icon-check"></i></span>', ignore: (wl_sunit(uidx)>=0) },
 					/* REMOVE-BEGIN */
 					//	{ title: '<% translate("SSID"); %>', text: (nvram['wl'+u+'_ssid'] + ' <small><i>' + ((nvram['wl'+u+'_mode'] != 'ap') ? '' : ((nvram['wl'+u+'_closed'] == 0) ? '(Broadcast Enabled)' : '(Broadcast Disabled)')) + '</i></small>') },
 					/* REMOVE-END */
 					{ title: '<% translate("SSID"); %>', text: nvram['wl'+u+'_ssid'] },
-					{ title: '<% translate("Broadcast"); %>', text: (nvram['wl'+u+'_closed'] == 0) ? '<span class="text-green"><% translate("Enabled"); %> <i class="icon-check"></i></span>' : '<span class="text-red"><% translate("Disabled"); %> <i class="icon-cancel"></i></span>', ignore: (nvram['wl'+u+'_mode'] != 'ap') },
+					{ title: '<% translate("Broadcast"); %>', text: (nvram['wl'+u+'_closed'] == 0) ? '<% translate("Enabled"); %> <span class="text-green"><i class="icon-check"></i></span>' : '<b><% translate("Disabled"); %></b> <span class="text-red"><i class="icon-cancel"></i></span>', ignore: (nvram['wl'+u+'_mode'] != 'ap') },
 					{ title: '<% translate("Security"); %>', text: sec },
 					{ title: '<% translate("Channel"); %>', rid: 'channel'+uidx, text: stats.channel[uidx], ignore: (wl_sunit(uidx)>=0) },
 					{ title: '<% translate("Channel Width"); %>', rid: 'nbw'+uidx, text: wlstats[uidx].nbw, ignore: ((!nphy) || (wl_sunit(uidx)>=0)) },

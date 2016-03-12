@@ -134,9 +134,11 @@ do {
 	stats.wanstatus = ['<% wanstatus("wan"); %>','<% wanstatus("wan2"); %>'];
 /* DUALWAN-END */
 
+	/* REMOVE-BEGIN */
 	for(var uidx = 1; uidx <= nvram.mwan_num; ++uidx) {
 		if (stats.wanstatus[uidx-1] != 'Connected') stats.wanstatus[uidx-1] = '<b>' + stats.wanstatus[uidx-1] + '</b>';
 	}
+	/* REMOVE-END */
 
 	stats.channel = [];
 	stats.interference = [];

@@ -203,7 +203,7 @@ function systemUI () {
 
 			for(var uidx = 1; uidx <= nvram.mwan_num; ++uidx) {
 				var u = (uidx>1) ? uidx : '';
-				stats.wanstatus[uidx-1] = '<a title="<% translate("Go to Status Overview"); %>" href="#" onclick="loadPage(\'#status-home.asp\');">' + ((stats.wanstatus[uidx-1] == 'Connected') ? '<span style="color: green;">' + stats.wanstatus[uidx-1] + '</span>' : stats.wanstatus[uidx-1]) + '</a>';
+				stats.wanstatus[uidx-1] = '<a title="<% translate("Go to Status Overview"); %>" href="#" onclick="loadPage(\'#status-home.asp\');">' + ((stats.wanstatus[uidx-1] == 'Connected') ? '<% translate("Connected"); %> <span class="text-green"><i class="icon-globe"></i></span>' : (stats.wanstatus[uidx-1] == 'Disconnected') ? '<b><% translate("Disconnected"); %></b> <span class="text-red"><i class="icon-cancel"></i></span>' : stats.wanstatus[uidx-1]) + '</a>';
 			}
 			var content = '<div class="router-name">' + stats.routermodel + ' <small class="pull-right">(' + stats.uptime + ')</small></div>';
 			content +=	'<div class="inner-container row">';

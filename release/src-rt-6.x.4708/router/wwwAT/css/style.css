@@ -1827,3 +1827,50 @@ input[type=radio]:disabled + span {
 @media (max-height: 900px) {
 	.navigation.collapsed li:hover ul { max-height: 240px; overflow-x: hidden; overflow-y: auto; }
 }
+/* Fonts */
+/* SPACE
+@font-face {
+	font-family: 'Neo Sans Cyr';
+	src: url('fonts/NeoSansCyr-Light.eot?#iefix') format('embedded-opentype'),
+		url('fonts/NeoSansCyr-Light.woff') format('woff'),
+		url('fonts/NeoSansCyr-Light.ttf')  format('truetype'),
+		url('fonts/NeoSansCyr-Light.svg#NeoSansCyr-Light') format('svg');
+	font-weight: 100;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Neo Sans Cyr';
+	src: url('fonts/NeoSansCyr-Regular.eot?#iefix') format('embedded-opentype'),
+		url('fonts/NeoSansCyr-Regular.woff') format('woff'),
+		url('fonts/NeoSansCyr-Regular.ttf')  format('truetype'),
+		url('fonts/NeoSansCyr-Regular.svg#NeoSansCyr-Regular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Neo Sans Cyr';
+	src: url('fonts/NeoSansCyr-Medium.eot');
+	src: url('fonts/NeoSansCyr-Medium.eot?#iefix') format('embedded-opentype'),
+		url('fonts/NeoSansCyr-Medium.woff') format('woff'),
+		url('fonts/NeoSansCyr-Medium.ttf')  format('truetype'),
+		url('fonts/NeoSansCyr-Medium.svg#NeoSansCyr-Medium') format('svg');
+	font-weight: 500;
+	font-style: normal;
+}*/
+
+@font-face {
+	font-family: 'Neo Sans Cyr';
+	src: local('Neo Sans Cyr Medium'), local('NeoSansCyr-Medium'), url('fonts/NeoSansCyr-Medium.woff') format('woff');
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Neo Sans Cyr';
+	src: local('Neo Sans Cyr'), local('Neo Sans Cyr Regular'), local('NeoSansCyr-Regular'), url('fonts/NeoSansCyr-Regular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+

@@ -508,13 +508,13 @@ LAN Access admin module by Augusto Bott
 		}
 
 		function toggleVisibility(whichone) {
-			if(E('sesdiv' + whichone).style.display=='') {
-				E('sesdiv' + whichone).style.display='none';
-				E('sesdiv' + whichone + 'showhide').innerHTML='<i class="icon-chevron-up"></i>';
+			if(E('sesdiv_' + whichone).style.display=='') {
+				E('sesdiv_' + whichone).style.display='none';
+				E('sesdiv_' + whichone + '_showhide').innerHTML='<i class="icon-chevron-up"></i>';
 				cookie.set('adv_wlvifs_' + whichone + '_vis', 0);
 			} else {
-				E('sesdiv' + whichone).style.display='';
-				E('sesdiv' + whichone + 'showhide').innerHTML='<i class="icon-chevron-down"></i>';
+				E('sesdiv_' + whichone).style.display='';
+				E('sesdiv_' + whichone + '_showhide').innerHTML='<i class="icon-chevron-down"></i>';
 				cookie.set('adv_wlvifs_' + whichone + '_vis', 1);
 			}
 		}
@@ -1332,8 +1332,8 @@ LAN Access admin module by Augusto Bott
 			<div id="overview-tab">
 				<table class="line-table" id="wlif-grid"></table><br />
 
-				<h3><a href="javascript:toggleVisibility('details');"><% translate("Wireless Interfaces Details"); %> <span id="sesdivdetailsshowhide"><i class="icon-chevron-up"></i></span></a></h3>
-				<div class="section fixtables" id="sesdivdetails" style="display:none">
+				<h3><a href="javascript:toggleVisibility('details');"><% translate("Wireless Interfaces Details"); %> <span id="sesdiv_details_showhide"><i class="icon-chevron-up"></i></span></a></h3>
+				<div class="section fixtables" id="sesdiv_details" style="display:none">
 
 					<script type="text/javascript">
 						var c = [];
@@ -1346,47 +1346,20 @@ LAN Access admin module by Augusto Bott
 							}
 						}
 
-						createFieldTable('',c, '#sesdivdetails', 'line-table');
+						createFieldTable('',c, '#sesdiv_details', 'line-table');
 					</script>
 				</div><br />
 
 				<!-- LINUX24-BEGIN -->
-				<h3><a href="javascript:toggleVisibility('options');"><% translate("Options"); %> <span id="sesdivoptionsshowhide"><i class="icon-chevron-up"></i></span></a></h3>
-				<div class="section" id="sesdivoptions" style="display:none"></div><hr>
+				<h3><a href="javascript:toggleVisibility('options');"><% translate("Options"); %> <span id="sesdiv_options_showhide"><i class="icon-chevron-up"></i></span></a></h3>
+				<div class="section" id="sesdiv_options" style="display:none"></div><hr>
 				<script type="text/javascript">
-					$('#sesdivoptions').forms([
+					$('#sesdiv_options').forms([
 						{ title: '<% translate("Use alternate NAS startup sequence"); %>', name: 'f_nas_alternate', type: 'checkbox', value: nvram.nas_alternate == '1' }
 					]);
 				</script>
 				<!-- LINUX24-END -->
 
-				<h4><% translate("Notes"); %> <a href="javascript:toggleVisibility('notes');"><span id="sesdivnotesshowhide"><i class="icon-chevron-up"></i></span></a></h4>
-				<div class="section" id="sesdivnotes" style="display:none">
-
-					<ul>
-						<li><b><% translate("Interface"); %></b> - <% translate("Wireless VIF name"); %>.</li>
-						<li><b><% translate("Enabled"); %></b> - <% translate("If this VIF should be active and brought online"); %>.</li>
-						<li><b><% translate("SSID"); %></b> - <% translate("Wireless Service Set Identifier"); %>.</li>
-						<li><b><% translate("Mode"); %></b> - <% translate("Interface mode: Access Point, WDS, Wireless Client, etc"); %>...</li>
-						<li><b><% translate("Bridge"); %></b> - <% translate("Which LAN bridge this VIF should be assigned"); %>.</li>
-					</ul>
-
-					<ul>
-						<!-- LINUX24-BEGIN -->
-						<li><b><% translate("Use alternate NAS startup"); %>(...)</b> - <i><% translate("Only meaningful for K24 builds"); %></i> - <% translate("Enable this option if you need more than one NAS process running (i.e. to handle WPAx encryption on more than one WLVIF)"); %>.</li>
-						<!-- LINUX24-END -->
-					</ul>
-
-					<ul>
-						<li><b><% translate("Other relevant notes/hints"); %>:</b>
-						<ul>
-							<li><% translate("When creating/defining a new wireless VIF, it's MAC address will be shown (incorrectly) as '00:00:00:00:00:00', as it's unknown at that moment (until network is restarted and this page is reloaded)"); %>.</li>
-							<li><% translate("When saving changes, the MAC addresses of all defined non-primary wireless VIFs could sometimes be (already) <i>set</i> but might be <i>recreated</i> by the WL driver (so that previously defined/saved settings might need to be updated/changed accordingly on"); %> <a class="ajaxload" href=advanced-mac.asp><% translate("Advanced Settings"); %>/<% translate("MAC Address"); %></a> <% translate("after saving settings and rebooting your router)"); %>.</li>
-							<li><% translate("This web interface allows configuring a maximum of 4 VIFs for each physical wireless interface available - up to 3 extra VIFs can be defined in addition to the primary VIF (<i>on devices with multiple VIF capabilities</i>)"); %>.</li>
-							<li><% translate("By definition, configuration settings for the <i>primary VIF</i> of any physical wireless interfaces shouldn't be touched here (use the"); %> <a class="ajaxload" href="basic-network.asp"><% translate("Basic Settings"); %>/<% translate("Network"); %></a> <% translate("page instead)"); %>.</li>
-						</ul>
-					</ul>
-				</div>
 			</div>
 
 			<div id="tabsetc"></div>
@@ -1399,8 +1372,8 @@ LAN Access admin module by Augusto Bott
 					var u = t;
 
 					htmlOut += ('<div id="'+t+'-tab-disabled">');
-					htmlOut += ('<br>');
-					htmlOut += ('<% translate("VIF"); %> ' + tabs[i][1] + ' <% translate("is not defined"); %>. <br /><br />');
+					htmlOut += ('<br />');
+					htmlOut += ('&nbsp;&nbsp;<span class="text-red"><i class="icon-cancel"></i></span> <% translate("VIF"); %> <b>' + tabs[i][1] + '</b> <% translate("is not defined"); %>.</b><br /><br />');
 					htmlOut += ('</div>');
 
 					htmlOut += ('<div id="'+t+'-tab">');
@@ -1551,6 +1524,39 @@ LAN Access admin module by Augusto Bott
 		</div>
 		<!-- / SESDIV / -->
 	</div>
+
+	<!-- NOTES -->
+	<div class="box">
+		<div class="heading"><% translate("Notes"); %> <a class="pull-right" data-toggle="tooltip" title="<% translate("Hide/Show Notes"); %>" href="javascript:toggleVisibility('notes');"><span id="sesdiv_notes_showhide"><i class="icon-chevron-up"></i></span></a></div>
+		<div class="section content" id="sesdiv_notes" style="display:none">
+
+			<ul>
+				<li><b><% translate("Interface"); %></b> - <% translate("Wireless VIF name"); %>.</li>
+				<li><b><% translate("Enabled"); %></b> - <% translate("If this VIF should be active and brought online"); %>.</li>
+				<li><b><% translate("SSID"); %></b> - <% translate("Wireless Service Set Identifier"); %>.</li>
+				<li><b><% translate("Mode"); %></b> - <% translate("Interface mode: Access Point, WDS, Wireless Client, etc"); %>...</li>
+				<li><b><% translate("Bridge"); %></b> - <% translate("Which LAN bridge this VIF should be assigned"); %>.</li>
+			</ul>
+
+			<ul>
+				<!-- LINUX24-BEGIN -->
+				<li><b><% translate("Use alternate NAS startup"); %>(...)</b> - <i><% translate("Only meaningful for K24 builds"); %></i> - <% translate("Enable this option if you need more than one NAS process running (i.e. to handle WPAx encryption on more than one WLVIF)"); %>.</li>
+				<!-- LINUX24-END -->
+			</ul>
+
+			<ul>
+				<li><b><% translate("Other relevant notes/hints"); %>:</b>
+				<ul>
+					<li><% translate("When creating/defining a new wireless VIF, it's MAC address will be shown (incorrectly) as '00:00:00:00:00:00', as it's unknown at that moment (until network is restarted and this page is reloaded)"); %>.</li>
+					<li><% translate("When saving changes, the MAC addresses of all defined non-primary wireless VIFs could sometimes be (already) <i>set</i> but might be <i>recreated</i> by the WL driver (so that previously defined/saved settings might need to be updated/changed accordingly on"); %> <a class="ajaxload" href=advanced-mac.asp><% translate("Advanced Settings"); %>/<% translate("MAC Address"); %></a> <% translate("after saving settings and rebooting your router)"); %>.</li>
+					<li><% translate("This web interface allows configuring a maximum of 4 VIFs for each physical wireless interface available - up to 3 extra VIFs can be defined in addition to the primary VIF (<i>on devices with multiple VIF capabilities</i>)"); %>.</li>
+					<li><% translate("By definition, configuration settings for the <i>primary VIF</i> of any physical wireless interfaces shouldn't be touched here (use the"); %> <a class="ajaxload" href="basic-network.asp"><% translate("Basic Settings"); %>/<% translate("Network"); %></a> <% translate("page instead)"); %>.</li>
+				</ul>
+			</ul>
+
+		</div>
+	</div>
+
 
 	<button type="button" value="<% translate("Save"); %>" id="save-button" onclick="save()" class="btn btn-primary"><% translate("Save"); %> <i class="icon-check"></i></button>
 	<button type="button" value="<% translate("Cancel"); %>" id="cancel-button" onclick="javascript:reloadPage();" class="btn"><% translate("Cancel"); %> <i class="icon-cancel"></i></button>

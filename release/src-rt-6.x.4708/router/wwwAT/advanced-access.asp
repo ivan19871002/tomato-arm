@@ -17,9 +17,9 @@ LAN Access admin module by Augusto Bott
 		la.setup = function() {
 			this.init('la-grid', 'sort', 50, [
 				{ type: 'checkbox', prefix: '<div class="centered">', suffix: '</div>', class: 'input-medium' },
-				{ type: 'select', options: [[0, 'LAN (br0)'],[1, 'LAN1 (br1)'],[2, 'LAN2 (br2)'],[3, 'LAN3 (br3)']], prefix: '<div class="centered">', suffix: '</div>', class: 'input-medium' },
+				{ type: 'select', options: [[0, '<% translate("LAN"); %> (br0)'],[1, '<% translate("LAN1"); %> (br1)'],[2, '<% translate("LAN2"); %> (br2)'],[3, '<% translate("LAN3"); %> (br3)']], prefix: '<div class="centered">', suffix: '</div>', class: 'input-medium' },
 				{ type: 'text', maxlen: 32, class: 'input-medium' },
-				{ type: 'select', options: [[0, 'LAN (br0)'],[1, 'LAN1 (br1)'],[2, 'LAN2 (br2)'],[3, 'LAN3 (br3)']], prefix: '<div class="centered">', suffix: '</div>', class: 'input-medium' },
+				{ type: 'select', options: [[0, '<% translate("LAN"); %> (br0)'],[1, '<% translate("LAN1"); %> (br1)'],[2, '<% translate("LAN2"); %> (br2)'],[3, '<% translate("LAN3"); %> (br3)']], prefix: '<div class="centered">', suffix: '</div>', class: 'input-medium' },
 				{ type: 'text', maxlen: 32, class: 'input-medium' },
 				{ type: 'text', maxlen: 32, class: 'input-medium' }]);
 			this.headerSet(['<% translate("On"); %>', '<% translate("Src"); %>', '<% translate("Src Address"); %>', '<% translate("Dst"); %>', '<% translate("Dst Address"); %>','<% translate("Description"); %>']);
@@ -125,9 +125,9 @@ LAN Access admin module by Augusto Bott
 
 		la.dataToView = function(data) {
 			return [(data[0] != 0) ? 'On' : '',
-				['LAN', 'LAN1', 'LAN2', 'LAN3'][data[1]],
+				['<% translate("LAN"); %>', '<% translate("LAN1"); %>', '<% translate("LAN2"); %>', '<% translate("LAN3"); %>'][data[1]],
 				data[2],
-				['LAN', 'LAN1', 'LAN2', 'LAN3'][data[3]],
+				['<% translate("LAN"); %>', '<% translate("LAN1"); %>', '<% translate("LAN2"); %>', '<% translate("LAN3"); %>'][data[3]],
 				data[4],
 				data[5] ];
 		}
@@ -197,17 +197,26 @@ LAN Access admin module by Augusto Bott
 	<div class="box">
 		<div class="heading"><% translate("LAN Access Settings"); %></div>
 		<div class="content">
-			<table class="line-table" id="la-grid"></table><br /><hr>
+	
+			<table class="line-table" id="la-grid"></table>
+			
+			<!--br /><hr-->
 
-			<h4><% translate("Notes"); %> <a href="javascript:toggleVisibility('notes');"><span id="sesdiv_notes_showhide"><i class="icon-chevron-up"></i></span></a></h4>
-			<div class="section" id="sesdiv_notes" style="display:none">
-				<ul>
-					<li><b><% translate("Src"); %></b> - <% translate("Source LAN bridge"); %>.</li>
-					<li><b><% translate("Src Address"); %></b> <i>(<% translate("optional"); %>)</i> - <% translate("Source address allowed. Ex"); %>: "1.2.3.4", "1.2.3.4 - 2.3.4.5", "1.2.3.0/24".</li>
-					<li><b><% translate("Dst"); %></b> - <% translate("Destination LAN bridge"); %>.</li>
-					<li><b><% translate("Dst Address"); %></b> <i>(<% translate("optional"); %>)</i> - <% translate("Destination address inside the LAN"); %>.</li>
-				</ul>
-			</div>
+		</div>
+	</div>
+
+	<!-- NOTES -->
+	<div class="box">
+		<div class="heading"><% translate("Notes"); %> <a class="pull-right" data-toggle="tooltip" title="<% translate("Hide/Show Notes"); %>" href="javascript:toggleVisibility('notes');"><span id="sesdiv_notes_showhide"><i class="icon-chevron-up"></i></span></a></div>
+		<div class="section content" id="sesdiv_notes" style="display:none">
+
+			<ul>
+				<li><b><% translate("Src"); %></b> - <% translate("Source LAN bridge"); %>.</li>
+				<li><b><% translate("Src Address"); %></b> <i>(<% translate("optional"); %>)</i> - <% translate("Source address allowed. Ex"); %>: "1.2.3.4", "1.2.3.4 - 2.3.4.5", "1.2.3.0/24".</li>
+				<li><b><% translate("Dst"); %></b> - <% translate("Destination LAN bridge"); %>.</li>
+				<li><b><% translate("Dst Address"); %></b> <i>(<% translate("optional"); %>)</i> - <% translate("Destination address inside the LAN"); %>.</li>
+			</ul>
+
 		</div>
 	</div>
 

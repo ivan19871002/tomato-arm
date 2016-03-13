@@ -422,7 +422,10 @@ endif
 
 	# remove C-style comments from java files. All "control" comments have been processed by now.
 	for F in $(wildcard *.js *.jsx); do \
-		[ -f $(INSTALLDIR)/www-at/js/$$F ] && $(TOP)/www-at/remcoms2.sh $(INSTALLDIR)/www-at/js/$$F c; \
+		[ -f $(INSTALLDIR)/www-at/js/$$F ] && $(TOP)/wwwAT/remcoms2.sh $(INSTALLDIR)/www-at/js/$$F c; \
+	done
+	for F in $(wildcard *.css); do \
+		[ -f $(INSTALLDIR)/www-at/css/$$F ] && $(TOP)/wwwAT/remcoms2.sh $(INSTALLDIR)/www-at/css/$$F c; \
 	done
 	# leftovers
 	find $(INSTALLDIR)/www-at -name "*~" -print0 | xargs -0 rm -f;

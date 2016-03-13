@@ -311,7 +311,7 @@ int wan_led_off(char *prefix)	// off WAN LED only if no other WAN active
 	int f;
 	struct ifreq ifr;
 	int up;
-	int count;
+	int count = 0;	// initialize with zero
 
 	for (i = 0; names[i] != NULL; ++i) {
 		up = 0; // default is 0 (LED_OFF)

@@ -915,7 +915,7 @@
 			<h5><% translate("!! Unknown Port Mapping Using Default !!"); %></h5>
 			<a href='http://www.linksysinfo.org/index.php?threads/can-vlan-gui-port-order-be-corrected.70160/#post-247634/'> <b><% translate("Please Follow these Instructions to get it corrected"); %>.</b></a><br />
 				<% translate("Include Router Brand/Model"); %> (<% nv('t_model_name'); %>),
-				<% translate("Results from 'robocfg show' - VLANs section only"); %> &amp;
+				<% translate("Results from"); %> 'robocfg show' - <% translate("VLANs section only"); %> &amp;
 				<% translate("Port Numbers on Router Case (Left -> Right viewed from Front)"); %>.
 		</div>
 
@@ -966,7 +966,7 @@
 			<div class="section content" id="sesdiv_notes" style="display:none">
 
 				<ul>
-					<li><% translate("If you notice that the order of the Lan Ports are incorrectly mapped"); %>, <a href='http://www.linksysinfo.org/index.php?threads/can-vlan-gui-port-order-be-corrected.70160/#post-247634/'> <b><% translate("Please Follow these Instructions to get it corrected"); %></b></a>.</li>
+					<li><% translate("If you notice that the order of the Lan Ports are incorrectly mapped"); %>: <a href='http://www.linksysinfo.org/index.php?threads/can-vlan-gui-port-order-be-corrected.70160/#post-247634/'> <b><% translate("Please Follow these Instructions to get it corrected"); %></b></a>.</li>
 					<br>
 					<li><b>VLAN</b> - <% translate("Unique identifier of a VLAN"); %>.</li>
 					<li><b>VID</b> - <% translate("Allows overriding 'traditional' VLAN/VID mapping with arbitrary VIDs for each VLAN"); %> (<% translate("set to '0' to use 'regular' VLAN/VID mappings instead"); %>).</li>
@@ -990,6 +990,7 @@
 
 					</ul>
 				</ul>
+
 			</div>
 		</div>
 

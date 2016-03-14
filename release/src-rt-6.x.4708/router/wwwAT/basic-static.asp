@@ -289,13 +289,13 @@ No part of this file may be used without permission.
 		}
 
 		function toggleVisibility(whichone) {
-			if(E('sesdiv' + whichone).style.display=='') {
-				E('sesdiv' + whichone).style.display='none';
-				E('sesdiv' + whichone + 'showhide').innerHTML='<i class="icon-chevron-up"></i>';
+			if(E('sesdiv_' + whichone).style.display=='') {
+				E('sesdiv_' + whichone).style.display='none';
+				E('sesdiv_' + whichone + '_showhide').innerHTML='<i class="icon-chevron-up"></i>';
 				cookie.set('basic_static_' + whichone + '_vis', 0);
 			} else {
-				E('sesdiv' + whichone).style.display='';
-				E('sesdiv' + whichone + 'showhide').innerHTML='<i class="icon-chevron-down"></i>';
+				E('sesdiv_' + whichone).style.display='';
+				E('sesdiv_' + whichone + '_showhide').innerHTML='<i class="icon-chevron-down"></i>';
 				cookie.set('basic_static_' + whichone + '_vis', 1);
 			}
 		}
@@ -320,40 +320,42 @@ No part of this file may be used without permission.
 			<div class="content">
 				<table class="line-table" id="bs-grid"></table><br />
 
-				<h3><a href="javascript:toggleVisibility('options');"><% translate("Options"); %> <span id="sesdivoptionsshowhide"><i class="icon-chevron-up"></i></span></a></h3>
-				<div class="section" id="sesdivoptions" style="display:none"></div><hr>
+				<h3><a href="javascript:toggleVisibility('options');"><% translate("Options"); %> <span id="sesdiv_options_showhide"><i class="icon-chevron-up"></i></span></a></h3>
+				<div class="section" id="sesdiv_options" style="display:none"></div><hr>
 				<script type="text/javascript">
-					$('#sesdivoptions').forms([
+					$('#sesdiv_options').forms([
 						{ title: '<% translate("Ignore DHCP requests from unknown devices"); %>', name: 'f_dhcpd_static_only', type: 'checkbox', value: nvram.dhcpd_static_only == '1' }
 					]);
 				</script>
+			</div>
+		</div>
 
+		<div class="box">
+			<div class="heading"><% translate("Notes"); %> <a class="pull-right" data-toggle="tooltip" title="<% translate("Hide/Show Notes"); %>" href="javascript:toggleVisibility('notes');"><span id="sesdiv_notes_showhide"><i class="icon-chevron-up"></i></span></a></div>
+			<div class="section content" id="sesdiv_notes" style="display:none">
 
-				<h4><% translate("Notes"); %> <a href="javascript:toggleVisibility('notes');"><span id="sesdivnotesshowhide"><i class="icon-chevron-up"></i></span></a></h4>
-				<div class="section" id="sesdivnotes" style="display:none">
+				<ul>
+					<li><b><% translate("MAC Address"); %></b> - <% translate("Unique identifier associated to a network interface on this particular device"); %>.</li>
+					<li><b><% translate("Bound to"); %></b> - <% translate("Enforce static ARP binding of this particular IP/MAC address pair"); %>.</li>
+					<li><b><% translate("IP Address"); %></b> - <% translate("Network address assigned to this device on the local network"); %>.</li>
+					<li><b><% translate("IPTraffic"); %></b> - <% translate("Keep track of bandwidth usage for this IP address"); %>.</li>
+					<li><b><% translate("Hostname"); %></b> - <% translate("Human-readable nickname/label assigned to this device on the network"); %>.</li>
+				</ul>
+
+				<ul>
+					<li><b><% translate("Enable static ARP for"); %> (...)</b> - <% translate("Enforce static ARP binding for all IP/MAC address pairs listed above"); %>.</li>
+					<li><b><% translate("Ignore DHCP requests"); %> (...)</b> - <% translate("Unlisted MAC addresses won't be able to obtain an IP address through DHCP"); %>.</li>
+				</ul>
+
+				<ul>
+					<li><b><% translate("Other relevant notes/hints"); %>:</b>
 					<ul>
-						<li><b><% translate("MAC Address"); %></b> - <% translate("Unique identifier associated to a network interface on this particular device"); %>.</li>
-						<li><b><% translate("Bound to"); %></b> - <% translate("Enforce static ARP binding of this particular IP/MAC address pair"); %>.</li>
-						<li><b><% translate("IP Address"); %></b> - <% translate("Network address assigned to this device on the local network"); %>.</li>
-						<li><b><% translate("IPTraffic"); %></b> - <% translate("Keep track of bandwidth usage for this IP address"); %>.</li>
-						<li><b><% translate("Hostname"); %></b> - <% translate("Human-readable nickname/label assigned to this device on the network"); %>.</li>
+						<li><% translate("To specify multiple hostnames for a device, separate them with spaces"); %>.</li>
+						<li><% translate("To enable/enforce static ARP binding for a particular device, it must have only one MAC associated with that particular IP address (i.e. you can't have two MAC addresses linked to the same hostname/device in the table above)"); %>.</li>
+						<li><% translate("When ARP binding is enabled for a particular MAC/IP address pair, that device will always be shown as 'active' in the"); %> <a class="ajaxload" href="tools-wol.asp"><% translate("Wake On LAN"); %></a> <% translate("table."); %></li>
+						<li><% translate("See also the"); %> <a class="ajaxload" href="advanced-dhcpdns.asp"><% translate("Advanced DHCP/DNS"); %></a> <% translate("settings page for more DHCP-related configuration options"); %>.</li>
 					</ul>
-
-					<ul>
-						<li><b><% translate("Enable static ARP for"); %> (...)</b> - <% translate("Enforce static ARP binding for all IP/MAC address pairs listed above"); %>.</li>
-						<li><b><% translate("Ignore DHCP requests"); %> (...)</b> - <% translate("Unlisted MAC addresses won't be able to obtain an IP address through DHCP"); %>.</li>
-					</ul>
-
-					<ul>
-						<li><b><% translate("Other relevant notes/hints"); %>:</b>
-						<ul>
-							<li><% translate("To specify multiple hostnames for a device, separate them with spaces"); %>.</li>
-							<li><% translate("To enable/enforce static ARP binding for a particular device, it must have only one MAC associated with that particular IP address (i.e. you can't have two MAC addresses linked to the same hostname/device in the table above)"); %>.</li>
-							<li><% translate("When ARP binding is enabled for a particular MAC/IP address pair, that device will always be shown as 'active' in the"); %> <a class="ajaxload" href="tools-wol.asp"><% translate("Wake On LAN"); %></a> <% translate("table."); %></li>
-							<li><% translate("See also the"); %> <a class="ajaxload" href="advanced-dhcpdns.asp"><% translate("Advanced DHCP/DNS"); %></a> <% translate("settings page for more DHCP-related configuration options"); %>.</li>
-						</ul>
-					</ul>
-				</div>
+				</ul>
 
 			</div>
 		</div>

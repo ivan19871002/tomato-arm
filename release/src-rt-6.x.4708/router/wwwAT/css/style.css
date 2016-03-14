@@ -807,7 +807,7 @@ table.line-table tr td {
 table.data-table { margin: 0 0 15px; }
 table.data-table tr td { display: table-cell; padding: 5px 0; }
 table.data-table.dataonly tr td:first-child { width: 40%; }
-table.data-table.other { margin: 5px 10px; }
+table.data-table.other { margin: 5px 15px; }
 table.data-table.bwm-info { margin: 15px 5px; }
 table.data-table.bwm-info tr td { vertical-align: middle; }
 

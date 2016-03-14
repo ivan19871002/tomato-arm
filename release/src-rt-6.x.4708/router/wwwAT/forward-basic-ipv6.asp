@@ -55,7 +55,7 @@ No part of this file may be used without permission.
 			if (!v_iptport(f[4], quiet)) return 0;
 
 			f[5].value = f[5].value.replace(/>/g, '_');
-			if (!v_nodelim(f[5], quiet, 'Description')) return 0;
+			if (!v_nodelim(f[5], quiet, '<% translate("Description"); %>')) return 0;
 			return 1;
 		}
 
@@ -78,7 +78,7 @@ No part of this file may be used without permission.
 				{ type: 'text', maxlen: 140, class : 'input-medium' },
 				{ type: 'text', maxlen: 16, class : 'input-small' },
 				{ type: 'text', maxlen: 32 }]);
-			this.headerSet(['On', 'Proto', 'Src Address', 'Dest Address', 'Dest Ports','<% translate("Description"); %>']);
+			this.headerSet(['<% translate("On"); %>', '<% translate("Proto"); %>', '<% translate("Src Address"); %>', '<% translate("Dest Address"); %>', '<% translate("Dest Ports"); %>','<% translate("Description"); %>']);
 			var nv = nvram.ipv6_portforward.split('>');
 			for (var i = 0; i < nv.length; ++i) {
 				var r;
@@ -120,6 +120,20 @@ No part of this file may be used without permission.
 		{
 			fog.recolor();
 			fog.resetNewEditor();
+			var c;
+			if (((c = cookie.get('forward_basic_ipv6_notes_vis')) != null) && (c == '1')) toggleVisibility("notes");
+		}
+
+		function toggleVisibility(whichone) {
+			if (E('sesdiv_' + whichone).style.display == '') {
+				E('sesdiv_' + whichone).style.display = 'none';
+				E('sesdiv_' + whichone + '_showhide').innerHTML = '<i class="icon-chevron-up"></i>';
+				cookie.set('forward_basic_ipv6_' + whichone + '_vis', 0);
+			} else {
+				E('sesdiv_' + whichone).style.display='';
+				E('sesdiv_' + whichone + '_showhide').innerHTML = '<i class="icon-chevron-down"></i>';
+				cookie.set('forward_basic_ipv6_' + whichone + '_vis', 1);
+			}
 		}
 	</script>
 
@@ -129,19 +143,23 @@ No part of this file may be used without permission.
 		<input type="hidden" name="ipv6_portforward">
 
 		<div class="box">
-			<div class="heading">Basic IPv6 Port-forwarding</div>
+			<div class="heading"><% translate("IPv6 Port Forwarding"); %></div>
 			<div class="content">
 				<script type="text/javascript">show_notice1('<% notice("ip6tables"); %>');</script>
-				<table class="line-table" id="fo-grid"></table><br /><hr>
+				<table class="line-table" id="fo-grid"></table>
+			</div>
+		</div>
 
-				<h4><% translate("Notes"); %></h4>
-				Opens access to ports on machines inside the LAN, but does <b>not</b> re-map ports.
+		<!-- NOTES -->
+		<div class="box">
+			<div class="heading"><% translate("Notes"); %> <a class="pull-right" data-toggle="tooltip" title="<% translate("Hide/Show Notes"); %>" href="javascript:toggleVisibility('notes');"><span id="sesdiv_notes_showhide"><i class="icon-chevron-up"></i></span></a></div>
+			<div class="section content" id="sesdiv_notes" style="display:none">
+				<% translate("Opens access to ports on machines inside the LAN, but does"); %> <b><% translate("not"); %></b> <% translate("re-map ports"); %>.
 				<ul>
-					<li><b>Src Address</b> <i>(optional)</i> - Forward only if from this address. Ex: "2001:4860:800b::/48", "me.example.com".
-					<li><b>Dest Address</b> <i>(optional)</i> - The destination address inside the LAN.
-					<li><b>Dest Ports</b> - The ports to be opened for forwarding. Ex: "2345", "200,300", "200-300,400".
+					<li><b><% translate("Src Address"); %></b> <i>(<% translate("optional"); %>)</i> - <% translate("Forward only if from this address. Ex"); %>: "2001:4860:800b::/48", "me.example.com".
+					<li><b><% translate("Dest Address"); %></b> <i>(<% translate("optional"); %>)</i> - <% translate("The destination address inside the LAN"); %>.
+					<li><b><% translate("Dest Ports"); %></b> - <% translate("The ports to be opened for forwarding. Ex"); %>: "2345", "200,300", "200-300,400".
 				</ul>
-
 			</div>
 		</div>
 

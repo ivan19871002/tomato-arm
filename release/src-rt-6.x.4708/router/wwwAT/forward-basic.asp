@@ -109,7 +109,7 @@ No part of this file may be used without permission.
 				{ type: 'text', maxlen: 5,  class : 'input-mini' },
 				{ type: 'text', maxlen: 15, class : 'input-medium' },
 				{ type: 'text', maxlen: 32, class : 'input-medium' }]);
-			this.headerSet(['On', 'Proto', 'Src Address', 'Ext Ports', 'Int Port', 'Int Address','<% translate("Description"); %>']);
+			this.headerSet(['<% translate("On"); %>', '<% translate("Proto"); %>', '<% translate("Src Address"); %>', '<% translate("Ext Ports"); %>', '<% translate("Int Port"); %>', '<% translate("Int Address"); %>','<% translate("Description"); %>']);
 			var nv = nvram.portforward.split('>');
 			for (var i = 0; i < nv.length; ++i) {
 				var r;
@@ -160,6 +160,20 @@ No part of this file may be used without permission.
 		function init() {
 			fog.recolor();
 			fog.resetNewEditor();
+			var c;
+			if (((c = cookie.get('forward_basic_notes_vis')) != null) && (c == '1')) toggleVisibility("notes");
+		}
+
+		function toggleVisibility(whichone) {
+			if (E('sesdiv_' + whichone).style.display == '') {
+				E('sesdiv_' + whichone).style.display = 'none';
+				E('sesdiv_' + whichone + '_showhide').innerHTML = '<i class="icon-chevron-up"></i>';
+				cookie.set('forward_basic_' + whichone + '_vis', 0);
+			} else {
+				E('sesdiv_' + whichone).style.display='';
+				E('sesdiv_' + whichone + '_showhide').innerHTML = '<i class="icon-chevron-down"></i>';
+				cookie.set('forward_basic_' + whichone + '_vis', 1);
+			}
 		}
 
 	</script>
@@ -170,24 +184,26 @@ No part of this file may be used without permission.
 		<input type="hidden" name="portforward">
 
 		<div class="box">
-			<div class="heading">Basic Port-forwarding</div>
+			<div class="heading"><% translate("Port Forwarding"); %></div>
 			<div class="content">
-
 				<script type="text/javascript">show_notice1('<% notice("iptables"); %>');</script>
-				<table class="line-table" id="fo-grid"></table><br /><hr>
-
-				<h4><% translate("Notes"); %></h4>
-				<ul>
-					<li><b>Src Address</b> <i>(optional)</i> - Forward only if from this address. Ex: "1.2.3.4", "1.2.3.4 - 2.3.4.5", "1.2.3.0/24", "me.example.com".
-					<li><b>Ext Ports</b> - The ports to be forwarded, as seen from the WAN. Ex: "2345", "200,300", "200-300,400".
-					<li><b>Int Port</b> <i>(optional)</i> - The destination port inside the LAN. If blank, the destination port
-					is the same as <i>Ext Ports</i>. Only one port per entry is supported when forwarding to a different internal
-					port.
-					<li><b>Int Address</b> - The destination address inside the LAN.
-				</ul>
+				<table class="line-table" id="fo-grid"></table>
 			</div>
 		</div>
 
+		<!-- NOTES -->
+		<div class="box">
+			<div class="heading"><% translate("Notes"); %> <a class="pull-right" data-toggle="tooltip" title="<% translate("Hide/Show Notes"); %>" href="javascript:toggleVisibility('notes');"><span id="sesdiv_notes_showhide"><i class="icon-chevron-up"></i></span></a></div>
+			<div class="section content" id="sesdiv_notes" style="display:none">
+				<ul>
+					<li><b><% translate("Src Address"); %></b> <i>(<% translate("optional"); %>)</i> - <% translate("Forward only if from this address. Ex"); %>: "1.2.3.4", "1.2.3.4 - 2.3.4.5", "1.2.3.0/24", "me.example.com".
+					<li><b><% translate("Ext Ports"); %></b> - <% translate("The ports to be forwarded, as seen from the WAN. Ex"); %>: "2345", "200,300", "200-300,400".
+					<li><b><% translate("Int Port"); %></b> <i>(<% translate("optional"); %>)</i> - <% translate("The destination port inside the LAN. If blank, the destination port is the same as"); %> <i><% translate("Ext Ports"); %></i>. <% translate("Only one port per entry is supported when forwarding to a different internal port"); %>.
+					<li><b><% translate("Int Address"); %></b> - <% translate("The destination address inside the LAN"); %>.
+				</ul>
+			</div>
+		</div>
+	
 		<button type="button" value="<% translate("Save"); %>" id="save-button" onclick="save()" class="btn btn-primary"><% translate("Save"); %> <i class="icon-check"></i></button>
 		<button type="button" value="<% translate("Cancel"); %>" id="cancel-button" onclick="javascript:reloadPage();" class="btn"><% translate("Cancel"); %> <i class="icon-cancel"></i></button>
 		<span id="footer-msg" class="alert alert-warning" style="visibility: hidden;"></span>

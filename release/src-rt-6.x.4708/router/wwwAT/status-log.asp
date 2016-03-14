@@ -28,11 +28,11 @@
 			<div class="section">
 				<a href="logs/view.cgi?which=25&_http_id=<% nv(http_id) %>"><% translate("View Last 25 Lines"); %></a><br />
 				<a href="logs/view.cgi?which=50&_http_id=<% nv(http_id) %>"><% translate("View Last 50 Lines"); %></a><br />
-				<a href="logs/view.cgi?which=100&_http_id=<% nv(http_id) %>"><% translate("View Last 100 Lines"); %></a><br />
+				<a href="logs/view.cgi?which=100&_http_id=<% nv(http_id) %>"><% translate("View Last 100 Lines"); %></a><br /><br />
 				<a href="logs/view.cgi?which=all&_http_id=<% nv(http_id) %>"><% translate("View All"); %></a><br /><br />
 				<div class="input-append"><input class="span3" type="text" maxsize="32" id="find-text"> <button value="<% translate("Find"); %>" onclick="find()" class="btn"><% translate("Find"); %> <i class="icon-search"></i></button></div>
 				<i><% translate("Search through available log files for specific text and display matched rows"); %></i>
-				<br><br /><hr>
+				<br /><br /><hr>
 				<a class="btn btn-primary" href="logs/syslog.txt?_http_id=<% nv(http_id) %>"><% translate("Download Log File"); %> <i class="icon-download"></i></a>
 			</div>
 		</div>

@@ -122,7 +122,20 @@ No part of this file may be used without permission.
 		{
 			tg.recolor();
 			tg.resetNewEditor();
+			var c;
+			if (((c = cookie.get('forward_basic_notes_vis')) != null) && (c == '1')) toggleVisibility("notes");
+		}
 
+		function toggleVisibility(whichone) {
+			if (E('sesdiv_' + whichone).style.display == '') {
+				E('sesdiv_' + whichone).style.display = 'none';
+				E('sesdiv_' + whichone + '_showhide').innerHTML = '<i class="icon-chevron-up"></i>';
+				cookie.set('forward_triggered_' + whichone + '_vis', 0);
+			} else {
+				E('sesdiv_' + whichone).style.display='';
+				E('sesdiv_' + whichone + '_showhide').innerHTML = '<i class="icon-chevron-down"></i>';
+				cookie.set('forward_triggered_' + whichone + '_vis', 1);
+			}
 		}
 
 	</script>
@@ -135,17 +148,20 @@ No part of this file may be used without permission.
 	<div class="box">
 		<div class="heading"><% translate("Triggered Port Forwarding"); %></div>
 		<div class="content">
-			<table class="line-table" id="tg-grid"></table><br /><hr>
+			<table class="line-table" id="tg-grid"></table>
+		</div>
+	</div>
 
-			<h4><% translate("Notes"); %></h4>
-			<div class="section" id="sesdiv_notes">
-				<ul>
-					<li><% translate("Use '-' to specify a range of ports"); %> (200-300).</li>
-					<li><% translate("Trigger Ports are the initial LAN to WAN 'trigger'"); %>.</li>
-					<li><% translate("Forwarded Ports are the WAN to LAN ports that are opened if the 'trigger' is activated"); %>.</li>
-					<li><% translate("These ports are automatically closed after a few minutes of inactivity"); %>.</li>
-				</ul>
-			</div>
+	<!-- NOTES -->
+	<div class="box">
+		<div class="heading"><% translate("Notes"); %> <a class="pull-right" data-toggle="tooltip" title="<% translate("Hide/Show Notes"); %>" href="javascript:toggleVisibility('notes');"><span id="sesdiv_notes_showhide"><i class="icon-chevron-up"></i></span></a></div>
+		<div class="section content" id="sesdiv_notes" style="display:none">
+			<ul>
+				<li><% translate("Use '-' to specify a range of ports"); %> (200-300).</li>
+				<li><% translate("Trigger Ports are the initial LAN to WAN 'trigger'"); %>.</li>
+				<li><% translate("Forwarded Ports are the WAN to LAN ports that are opened if the 'trigger' is activated"); %>.</li>
+				<li><% translate("These ports are automatically closed after a few minutes of inactivity"); %>.</li>
+			</ul>
 		</div>
 	</div>
 

@@ -188,6 +188,7 @@ No part of this file may be used without permission.
 				<table class="line-table static">
 					<tr><td><% translate("Router's LAN MAC Address"); %>:</td><td id="routermac"><b></b></td></tr>
 					<tr><td><% translate("Computer's MAC Address"); %>:</td><td id="compmac"><b></b></td></tr>
+					<tr>&nbsp;</tr>
 				</table><br />
 
 			</div>

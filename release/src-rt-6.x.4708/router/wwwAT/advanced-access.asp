@@ -197,10 +197,8 @@ LAN Access admin module by Augusto Bott
 	<div class="box">
 		<div class="heading"><% translate("LAN Access Settings"); %></div>
 		<div class="content">
-	
+
 			<table class="line-table" id="la-grid"></table>
-			
-			<!--br /><hr-->
 
 		</div>
 	</div>
@@ -226,3 +224,4 @@ LAN Access admin module by Augusto Bott
 
 	<script type="text/javascript">init();</script>
 </content>
+

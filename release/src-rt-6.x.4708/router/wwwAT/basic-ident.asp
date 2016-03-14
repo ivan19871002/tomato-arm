@@ -40,6 +40,7 @@ No part of this file may be used without permission.
 						{ title: '<% translate("Domain Name"); %>', name: 'wan_domain', type: 'text', maxlen: 32, size: 34, value: nvram.wan_domain }
 					]);
 				</script>
+				<hr />
 			</div>
 		</div>
 	</form>

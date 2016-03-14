@@ -105,8 +105,8 @@ No part of this file may be used without permission.
 			<script type="text/javascript">
 				var a = nvstat.free / nvstat.size * 100.0;
 				createFieldTable('', [
-					{ title: '<% translate("Total / Free NVRAM"); %>:', text: scaleSize(nvstat.size) + ' / ' + scaleSize(nvstat.free) + ' <small>(' + (a).toFixed(2) + '%)</small>' }
-					], '#nvram', 'line-table');
+					{ title: '<b><% translate("Total / Free NVRAM"); %></b>:', text: scaleSize(nvstat.size) + ' / ' + scaleSize(nvstat.free) + ' <small>(' + (a).toFixed(2) + '%)</small>' }
+					], '#nvram', '');
 
 				if (a <= 5) {
 					$('#nvram').append('<div class="alert alert-warning">' +

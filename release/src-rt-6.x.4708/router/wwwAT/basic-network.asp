@@ -1988,7 +1988,7 @@ No part of this file may be used without permission.
 				{ title: '<% translate("Check connections every"); %>', name: 'mwan_cktime', type: 'select', options: [
 					['0','<% translate("Disabled"); %>'],['60','1 <% translate("minute"); %>'],['120','2 <% translate("minutes"); %>'],['180','3 <% translate("minutes"); %>'],['300','5 <% translate("minutes"); %>'],
 					['600','10 <% translate("minutes"); %>'],['900','15 <% translate("minutes"); %>'],['1800','30 <% translate("minutes"); %>'],['3600','1 <% translate("hour"); %>']],
-					suffix: ' <small>(<% translate("when the network conditionsis poor, try use long detection period"); %>)</small>',
+					suffix: ' <small>(<% translate("when the network conditions poor, try use long detection period"); %>)</small>',
 					value: nvram.mwan_cktime },
 				{ title: '<% translate("Method"); %>', indent: 2, name: 'mwan_ckmtd', type: 'select', options: [['1','Ping'],['2','Traceroute']], value: nvram.mwan_chmtd },
 				{ title: '<% translate("Target"); %> 1', indent: 2, name: 'f_mwan_ckdst_1', type: 'text', maxlen: 30, size: 30, value: ckdst[0] || ''},
@@ -2050,7 +2050,7 @@ No part of this file may be used without permission.
 								['ttyACM0', '/dev/ttyACM0']],
 							value: nvram['wan'+u+'_modem_dev'] },
 						{ title: '<% translate("Load Balance Weight"); %>', name: 'wan'+u+'_weight', type: 'text', maxlen: 3, size: 8, value: nvram['wan'+u+'_weight'], suffix: ' <i>(<% translate("Failover"); %>: 0; <% translate("Load balancing"); %>: 1 - 256)</i>' },
-						{ title: '<% translate("PIN Code"); %>', name: 'wan'+u+'_modem_pin', type: 'text', maxlen: 6, size: 8, value: nvram['wan'+u+'modem_pin'], suffix: ' <i>Advised to turn off PIN Code</i>' },
+						{ title: '<% translate("PIN Code"); %>', name: 'wan'+u+'_modem_pin', type: 'text', maxlen: 6, size: 8, value: nvram['wan'+u+'modem_pin'], suffix: ' <i><% translate("Advised to turn off PIN Code"); %></i>' },
 						{ title: '<% translate("Modem init string"); %>', name: 'wan'+u+'_modem_init', type: 'text', maxlen: 25, size: 32, value: nvram['wan'+u+'_modem_init'] },
 						{ title: '<% translate("APN"); %>', name: 'wan'+u+'_modem_apn', type: 'text', maxlen: 25, size: 32, value: nvram['wan'+u+'_modem_apn'] },
 						{ title: '<% translate("Network Type"); %>', name: 'wan'+u+'_modem_speed', type: 'select', options: [['00', '<% translate("Auto"); %>'],['030201', '<% translate("4G/3G/2G"); %>'],['0302', '<% translate("4G/3G only"); %>'],['03', '<% translate("4G only"); %>'],['02', '<% translate("3G only"); %>']], value: nvram['wan'+u+'_modem_speed'], suffix: ' <i><% translate("works only with non-Hilink modems"); %></i>' },

@@ -1050,6 +1050,7 @@ function verifyFields(focused, quiet)
 	    vis['_f_wan'+u+'_dns_1'] = 0;
 	    vis['_f_wan'+u+'_dns_2'] = 0;
 	    vis['_wan'+u+'_dns_auto'] = 0;
+	    vis['_wan'+u+'_sta'] = 0;
 	    E('_wan'+u+'_sta').value = '';
            break;
 	   case 'dhcp':

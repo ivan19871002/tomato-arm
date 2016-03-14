@@ -30,11 +30,11 @@ No part of this file may be used without permission.
 
 		function defmac(which)
 		{
-			if (which == 'wan')  return et0plus(1);
-			if (which == 'wan2') return et0plus(16);
+			if (which == 'wan')  return et0plus(0);	// as LAN
+			if (which == 'wan2') return et0plus(17);
 			/* MULTIWAN-BEGIN */
-			if (which == 'wan3') return et0plus(17);
-			if (which == 'wan4') return et0plus(18);
+			if (which == 'wan3') return et0plus(18);
+			if (which == 'wan4') return et0plus(19);
 			/* MULTIWAN-END */
 			else {	// wlX
 				/* REMOVE-BEGIN */

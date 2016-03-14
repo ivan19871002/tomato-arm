@@ -981,20 +981,20 @@ No part of this file may be used without permission.
 					if (wmode == 'wet') {
 						E('_mwan_num').value = 1;
 						E('_mwan_cktime').value = 0;
-						elem.display('mwan-title', 'mwan-settings', false);
+						elem.display('mwan-section', 'wan-section', false);
 						for (uidx = 1; uidx <= maxwan_num; ++uidx) {
 							u = (uidx>1) ? uidx : '';
 							vis['_wan'+u+'_proto'] = 0;
 							E('_wan'+u+'_proto').value = 'disabled';
 							wanproto[uidx-1] = 'disabled';
-							elem.display('network-wan'+u, 'wan'+u+'-settings', false);
+//							elem.display('network-wan'+u, 'wan'+u+'-settings', false);
 						}
 					} else {
-						elem.display('mwan-title', 'mwan-settings', true);
+						elem.display('mwan-section', 'mwan-section', true);
 						for (uidx = 1; uidx <= curr_mwan_num; ++uidx) {
 							u = (uidx>1) ? uidx : '';
 							vis['_wan'+u+'_proto'] = 1;
-							elem.display('network-wan'+u, 'wan'+u+'-settings', true);
+//							elem.display('network-wan'+u, 'wan'+u+'-settings', true);
 						}
 
 					}
@@ -1036,6 +1036,7 @@ No part of this file may be used without permission.
 					vis['_f_wan'+u+'_dns_1'] = 0;
 					vis['_f_wan'+u+'_dns_2'] = 0;
 					vis['_wan'+u+'_dns_auto'] = 0;
+					vis['_wan'+u+'_sta'] = 0;
 					E('_wan'+u+'_sta').value = '';
 					break;
 			   case 'dhcp':
@@ -1963,7 +1964,7 @@ No part of this file may be used without permission.
 		<input type='hidden' name='mwan_init' value='0'>
 		REMOVE-END -->
 
-		<div class="box" id="mwan-box" data-box="mwan-box">
+		<div class="box" id="mwan-section" data-box="mwan-box">
 		<div class="heading" id="mwan-title"><% translate("MultiWAN"); %></div>
 		<div class="content" id="mwan-settings"></div>
 		<input type='hidden' name='mwan_ckdst'>
@@ -1984,16 +1985,16 @@ No part of this file may be used without permission.
 			createFieldTable('', [
 				{ title: '<% translate("Number of WAN Ports"); %>', name: 'mwan_num', type: 'select', options: [['1','1 WAN'],['2','2 WAN']
 														,['3','3 WAN'],['4','4 WAN']
-					], value: nvram.mwan_num, suffix: ' <small><% translate("Please configure"); %> <a href="#advanced-vlan.asp">VLAN</a></small>' },
+					], value: nvram.mwan_num, suffix: ' - <% translate("Please configure"); %> <a href="#advanced-vlan.asp">VLAN</a>' },
 				{ title: '<% translate("Check connections every"); %>', name: 'mwan_cktime', type: 'select', options: [
 					['0','<% translate("Disabled"); %>'],['60','1 <% translate("minute"); %>'],['120','2 <% translate("minutes"); %>'],['180','3 <% translate("minutes"); %>'],['300','5 <% translate("minutes"); %>'],
 					['600','10 <% translate("minutes"); %>'],['900','15 <% translate("minutes"); %>'],['1800','30 <% translate("minutes"); %>'],['3600','1 <% translate("hour"); %>']],
-					suffix: ' <small>(<% translate("when the network conditions poor, try use long detection period"); %>)</small>',
+					suffix: ' <i><small>(<% translate("when the network conditions poor, try use long detection period"); %>)</small></i>',
 					value: nvram.mwan_cktime },
 				{ title: '<% translate("Method"); %>', indent: 2, name: 'mwan_ckmtd', type: 'select', options: [['1','Ping'],['2','Traceroute']], value: nvram.mwan_chmtd },
 				{ title: '<% translate("Target"); %> 1', indent: 2, name: 'f_mwan_ckdst_1', type: 'text', maxlen: 30, size: 30, value: ckdst[0] || ''},
 				{ title: '<% translate("Target"); %> 2', indent: 2, name: 'f_mwan_ckdst_2', type: 'text', maxlen: 30, size: 30, value: ckdst[1] || ''}
-			], '#mwan-settings', 'data-table dataonly');
+			], '#mwan-settings', 'data-table other');
 
 			E('_mwan_num').onchange = function (){
 				refreshWanSection();
@@ -2037,20 +2038,11 @@ No part of this file may be used without permission.
 							['disabled','<% translate("Disabled"); %>']],
 							value: nvram['wan'+u+'_proto'] },
 						{ title: '<% translate("Wireless Client Mode"); %>', name: 'wan'+u+'_sta', type: 'select', options: sta_list, value: nvram['wan'+u+'_sta'] },
-						{ title: '<% translate("Modem device"); %>',
-							name: 'wan'+u+'_modem_dev',
-							type: 'select',
-							options: [['ttyUSB0', '/dev/ttyUSB0'],
-								['ttyUSB1', '/dev/ttyUSB1'],
-								['ttyUSB2', '/dev/ttyUSB2'],
-								['ttyUSB3', '/dev/ttyUSB3'],
-								['ttyUSB4', '/dev/ttyUSB4'],
-								['ttyUSB5', '/dev/ttyUSB5'],
-								['ttyUSB6', '/dev/ttyUSB6'],
-								['ttyACM0', '/dev/ttyACM0']],
+						{ title: '<% translate("Modem device"); %>', name: 'wan'+u+'_modem_dev', type: 'select',
+							options: [['ttyUSB0', '/dev/ttyUSB0'],['ttyUSB1', '/dev/ttyUSB1'],['ttyUSB2', '/dev/ttyUSB2'],['ttyUSB3', '/dev/ttyUSB3'],['ttyUSB4', '/dev/ttyUSB4'],['ttyUSB5', '/dev/ttyUSB5'],['ttyUSB6', '/dev/ttyUSB6'],['ttyACM0', '/dev/ttyACM0']],
 							value: nvram['wan'+u+'_modem_dev'] },
 						{ title: '<% translate("Load Balance Weight"); %>', name: 'wan'+u+'_weight', type: 'text', maxlen: 3, size: 8, value: nvram['wan'+u+'_weight'], suffix: ' <i>(<% translate("Failover"); %>: 0; <% translate("Load balancing"); %>: 1 - 256)</i>' },
-						{ title: '<% translate("PIN Code"); %>', name: 'wan'+u+'_modem_pin', type: 'text', maxlen: 6, size: 8, value: nvram['wan'+u+'modem_pin'], suffix: ' <i><% translate("Advised to turn off PIN Code"); %></i>' },
+						{ title: '<% translate("PIN Code"); %>', name: 'wan'+u+'_modem_pin', type: 'text', maxlen: 6, size: 8, value: nvram['wan'+u+'modem_pin'], suffix: ' <i>Advised to turn off PIN Code</i>' },
 						{ title: '<% translate("Modem init string"); %>', name: 'wan'+u+'_modem_init', type: 'text', maxlen: 25, size: 32, value: nvram['wan'+u+'_modem_init'] },
 						{ title: '<% translate("APN"); %>', name: 'wan'+u+'_modem_apn', type: 'text', maxlen: 25, size: 32, value: nvram['wan'+u+'_modem_apn'] },
 						{ title: '<% translate("Network Type"); %>', name: 'wan'+u+'_modem_speed', type: 'select', options: [['00', '<% translate("Auto"); %>'],['030201', '<% translate("4G/3G/2G"); %>'],['0302', '<% translate("4G/3G only"); %>'],['03', '<% translate("4G only"); %>'],['02', '<% translate("3G only"); %>']], value: nvram['wan'+u+'_modem_speed'], suffix: ' <i><% translate("works only with non-Hilink modems"); %></i>' },
@@ -2069,22 +2061,22 @@ No part of this file may be used without permission.
 						{ title: '<% translate("DNS"); %> 2', indent: 2, name: 'f_wan'+u+'_dns_2', type: 'text', maxlen: 15, size: 17, value: dns[1] || '0.0.0.0' },
 						{ title: '<% translate("Connect Mode"); %>', name: 'wan'+u+'_ppp_demand', type: 'select', options: [['1', '<% translate("Connect On Demand"); %>'],['0', '<% translate("Keep Alive"); %>']],
 							value: nvram['wan'+u+'_ppp_demand'] },
-						{ title: '<% translate("Max Idle Time"); %>', indent: 2, name: 'wan'+u+'_ppp_idletime', type: 'text', maxlen: 5, size: 7, suffix: ' <i>(<% translate("minutes"); %>)</i>',
+						{ title: '<% translate("Max Idle Time"); %>', indent: 2, name: 'wan'+u+'_ppp_idletime', type: 'text', maxlen: 5, size: 7, suffix: ' <i><% translate("minutes"); %></i>',
 							value: nvram['wan'+u+'_ppp_idletime'] },
-						{ title: '<% translate("Redial Interval"); %>', indent: 2, name: 'wan'+u+'_ppp_redialperiod', type: 'text', maxlen: 5, size: 7, suffix: ' <i>(<% translate("seconds"); %>)</i>',
+						{ title: '<% translate("Redial Interval"); %>', indent: 2, name: 'wan'+u+'_ppp_redialperiod', type: 'text', maxlen: 5, size: 7, suffix: ' <i><% translate("seconds"); %></i>',
 							value: nvram['wan'+u+'_ppp_redialperiod'] },
-						{ title: '<% translate("LCP Echo Interval"); %>', indent: 2, name: 'wan'+u+'_pppoe_lei', type: 'text', maxlen: 5, size: 7, suffix: ' <i><% translate("seconds"); %> (<% translate("range"); %>: 1 - 60; <% translate("default"); %>: 10)</i>',
+						{ title: '<% translate("LCP Echo Interval"); %>', indent: 2, name: 'wan'+u+'_pppoe_lei', type: 'text', maxlen: 5, size: 7, suffix: ' <i><% translate("seconds"); %> <small>(<% translate("range"); %>: 1 - 60; <% translate("default"); %>: 10)</small></i>',
 							value: nvram['wan'+u+'_pppoe_lei'] },
-						{ title: '<% translate("LCP Echo Link fail limit"); %>', indent: 2, name: 'wan'+u+'_pppoe_lef', type: 'text', maxlen: 5, size: 7, suffix: ' <i>(<% translate("range"); %>: 1 - 10; <% translate("default"); %>: 5)</i>',
+						{ title: '<% translate("LCP Echo Link fail limit"); %>', indent: 2, name: 'wan'+u+'_pppoe_lef', type: 'text', maxlen: 5, size: 7, suffix: ' <i><small>(<% translate("range"); %>: 1 - 10; <% translate("default"); %>: 5)</small></i>',
 							value: nvram['wan'+u+'_pppoe_lef'] },
 						{ title: '<% translate("MTU"); %>', multi: [
 							{ name: 'wan'+u+'_mtu_enable', type: 'select', options: [['0', '<% translate("Default"); %>'],['1','<% translate("Manual"); %>']], value: nvram['wan'+u+'mtu_enable'] },
 							{ name: 'f_wan'+u+'_mtu', type: 'text', maxlen: 4, size: 6, value: nvram['wan'+u+'_mtu'] } ] },
 						{ title: '<% translate("Single Line MLPPP"); %>', name: 'f_wan'+u+'_ppp_mlppp', type: 'checkbox', value: (nvram['wan'+u+'_ppp_mlppp'] == 1) },
-						{ title: '<% translate("Route Modem IP"); %>', name: 'wan'+u+'_modem_ipaddr', type: 'text', maxlen: 15, size: 17, suffix: ' <i>(<% translate("must be in different subnet to router"); %>, 0.0.0.0 <% translate("to disable"); %>)</i>', value: nvram['wan'+u+'_modem_ipaddr'] },
+						{ title: '<% translate("Route Modem IP"); %>', name: 'wan'+u+'_modem_ipaddr', type: 'text', maxlen: 15, size: 17, suffix: ' <i><small>(<% translate("must be in different subnet to router"); %>, 0.0.0.0 <% translate("to disable"); %>)</small></i>', value: nvram['wan'+u+'_modem_ipaddr'] },
 						{ title: '<% translate("Bridge WAN port to primary LAN"); %> (br0)', name: 'f_wan'+u+'_islan', type: 'checkbox', value: (nvram['wan'+u+'_islan'] == 1) }
 						];	// form
-					
+
 			htmlOut += createFormFields(f);
 			htmlOut += ('</div>');	// wan[x]-settings
 		htmlOut += ('</div>');	// network-wan[x]
@@ -2108,13 +2100,13 @@ No part of this file may be used without permission.
 
 			</div>
 			<script type="text/javascript">
-				dns = nvram['wan'+u+'_dns'].split(/\s+/);
+				dns = nvram.wan_dns.split(/\s+/);
 				$('.content.lan-settings').forms([
 					{ title: '<% translate("Default Gateway"); %>', name: 'lan_gateway', type: 'text', maxlen: 15, size: 17, value: nvram.lan_gateway },
 					{ title: '<% translate("Static DNS"); %>', suffix: '&nbsp; <i>(<% translate("IP:port"); %>)</i>', name: 'f_dns_1', type: 'text', maxlen: 21, size: 25, value: dns[0] || '0.0.0.0' },
 					{ title: '', name: 'f_dns_2', type: 'text', maxlen: 21, size: 25, value: dns[1] || '0.0.0.0' },
 					/* DNSSEC-BEGIN */
-					{ title: '<% translate("Enable DNSSEC"); %>', name: 'f_dnssec_enable', type: 'checkbox', suffix: ' <i>(<% translate("must be supported by the upstream nameservers"); %>)</i>', value: (nvram.dnssec_enable == 1) },
+					{ title: '<% translate("Enable DNSSEC"); %>', name: 'f_dnssec_enable', type: 'checkbox', suffix: ' <i><small>(<% translate("must be supported by the upstream nameservers"); %>)</small></i>', value: (nvram.dnssec_enable == 1) },
 					/* DNSSEC-END */
 					/* DNSCRYPT-BEGIN */
 					{ title: '<% translate("Use dnscrypt-proxy"); %>', name: 'f_dnscrypt_proxy', type: 'checkbox', value: (nvram.dnscrypt_proxy == 1) },
@@ -2184,7 +2176,7 @@ No part of this file may be used without permission.
 						{ title: '<% translate("Enable Wireless"); %>', name: 'f_wl'+u+'_radio', type: 'checkbox',
 							value: (eval('nvram.wl'+u+'_radio') == '1') && (eval('nvram.wl'+u+'_net_mode') != 'disabled') },
 						{ title: '<% translate("MAC Address"); %>', text: '<a href="/#advanced-mac.asp">' + eval('nvram.wl'+u+'_hwaddr') + '</a>' },
-						{ title: '<% translate("Wireless Mode"); %>', name: 'f_wl'+u+'_mode', type: 'select',
+						{ title: '<% translate("Wireless Mode"); %>', name: 'f_wl'+u+'_mode', type: 'select', suffix: ' <i><small><% translate("Wireless Client must be setup in WAN section"); %></small></i>',
 							options: [['ap', '<% translate("Access Point"); %>'],['apwds', '<% translate("Access Point + WDS"); %>'],['sta', '<% translate("Wireless Client"); %>'],['wet', '<% translate("Wireless Ethernet Bridge"); %>'],['wds', '<% translate("WDS"); %>']],
 							value: ((eval('nvram.wl'+u+'_mode') == 'ap') && (eval('nvram.wl'+u+'_wds_enable') == '1')) ? 'apwds' : eval('nvram.wl'+u+'_mode') },
 						{ title: '<% translate("Radio Band"); %>', name: 'f_wl'+u+'_nband', type: 'select', options: bands[uidx],
@@ -2211,7 +2203,7 @@ No part of this file may be used without permission.
 						{ title: '<% translate("Shared Key"); %>', indent: 2, name: 'wl'+u+'_radius_key', type: 'password', maxlen: 64, size: 32, peekaboo: 1,
 							suffix: ' <button class="btn" type="button" id="_f_wl'+u+'_psk_random2" value="<% translate("Random"); %>" onclick="random_psk(\'_wl'+u+'_radius_key\')"><% translate("Random"); %></button>',
 							value: eval('nvram.wl'+u+'_radius_key') },
-						{ title: '<% translate("Group Key Renewal"); %>', indent: 2, name: 'wl'+u+'_wpa_gtk_rekey', type: 'text', maxlen: 4, size: 6, suffix: ' <i>(<% translate("seconds"); %>)</i>',
+						{ title: '<% translate("Group Key Renewal"); %>', indent: 2, name: 'wl'+u+'_wpa_gtk_rekey', type: 'text', maxlen: 4, size: 6, suffix: ' <i><% translate("seconds"); %></i>',
 							value: eval('nvram.wl'+u+'_wpa_gtk_rekey') },
 						{ title: '<% translate("Radius Server"); %>', indent: 2, multi: [
 							{ name: 'wl'+u+'_radius_ipaddr', type: 'text', maxlen: 15, size: 17, value: eval('nvram.wl'+u+'_radius_ipaddr') },

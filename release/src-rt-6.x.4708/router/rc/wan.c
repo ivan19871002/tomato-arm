@@ -1280,7 +1280,6 @@ void stop_wan_if(char *prefix)
 	//stop_pppoe(prefix);
 	stop_ppp(prefix);	// one for all
 	stop_dhcpc(prefix);
-	nvram_set(strcat_r(prefix, "_get_dns", tmp), ""); //"wan_get_dns"
 
 	wan_proto = get_wanx_proto(prefix);
 
@@ -1303,8 +1302,9 @@ void stop_wan_if(char *prefix)
 	mwan_load_balance();
 
 	/* clear old IP params from nvram on stop */
-	nvram_set(strcat_r(prefix, "_netmask", tmp), "0.0.0.0");
-	nvram_set(strcat_r(prefix, "_gateway_get", tmp), "0.0.0.0");
+	nvram_set(strcat_r(prefix, "_netmask", tmp), "0.0.0.0"); //"wan_netmask"
+	nvram_set(strcat_r(prefix, "_gateway_get", tmp), "0.0.0.0"); //"wan_gateway_get"
+	nvram_set(strcat_r(prefix, "_get_dns", tmp), ""); //"wan_get_dns"
 
 	xstart("watchdog", prefix, "del");
 

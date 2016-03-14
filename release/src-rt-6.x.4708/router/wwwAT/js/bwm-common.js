@@ -249,12 +249,16 @@ function loadData() {
 				REMOVE-END */
 				t = 'Wi-Fi <small>(' + i + ')</small>';
 			}
+			else if (i == 'br0')	{
+				t = 'LAN <small>(' + i + ')</small>';
+			}
 			else if ((nvram.wan_proto == 'pptp') || (nvram.wan2_proto == 'pptp')
+				|| (nvram.wan_proto == 'l2tp') || (nvram.wan2_proto == 'l2tp')
 /* MULTIWAN-BEGIN */
 			    ||(nvram.wan3_proto == 'pptp') || (nvram.wan4_proto == 'pptp')
 /* MULTIWAN-END */
 			) {
-				if (nvram.wan_ifname == i) t = 'MAN1 <small>(' + i + ')</small>';
+				if (nvram.wan_ifname == i) t = 'MAN <small>(' + i + ')</small>';
 				else if (nvram.wan2_ifname == i) t = 'MAN2 <small>(' + i + ')</small>';
 /* MULTIWAN-BEGIN */
 				else if (nvram.wan3_ifname == i) t = 'MAN3 <small>(' + i + ')</small>';
@@ -268,7 +272,7 @@ function loadData() {
 			    ||(nvram.wan4_proto == 'pppoe') || (nvram.wan4_proto == 'ppp3g')
 /* MULTIWAN-END */
 			) {
-				if (nvram.wan_iface == i) t = 'WAN1 <small>(' + i + ')</small>';
+				if (nvram.wan_iface == i) t = 'WAN <small>(' + i + ')</small>';
 				else if (nvram.wan2_iface == i) t = 'WAN2 <small>(' + i + ')</small>';
 /* MULTIWAN-BEGIN */
 				else if (nvram.wan3_iface == i) t = 'WAN3 <small>(' + i + ')</small>';
@@ -280,7 +284,7 @@ function loadData() {
 			    ||(nvram.wan3_proto != 'disabled') || (nvram.wan4_proto != 'disabled')
 /* MULTIWAN-END */
 			) {
-				if (nvram.wan_ifname == i) t = 'WAN1 <small>(' + i + ')</small>';
+				if (nvram.wan_ifname == i) t = 'WAN <small>(' + i + ')</small>';
 				else if (nvram.wan2_ifname == i) t = 'WAN2 <small>(' + i + ')</small>';
 /* MULTIWAN-BEGIN */
 				else if (nvram.wan3_ifname == i) t = 'WAN3 <small>(' + i + ')</small>';

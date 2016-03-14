@@ -2134,11 +2134,9 @@ static int init_nvram(void)
 			// nvram_set("blink_5g_interface","eth2");
 
 			// Advanced Tomato UI by default
-			// nvram_set("web_dir", "at");
-			// Tomato UI
-			nvram_set("web_dir", "default");
+			nvram_set("web_dir", "at");
 			// Russian Lang by default
-			nvram_set("web_lang", "ru_RU");
+			//nvram_set("web_lang", "ru_RU");
 
 			// fix WL mac`s
 			strcpy(s, nvram_safe_get("et0macaddr"));
@@ -2398,7 +2396,7 @@ static int init_nvram(void)
 			// Advanced Tomato UI by default
 			nvram_set("web_dir", "at");
 			// Russian Lang by default
-			nvram_set("web_lang", "ru_RU");
+			//nvram_set("web_lang", "ru_RU");
 
 			// fix WL mac`s
 			strcpy(s, nvram_safe_get("et0macaddr"));

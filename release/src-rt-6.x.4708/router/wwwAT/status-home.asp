@@ -308,8 +308,8 @@
 			data+=	'<button type="button" class="btn btn-danger pull-left" onclick="wan_disconnect('+uidx+')" value="<% translate("Disconnect"); %>" id="b'+u+'_disconnect" style="display:none"><% translate("Disconnect"); %> <i class="icon-disable"></i></button>';
 
 			data+=	'<div id="b'+u+'_dhcpc" class="btn-group pull-left" style="margin-left: 5px; display:none;">';
-				data+=	'<button type="button" class="btn" onclick="dhcpc("renew","wan'+u+'")" value="<% translate("Renew"); %>"><% translate("Renew"); %></button>';
-				data+=	'<button type="button" class="btn" onclick="dhcpc("release","wan'+u+'")" value="<% translate("Release"); %>"><% translate("Release"); %></button>';
+				data+=	'<button type="button" class="btn" onclick="dhcpc(\'renew\', \'wan'+u+'\')" value="Renew"><% translate("Renew"); %></button>';
+				data+=	'<button type="button" class="btn" onclick="dhcpc(\'release\', \'wan'+u+'\')" value="Release"><% translate("Release"); %></button>';
 			data+=	'</div>';
 
 			data+=	'<div class="clearfix"></div>';

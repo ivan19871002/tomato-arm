@@ -118,7 +118,7 @@ int checkConnect(char *sPrefix)
 		}
 
 	} else {
-		mwanlog(LOG_EMERG, "OUT checkConnect, %s is disconnected", sPrefix);
+		mwanlog(LOG_DEBUG, "OUT checkConnect, %s is disconnected", sPrefix);
 		return 0;
 	}
 }

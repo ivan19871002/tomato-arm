@@ -296,8 +296,8 @@ No part of this file may be used without permission.
 				for (i = 0; i < 11; ++i) {
 					$('#firstTable').prepend('<tr style="cursor:pointer" onclick="mClick(' + i + ')">' +
 						'<td class="color" style="background:#' + colors[i] + '" onclick="mClick(' + i + ')">&nbsp;</td>' +
-						'<td class="title" style="width:60px">' + abc[i] + '</td>' +
-						'<td id="ccnt' + i + '" class="count" style="width:90px"></td>' +
+						'<td class="title">' + abc[i] + '</td>' +
+						'<td id="ccnt' + i + '" class="count"></td>' +
 						'<td id="cpct' + i + '" class="pct"></td></tr>');
 				}
 			</script>
@@ -319,9 +319,9 @@ No part of this file may be used without permission.
 					for (i = 1; i < 11; ++i) {
 						$('#secondTable').prepend('<tr style="cursor:pointer" onclick="mClick(' + i + ')">' +
 							'<td class="color" style="background:#' + colors[i] + '" onclick="mClick(' + i + ')">&nbsp;</td>' +
-							'<td class="title" style="width:45px">' + abc[i] + '</td>' +
-							'<td id="bocnt' + i + '" class="count" style="width:60px"></td>' +
-							'<td id="bocntx' + i + '" class="count" style="width:50px"></td>' +
+							'<td class="title">' + abc[i] + '</td>' +
+							'<td id="bocnt' + i + '" class="count"></td>' +
+							'<td id="bocntx' + i + '" class="count"></td>' +
 							'<td id="bopct' + i + '" class="pct"></td></tr>');
 					}
 				</script>

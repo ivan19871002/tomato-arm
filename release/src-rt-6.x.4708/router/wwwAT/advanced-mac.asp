@@ -149,7 +149,7 @@ No part of this file may be used without permission.
 		<script type="text/javascript">
 			for (var uidx = 0; uidx < wl_ifaces.length; ++uidx) {
 				var u = wl_fface(uidx);
-				$("input[name='mac_wan']").after('<input type=\'hidden\' id=\'_wl'+u+'_hwaddr\' name=\'wl'+u+'_hwaddr\'>');
+				$("input[name='wan_mac']").before('<input type=\'hidden\' id=\'_wl'+u+'_hwaddr\' name=\'wl'+u+'_hwaddr\'>');
 			}
 		</script>
 

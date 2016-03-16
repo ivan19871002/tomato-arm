@@ -104,7 +104,7 @@ No part of this file may be used without permission.
 
 	<a href="javascript:genData()" class="btn btn-primary"><% translate("Data"); %> <i class="icon-drive"></i></a>
 	<a href="admin-bwm.asp" class="btn btn-danger ajaxload"><% translate("Configure"); %> <i class="icon-tools"></i></a>
-	<span class="pull-right">
+	<span class="pull-right bordered-select">
 		<b><% translate("Date"); %></b> <select onchange="changeDate(this, 'ym')" id="dafm"><option value="0">yyyy-mm</option><option value="1">mm-yyyy</option><option value="2">mmm yyyy</option><option value="3">mm.yyyy</option></select> &nbsp;
 		<b><% translate("Scale"); %></b> <select onchange="changeScale(this)" id="scale"><option value="0">KB</option><option value="1">MB</option><option value="2" selected>GB</option></select>
 	</span>

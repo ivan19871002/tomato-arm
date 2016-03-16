@@ -56,7 +56,7 @@ a:hover, a:active {
 }
 
 /* Tabs */
-ul.nav-tabs {
+ul.nav-tabs, .bordered-select {
 	border: 1px solid #3bb;
 	background: rgba(51,187,187,0.5);
 }

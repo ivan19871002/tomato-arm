@@ -236,7 +236,7 @@ No part of this file may be used without permission.
 	</div>
 
 	<a href="admin-bwm.asp" class="btn btn-danger ajaxload"><% translate("Configure"); %> <i class="icon-tools"></i></a>
-	<span class="pull-right">
+	<span id=controls class="pull-right bordered-select">
 		<b><% translate("Show"); %></b> <select onchange="changeMode(this)" id="shmode"><option value="1" selected><% translate("Summary"); %><option value="0"><% translate("Full"); %></select> &nbsp;
 		<b><% translate("Date"); %></b> <select onchange="changeDate(this, 'ymd')" id="dafm"><option value="0">yyyy-mm-dd</option><option value="1">mm-dd-yyyy</option><option value="2">mmm dd, yyyy</option><option value="3">dd.mm.yyyy</option></select>  &nbsp;
 		<b><% translate("Week Start"); %></b> <select onchange="changeStart(this)" id="startwk"><option value="0" selected><% translate("Sun"); %><option value="1"><% translate("Mon"); %><option value="2"><% translate("Tue"); %><option value="3"><% translate("Wed"); %><option value="4"><% translate("Thu"); %><option value="5"><% translate("Fri"); %><option value="6"><% translate("Sat"); %></select>  &nbsp;

@@ -1297,6 +1297,34 @@ input:disabled, select:disabled, textarea:disabled {
 	background-color: #eee;
 }
 
+/* Tabs-like select block */
+.bordered-select {
+	border-radius: 3px;
+	border: 1px solid #0088cc;
+	background: rgba(0,136,204,0.5);
+}
+.pull-right.bordered-select {
+	padding: 2px 2px 2px 16px;
+}
+.bordered-select b {
+	color: #ccc;
+}
+.bordered-select select {
+	height: 28px;
+	line-height: 28px;
+	border: 0px;
+	background: rgba(255,255,255,0.1);
+	color: white;
+}
+.bordered-select select:hover, .bordered-select select:focus, .bordered-select select:active {
+	background: rgba(255,255,255,0.1);
+	color: white;
+}
+.bordered-select select>option {
+	color:#fff !important;
+	background-color:#2c3037;
+}
+
 select#refresh-time, select#expire-time { /* good for dark bg */
 	box-shadow: 0 0 0 0;
 	-webkit-box-shadow: 0 0 0 0;

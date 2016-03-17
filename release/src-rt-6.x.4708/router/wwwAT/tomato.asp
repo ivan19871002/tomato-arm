@@ -2437,6 +2437,7 @@ function navi()
 			'<% translate("MAC Address"); %>':		'advanced-mac.asp',
 			'<% translate("Miscellaneous"); %>':		'advanced-misc.asp',
 			'<% translate("Routing"); %>':			'advanced-routing.asp',
+			'<% translate("MultiWAN Routing"); %>':		'advanced-pbr.asp',
 			/* TOR-BEGIN */
 			'<% translate("Tor Project"); %>':		'advanced-tor.asp',
 			/* TOR-END */

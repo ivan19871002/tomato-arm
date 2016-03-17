@@ -13,60 +13,89 @@ No part of this file may be used without permission.
 		}
 	</style>
 	<script type="text/javascript">
-		//	<% nvram("at_update,tomatoanon_answer,tor_enable,tor_socksport,tor_transport,tor_dnsport,tor_datadir,tor_users,tor_custom,tor_iface,lan_ifname,lan1_ifname,lan2_ifname,lan3_ifname"); %>
+		//<% nvram("tor_enable,tor_socksport,tor_transport,tor_dnsport,tor_datadir,tor_users,tor_ports,tor_ports_custom,tor_custom,tor_iface,lan_ifname,lan1_ifname,lan2_ifname,lan3_ifname"); %>
 
 		function verifyFields(focused, quiet)
 		{
 			var ok = 1;
-			var a = E('_f_tor_enable').checked;
-			var o = (E('_tor_iface').value == 'custom');
-			E('_tor_socksport').disabled = !a;
-			E('_tor_transport').disabled = !a;
-			E('_tor_dnsport').disabled = !a;
-			E('_tor_datadir').disabled = !a;
-			E('_tor_iface').disabled = !a;
-			E('_tor_custom').disabled = !a;
-			elem.display('_tor_users', o && a);
-			var bridge = E('_tor_iface');
-			if(nvram.lan_ifname.length < 1)
-				bridge.options[0].disabled=true;
-			if(nvram.lan1_ifname.length < 1)
-				bridge.options[1].disabled=true;
-			if(nvram.lan2_ifname.length < 1)
-				bridge.options[2].disabled=true;
-			if(nvram.lan3_ifname.length < 1)
-				bridge.options[3].disabled=true;
-			var s = E('_tor_custom');
-			if (s.value.search(/SocksPort/) == 0)  {
-				ferror.set(s, 'Cannot set "SocksPort" option here. You can set it in Tomato GUI', quiet);
-				ok = 0; }
-			if (s.value.search(/SocksBindAddress/) == 0)  {
-				ferror.set(s, 'Cannot set "SocksBindAddress" option here.', quiet);
-				ok = 0; }
-			if (s.value.search(/AllowUnverifiedNodes/) == 0)  {
-				ferror.set(s, 'Cannot set "AllowUnverifiedNodes" option here.', quiet);
-				ok = 0; }
-			if (s.value.search(/Log/) == 0)  {
-				ferror.set(s, 'Cannot set "Log" option here.', quiet);
-				ok = 0; }
-			if (s.value.search(/DataDirectory/) == 0)  {
-				ferror.set(s, 'Cannot set "DataDirectory" option here. You can set it in Tomato GUI', quiet);
-				ok = 0; }
-			if (s.value.search(/TransPort/) == 0)  {
-				ferror.set(s, 'Cannot set "TransPort" option here. You can set it in Tomato GUI', quiet);
-				ok = 0; }
-			if (s.value.search(/TransListenAddress/) == 0)  {
-				ferror.set(s, 'Cannot set "TransListenAddress" option here.', quiet);
-				ok = 0; }
-			if (s.value.search(/DNSPort/) == 0)  {
-				ferror.set(s, 'Cannot set "DNSPort" option here. You can set it in Tomato GUI', quiet);
-				ok = 0; }
-			if (s.value.search(/DNSListenAddress/) == 0)  {
-				ferror.set(s, 'Cannot set "DNSListenAddress" option here.', quiet);
-				ok = 0; }
-			if (s.value.search(/User/) == 0)  {
-				ferror.set(s, 'Cannot set "User" option here.', quiet);
-				ok = 0; }
+
+			var a = E( '_f_tor_enable' ).checked;
+			var o = (E( '_tor_iface' ).value == 'custom');
+			var p = (E( '_tor_ports' ).value == 'custom');
+
+			E( '_tor_socksport' ).disabled = !a;
+			E( '_tor_transport' ).disabled = !a;
+			E( '_tor_dnsport' ).disabled   = !a;
+			E( '_tor_datadir' ).disabled   = !a;
+			E( '_tor_iface' ).disabled     = !a;
+			E( '_tor_ports' ).disabled     = !a;
+			E( '_tor_custom' ).disabled    = !a;
+
+			elem.display( '_tor_users', o && a );
+			elem.display( '_tor_ports_custom', p && a );
+
+			var bridge = E( '_tor_iface' );
+			if ( nvram.lan_ifname.length < 1 )
+				bridge.options[ 0 ].disabled = true;
+			if ( nvram.lan1_ifname.length < 1 )
+				bridge.options[ 1 ].disabled = true;
+			if ( nvram.lan2_ifname.length < 1 )
+				bridge.options[ 2 ].disabled = true;
+			if ( nvram.lan3_ifname.length < 1 )
+				bridge.options[ 3 ].disabled = true;
+
+			var s = E( '_tor_custom' );
+
+			if ( s.value.search( /SocksPort/ ) == 0 ) {
+				ferror.set( s, 'Cannot set "SocksPort" option here. You can set it in Tomato GUI', quiet );
+				ok = 0;
+			}
+
+			if ( s.value.search( /SocksBindAddress/ ) == 0 ) {
+				ferror.set( s, 'Cannot set "SocksBindAddress" option here.', quiet );
+				ok = 0;
+			}
+
+			if ( s.value.search( /AllowUnverifiedNodes/ ) == 0 ) {
+				ferror.set( s, 'Cannot set "AllowUnverifiedNodes" option here.', quiet );
+				ok = 0;
+			}
+
+			if ( s.value.search( /Log/ ) == 0 ) {
+				ferror.set( s, 'Cannot set "Log" option here.', quiet );
+				ok = 0;
+			}
+
+			if ( s.value.search( /DataDirectory/ ) == 0 ) {
+				ferror.set( s, 'Cannot set "DataDirectory" option here. You can set it in Tomato GUI', quiet );
+				ok = 0;
+			}
+
+			if ( s.value.search( /TransPort/ ) == 0 ) {
+				ferror.set( s, 'Cannot set "TransPort" option here. You can set it in Tomato GUI', quiet );
+				ok = 0;
+			}
+
+			if ( s.value.search( /TransListenAddress/ ) == 0 ) {
+				ferror.set( s, 'Cannot set "TransListenAddress" option here.', quiet );
+				ok = 0;
+			}
+
+			if ( s.value.search( /DNSPort/ ) == 0 ) {
+				ferror.set( s, 'Cannot set "DNSPort" option here. You can set it in Tomato GUI', quiet );
+				ok = 0;
+			}
+
+			if ( s.value.search( /DNSListenAddress/ ) == 0 ) {
+				ferror.set( s, 'Cannot set "DNSListenAddress" option here.', quiet );
+				ok = 0;
+			}
+
+			if ( s.value.search( /User/ ) == 0 ) {
+				ferror.set( s, 'Cannot set "User" option here.', quiet );
+				ok = 0;
+			}
+
 			return ok;
 		}
 		function save()
@@ -105,13 +134,20 @@ No part of this file may be used without permission.
 						null,
 						{ title: '<% translate("Redirect all users from"); %>', multi: [
 							{ name: 'tor_iface', type: 'select', options: [
-								['br0','LAN (br0)'],
-								['br1','LAN1 (br1)'],
-								['br2','LAN2 (br2)'],
-								['br3','LAN3 (br3)'],
-								['custom','<% translate("Only selected IP`s"); %>']
+								['br0','<% translate("LAN"); %> (br0)'],
+								['br1','<% translate("LAN1"); %> (br1)'],
+								['br2','<% translate("LAN2"); %> (br2)'],
+								['br3','<% translate("LAN3"); %> (br3)'],
+								['custom','<% translate("Selected IP`s"); %>']
 								], value: nvram.tor_iface },
 							{ name: 'tor_users', type: 'text', maxlen: 512, size: 64, value: nvram.tor_users } ] },
+						{ title: '<% translate("Redirect TCP Ports"); %>', multi: [
+							{ name: 'tor_ports', type: 'select', options: [
+								['80','<% translate("HTTP only"); %> (TCP 80)'],
+								['80,443','<% translate("HTTP/HTTPS"); %> (TCP 80,443)'],
+								['custom','<% translate("Selected Ports"); %>']
+							 ], value: nvram.tor_ports },
+							{ name: 'tor_ports_custom', type: 'text', maxlen: 512, size: 64, value: nvram.tor_ports_custom } ] },
 						null,
 						{ title: '<% translate("Custom Configuration"); %>', name: 'tor_custom', type: 'textarea', value: nvram.tor_custom }
 					]);
@@ -121,9 +157,9 @@ No part of this file may be used without permission.
 				<div class="section">
 					<ul>
 						<li><b><% translate("Enable TOR"); %></b> - <% translate("Be patient. Starting the TOR client can take from several seconds to several minutes"); %>.
-						<li><b><% translate("Only selected IP`s"); %></b> - <% translate("ex"); %>: 1.2.3.4,1.1.0/24,1.2.3.1-1.2.3.4
-						<li><% translate("Only connections to destination port 80 are redirected to TOR"); %>.
-						<li><span style="color: red;"><% translate("Caution!"); %></span> - <% translate("If your router only has 32MB of RAM, you'll have to use swap"); %>.
+						<li><b><% translate("Selected IP`s"); %></b> - <% translate("ex"); %>: 1.2.3.4,1.1.0/24,1.2.3.1-1.2.3.4
+						<li><b><% translate("HTTP Only"); %></b> - <% translate("Only connections to destination port 80 are redirected to TOR"); %>.
+						<li><b><% translate("Selected Ports"); %></b> - <% translate("ex"); %>: <% translate("one port"); %> (80), <% translate("few ports"); %> (80,443,8888), <% translate("range of ports"); %> (80:88), <% translate("mix"); %> (80,8000:9000,9999)						<li><span style="color: red;"><% translate("Caution!"); %></span> - <% translate("If your router only has 32MB of RAM, you'll have to use swap"); %>.
 					</ul>
 				</div>
 			</div>

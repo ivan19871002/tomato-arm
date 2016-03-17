@@ -84,6 +84,14 @@ a:hover, a:active {
 	text-decoration: none;
 }
 
+#webmon-controls {
+	color: #ccc;
+	padding-right: 16px;
+}
+#webmon-controls a {
+	color: #fff;
+}
+
 h1, h2, h3, h4, h5 {
 	font-family: inherit;
 	font-weight: 500;
@@ -843,7 +851,7 @@ table tr.editor td input:not([type='checkbox']),
 table tr.editor td select,
 table tr.editor td textarea {
 	padding: 5px 4px;
-	width: 100%;
+/*	width: 100%;	*/
 }
 
 table .header {

@@ -99,6 +99,9 @@
 					<!-- TOR-BEGIN -->
 					- <% translate("TOR Project integration and GUI"); %><br>
 					<!-- TOR-END -->
+					<!-- OPENVPN-BEGIN -->
+					- <% translate("OpenVPN: Routing Policy"); %><br>
+					<!-- OPENVPN-END -->
 					- <% translate("TomatoAnon project integration and GUI"); %><br>
 					- <% translate("TomatoThemeBase project integration and GUI"); %><br>
 					- <% translate("Ethernet Ports State"); %><br>

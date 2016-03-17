@@ -187,7 +187,12 @@ do {
 			wlstats[uidx].ifstatus = '<% translate("Up"); %>';
 			for (i = 0; i < xifs.length ; ++i) {
 				if ((nvram[xifs[i] + '_ifnames']).indexOf(wl_ifaces[uidx][0]) >= 0) {
-					wlstats[uidx].ifstatus = wlstats[uidx].ifstatus + ' (' + xifs[i].toUpperCase() + ')';
+					var name = xifs[i].toUpperCase();
+					// LAN1 -> LAN2
+					if (name == "LAN1") name = "LAN2";
+					else if (name == "LAN2") name = "LAN3";
+					else if (name == "LAN3") name = "LAN4";
+					wlstats[uidx].ifstatus = wlstats[uidx].ifstatus + ' (' + name + ')';
 					break;
 				}
 			}

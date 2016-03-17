@@ -292,7 +292,7 @@ float: left;
 </div>
 <div>
 <hr>
-Note: Policy routing traffic only work on the LAN to the Internet.<br>
+<% translate("Note"); %>: <% translate("Policy routing traffic only work on the LAN to the Internet"); %>.<br>
 </div>
 </td></tr>
 <tr><td id='footer' colspan=2>

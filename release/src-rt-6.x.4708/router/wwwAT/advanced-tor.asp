@@ -143,7 +143,7 @@ No part of this file may be used without permission.
 							{ name: 'tor_users', type: 'text', maxlen: 512, size: 64, value: nvram.tor_users } ] },
 						{ title: '<% translate("Redirect TCP Ports"); %>', multi: [
 							{ name: 'tor_ports', type: 'select', options: [
-								['80','<% translate("HTTP only"); %> (TCP 80)'],
+								['80','<% translate("HTTP Only"); %> (TCP 80)'],
 								['80,443','<% translate("HTTP/HTTPS"); %> (TCP 80,443)'],
 								['custom','<% translate("Selected Ports"); %>']
 							 ], value: nvram.tor_ports },

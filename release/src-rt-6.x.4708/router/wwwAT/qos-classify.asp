@@ -13,47 +13,45 @@ No part of this file may be used without permission.
 	table.line-table tr td.co2 { width:13%; }
 	table.line-table tr td.co3 { width:21%; }
 	table.line-table tr td.co4 { width:4%; }
-	
+
 	/* Style the first editorRow column */
 		.erow div.xa { width: 30%; padding: 0px; display: inline}
-		.erow div.xa input, .erow div.xa select { width: 30%;}
-	
+		table .editor .erow div.xa input, .erow div.xa select { width: 30%;}
+
 	/* Style second editorRow column */
 		.erow div.xb { width: 65%; padding-left:10px; display: inline}
-		.erow div.xb input, .erow div.xb select  { width: 65%;}
-	
+		table .editor .erow div.xb input, .erow div.xb select  { width: 65%;}
+
 	/* Style third editorRow column */
-		.erow div.xc { padding-left:10px; display: inline}	
+		.erow div.xc { padding-left:10px; display: inline}
 
 	/* Style 4rth editorRow column */
-		.erow div.xd { display: inline}	
+		.erow div.xd { display: inline} 
 
 	/* Override default styling for editorRow 2 */
-		.erow.y2 div.xb { width: 22%; }						/* Column2 */
-		.erow.y2 div.xb select { width: 22%; }
+		.erow.y2 div.xb { width: 22%; }				/* Column2 */
+		table .editor .erow.y2 div.xb select { width: 22%; }
 		.erow.y2 div.xc { width: 42%; padding-left: 1px; }		/* Column3 */
-		.erow.y2 div.xc input { width: 42%; }
-	
+		table .editor .erow.y2 div.xc input { width: 42%; }
+
 	/* Override default styling for editorRow 5: Column1 (KB Transferred), Column2 (KB From), Column3 (the dash), Column4 (KB To) */		
-		
+
 		/* Text only fields (Column 1 & Column 3) */
 		.erow.y5 div.xa,
-		.erow.y5 div.xc { display: inline-block; padding-top: 18px; }
-		
-		.erow.y5 div.xa { padding-left: 11px; width: 30%; margin-right: 4px; }													/* Column1 (KB Transferred) */
-		.erow.y5 div.xb { width: 31%; padding-right: 0px; }										/* Column2 (KB From) 		*/
-		.erow.y5 div.xb input { width: 31%; }
-		.erow.y5 div.xc { width: 2%; padding-left: 0px; padding-right:0px; text-align:center }	/* Column3 (the dash) 		*/
-		.erow.y5 div.xd { width: 31%; padding-left: 0px; }										/* Column4 (KB To)			*/
-		.erow.y5 div.xd input { width: 31%; }
+		.erow.y5 div.xc { display: inline-block; padding-top:0px; }
+		.erow.y5 div.xa { padding-left: 11px; width: 30%; margin-right: 4px; }	/* Column1 (KB Transferred) */
+		.erow.y5 div.xb { width: 31%; padding-right: 0px; }				/* Column2 (KB From) */
+		table .editor .erow.y5 div.xb input { width: 31%; }
+		.erow.y5 div.xc { width: 2%; padding-left: 0px; padding-right:0px; text-align:center }	/* Column3 (the dash) */
+		.erow.y5 div.xd { width: 31%; padding-left: 0px; }				/* Column4 (KB To) */
+		table .editor .erow.y5 div.xd input { width: 31%; }
 
 	</style>
 	<script type="text/javascript" src="js/protocols.js"></script>
 	<script type="text/javascript">
-		//    <% nvram("at_update,tomatoanon_answer,qos_classnames,qos_enable,qos_orules"); %>
+		//	  <% nvram("at_update,tomatoanon_answer,qos_classnames,qos_enable,qos_orules"); %>
 
 		var abc = nvram.qos_classnames.split(' '); // Toastman - configurable class names
-
 
 		var ipp2p = [
 			[0,'<% translate("IPP2P (disabled)"); %>'],[0xFFF,'<% translate("All IPP2P filters"); %>'],[1,'<% translate("AppleJuice"); %>'],[2,'<% translate("Ares"); %>'],[4,'<% translate("BitTorrent"); %>'],[8,'<% translate("Direct Connect"); %>'],
@@ -87,7 +85,7 @@ No part of this file may be used without permission.
 
 			s = '';
 			if (v != '') {
-				for (i = 1; i < dscp.length - 1; ++i)    // skip 1st and last elements
+				for (i = 1; i < dscp.length - 1; ++i)	 // skip 1st and last elements
 					if (dscp[i][0] * 1 == v * 1) {
 						s = dscp[i][1];
 						break;
@@ -228,21 +226,21 @@ No part of this file may be used without permission.
 			var obj = TGO(a);
 			/* Get the columnindex for the column that will be sorted */
 			var col = obj.sortColumn;
-			
+
 			var r;
-			/*  Compute the compareValue for this column (in ascending mode) */
+			/*	Compute the compareValue for this column (in ascending mode) */
 			var obj = TGO(a);
 			var col = obj.sortColumn;
 			var da = a.cells[col].innerHTML;
 			var db = b.cells[col].innerHTML;
 			var r;
-		
+
 			switch (col) {
 				case 3:		/* number */
 					r = cmpInt(da, db);
 					break;
-				case 0: 	/* Match rule */
-				case 1: 	/* Class */
+				case 0:		/* Match rule */
+				case 1:		/* Class */
 				case 2:		/* Description */
 				default:
 					r = cmpText(da, db);
@@ -253,7 +251,7 @@ No part of this file may be used without permission.
 			return obj.sortAscending ? r : -r;
 
 		}
-		
+
 		qosg.verifyFields = function(row, quiet) {
 			var f = fields.getAll(row);
 			var a, b, e;
@@ -349,7 +347,7 @@ No part of this file may be used without permission.
 				b = a[i].split('<');
 
 				if (b.length == 9) {
-					// fixup < 0.08    !!! temp
+					// fixup < 0.08	   !!! temp
 					b.splice(7, 0, '', '');
 				}
 				else if (b.length == 10) {
@@ -398,7 +396,7 @@ No part of this file may be used without permission.
 			form.submit(fom, 0);
 		}
 
-		function init()	{
+		function init() {
 			qosg.recolor();
 
 		}

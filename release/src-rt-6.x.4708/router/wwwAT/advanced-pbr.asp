@@ -8,6 +8,15 @@ No part of this file may be used without permission.
 -->
 <title>M-WAN: <% translate("Routing Policy"); %></title>
 <content>
+
+	<style>
+		div.x1a { display: inline-block; padding-right: 3px}
+		table tr.editor div.x1a select { width: 100% }
+		div.x1b { display: inline-block; }
+		table tr.editor div.x1b input {width: 100%;}
+		div.x1c {display: inline-block; width: 100%; padding-left: 10px;}
+		table tr.editor div.x1c input {width: 25%; margin-left: 6px}
+	</style>
 	<script type="text/javascript">
 		//	<% nvram("pbr_rules"); %>
 
@@ -56,8 +65,8 @@ No part of this file may be used without permission.
 							break;
 					}
 				}
-				else c.push('All');
-			} else c.push('All');
+				else c.push('<% translate("All"); %>');
+			} else c.push('<% translate("All"); %>');
 			if (data[1] >= -1) {
 				if (data[1] == -1) a.push('<% translate("TCP/UDP"); %>');
 				else if (data[1] == 6) a.push('<% translate("TCP"); %>');
@@ -67,7 +76,7 @@ No part of this file may be used without permission.
 					if (data[4] != '') b.push('<% translate("Port"); %>: ' + data[4].replace(/:/g, '-'));
 					if (data[7] != '') c.push('<% translate("Port"); %>: ' + data[7].replace(/:/g, '-'));
 				}
-			}	else a.push('All');
+			}	else a.push('<% translate("All"); %>');
 			d.push(getOUTifdesc(data[8] * 1));
 			return [(data[0] != '0') ? '<% translate("On"); %>' : '<% translate("Off"); %>', a.join('<br>'), b.join('<br>'), c.join('<br>'), d.join('<br>'), escapeHTML(data[9])];
 		}

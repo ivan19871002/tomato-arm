@@ -37,7 +37,7 @@
 
 #define mwanlog(level,x...) if(nvram_get_int("mwan_debug")>=level) syslog(level, x)
 
-/* // OBSOLETE
+/* // OBSOLETE 
 void ppp_prefix(char *wan_device, char *prefix)
 {
 	if (!wan_device || wan_device == "") {	// in case DEVICE is empty (PPTP/L2TP)

@@ -23,9 +23,11 @@ cd $SRC
 # git pull
 
 ### VERSION
-VER="134-ML"
-export BUILDNR="0134"
+VER="135-ML"
+export BUILDNR="0135"
 EXTENDNO=`git rev-parse --verify HEAD --short`
+# 1337
+echo "1336" > linux/linux-2.6/.version
 
 # BRANDING
 sed -i "s|HUAWEI = 0|HUAWEI = 1|" $SRC/router/wwwAT/Makefile

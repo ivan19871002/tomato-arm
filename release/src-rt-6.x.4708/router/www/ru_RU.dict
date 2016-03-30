@@ -2171,13 +2171,13 @@ Wireless Client Mode=Беспроводной клиент
 works only with non-Hilink modems=не применимо к модемам Hilink
 #status=
 #overview=
-
+Watchdog Mode=Способ проверки
 
 ### ADVANCED TOMATO ###
 Unable to connect to the interface=Не удалось подключиться к интерфейсу управления
 These issues usually occur when file is missing or router is unavailable to accept new connections=Это обычно происходит, если роутер не доступен или не принимает новые соединения
 Refreshing=Обновление
-browser window might help=страницы в браузере может исправить ситуацию!
+browser window might help=страницы в браузере может исправить ситуацию
 Wireless Client must be setup in WAN section=Беспроводной клиент включается в секции WAN
 AdvancedTomato version=AdvancedTomato версии
 has been released and it is available for download=доступна для загрузки

@@ -121,12 +121,14 @@ void start_dnsmasq()
 	}
 
 	mwan_num = nvram_get_int("mwan_num");
-	for(wan_unit = 1; wan_unit <= mwan_num; ++wan_unit){
+/*	// don't break here, use all wans' dns
+	for (wan_unit = 1; wan_unit <= mwan_num; ++wan_unit) {
 		get_wan_prefix(wan_unit, wan_prefix);
-		if(check_wanup(wan_prefix) && get_dns(wan_prefix)->count) break;
+		if (check_wanup(wan_prefix) && get_dns(wan_prefix)->count) break;
 	}
+*/
 	// dns
-	const dns_list_t *dns = get_dns(wan_prefix);	// this always points to a static buffer
+	// const dns_list_t *dns = get_dns(wan_prefix);	// this always points to a static buffer
 
 	if (((nv = nvram_get("dns_minport")) != NULL) && (*nv)) n = atoi(nv);
 		else n = 4096;
@@ -164,12 +166,27 @@ void start_dnsmasq()
 		fprintf(f, "server=127.0.0.1#%s\n", nvram_safe_get("dnscrypt_port") );
 	}
 #endif
+	//dns list with non-standart ports
+	for (wan_unit = 1; wan_unit <= mwan_num; ++wan_unit) {
+		
+		get_wan_prefix(wan_unit, wan_prefix);
 
-	for (n = 0 ; n < dns->count; ++n) {
-		if (dns->dns[n].port != 53) {
-			fprintf(f, "server=%s#%u\n", inet_ntoa(dns->dns[n].addr), dns->dns[n].port);
+		//syslog(LOG_DEBUG, "### start_dnsmasq, check_wanup(%s) = %d, using_dhcp(%s) = %d, get_dns(%s)->count = %d.\n", wan_prefix, check_wanup(wan_prefix), wan_prefix, using_dhcpc(wan_prefix), wan_prefix, get_dns(wan_prefix)->count);
+
+		if ((check_wanup(wan_prefix) == 0) && (get_dns(wan_prefix)->count == 0)) { // MWAN: check dns entries only for active connections
+			//syslog(LOG_DEBUG, "### start_dnsmasq, %s inactive and doesn't have dns, skip.\n", wan_prefix);
+			continue;
 		}
-	}
+		
+		// syslog(LOG_DEBUG, "### start_dnsmasq, get_dns(%s)\n", wan_prefix);
+		const dns_list_t *dns = get_dns(wan_prefix);	// this always points to a static buffer
+		for (n = 0 ; n < dns->count; ++n) {
+			if (dns->dns[n].port != 53) {
+				//syslog(LOG_DEBUG, "### start_dnsmasq, store DNS with port !=53 for %s\n", wan_prefix);
+				fprintf(f, "server=%s#%u\n", inet_ntoa(dns->dns[n].addr), dns->dns[n].port);
+			}
+		}
+	} // end for (wan_unit = 1; wan_unit <= mwan_num; ++wan_unit)
 
 	if (nvram_get_int("dhcpd_static_only")) {
 		fprintf(f, "dhcp-ignore=tag:!known\n");
@@ -224,8 +241,18 @@ void start_dnsmasq()
 			if (n < 0) strcpy(sdhcp_lease, "infinite");
 				else sprintf(sdhcp_lease, "%dm", (n > 0) ? n : dhcp_lease);
 
-			if (!do_dns) {
-				// if not using dnsmasq for dns
+			if (!do_dns) { // if not using dnsmasq for dns
+
+				for (wan_unit = 1; wan_unit <= mwan_num; ++wan_unit) {
+
+				get_wan_prefix(wan_unit, wan_prefix);
+
+				if (check_wanup(wan_prefix) == 0) { // MWAN: skip inactive connections? What if it's PPP WAN?
+					//syslog(LOG_DEBUG, "### start_dnsmasq, not using dnsmasq for dns, %s not up, skip.\n", wan_prefix);
+					continue;
+				}
+
+				const dns_list_t *dns = get_dns(wan_prefix);	// this always points to a static buffer
 
 				if ((dns->count == 0) && (nvram_get_int("dhcpd_llndns"))) {
 					// no DNS might be temporary. use a low lease time to force clients to update.
@@ -243,6 +270,8 @@ void start_dnsmasq()
 					}
 					fprintf(f, "dhcp-option=tag:%s,6%s\n", nvram_safe_get(lanN_ifname), buf);
 				}
+
+				} // end for (wan_unit = 1; wan_unit <= mwan_num; ++wan_unit)
 			}
 
 			sprintf(dhcpdN_startip, "dhcpd%s_startip", bridge);
@@ -577,6 +606,7 @@ void stop_dnsmasq(void)
 
 void clear_resolv(void)
 {
+	//syslog(LOG_DEBUG, "### IN clear_resolv, clear all DNS\n");
 	f_write(dmresolv, NULL, 0, 0, 0);	// blank
 }
 
@@ -624,19 +654,22 @@ void dns_to_resolv(void)
 	int i;
 	mode_t m;
 	char wan_prefix[] = "wanXX";
-	int wan_unit,mwan_num;
+	int wan_unit, mwan_num;
 
 	mwan_num = nvram_get_int("mwan_num");
-	if(mwan_num < 1 || mwan_num > MWAN_MAX){
+	if (mwan_num < 1 || mwan_num > MWAN_MAX) {
 		mwan_num = 1;
 	}
-	for(wan_unit = 1; wan_unit <= mwan_num; ++wan_unit){
-		get_wan_prefix(wan_unit, wan_prefix);
-		if(check_wanup(wan_prefix) && get_dns(wan_prefix)->count) break;
-	}
+	for (wan_unit = 1; wan_unit <= mwan_num; ++wan_unit) {
 
+		get_wan_prefix(wan_unit, wan_prefix);
+
+		//syslog(LOG_DEBUG, "### dns_to_resolv, check_wanup(%s) = %d, using_dhcp(%s) = %d, get_dns(%s)->count = %d.\n", wan_prefix, check_wanup(wan_prefix), wan_prefix, using_dhcpc(wan_prefix), wan_prefix, get_dns(wan_prefix)->count);
+		/*
+		if (check_wanup(wan_prefix) && get_dns(wan_prefix)->count) break;
+		*/
 	m = umask(022);	// 077 from pppoecd
-	if ((f = fopen(dmresolv, "w")) != NULL) {
+	if ((f = fopen(dmresolv, (wan_unit == 1) ? "w" : "a")) != NULL) {	// write / append. TBD: check ipv6 / pptp double entries on append
 		// Check for VPN DNS entries
 		if (!write_pptpvpn_resolv(f) && !write_vpn_resolv(f)) {
 #ifdef TCONFIG_IPV6
@@ -653,6 +686,7 @@ void dns_to_resolv(void)
 					case WP_PPTP:
 					case WP_L2TP:
 						fprintf(f, "nameserver 1.1.1.1\n");
+						//syslog(LOG_DEBUG, "### dns_to_resolv, dns count = 0, WRITE nameserver 1.1.1.1 to %s\n", dmresolv);
 						break;
 					}
 				}
@@ -661,13 +695,18 @@ void dns_to_resolv(void)
 				for (i = 0; i < dns->count; i++) {
 					if (dns->dns[i].port == 53) {	// resolv.conf doesn't allow for an alternate port
 						fprintf(f, "nameserver %s\n", inet_ntoa(dns->dns[i].addr));
+						//syslog(LOG_DEBUG, "### dns_to_resolv, WRITE DNS to %s: %s\n", dmresolv, inet_ntoa(dns->dns[i].addr));
 					}
 				}
 			}
 		}
 		fclose(f);
+//	} else {
+//			syslog(LOG_DEBUG, "### dns_to_resolv, can't open %s\n", dmresolv);
 	}
 	umask(m);
+
+	} // end for (wan_unit = 1; wan_unit <= mwan_num; ++wan_unit)
 }
 
 // -----------------------------------------------------------------------------
@@ -679,7 +718,7 @@ void start_httpd(void)
 		return;
 	}
 
-	if( nvram_match( "web_css", "online" ) )
+	if ( nvram_match( "web_css", "online" ) )
 		xstart( "/usr/sbin/ttb" );
 
 	stop_httpd();
@@ -728,16 +767,16 @@ void start_ipv6_tunnel(void)
 	struct in6_addr addr;
 	const char *wanip, *mtu, *tun_dev;
 	int service;
-	char wan_prefix[] = "wanXX";	
-	int wan_unit,mwan_num;
-	
+	char wan_prefix[] = "wanXX";
+	int wan_unit, mwan_num;
+
 	mwan_num = nvram_get_int("mwan_num");
-	if(mwan_num < 1 || mwan_num > MWAN_MAX){
+	if (mwan_num < 1 || mwan_num > MWAN_MAX) {
 		mwan_num = 1;
 	}
-	for(wan_unit = 1; wan_unit <= mwan_num; ++wan_unit){
+	for (wan_unit = 1; wan_unit <= mwan_num; ++wan_unit) {
 		get_wan_prefix(wan_unit, wan_prefix);
-		if(check_wanup(wan_prefix)) break;
+		if (check_wanup(wan_prefix)) break;
 	}
 
 	service = get_ipv6_service();

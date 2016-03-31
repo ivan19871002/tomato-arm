@@ -40,7 +40,7 @@ make clean
 # TARGETS:
 #
 
-# make V1=ML- V2=$EXTENDNO ws880e	# VPN
-# make V1=ML- V2=$EXTENDNO ws880z	# AIO
+# make V1=$VER- V2=$EXTENDNO ws880e	# VPN
+# make V1=$VER- V2=$EXTENDNO ws880z	# AIO
 make V1=$VER- V2=$EXTENDNO ws880zz	# AIO Custom (no NGINX and SNMP)
 

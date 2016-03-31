@@ -40,5 +40,5 @@ make clean
 # TARGETS:
 #
 
-make V1=ML-$VER- V2=$EXTENDNO r1dz	# AIO extended
+make V1=$VER- V2=$EXTENDNO r1dz	# AIO extended
 

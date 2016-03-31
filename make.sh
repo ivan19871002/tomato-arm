@@ -46,9 +46,9 @@ make clean
 # make V1=$VER- V2=$EXTENDNO ws880zz	# AIO Custom (no NGINX and SNMP)
 
 # Xiaomi build
-# make V1=ML-$VER- V2=$EXTENDNO r1dz	# AIO Custom EX
+# make V1=$VER- V2=$EXTENDNO r1dz	# AIO Custom EX
 
 # Netgear build
-# make V1=ML-$VER- V2=$EXTENDNO r7000init	# AIO initial
+# make V1=$VER- V2=$EXTENDNO r7000init	# AIO initial
 
 # ETC...

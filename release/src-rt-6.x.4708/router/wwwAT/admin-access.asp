@@ -235,7 +235,7 @@ No part of this file may be used without permission.
 						{ title: '<% translate("Allow Wireless Access"); %>', name: 'f_http_wireless', type: 'checkbox', value:  nvram.web_wl_filter == 0 },
 						{ title: '<h5><% translate("Interface Settings"); %></h5>' },
 						{ title: '<% translate("Language"); %>', name: 'web_lang', type: 'select',
-							options: [['en_EN','<% translate("English"); %>'],['ru_RU','<% translate("Russian"); %>']], value: nvram.web_lang },
+							options: [['en_EN','<% translate("English"); %>'],['ru_RU','<% translate("Russian"); %>'],['zh_CN','<% translate("Chinese"); %>']], value: nvram.web_lang },
 						{ title: '<% translate("Interface Theme"); %>', name: 'web_css', type: 'select', help: '<% translate("With AdvancedTomato you get very few built in skins, others are available on AdvancedTomato Themes Directory. This way we can save space on router for more important functions."); %>',
 							options: [['tomato','<% translate("Default"); %>'],
 							['css/orange-scheme','<% translate("Orange Color Scheme"); %>'],

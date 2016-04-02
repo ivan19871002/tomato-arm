@@ -2172,6 +2172,7 @@ works only with non-Hilink modems=не применимо к модемам Hili
 #status=
 #overview=
 Watchdog Mode=Способ проверки
+Chinese=Китайский
 
 ### ADVANCED TOMATO ###
 Unable to connect to the interface=Не удалось подключиться к интерфейсу управления

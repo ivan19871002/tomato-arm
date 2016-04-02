@@ -389,5 +389,5 @@ endif
 	done
 
 	# not used lang files
-	@rm -f $(INSTALLDIR)/www/zh_CN.txt
+	# @rm -f $(INSTALLDIR)/www/zh_CN.txt
 

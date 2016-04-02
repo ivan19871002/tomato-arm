@@ -298,7 +298,7 @@ var m = [
 	{ title: '<% translate("Allow Wireless Access"); %>', name: 'f_http_wireless', type: 'checkbox', value:  nvram.web_wl_filter == 0 },
 	null,
 	{ title: '<% translate("Language"); %>', name: 'web_lang', type: 'select',
-                options: [['en_EN','<% translate("English"); %>'],['ru_RU','<% translate("Russian"); %>']], value: nvram.web_lang },
+                options: [['en_EN','<% translate("English"); %>'],['ru_RU','<% translate("Russian"); %>'],['zh_CN','<% translate("Chinese"); %>']], value: nvram.web_lang },
 	null,
 	{ title: '<% translate("Directory with GUI files"); %>', name: 'web_dir', type: 'select',
 		options: [['default','<% translate("Tomato"); %>: /www'], ['at','<% translate("Advanced Tomato"); %>: /www-at'], ['jffs', '<% translate("Custom"); %>: /jffs/www (<% translate("Experts Only"); %>!)'], ['opt', '<% translate("Custom"); %>: /opt/www (<% translate("Experts Only"); %>!)'], ['tmp', '<% translate("Custom"); %>: /tmp/www (<% translate("Experts Only"); %>!)']], value: nvram.web_dir, suffix: ' <small><% translate("Please be sure of your decision before change this settings"); %>!</small>' },

@@ -4099,7 +4099,7 @@ static void sysinit(void)
 	symlink("/proc/mounts", "/etc/mtab");
 
 	//languages
-	//eval("cp", "/www/zh_CN.txt", "/tmp/lang/zh_CN.txt"); //chinese
+	eval("cp", "/www/zh_CN.txt", "/tmp/lang/zh_CN.txt"); //chinese
 	eval("cp", "/www/ru_RU.txt", "/tmp/lang/ru_RU.txt"); //russian
 
 #ifdef TCONFIG_SAMBASRV

@@ -125,7 +125,7 @@ static int deconfig(char *ifname,char *prefix)
 	nvram_set(strcat_r(prefix, "_routes2", tmp), "");
 	expires(0, prefix);
 
-	if (get_wan_proto() == WP_DHCP || get_wan_proto() == WP_LTE) {
+	if (get_wanx_proto(prefix) == WP_DHCP || get_wanx_proto(prefix) == WP_LTE) {
 		nvram_set(strcat_r(prefix, "_netmask", tmp), "0.0.0.0");
 		nvram_set(strcat_r(prefix, "_gateway_get", tmp), "0.0.0.0");
 		nvram_set(strcat_r(prefix, "_get_dns", tmp), "");
@@ -213,6 +213,7 @@ static int bound(char *ifname, int renew, char *prefix)
 
 		/* clear dns from the resolv.conf */
 		nvram_set(strcat_r(prefix, "_get_dns", tmp), renew ? dns : "");
+		mwanlog(LOG_DEBUG, "### dhcpc_bound, clear dns from the resolv.conf: nvram_set(%s, \"%s\")", strcat_r(prefix, "_get_dns", tmp), renew ? dns : "");
 
 		switch (wan_proto) {
 		case WP_PPTP:
@@ -220,6 +221,14 @@ static int bound(char *ifname, int renew, char *prefix)
 			break;
 		case WP_L2TP:
 			start_l2tp(prefix);
+			break;
+		case WP_PPPOE:
+			if(!strcmp(prefix,"wan")) start_pppoe(PPPOEWAN, prefix);
+			if(!strcmp(prefix,"wan2")) start_pppoe(PPPOEWAN2, prefix);
+#ifdef TCONFIG_MULTIWAN
+			if(!strcmp(prefix,"wan3")) start_pppoe(PPPOEWAN3, prefix);
+			if(!strcmp(prefix,"wan4")) start_pppoe(PPPOEWAN4, prefix);
+#endif
 			break;
 		}
 	}

@@ -917,14 +917,14 @@ void start_wan_if(int mode, char *prefix)
 	case WP_PPP3G:
 		if (wan_proto = WP_PPPOE && using_dhcpc(prefix)) { // PPPoE with DHCP MAN
 			stop_dhcpc(prefix);
-			mwanlog(LOG_DEBUG, "MultiWAN: start_wan_if: start_dhcpc(%s) for PPPoE ...", prefix);
+			mwanlog(LOG_DEBUG, "MultiWAN: start_wan_if: starting dhcpc(%s) for PPPoE ...", prefix);
 			start_dhcpc(prefix);
 		}
-		if(!strcmp(prefix,"wan")) start_pppoe(PPPOEWAN, prefix);
-		if(!strcmp(prefix,"wan2")) start_pppoe(PPPOEWAN2, prefix);
+		else if(!strcmp(prefix,"wan")) start_pppoe(PPPOEWAN, prefix);
+		else if(!strcmp(prefix,"wan2")) start_pppoe(PPPOEWAN2, prefix);
 #ifdef TCONFIG_MULTIWAN
-		if(!strcmp(prefix,"wan3")) start_pppoe(PPPOEWAN3, prefix);
-		if(!strcmp(prefix,"wan4")) start_pppoe(PPPOEWAN4, prefix);
+		else if(!strcmp(prefix,"wan3")) start_pppoe(PPPOEWAN3, prefix);
+		else if(!strcmp(prefix,"wan4")) start_pppoe(PPPOEWAN4, prefix);
 #endif
 		break;
 	case WP_DHCP:

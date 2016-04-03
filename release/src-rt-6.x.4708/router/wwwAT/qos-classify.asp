@@ -31,9 +31,9 @@ No part of this file may be used without permission.
 
 	/* Text only fields (Column 1 & Column 3) */
 	.erow.y5 div.xa,
-	.erow.y5 div.xc { line-height: 36px }
+	.erow.y5 div.xc { line-height: 34px }
 
-	.erow.y5 div.xa { padding-left: 10px; }													/* Column1 (KB Transferred) */
+	.erow.y5 div.xa { padding-left: 9px; }													/* Column1 (KB Transferred) */
 	.erow.y5 div.xb { width: 25%; padding-right: 0px; }										/* Column2 (KB From) 		*/
 	.erow.y5 div.xc { width: 3%; padding-left: 0px; padding-right:0px; text-align:center }	/* Column3 (the dash) 		*/
 	.erow.y5 div.xd { width: 25%; padding-left: 0px; }										/* Column4 (KB To)			*/

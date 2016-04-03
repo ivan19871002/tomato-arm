@@ -8,14 +8,11 @@ No part of this file may be used without permission.
 -->
 <title>M-WAN: <% translate("Routing Policy"); %></title>
 <content>
-
 	<style>
-		div.x1a { display: inline-block; padding-right: 3px}
-		table tr.editor div.x1a select { width: 100% }
-		div.x1b { display: inline-block; }
-		table tr.editor div.x1b input {width: 100%;}
-		div.x1c {display: inline-block; width: 100%; padding-left: 10px;}
-		table tr.editor div.x1c input {width: 25%; margin-left: 6px}
+		.editor div[class^="x"] { margin-top:3px; float:left; display: inline-block; }
+		.editor:first-child div[class^="x"] { margin-top:0px }
+		.editor div[class^="x"]:first-child { clear: left; }
+		div.x1c span { padding-left: 1px; } /* Port */
 	</style>
 	<script type="text/javascript">
 		//	<% nvram("pbr_rules"); %>
@@ -192,12 +189,12 @@ No part of this file may be used without permission.
 				{ multi: [
 					{ type: 'select', options: [['0','<% translate("All"); %>'],['1','IP'],['2','MAC']], prefix: '<div class="x1a">', suffix: '</div>' },
 					{ type: 'text', prefix: '<div class="x1b">', suffix: '</div>' },
-					{ type: 'text', prefix: '<div class="x1c"><% translate("Port"); %>', suffix: '</div>' }
+					{ type: 'text', prefix: '<div class="x1c"><span><% translate("Port"); %></span>', suffix: '</div>' }
 				] },
 				{ multi: [
 					{ type: 'select', options: [['0','<% translate("All"); %>'],['1','<% translate("IP"); %>'],['3','<% translate("Domain"); %>']], prefix: '<div class="x1a">', suffix: '</div>' },
 					{ type: 'text', prefix: '<div class="x1b">', suffix: '</div>' },
-					{ type: 'text', prefix: '<div class="x1c"><% translate("Port"); %>', suffix: '</div>' }
+					{ type: 'text', prefix: '<div class="x1c"><span><% translate("Port"); %></span>', suffix: '</div>' }
 				] },
 				{ type: 'select', options: class1, vtop: 1 },
 				{ type: 'text', maxlen: 32, vtop: 1 }

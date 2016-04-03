@@ -25,10 +25,9 @@
 	background: rgba(22,160,133,0.1);
 }
 
-a {
+a, .text-green {
 	color: #137662;
 }
-
 a:hover, a:active {
 	color: #16a085;
 }

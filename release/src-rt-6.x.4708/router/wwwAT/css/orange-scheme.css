@@ -25,8 +25,7 @@
 	background: rgba(236,126,35,0.1);
 }
 
-/* Replace some general styles (b, h1-h6, etc...) */
-a {
+a, .text-green {
 	color: #ea7218;
 }
 a:hover, a:active {

@@ -25,10 +25,9 @@
 	background: rgba(51,187,187,0.1);
 }
 
-a {
+a, .text-green {
 	color: #1bb;
 }
-
 a:hover, a:active {
 	color: #3bb;
 }
@@ -42,7 +41,6 @@ a:hover, a:active {
 	color: #3bb !important;
 	border-color: #3bb;
 }
-
 .btn.btn-primary:hover,
 .btn.btn-primary:focus {
 	background: #3bb;

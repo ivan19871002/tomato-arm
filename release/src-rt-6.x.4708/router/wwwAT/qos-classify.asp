@@ -14,39 +14,32 @@ No part of this file may be used without permission.
 	table.line-table tr td.co3 { width:21%; }
 	table.line-table tr td.co4 { width:4%; }
 
-	/* Style the first editorRow column */
-		.erow div.xa { width: 30%; padding: 0px; display: inline}
-		table .editor .erow div.xa input, .erow div.xa select { width: 30%;}
+	/* Style the first column editorRow */
+	.erow div.xa { width: 30%; padding: 0px; }
 
-	/* Style second editorRow column */
-		.erow div.xb { width: 65%; padding-left:10px; display: inline}
-		table .editor .erow div.xb input, .erow div.xb select  { width: 65%;}
+	/* Style second column editorRow */
+	.erow div.xb { width: 65%; padding-left:10px;}
 
 	/* Style third editorRow column */
-		.erow div.xc { padding-left:10px; display: inline}
-
-	/* Style 4rth editorRow column */
-		.erow div.xd { display: inline} 
+	.erow div.xc { padding-left:10px; }	
 
 	/* Override default styling for editorRow 2 */
-		.erow.y2 div.xb { width: 22%; }				/* Column2 */
-		table .editor .erow.y2 div.xb select { width: 22%; }
-		.erow.y2 div.xc { width: 42%; padding-left: 1px; }		/* Column3 */
-		table .editor .erow.y2 div.xc input { width: 42%; }
+	.erow.y2 div.xb { width: 22%; }						/* Column2 */
+	.erow.y2 div.xc { width: 43%; padding-left: 2px; }		/* Column3 */
 
 	/* Override default styling for editorRow 5: Column1 (KB Transferred), Column2 (KB From), Column3 (the dash), Column4 (KB To) */		
 
-		/* Text only fields (Column 1 & Column 3) */
-		.erow.y5 div.xa,
-		.erow.y5 div.xc { display: inline-block; padding-top:0px; }
-		.erow.y5 div.xa { padding-left: 11px; width: 30%; margin-right: 4px; }	/* Column1 (KB Transferred) */
-		.erow.y5 div.xb { width: 31%; padding-right: 0px; }				/* Column2 (KB From) */
-		table .editor .erow.y5 div.xb input { width: 31%; }
-		.erow.y5 div.xc { width: 2%; padding-left: 0px; padding-right:0px; text-align:center }	/* Column3 (the dash) */
-		.erow.y5 div.xd { width: 31%; padding-left: 0px; }				/* Column4 (KB To) */
-		table .editor .erow.y5 div.xd input { width: 31%; }
+	/* Text only fields (Column 1 & Column 3) */
+	.erow.y5 div.xa,
+	.erow.y5 div.xc { line-height: 36px }
+
+	.erow.y5 div.xa { padding-left: 10px; }													/* Column1 (KB Transferred) */
+	.erow.y5 div.xb { width: 25%; padding-right: 0px; }										/* Column2 (KB From) 		*/
+	.erow.y5 div.xc { width: 3%; padding-left: 0px; padding-right:0px; text-align:center }	/* Column3 (the dash) 		*/
+	.erow.y5 div.xd { width: 25%; padding-left: 0px; }										/* Column4 (KB To)			*/
 
 	</style>
+
 	<script type="text/javascript" src="js/protocols.js"></script>
 	<script type="text/javascript">
 		//	  <% nvram("at_update,tomatoanon_answer,qos_classnames,qos_enable,qos_orules"); %>

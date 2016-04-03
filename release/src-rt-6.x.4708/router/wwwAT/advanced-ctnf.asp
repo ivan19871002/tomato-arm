@@ -192,7 +192,7 @@ No part of this file may be used without permission.
 			if ((v = nvram.ct_tcp_timeout.match(/^(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)$/)) == null) {
 				v = [0,0,1200,120,60,120,120,10,60,30,0];
 			}
-			titles = ['-', '<% translate("None"); %>', '<% translate("Established"); %>', 'SYN Sent', 'SYN Received', 'FIN Wait', 'Time Wait', 'Close', 'Close Wait', 'Last ACK','<% translate("Listen"); %>'];
+			titles = ['-', '<% translate("None"); %>', 'Established', 'SYN Sent', 'SYN Received', 'FIN Wait', 'Time Wait', 'Close', 'Close Wait', 'Last ACK', 'Listen'];
 			f = [{ title: ' ', text: '<small>(<% translate("seconds"); %>)</small>' }];
 			for (i = 1; i < 11; ++i) {
 				f.push({ title: titles[i], name: ('f_tcp_' + (i - 1)),

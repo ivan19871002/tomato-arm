@@ -35,7 +35,6 @@ body {
 	color: #76838f;
 	line-height: 1.42857;
 	background-color: #f1f4f5;
-/*	min-width: 960px; */
 }
 
 /* Replace some general styles (b, h1-h6, etc...) */
@@ -1823,6 +1822,6 @@ ul.nav-tabs, .bordered-select {
 	background: rgba(255,255,255,0.9);
 }
 .bordered-select select, .bordered-select select:hover, .bordered-select select:focus, .bordered-select select:active {
-  color: black;
-  min-height: 32px;
+	color: black;
+	min-height: 32px;
 }

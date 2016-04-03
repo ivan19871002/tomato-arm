@@ -408,7 +408,7 @@ createFieldTable('', [
 <div class='section'>
 <br>
 	<ul>
-	<li><b><% translate("Request PD Only"); %>:</b> <% translate("Check for ISP's that require only a Prefix Delegation(usually PPPOE(Dsl,Fiber?) connections)"); %>.</li>
+	<li><b><% translate("Request PD Only"); %>:</b> <% translate("Check for ISP's that require only a Prefix Delegation (usually PPPoE (DSL,Fiber) connections)"); %>.</li>
 	</ul>
 </div>
 

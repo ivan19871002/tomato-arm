@@ -348,7 +348,7 @@
 					/* MULTIWAN-END */
 					], prefix: '<div class="centered">', suffix: '</div>' }]);
 
-				this.headerSet(['VLAN', '<% translate("VID"); %>', '<% translate("Port"); %> 1', '<% translate("Tagged"); %>', '<% translate("Port"); %> 2', '<% translate("Tagged"); %>', '<% translate("Port"); %> 3', '<% translate("Tagged"); %>', '<% translate("Port 4"); %>', '<% translate("Tagged"); %>', 'WAN <% translate("Port"); %>', '<% translate("Tagged"); %>', '<% translate("Default"); %>','<% translate("Bridge"); %>']);
+				this.headerSet(['VLAN', '<% translate("VID"); %>', '<% translate("Port"); %> 1', '<% translate("Tagged"); %>', '<% translate("Port"); %> 2', '<% translate("Tagged"); %>', '<% translate("Port"); %> 3', '<% translate("Tagged"); %>', '<% translate("Port"); %> 4', '<% translate("Tagged"); %>', 'WAN <% translate("Port"); %>', '<% translate("Tagged"); %>', '<% translate("Default"); %>','<% translate("Bridge"); %>']);
 
 				vlg.populate();
 				vlg.canDelete = false;

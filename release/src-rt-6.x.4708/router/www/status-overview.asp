@@ -479,6 +479,7 @@ var s='';
 var t='';
 for (var i = 0 ; i <= MAX_BRIDGE_ID ; i++) {
 	var j = (i == 0) ? '' : i.toString();
+	var lannr = (i == 0) ? '' : (i + 1).toString();	// LAN1->LAN2
 	if (nvram['lan' + j + '_ifname'].length > 0) {
 		if (nvram['lan' + j + '_proto'] == 'dhcp') {
 			if ((!fixIP(nvram.dhcpd_startip)) || (!fixIP(nvram.dhcpd_endip))) {
@@ -487,13 +488,13 @@ for (var i = 0 ; i <= MAX_BRIDGE_ID ; i++) {
 				nvram['dhcpd' + j + '_endip'] = x + ((nvram['dhcp' + j + '_start'] * 1) + (nvram['dhcp' + j + '_num'] * 1) - 1);
 			}
 			s += ((s.length>0)&&(s.charAt(s.length-1) != ' ')) ? '<br>' : '';
-			s += '<b>br' + i + '</b> (LAN' + j + ') - ' + nvram['dhcpd' + j + '_startip'] + ' - ' + nvram['dhcpd' + j + '_endip'];
+			s += '<b>br' + i + '</b> (LAN' + lannr + ') - ' + nvram['dhcpd' + j + '_startip'] + ' - ' + nvram['dhcpd' + j + '_endip'];
 		} else {
 			s += ((s.length>0)&&(s.charAt(s.length-1) != ' ')) ? '<br>' : '';
-			s += '<b>br' + i + '</b> (LAN' + j + ') - <% translate("Disabled"); %>';
+			s += '<b>br' + i + '</b> (LAN' + lannr + ') - <% translate("Disabled"); %>';
 		}
 		t += ((t.length>0)&&(t.charAt(t.length-1) != ' ')) ? '<br>' : '';
-		t += '<b>br' + i + '</b> (LAN' + j + ') - ' + nvram['lan' + j + '_ipaddr'] + '/' + numberOfBitsOnNetMask(nvram['lan' + j + '_netmask']);
+		t += '<b>br' + i + '</b> (LAN' + lannr + ') - ' + nvram['lan' + j + '_ipaddr'] + '/' + numberOfBitsOnNetMask(nvram['lan' + j + '_netmask']);
 		
 	}
 }

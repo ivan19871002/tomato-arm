@@ -48,9 +48,9 @@ var la = new TomatoGrid();
 la.setup = function() {
 	this.init('la-grid', 'sort', 50, [
 	{ type: 'checkbox', prefix: '<div class="centered">', suffix: '</div>' },
-	{ type: 'select', options: [[0, 'LAN (br0)'],[1, 'LAN1 (br1)'],[2, 'LAN2 (br2)'],[3, 'LAN3 (br3)']], prefix: '<div class="centered">', suffix: '</div>' },
+	{ type: 'select', options: [[0, '<% translate("LAN"); %> (br0)'],[1, '<% translate("LAN2"); %> (br1)'],[2, '<% translate("LAN3"); %> (br2)'],[3, '<% translate("LAN4"); %> (br3)']], prefix: '<div class="centered">', suffix: '</div>' },
 	{ type: 'text', maxlen: 32 },
-	{ type: 'select', options: [[0, 'LAN (br0)'],[1, 'LAN1 (br1)'],[2, 'LAN2 (br2)'],[3, 'LAN3 (br3)']], prefix: '<div class="centered">', suffix: '</div>' },
+	{ type: 'select', options: [[0, '<% translate("LAN"); %> (br0)'],[1, '<% translate("LAN2"); %> (br1)'],[2, '<% translate("LAN3"); %> (br2)'],[3, '<% translate("LAN4"); %> (br3)']], prefix: '<div class="centered">', suffix: '</div>' },
 	{ type: 'text', maxlen: 32 },
 	{ type: 'text', maxlen: 32 }]);
 	this.headerSet(['<% translate("On"); %>', '<% translate("Src"); %>', '<% translate("Src Address"); %>', '<% translate("Dst"); %>', '<% translate("Dst Address"); %>', '<% translate("Description"); %>']);
@@ -156,9 +156,9 @@ la.verifyFields = function(row, quiet) {
 
 la.dataToView = function(data) {
 	return [(data[0] != 0) ? 'On' : '',
-			['LAN', 'LAN1', 'LAN2', 'LAN3'][data[1]],
+			['<% translate("LAN"); %>', '<% translate("LAN2"); %>', '<% translate("LAN3"); %>', '<% translate("LAN4"); %>'][data[1]],
 			data[2],
-			['LAN', 'LAN1', 'LAN2', 'LAN3'][data[3]],
+			['<% translate("LAN"); %>', '<% translate("LAN2"); %>', '<% translate("LAN3"); %>', '<% translate("LAN4"); %>'][data[3]],
 			data[4],
 			data[5] ];
 }

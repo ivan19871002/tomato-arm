@@ -354,13 +354,13 @@ if(port_vlan_supported) { // aka if(supported_hardware) block
     { type: 'checkbox', prefix: '<div class="centered">', suffix: '</div>' },
     { type: 'checkbox', prefix: '<div class="centered">', suffix: '</div>' },
     { type: 'checkbox', prefix: '<div class="centered">', suffix: '</div>' },
-    { type: 'select', options: [[1, 'none'],[2, 'WAN'],[3, 'LAN (br0)'],[4, 'LAN1 (br1)'],[5, 'LAN2 (br2)'],[6, 'LAN3 (br3)'],[7, 'WAN2'],
+    { type: 'select', options: [[1, '<% translate("none"); %>'],[2, '<% translate("WAN"); %>'],[3, '<% translate("LAN"); %> (br0)'],[4, '<% translate("LAN2"); %> (br1)'],[5, '<% translate("LAN3"); %> (br2)'],[6, '<% translate("LAN4"); %> (br3)'],[7, '<% translate("WAN2"); %>'],
 /* MULTIWAN-BEGIN */
-				[8, 'WAN3'],[9, 'WAN4']
+				[8, '<% translate("WAN3"); %>'],[9, '<% translate("WAN4"); %>']
 /* MULTIWAN-END */
 			       ], prefix: '<div class="centered">', suffix: '</div>' }]);
 
-    this.headerSet(['VLAN', 'VID', '<% translate("Port"); %> 1', '<% translate("Tagged"); %>', '<% translate("Port"); %> 2', '<% translate("Tagged"); %>', '<% translate("Port"); %> 3', '<% translate("Tagged"); %>', '<% translate("Port"); %> 4', '<% translate("Tagged"); %>', 'WAN <% translate("Port"); %>', '<% translate("Tagged"); %>', '<% translate("Default"); %>', '<% translate("Bridge"); %>']);
+    this.headerSet(['<% translate("VLAN"); %>', '<% translate("VID"); %>', '<% translate("Port"); %> 1', '<% translate("Tagged"); %>', '<% translate("Port"); %> 2', '<% translate("Tagged"); %>', '<% translate("Port"); %> 3', '<% translate("Tagged"); %>', '<% translate("Port"); %> 4', '<% translate("Tagged"); %>', '<% translate("WAN"); %> <% translate("Port"); %>', '<% translate("Tagged"); %>', '<% translate("Default"); %>', '<% translate("Bridge"); %>']);
 
 	vlg.populate();
     vlg.canDelete = false;
@@ -637,7 +637,7 @@ REMOVE-END */
 
     for(var i=0; i<4; i++) {
       if ((this.countLan(i) > 0) && (f[COL_BRI].selectedIndex == (i+2))) {
-        ferror.set(f[COL_BRI],'<% translate("One and only one VID can be used for"); %> LAN' + ((i==0) ? '' : i ) + ' (br'+i+') <% translate("at any time"); %>', quiet);
+        ferror.set(f[COL_BRI],'<% translate("One and only one VID can be used for"); %> LAN' + ((i==0) ? '' : i + 1 ) + ' (br'+i+') <% translate("at any time"); %>', quiet);
         valid = 0;
       } else {
         ferror.clear(f[COL_BRI]);
@@ -661,9 +661,9 @@ REMOVE-END */
     (data[COL_P4].toString() != '0') ? 'Yes' : '',
     (data[COL_P4T].toString() != '0') ? 'On' : '',
     (data[COL_VID_DEF].toString() != '0') ? '*' : '',
-    ['', 'WAN', 'LAN (br0)', 'LAN1 (br1)', 'LAN2 (br2)', 'LAN3 (br3)', 'WAN2'
+    ['', '<% translate("WAN"); %>', '<% translate("LAN"); %> (br0)', '<% translate("LAN2"); %> (br1)', '<% translate("LAN3"); %> (br2)', '<% translate("LAN4"); %> (br3)', '<% translate("WAN2"); %>'
 /* MULTIWAN-BEGIN */
-        , 'WAN3', 'WAN4'
+        , '<% translate("WAN3"); %>', '<% translate("WAN4"); %>'
 /* MULTIWAN-END */
     ][data[COL_BRI] - 1]];
   }
@@ -964,7 +964,7 @@ for (var uidx = 0; uidx < wl_ifaces.length; ++uidx) {
   var u = wl_fface(uidx);
   f.push(
     { title: ('<% translate("Bridge"); %> ' + wl_ifaces[uidx][0] + ' <% translate("to"); %>'), name: ('f_bridge_wlan'+u+'_to'), type: 'select', 
-     options: [[0,'LAN (br0)'],[1,'LAN1 (br1)'],[2,'LAN2 (br2)'],[3,'LAN3 (br3)'],[4,'<% translate("none"); %>']], value: 4 } );
+     options: [[0,'<% translate("LAN"); %> (br0)'],[1,'<% translate("LAN2"); %> (br1)'],[2,'<% translate("LAN3"); %> (br2)'],[3,'<% translate("LAN4"); %> (br3)'],[4,'<% translate("none"); %>']], value: 4 } );
 }
 createFieldTable('',f);
 if(port_vlan_supported) vlg.setup();

@@ -371,9 +371,9 @@ No part of this file may be used without permission.
 						{ title: '<% translate("Tunnel MTU"); %>', name: 'ipv6_tun_mtu', type: 'text', maxlen: 4, size: 8, value: nvram.ipv6_tun_mtu, suffix: ' <small>(0 <% translate("for default"); %>)</small>' },
 						{ title: '<% translate("Tunnel TTL"); %>', name: 'ipv6_tun_ttl', type: 'text', maxlen: 3, size: 8, value: nvram.ipv6_tun_ttl },
 						null,
-						{ title: '<% translate("Request /64 subnet for"); %>',  name: 'f_lan1_ipv6', type: 'checkbox', value: (nvram.ipv6_vlan & 1), suffix: '&nbsp; <% translate("LAN1"); %> (br1) &nbsp;&nbsp;&nbsp;' },
-						{ title: '', name: 'f_lan2_ipv6', type: 'checkbox', value: (nvram.ipv6_vlan & 2), suffix: '&nbsp; <% translate("LAN2"); %> (br2) &nbsp;&nbsp;&nbsp;' },
-						{ title: '', name: 'f_lan3_ipv6', type: 'checkbox', value: (nvram.ipv6_vlan & 4), suffix: '&nbsp; <% translate("LAN3"); %> (br3) &nbsp;&nbsp;&nbsp;' }
+						{ title: '<% translate("Request /64 subnet for"); %>',  name: 'f_lan1_ipv6', type: 'checkbox', value: (nvram.ipv6_vlan & 1), suffix: '&nbsp; <% translate("LAN2"); %> (br1) &nbsp;&nbsp;&nbsp;' },
+						{ title: '', name: 'f_lan2_ipv6', type: 'checkbox', value: (nvram.ipv6_vlan & 2), suffix: '&nbsp; <% translate("LAN3"); %> (br2) &nbsp;&nbsp;&nbsp;' },
+						{ title: '', name: 'f_lan3_ipv6', type: 'checkbox', value: (nvram.ipv6_vlan & 4), suffix: '&nbsp; <% translate("LAN4"); %> (br3) &nbsp;&nbsp;&nbsp;' }
 					]);
 				</script>
 			</div>

@@ -304,7 +304,7 @@ function init()
 
 <div id='bwlimit'>
 
-	<div class='section-title'><% translate("Bandwidth Limiter for"); %> LAN (br0)</div>
+	<div class='section-title'><% translate("Bandwidth Limiter for"); %> <% translate("LAN"); %> (br0)</div>
 	<div class='section'>
 		<script type='text/javascript'>
 			createFieldTable('', [
@@ -371,7 +371,7 @@ function init()
 		</div>
 	</div>
 
-	<div class='section-title'><% translate("Default Class for"); %> LAN1 (br1)</div>
+	<div class='section-title'><% translate("Default Class for"); %> <% translate("LAN2"); %> (br1)</div>
 	<div class='section'>
 		<script type='text/javascript'>
 			createFieldTable('', [
@@ -391,7 +391,7 @@ function init()
 		</div>
 	</div>
 
-	<div class='section-title'><% translate("Default Class for"); %> LAN2 (br2)</div>
+	<div class='section-title'><% translate("Default Class for"); %> <% translate("LAN3"); %> (br2)</div>
 	<div class='section'>
 		<script type='text/javascript'>
 			createFieldTable('', [
@@ -411,7 +411,7 @@ function init()
 		</div>
 	</div>
 
-	<div class='section-title'><% translate("Default Class for"); %> LAN3 (br3)</div>
+	<div class='section-title'><% translate("Default Class for"); %> <% translate("LAN4"); %> (br3)</div>
 	<div class='section'>
 		<script type='text/javascript'>
 			createFieldTable('', [

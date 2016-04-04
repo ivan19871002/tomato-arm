@@ -145,11 +145,10 @@ createFieldTable('', [
 	null,
 	{ title: 'Redirect all users from', multi: [
 		{ name: 'tor_iface', type: 'select', options: [
-			['br0','LAN (br0)'],
-			['br1','LAN1 (br1)'],
-			['br2','LAN2 (br2)'],
-			['br3','LAN3 (br3)'],
-			['custom','Selected IP`s']
+			['br0','<% translate("LAN"); %> (br0)'],
+			['br1','<% translate("LAN2"); %> (br1)'],
+			['br2','<% translate("LAN3"); %> (br2)'],
+			['br3','<% translate("LAN4"); %> (br3)'],
 				], value: nvram.tor_iface },
 		{ name: 'tor_users', type: 'text', maxlen: 512, size: 64, value: nvram.tor_users } ] },
 	{ title: 'Redirect TCP Ports', multi: [

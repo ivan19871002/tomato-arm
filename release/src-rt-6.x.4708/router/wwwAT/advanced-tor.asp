@@ -135,9 +135,9 @@ No part of this file may be used without permission.
 						{ title: '<% translate("Redirect all users from"); %>', multi: [
 							{ name: 'tor_iface', type: 'select', options: [
 								['br0','<% translate("LAN"); %> (br0)'],
-								['br1','<% translate("LAN1"); %> (br1)'],
-								['br2','<% translate("LAN2"); %> (br2)'],
-								['br3','<% translate("LAN3"); %> (br3)'],
+								['br1','<% translate("LAN2"); %> (br1)'],
+								['br2','<% translate("LAN3"); %> (br2)'],
+								['br3','<% translate("LAN4"); %> (br3)'],
 								['custom','<% translate("Selected IP`s"); %>']
 								], value: nvram.tor_iface },
 							{ name: 'tor_users', type: 'text', maxlen: 512, size: 64, value: nvram.tor_users } ] },

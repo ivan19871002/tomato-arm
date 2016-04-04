@@ -336,7 +336,7 @@ No part of this file may be used without permission.
 		</div>
 
 		<div class="box" id="qoslimitbr1" data-box="qos-limit-br1">
-			<div class="heading"><% translate("Default Class for"); %> <% translate("LAN1"); %> (br1)</div>
+			<div class="heading"><% translate("Default Class for"); %> <% translate("LAN2"); %> (br1)</div>
 			<div class="content">
 				<div class="table-set1"></div><hr>
 				<script type="text/javascript">
@@ -358,7 +358,7 @@ No part of this file may be used without permission.
 		</div>
 
 		<div class="box" id="qoslimitbr2" data-box="qos-limit-br2">
-			<div class="heading"><% translate("Default Class for"); %> <% translate("LAN2"); %> (br2)</div>
+			<div class="heading"><% translate("Default Class for"); %> <% translate("LAN3"); %> (br2)</div>
 			<div class="content">
 				<div class="table-set2"></div><hr>
 				<script type="text/javascript">
@@ -380,7 +380,7 @@ No part of this file may be used without permission.
 		</div>
 
 		<div class="box" id="qoslimitbr3" data-box="qos-limit-br3">
-			<div class="heading"><% translate("Default Class for"); %> <% translate("LAN3"); %> (br3)</div>
+			<div class="heading"><% translate("Default Class for"); %> <% translate("LAN4"); %> (br3)</div>
 			<div class="content">
 				<div class="table-set3"></div><hr>
 				<script type="text/javascript">

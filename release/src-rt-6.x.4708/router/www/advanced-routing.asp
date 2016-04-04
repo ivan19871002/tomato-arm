@@ -57,19 +57,19 @@ ara.setup = function() {
 	this.headerSet(['<% translate("Destination"); %>', '<% translate("Gateway / Next Hop"); %>', '<% translate("Subnet Mask"); %>', '<% translate("Metric"); %>', '<% translate("Interface"); %>']);
 	for (i = 0; i < activeroutes.length; ++i) {
 		a = activeroutes[i];
-		if (a[0] == nvram.lan_ifname) a[0] += ' (LAN)';
-			else if (a[0] == nvram.lan1_ifname) a[0] += ' (LAN1)';
-			else if (a[0] == nvram.lan2_ifname) a[0] += ' (LAN2)';
-			else if (a[0] == nvram.lan3_ifname) a[0] += ' (LAN3)';
-			else if (a[0] == nvram.wan_iface) a[0] += ' (WAN)';
-			else if (a[0] == nvram.wan_ifname) a[0] += ' (MAN)';
-			else if (a[0] == nvram.wan2_iface) a[0] += ' (WAN2)';
-			else if (a[0] == nvram.wan2_ifname) a[0] += ' (MAN2)';
+		if (a[0] == nvram.lan_ifname) a[0] += ' (<% translate("LAN"); %>)';
+			else if (a[0] == nvram.lan1_ifname) a[0] += ' (<% translate("LAN2"); %>)';
+			else if (a[0] == nvram.lan2_ifname) a[0] += ' (<% translate("LAN3"); %>)';
+			else if (a[0] == nvram.lan3_ifname) a[0] += ' (<% translate("LAN4"); %>)';
+			else if (a[0] == nvram.wan_iface) a[0] += ' (<% translate("WAN"); %>)';
+			else if (a[0] == nvram.wan_ifname) a[0] += ' (<% translate("MAN"); %>)';
+			else if (a[0] == nvram.wan2_iface) a[0] += ' (<% translate("WAN2"); %>)';
+			else if (a[0] == nvram.wan2_ifname) a[0] += ' (<% translate("MAN2"); %>)';
 /* MULTIWAN-BEGIN */
-			else if (a[0] == nvram.wan3_iface) a[0] += ' (WAN3)';
-			else if (a[0] == nvram.wan3_ifname) a[0] += ' (MAN3)';
-			else if (a[0] == nvram.wan4_iface) a[0] += ' (WAN4)';
-			else if (a[0] == nvram.wan4_ifname) a[0] += ' (MAN4)';
+			else if (a[0] == nvram.wan3_iface) a[0] += ' (<% translate("WAN3"); %>)';
+			else if (a[0] == nvram.wan3_ifname) a[0] += ' (<% translate("MAN3"); %>)';
+			else if (a[0] == nvram.wan4_iface) a[0] += ' (<% translate("WAN4"); %>)';
+			else if (a[0] == nvram.wan4_ifname) a[0] += ' (<% translate("MAN4"); %>)';
 /* MULTIWAN-END */
 		this.insertData(-1, [a[1],a[2],a[3],a[4],a[0]]);
 	}
@@ -86,7 +86,7 @@ ars.verifyFields = function(row, quiet) {
 ars.setup = function() {
 	this.init('ars-grid', '', 20, [
 		{ type: 'text', maxlen: 15 }, { type: 'text', maxlen: 15 }, { type: 'text', maxlen: 15 },
-		{ type: 'text', maxlen: 3 }, { type: 'select', options: [['LAN','LAN'],['LAN1','LAN1'],['LAN2','LAN2'],['LAN3','LAN3'],['WAN','WAN'],['MAN','MAN']] }, { type: 'text', maxlen: 32 }]);
+		{ type: 'text', maxlen: 3 }, { type: 'select', options: [['LAN','<% translate("LAN"); %>'],['LAN1','<% translate("LAN2"); %>'],['LAN2','<% translate("LAN3"); %>'],['LAN3','<% translate("LAN4"); %>'],['WAN','<% translate("WAN"); %>'],['MAN','<% translate("MAN"); %>']] }, { type: 'text', maxlen: 32 }]);
 
 	this.headerSet(['<% translate("Destination"); %>', '<% translate("Gateway"); %>', '<% translate("Subnet Mask"); %>', '<% translate("Metric"); %>', '<% translate("Interface"); %>', '<% translate("Description"); %>']);
 	var routes = nvram.routes_static.split('>');
@@ -267,15 +267,15 @@ createFieldTable('', [
 	{ title: '<% translate("Mode"); %>', name: 'wk_mode', type: 'select', options: [['gateway','<% translate("Gateway"); %>'],['router','<% translate("Router"); %>']], value: nvram.wk_mode },
 /* ZEBRA-BEGIN */
 	{ title: 'RIPv1 &amp; v2' },
-	{ title: 'LAN', indent: 2, name: 'f_dr_lan', type: 'checkbox', value: ((nvram.dr_lan_rx != '0') && (nvram.dr_lan_rx != '')) },
-	{ title: 'LAN1', indent: 2, name: 'f_dr_lan1', type: 'checkbox', value: ((nvram.dr_lan1_rx != '0') && (nvram.dr_lan1_rx != '')) },
-	{ title: 'LAN2', indent: 2, name: 'f_dr_lan2', type: 'checkbox', value: ((nvram.dr_lan2_rx != '0') && (nvram.dr_lan2_rx != '')) },
-	{ title: 'LAN3', indent: 2, name: 'f_dr_lan3', type: 'checkbox', value: ((nvram.dr_lan3_rx != '0') && (nvram.dr_lan3_rx != '')) },
-	{ title: 'WAN', indent: 2, name: 'f_dr_wan', type: 'checkbox', value: ((nvram.dr_wan_rx != '0') && (nvram.dr_wan_rx != '')) },
-	{ title: 'WAN2', indent: 2, name: 'f_dr_wan2', type: 'checkbox', value: ((nvram.dr_wan2_rx != '0') && (nvram.dr_wan2_rx != '')) },
+	{ title: '<% translate("LAN"); %>', indent: 2, name: 'f_dr_lan', type: 'checkbox', value: ((nvram.dr_lan_rx != '0') && (nvram.dr_lan_rx != '')) },
+	{ title: '<% translate("LAN2"); %>', indent: 2, name: 'f_dr_lan1', type: 'checkbox', value: ((nvram.dr_lan1_rx != '0') && (nvram.dr_lan1_rx != '')) },
+	{ title: '<% translate("LAN3"); %>', indent: 2, name: 'f_dr_lan2', type: 'checkbox', value: ((nvram.dr_lan2_rx != '0') && (nvram.dr_lan2_rx != '')) },
+	{ title: '<% translate("LAN4"); %>', indent: 2, name: 'f_dr_lan3', type: 'checkbox', value: ((nvram.dr_lan3_rx != '0') && (nvram.dr_lan3_rx != '')) },
+	{ title: '<% translate("WAN"); %>', indent: 2, name: 'f_dr_wan', type: 'checkbox', value: ((nvram.dr_wan_rx != '0') && (nvram.dr_wan_rx != '')) },
+	{ title: '<% translate("WAN2"); %>', indent: 2, name: 'f_dr_wan2', type: 'checkbox', value: ((nvram.dr_wan2_rx != '0') && (nvram.dr_wan2_rx != '')) },
 /* MULTIWAN-BEGIN */
-	{ title: 'WAN3', indent: 2, name: 'f_dr_wan3', type: 'checkbox', value: ((nvram.dr_wan3_rx != '0') && (nvram.dr_wan3_rx != '')) },
-	{ title: 'WAN4', indent: 2, name: 'f_dr_wan4', type: 'checkbox', value: ((nvram.dr_wan4_rx != '0') && (nvram.dr_wan4_rx != '')) },
+	{ title: '<% translate("WAN3"); %>', indent: 2, name: 'f_dr_wan3', type: 'checkbox', value: ((nvram.dr_wan3_rx != '0') && (nvram.dr_wan3_rx != '')) },
+	{ title: '<% translate("WAN4"); %>', indent: 2, name: 'f_dr_wan4', type: 'checkbox', value: ((nvram.dr_wan4_rx != '0') && (nvram.dr_wan4_rx != '')) },
 /* MULTIWAN-END */
 
 /* ZEBRA-END */

@@ -233,9 +233,9 @@ No part of this file may be used without permission.
 					/* VLAN-BEGIN */
 					{ title: '<% translate("Enabled on"); %>' },
 					{ title: '<% translate("LAN"); %>', indent: 2, name: 'f_upnp_lan', type: 'checkbox', value: (nvram.upnp_lan == '1') },
-					{ title: '<% translate("LAN1"); %>', indent: 2, name: 'f_upnp_lan1', type: 'checkbox', value: (nvram.upnp_lan1 == '1') },
-					{ title: '<% translate("LAN2"); %>', indent: 2, name: 'f_upnp_lan2', type: 'checkbox', value: (nvram.upnp_lan2 == '1') },
-					{ title: '<% translate("LAN3"); %>', indent: 2, name: 'f_upnp_lan3', type: 'checkbox', value: (nvram.upnp_lan3 == '1') },
+					{ title: '<% translate("LAN2"); %>', indent: 2, name: 'f_upnp_lan1', type: 'checkbox', value: (nvram.upnp_lan1 == '1') },
+					{ title: '<% translate("LAN3"); %>', indent: 2, name: 'f_upnp_lan2', type: 'checkbox', value: (nvram.upnp_lan2 == '1') },
+					{ title: '<% translate("LAN4"); %>', indent: 2, name: 'f_upnp_lan3', type: 'checkbox', value: (nvram.upnp_lan3 == '1') },
 					/* VLAN-END */
 					{ title: '<% translate("Show In My Network Places"); %>',  name: 'f_upnp_mnp',  type: 'checkbox',  value: (nvram.upnp_mnp == '1')}
 				]);

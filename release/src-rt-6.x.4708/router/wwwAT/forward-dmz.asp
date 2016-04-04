@@ -101,7 +101,7 @@ No part of this file may be used without permission.
 						value: (nvram.dmz_ipaddr.indexOf('.') != -1) ? nvram.dmz_ipaddr : (lipp + nvram.dmz_ipaddr) },
 					/* VLAN-BEGIN */
 					{ title: '<% translate("Destination Interface"); %>', indent: 2, name: 'dmz_ifname', type: 'select',
-						options: [['br0','<% translate("LAN"); %> (br0)'],['br1','<% translate("LAN1"); %> (br1)'],['br2','<% translate("LAN2"); %> (br2)'],['br3','<% translate("LAN3"); %> (br3)']], value: nvram.dmz_ifname },
+						options: [['br0','<% translate("LAN"); %> (br0)'],['br1','<% translate("LAN2"); %> (br1)'],['br2','<% translate("LAN3"); %> (br2)'],['br3','<% translate("LAN4"); %> (br3)']], value: nvram.dmz_ifname },
 					/* VLAN-END */
 					{ title: '<% translate("Source Address Restrictiones"); %>', indent: 2, name: 'f_dmz_sip', type: 'text', maxlen: 512, size: 64,
 						value: nvram.dmz_sip, suffix: '<br><small>(<% translate("optional"); %>; <% translate("ex:"); %> "1.1.1.1", "1.1.1.0/24", "1.1.1.1 - 2.2.2.2" <% translate("or"); %> "me.example.com")</small>' }

@@ -17,9 +17,9 @@ LAN Access admin module by Augusto Bott
 		la.setup = function() {
 			this.init('la-grid', 'sort', 50, [
 				{ type: 'checkbox', prefix: '<div class="centered">', suffix: '</div>', class: 'input-medium' },
-				{ type: 'select', options: [[0, '<% translate("LAN"); %> (br0)'],[1, '<% translate("LAN1"); %> (br1)'],[2, '<% translate("LAN2"); %> (br2)'],[3, '<% translate("LAN3"); %> (br3)']], prefix: '<div class="centered">', suffix: '</div>', class: 'input-medium' },
+				{ type: 'select', options: [[0, '<% translate("LAN"); %> (br0)'],[1, '<% translate("LAN2"); %> (br1)'],[2, '<% translate("LAN3"); %> (br2)'],[3, '<% translate("LAN4"); %> (br3)']], prefix: '<div class="centered">', suffix: '</div>', class: 'input-medium' },
 				{ type: 'text', maxlen: 32, class: 'input-medium' },
-				{ type: 'select', options: [[0, '<% translate("LAN"); %> (br0)'],[1, '<% translate("LAN1"); %> (br1)'],[2, '<% translate("LAN2"); %> (br2)'],[3, '<% translate("LAN3"); %> (br3)']], prefix: '<div class="centered">', suffix: '</div>', class: 'input-medium' },
+				{ type: 'select', options: [[0, '<% translate("LAN"); %> (br0)'],[1, '<% translate("LAN2"); %> (br1)'],[2, '<% translate("LAN3"); %> (br2)'],[3, '<% translate("LAN4"); %> (br3)']], prefix: '<div class="centered">', suffix: '</div>', class: 'input-medium' },
 				{ type: 'text', maxlen: 32, class: 'input-medium' },
 				{ type: 'text', maxlen: 32, class: 'input-medium' }]);
 			this.headerSet(['<% translate("On"); %>', '<% translate("Src"); %>', '<% translate("Src Address"); %>', '<% translate("Dst"); %>', '<% translate("Dst Address"); %>','<% translate("Description"); %>']);
@@ -125,9 +125,9 @@ LAN Access admin module by Augusto Bott
 
 		la.dataToView = function(data) {
 			return [(data[0] != 0) ? 'On' : '',
-				['<% translate("LAN"); %>', '<% translate("LAN1"); %>', '<% translate("LAN2"); %>', '<% translate("LAN3"); %>'][data[1]],
+				['<% translate("LAN"); %>', '<% translate("LAN2"); %>', '<% translate("LAN3"); %>', '<% translate("LAN4"); %>'][data[1]],
 				data[2],
-				['<% translate("LAN"); %>', '<% translate("LAN1"); %>', '<% translate("LAN2"); %>', '<% translate("LAN3"); %>'][data[3]],
+				['<% translate("LAN"); %>', '<% translate("LAN2"); %>', '<% translate("LAN3"); %>', '<% translate("LAN4"); %>'][data[3]],
 				data[4],
 				data[5] ];
 		}

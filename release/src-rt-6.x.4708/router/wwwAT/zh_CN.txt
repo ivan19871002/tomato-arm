@@ -57,6 +57,7 @@ Advanced MAC Settings=高级MAC设置
 Advanced Settings=高级设置
 AdvancedTomato version=AdvancedTomato 版本
 Advertise DNS to clients=向客户端发布DNS
+Advised to turn off PIN Code=建议关闭PIN码
 Africa=非洲
 After configuring this VIF, review and save your settings on the Overview tab=配置完VIF之后,请审查概览选项卡上的设置并保存
 After flashing, erase all data in NVRAM memory=更新后，清除NVRAM中所有数据

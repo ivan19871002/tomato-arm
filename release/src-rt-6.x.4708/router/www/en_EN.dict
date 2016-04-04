@@ -1822,6 +1822,7 @@ UL Rate=
 ULRate=
 ULRate must between 1 and 99999=
 UNC=
+uncheck in case PPPoE connection without DHCP MAN=
 Unclassified=
 Uniform=
 Unique identifier associated to a network interface on this particular device=

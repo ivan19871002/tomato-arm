@@ -2035,7 +2035,7 @@ for(var uidx = 1; uidx <= maxwan_num; ++uidx) {
 		{ title: '<% translate("Service Name"); %>', name: 'wan'+u+'_ppp_service', type: 'text', maxlen: 50, size: 64, value: nvram['wan'+u+'_ppp_service'] },
 		{ title: '<% translate("L2TP Server"); %>', name: 'wan'+u+'_l2tp_server_ip', type: 'text', maxlen: 128, size: 64, value: nvram['wan'+u+'_l2tp_server_ip'] },
 		{ title: '<% translate("PPTP Gateway"); %>', name: 'wan'+u+'_pptp_server_ip', type: 'text', maxlen: 128, size: 64, value: nvram['wan'+u+'_pptp_server_ip'] },
-		{ title: '<% translate("Use DHCP"); %>', name: 'f_wan'+u+'_pptp_dhcp', type: 'checkbox', value: (nvram['wan'+u+'_pptp_dhcp'] == 1) },
+		{ title: '<% translate("Use DHCP"); %>', name: 'f_wan'+u+'_pptp_dhcp', type: 'checkbox', suffix: ' <small>(<% translate("uncheck in case PPPoE connection without DHCP MAN"); %>)</small>', value: (nvram['wan'+u+'_pptp_dhcp'] == 1) },
 		{ title: '<% translate("IP Address"); %>', name: 'wan'+u+'_ipaddr', type: 'text', maxlen: 15, size: 17, value: nvram['wan'+u+'_ipaddr'] },
 		{ title: '<% translate("Subnet Mask"); %>', name: 'wan'+u+'_netmask', type: 'text', maxlen: 15, size: 17, value: nvram['wan'+u+'_netmask'] },
 		{ title: '<% translate("Gateway"); %>', name: 'wan'+u+'_gateway', type: 'text', maxlen: 15, size: 17, value: nvram['wan'+u+'_gateway'] },

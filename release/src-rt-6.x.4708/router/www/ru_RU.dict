@@ -2171,6 +2171,7 @@ works only with non-Hilink modems=не применимо к модемам Hili
 #overview=
 Watchdog Mode=Способ проверки
 Chinese=Китайский
+uncheck in case PPPoE connection without DHCP MAN=отключите для PPPoE соединения без DHCP MAN
 
 ### ADVANCED TOMATO ###
 Unable to connect to the interface=Не удалось подключиться к интерфейсу управления

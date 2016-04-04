@@ -13,6 +13,8 @@ Supported router models:
 
 maybe others...
 
+Compiled fw binaries can be found in [Downloads](https://bitbucket.org/tsynik/tomato-arm/downloads) section.
+
 Linux machine required to build firmware.
 
 Recommended (tested) system:  Ubuntu 14.04 or SuSE 13.2.

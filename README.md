@@ -33,6 +33,6 @@ Essential packages required to build firmware:
 sudo apt-get install build-essential gcc libncurses5 libncurses5-dev m4 flex bison libtool automake pkg-config
 ```
 
-Check contents of make[*].sh, setup PATH, uncomment/add desired TARGET and RUN.
+*Check contents of make[*].sh in root directory, setup PATH, uncomment/add desired TARGET and RUN it.*
 
 ### Have fun! ###

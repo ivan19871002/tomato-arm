@@ -510,11 +510,6 @@ REMOVE-END */
 
     if ((trunk_vlan_supported) && (f[COL_P0].checked == 1)) {
       f[COL_P0T].disabled=0;
-/* REMOVE-BEGIN
-//      if((f[COL_P0T].checked==0) || (this.countElem(COL_P0,1)>0) )
-//      if(this.countElem(COL_P0,1)>0) {
-//      }
-REMOVE-END */
     } else {
       f[COL_P0T].disabled=1;
       f[COL_P0T].checked=0;
@@ -547,7 +542,7 @@ REMOVE-END */
 // Modifications to enable Native VLAN support(allow one untagged vlan per port) by default
     if ((f[COL_P0].checked == 1) && (this.countElem(COL_P0,1)>0)) {
       if (((this.countElem(COL_P0,1)-1) >= this.countElem(COL_P0T,1)) && (f[COL_P0T].checked==0)) {
-          ferror.set(f[COL_P0T], '<% translate("Only one untagged VLAN per port is allowed (Native VLAN)"; %>', quiet);
+          ferror.set(f[COL_P0T], '<% translate("Only one untagged VLAN per port is allowed (Native VLAN)"); %>', quiet);
           valid=0;
       } else {
           ferror.clear(f[COL_P0T]);
@@ -896,10 +891,10 @@ function earlyInit() {
 <input type='hidden' name='vlan15hwname'>
 <input type='hidden' name='wan_ifnameX'>
 <input type='hidden' name='wan2_ifnameX'>
-/* MULTIWAN-BEGIN */
+<!-- MULTIWAN-BEGIN -->
 <input type='hidden' name='wan3_ifnameX'>
 <input type='hidden' name='wan4_ifnameX'>
-/* MULTIWAN-END */
+<!-- MULTIWAN-END -->
 <input type='hidden' name='manual_boot_nv'>
 <input type='hidden' name='lan_ifnames'>
 <input type='hidden' name='lan1_ifnames'>
@@ -978,6 +973,7 @@ if(port_vlan_supported) vlg.setup();
 <br>
 <li><b><% translate("VLAN"); %></b> - <% translate("Unique identifier of a VLAN"); %>.</li>
 <li><b><% translate("VID"); %></b> - <% translate("Allows overriding 'traditional' VLAN/VID mapping with arbitrary VIDs for each VLAN"); %> (<% translate("set to '0' to use 'regular' VLAN/VID mappings instead"); %>).</li>
+<li><b><% translate("Ports"); %> 1-4 &amp; WAN</b> - <% translate("Which ethernet ports on the router should be members of this VLAN"); %>.</li>
 <li><b><% translate("Tagged"); %></b> - <% translate("Enable 802.1Q tagging of ethernet frames on a particular port/VLAN"); %>.</li>
 <li><b><% translate("Default"); %></b> - <% translate("VLAN ID assigned to untagged frames received by the router"); %>.</li>
 <li><b><% translate("Bridge"); %></b> - <% translate("Determines if this VLAN ID should be treated as WAN, part of a LAN bridge or just left alone (i.e. member of a 802.1Q trunk, being managed manually via scripts, etc...)"); %></li>

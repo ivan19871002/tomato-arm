@@ -1311,6 +1311,7 @@ port=
 Port=
 Port Forwarding=
 Port Numbers on Router Case (Left -> Right viewed from Front)=
+Ports=
 Port to be used by the Captive Portal for page redirection. Port 1 to 65534. Default=
 Port used for torrent client. Make sure this port is not in use=
 Port used for Transmission GUI. Make sure this port is not in use=
@@ -2018,6 +2019,7 @@ When saving changes, the MAC addresses of all defined non-primary wireless VIFs 
 When setting any port (included or excluded) leave a blank space between each port number, i.e=
 when the network conditions poor, try use long detection period=
 When you tick and save the router will show a Welcome Banner when a computer access the Internet=
+Which ethernet ports on the router should be members of this VLAN=
 Which LAN bridge this VIF should be assigned=
 White=
 Wildcard=

@@ -13,6 +13,13 @@ Supported router models:
 
 maybe others...
 
+Included languages:
+
+* Russian
+* Chinese (Simplified)
+
+you can make your own ;-)
+
 Compiled fw binaries can be found in [Downloads](https://bitbucket.org/tsynik/tomato-arm/downloads) section.
 
 Linux machine required to build firmware.

@@ -136,40 +136,41 @@ function init()
 
 <script type='text/javascript'>
 createFieldTable('', [
-	{ title: 'Enable TOR', name: 'f_tor_enable', type: 'checkbox', value: nvram.tor_enable == '1' },
+	{ title: '<% translate("Enable TOR"); %>', name: 'f_tor_enable', type: 'checkbox', value: nvram.tor_enable == '1' },
 	null,
-	{ title: 'Socks Port', name: 'tor_socksport', type: 'text', maxlen: 5, size: 7, value: fixPort(nvram.tor_socksport, 9050) },
-	{ title: 'Trans Port', name: 'tor_transport', type: 'text', maxlen: 5, size: 7, value: fixPort(nvram.tor_transport, 9040) },
-	{ title: 'DNS Port', name: 'tor_dnsport', type: 'text', maxlen: 5, size: 7, value: fixPort(nvram.tor_dnsport, 9053) },
-	{ title: 'Data Directory', name: 'tor_datadir', type: 'text', maxlen: 24, size: 28, value: nvram.tor_datadir },
+	{ title: '<% translate("Socks Port"); %>', name: 'tor_socksport', type: 'text', maxlen: 5, size: 7, value: fixPort(nvram.tor_socksport, 9050) },
+	{ title: '<% translate("Trans Port"); %>', name: 'tor_transport', type: 'text', maxlen: 5, size: 7, value: fixPort(nvram.tor_transport, 9040) },
+	{ title: '<% translate("DNS Port"); %>', name: 'tor_dnsport', type: 'text', maxlen: 5, size: 7, value: fixPort(nvram.tor_dnsport, 9053) },
+	{ title: '<% translate("Data Directory"); %>', name: 'tor_datadir', type: 'text', maxlen: 24, size: 28, value: nvram.tor_datadir },
 	null,
-	{ title: 'Redirect all users from', multi: [
+	{ title: '<% translate("Redirect all users from"); %>', multi: [
 		{ name: 'tor_iface', type: 'select', options: [
 			['br0','<% translate("LAN"); %> (br0)'],
 			['br1','<% translate("LAN2"); %> (br1)'],
 			['br2','<% translate("LAN3"); %> (br2)'],
 			['br3','<% translate("LAN4"); %> (br3)'],
+			['custom','<% translate("Selected IP`s"); %>']
 				], value: nvram.tor_iface },
 		{ name: 'tor_users', type: 'text', maxlen: 512, size: 64, value: nvram.tor_users } ] },
-	{ title: 'Redirect TCP Ports', multi: [
+	{ title: '<% translate("Redirect TCP Ports"); %>', multi: [
 		{ name: 'tor_ports', type: 'select', options: [
-			['80','HTTP only (TCP 80)'],
-			['80,443','HTTP/HTTPS (TCP 80,443)'],
-			['custom','Selected Ports']
+			['80','<% translate("HTTP only"); %> (TCP 80)'],
+			['80,443','<% translate("HTTP/HTTPS"); %> (TCP 80,443)'],
+			['custom','<% translate("Selected Ports"); %>']
 				], value: nvram.tor_ports },
 		{ name: 'tor_ports_custom', type: 'text', maxlen: 512, size: 64, value: nvram.tor_ports_custom } ] },
 	null,
-	{ title: 'Custom Configuration', name: 'tor_custom', type: 'textarea', value: nvram.tor_custom }
+	{ title: '<% translate("Custom Configuration"); %>', name: 'tor_custom', type: 'textarea', value: nvram.tor_custom }
 ]);
 </script>
 </div>
-<div class='section-title'>Notes</div>
+<div class='section-title'><% translate("Notes"); %></div>
 <div class='section'>
 <ul>
-	<li><b>Enable TOR</b> - Be patient. Starting the TOR client can take from several seconds to several minutes.
-	<li><b>Selected IP`s</b> - ex: 1.2.3.4,1.1.0/24,1.2.3.1-1.2.3.4
-	<li><b>Selected Ports</b> - ex: one port (80), few ports (80,443,8888), range of ports (80:88), mix (80,8000:9000,9999)
-	<li><b><u>Caution!</u></b> - If your router has only 32MB of RAM, you'll have to use swap.
+	<li><b><% translate("Enable TOR"); %></b> - <% translate("Be patient. Starting the TOR client can take from several seconds to several minutes"); %>.
+	<li><b><% translate("Selected IP`s"); %></b> - <% translate("ex"); %>: 1.2.3.4,1.1.0/24,1.2.3.1-1.2.3.4
+	<li><b><% translate("Selected Ports"); %></b> - <% translate("ex"); %>: <% translate("one port"); %> (80), <% translate("few ports"); %> (80,443,8888), <% translate("range of ports"); %> (80:88), <% translate("mix"); %> (80,8000:9000,9999)
+	<li><b><u><% translate("Caution!"); %></u></b> - <% translate("If your router has only 32MB of RAM, you'll have to use swap"); %>.
 </ul>
 </div>
 </form>

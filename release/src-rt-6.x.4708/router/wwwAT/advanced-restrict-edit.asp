@@ -22,8 +22,10 @@ No part of this file may be used without permission.
 		textarea {
 			height: 20em;
 			width: 100%;
-		.fi5 {display: block}
 		}
+
+		.fi5 {display: block}
+
 	</style>
 	<script type="text/javascript">
 		//	<% nvram('at_update,tomatoanon_answer'); %>	// http_id

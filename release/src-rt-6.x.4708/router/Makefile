@@ -2233,8 +2233,8 @@ mysql-install:
 	$(STRIP) $(INSTALLDIR)/mysql/usr/bin/mysqladmin
 	install -D -m 755 mysql/staged/usr/bin/mysqldump $(INSTALLDIR)/mysql/usr/bin
 	$(STRIP) $(INSTALLDIR)/mysql/usr/bin/mysqldump
-#	install -D -m 755 mysql/staged/usr/libexec/mysqld $(INSTALLDIR)/mysql/usr/libexec
-	install -D -m 755 mysql/staged/usr/lib/mysqld $(INSTALLDIR)/mysql/usr/libexec
+	install -D -m 755 mysql/staged/usr/libexec/mysqld $(INSTALLDIR)/mysql/usr/libexec
+#	install -D -m 755 mysql/staged/usr/lib/mysqld $(INSTALLDIR)/mysql/usr/libexec
 	$(STRIP) $(INSTALLDIR)/mysql/usr/libexec/mysqld
 	cd $(INSTALLDIR)/mysql/usr/bin && ln -sf ../libexec/mysqld mysqld
 #	install -D -m 755 mysql/staged/usr/bin/mysqld_safe $(INSTALLDIR)/mysql/usr/bin

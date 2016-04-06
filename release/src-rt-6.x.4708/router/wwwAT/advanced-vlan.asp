@@ -72,6 +72,8 @@
 			case 'D-Link DIR868L':
 			case 'Cisco Linksys EA6500v2':
 			case 'Cisco Linksys EA6700':
+			case 'Netgear R8000':
+			case 'Xiaomi MiWiFi':
 				COL_P0N = '0';
 				COL_P1N = '1';
 				COL_P2N = '2';
@@ -83,6 +85,7 @@
 			case 'Asus RT-AC68R/U':
 			case 'Asus RT-AC68P':
 			case 'Asus RT-AC68P/U B1':
+			case 'Asus RT-AC3200':
 			case 'Huawei WS880':
 			case 'Linksys EA6900':
 			case 'Netgear R7000': // newer versions

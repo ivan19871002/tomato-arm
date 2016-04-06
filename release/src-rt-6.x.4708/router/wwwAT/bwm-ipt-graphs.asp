@@ -9,21 +9,23 @@ LAN Access admin module by Augusto Bott
 <title><% translate("IP Traffic Graphs"); %></title>
 <content>
 	<style type="text/css">
-		table { margin: 8px 0 0; }
+		table {
+			margin: 8px 0 0;
+			border-collapse: unset;
+		}
 		.color {
 			width: 12px;
-			height: 25px;
+			height: 12px;
+			line-height: 12px;
 		}
-		.title {
-			padding: 0 5px;
+		.title, .count, .pct {
+			padding: 2px 5px 1px;
 		}
 		.count {
 			text-align: right;
-			padding-bottom: 2px;
 		}
 		.pct {
-			width:55px;
-			padding-right: 10px;
+			width:10%;
 			text-align: right;
 		}
 		.thead {
@@ -32,6 +34,7 @@ LAN Access admin module by Augusto Bott
 		}
 		.total {
 			border-top: 1px dashed #bbb;
+			border-radius: 0;
 			font-weight: 500;
 			padding-top: 4px;
 		}
@@ -294,7 +297,7 @@ LAN Access admin module by Augusto Bott
 			<div class="content">
 				<div id="svg-0"></div>
 				<table id="firstTable">
-					<tr><td class="color" style="height:1em"></td><td class="title" style="width:45px">&nbsp;</td><td class="thead count">kbit/s</td><td class="thead count">KB/s</td><td class="pct">&nbsp;</td></tr>
+					<tr><td class="color"></td><td class="title" style="width:45px">&nbsp;</td><td class="thead count"><% translate("count"); %></td><td class="pct">&nbsp</td></tr>
 					<tr><td>&nbsp;</td><td class="total"><% translate("Total"); %></td><td id="ccnt-total" class="total count"></td><td class="total pct">100%</td></tr>
 				</table>
 			</div>
@@ -306,7 +309,7 @@ LAN Access admin module by Augusto Bott
 				<div id="svg-1"></div>
 
 				<table id="secondTable">
-					<tr><td class="color" style="height:1em"></td><td class="title" style="width:45px">&nbsp;</td><td class="thead count">kbit/s</td><td class="thead count">KB/s</td><td class="pct">&nbsp;</td></tr>
+					<tr><td class="color"></td><td class="title" style="width:45px">&nbsp;</td><td class="thead count"><% translate("kbit/s"); %></td><td class="thead count"><% translate("KB/s"); %></td><td class="pct">&nbsp;</td></tr>
 					<tr><td>&nbsp;</td><td class="total"><% translate("Total"); %></td><td id="bcnt-total" class="total count"></td><td id="bcntx-total" class="total count"></td><td class="total pct">100%</td></tr>
 				</table>
 			</div>
@@ -318,7 +321,7 @@ LAN Access admin module by Augusto Bott
 				<div id="svg-2"></div>
 
 				<table id="thirdTable">
-					<tr><td class="color" style="height:1em"></td><td class="title" style="width:45px">&nbsp;</td><td class="thead count">kbit/s</td><td class="thead count">KB/s</td><td class="pct">&nbsp;</td></tr>
+					<tr><td class="color"></td><td class="title" style="width:45px">&nbsp;</td><td class="thead count"><% translate("kbit/s"); %></td><td class="thead count"><% translate("KB/s"); %></td><td class="pct">&nbsp;</td></tr>
 					<tr><td>&nbsp;</td><td class="total"><% translate("Total"); %></td><td id="obcnt-total" class="total count"></td><td id="obcntx-total" class="total count"></td><td class="total pct">100%</td></tr>
 				</table>
 			</div>

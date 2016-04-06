@@ -1,4 +1,3 @@
-
 var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 var snames = [' KB', ' MB', ' GB'];
 var scale = 2;
@@ -49,32 +48,36 @@ function cmpHist(a, b)
 function checkRstats()
 {
 	if (nvram.rstats_enable != '1') {
-		
+
 		W('<div class="alert alert-warning">Bandwidth monitoring disabled.</b> <a href="admin-bwm.asp">Enable &raquo;</a></div>');
 		$(function() { E('rstats').style.display = 'none'; });
 		
 	} else {
-		
 		W('<div class="alert alert-info" style="display:none" id="rbusy">The rstats program is not responding or is busy. Try reloading after a few seconds.</div>');
-		
+
 	}
 }
 
 function checkCstats()
 {
 	if (nvram.cstats_enable != '1') {
-		
+
 		W('<div class="alert alert-info">IP Traffic monitoring disabled.</b> <a href="admin-iptraffic.asp">Enable &raquo;</a></div>');
 		$(function() { E('cstats').style.display = 'none'; });
 		
 	} else if (cstats_busy) {
-		
+
 		W('<div class="alert alert-info">The cstats program is not responding or is busy. Try reloading after a few seconds.</div>');
-		
+
 	}
 }
 
 /*
+
+0	yyyy-mm
+1	mm-yyyy
+2	mmm yyyy
+3	mm.yyyy
 
 0	yyyy-mm-dd
 1	mm-dd-yy
@@ -84,6 +87,19 @@ function checkCstats()
 */
 
 var dateFormat = -1;
+
+function ymText(yr, mo)
+{
+	switch (dateFormat) {
+		case 1:
+			return (mo + 1).pad(2) + '-' + yr;
+		case 2:
+			return months[mo] + ' ' + yr;
+		case 3:
+			return (mo + 1).pad(2) + '.' + yr;
+	}
+	return yr + '-' + (mo + 1).pad(2);
+}
 
 function ymdText(yr, mo, da)
 {
@@ -96,20 +112,6 @@ function ymdText(yr, mo, da)
 			return da.pad(2) + '.' + (mo + 1).pad(2) + '.' + yr;
 	}
 	return yr + '-' + (mo + 1).pad(2) + '-' + da.pad(2);
-}
-
-function ymText(yr, mo)
-
-{
-	switch (dateFormat) {
-		case 1:
-			return (mo + 1).pad(2) + '-' + yr;
-		case 2:
-			return months[mo] + ', ' + yr;
-		case 3:
-			return (mo + 1).pad(2) + '.' + yr;
-	}
-	return yr + '-' + (mo + 1).pad(2);
 }
 
 function changeDate(e, c)

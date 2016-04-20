@@ -207,6 +207,12 @@ ifneq ($(XIAOMI_TRX),0)
 	ctools/mksquashfs router/arm-uclibc/target ctools/target.squashfs -noappend -all-root
 	ctools/trx -o image/linux-lzma.trx ctools/vmlinuz-lzma ctools/target.squashfs
 	cd image && cp linux-lzma.trx tomato-$(XIAOMI_TRX)-$(V1)$(V2)-$(current_BUILD_DESC).trx
+#	@echo "Size check .... Max. size: 16384000 - BOOT (256K) - BOARD DATA (64K) - NVRAM (64K)"
+#	maxsize=15990384
+#	actualsize=$(shell wc -c < "tomato-$(XIAOMI_TRX)-$(V1)$(V2)-$(current_BUILD_DESC).trx")
+#	@if [ $(actualsize) -ge $(maxsize) ]; then \
+#		@echo "WARNING: fw size is greater than max allowed size!"; \
+#	@fi; \
 	@echo "Cleanup ...."
 	@rm -rf image/linux-lzma.trx
 endif
@@ -1035,7 +1041,7 @@ ea6700z:
 	@$(MAKE) z ARM=y NVRAM_64K=y NAND=y BCMSMP=y ASUS_TRX="LINKSYS" FAILSAFE_UPGRADE=n
 
 r1dz:
-	@$(MAKE) zz ARM=y NVRAM_64K=y BCMSMP=y XIAOMI_TRX="R1D" TUXERA=y TUXERA_HFS=y SATA=y NO_JFFS=y FANCTRL=y BUILD_DESC="SATA"
+	@$(MAKE) zz ARM=y NVRAM_64K=y BCMSMP=y XIAOMI_TRX="R1D" TUXERA=y TUXERA_HFS=y SATA=y NO_JFFS=y FANCTRL=y
 
 r1do:
 	@$(MAKE) o ARM=y NVRAM_64K=y BCMSMP=y XIAOMI_TRX="R1D" SATA=y NO_JFFS=y FANCTRL=y

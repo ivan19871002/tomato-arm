@@ -15,8 +15,12 @@
 	Tomato Native VLAN support added
 	Jan	2014 by Aaron Finney
 	https://github.com/slash31/TomatoE
-	
-	** Last Updated - FEB 12 2016 - Tvlz **
+
+	VLAN Port Order By 't_model_name'
+	March 2015 Tvlz
+	https://bitbucket.org/tvlz/tvlz-advanced-vlan/
+
+	** Last Updated - MAR 30 2016 - Tvlz **
 
 	For use with Tomato Firmware only.
 	No part of this file may be used without permission.
@@ -84,7 +88,6 @@ switch(nvram['t_model_name']) { //Added by Tvlz, June 2014, ARM March 2015
 	case 'D-Link DIR868L':
 	case 'Cisco Linksys EA6500v2':
 	case 'Cisco Linksys EA6700':
-	case 'Netgear R8000':
 	case 'Xiaomi MiWiFi':
 		COL_P0N = '0';
 		COL_P1N = '1';
@@ -972,7 +975,7 @@ if(port_vlan_supported) vlg.setup();
 <div class='section-title'><% translate("Notes"); %> <small><i><a href='javascript:toggleVisibility("notes");'><span id='sesdiv_notes_showhide'>(<% translate("Click here to hide"); %>)</span></a></i></small></div>
 <div class='section' id='sesdiv_notes' style='display:none'>
 <ul>
-<li><% translate("If you notice that the order of the Lan Ports are incorrectly mapped"); %>, <a href='http://www.linksysinfo.org/index.php?threads/can-vlan-gui-port-order-be-corrected.70160/#post-247634/'> <b><% translate("Please Follow these Instructions to get it corrected"); %></b></a>.</li>
+<li><% translate("If you notice that the order of the Lan Ports are incorrectly mapped"); %>, <a href='http://www.linksysinfo.org/index.php?threads/can-vlan-gui-port-order-be-corrected.70160/#post-247634/'> <b><% translate("please follow this link for instructions to get it corrected"); %></b></a>.</li>
 <br>
 <li><b><% translate("VLAN"); %></b> - <% translate("Unique identifier of a VLAN"); %>.</li>
 <li><b><% translate("VID"); %></b> - <% translate("Allows overriding 'traditional' VLAN/VID mapping with arbitrary VIDs for each VLAN"); %> (<% translate("set to '0' to use 'regular' VLAN/VID mappings instead"); %>).</li>

@@ -2035,7 +2035,6 @@ for(var uidx = 1; uidx <= maxwan_num; ++uidx) {
 		{ title: '<% translate("Service Name"); %>', name: 'wan'+u+'_ppp_service', type: 'text', maxlen: 50, size: 64, value: nvram['wan'+u+'_ppp_service'] },
 		{ title: '<% translate("L2TP Server"); %>', name: 'wan'+u+'_l2tp_server_ip', type: 'text', maxlen: 128, size: 64, value: nvram['wan'+u+'_l2tp_server_ip'] },
 		{ title: '<% translate("PPTP Gateway"); %>', name: 'wan'+u+'_pptp_server_ip', type: 'text', maxlen: 128, size: 64, value: nvram['wan'+u+'_pptp_server_ip'] },
-		{ title: '<% translate("Use DHCP"); %>', name: 'f_wan'+u+'_pptp_dhcp', type: 'checkbox', suffix: ' <small>(<% translate("uncheck in case PPPoE connection without DHCP MAN"); %>)</small>', value: (nvram['wan'+u+'_pptp_dhcp'] == 1) },
 		{ title: '<% translate("IP Address"); %>', name: 'wan'+u+'_ipaddr', type: 'text', maxlen: 15, size: 17, value: nvram['wan'+u+'_ipaddr'] },
 		{ title: '<% translate("Subnet Mask"); %>', name: 'wan'+u+'_netmask', type: 'text', maxlen: 15, size: 17, value: nvram['wan'+u+'_netmask'] },
 		{ title: '<% translate("Gateway"); %>', name: 'wan'+u+'_gateway', type: 'text', maxlen: 15, size: 17, value: nvram['wan'+u+'_gateway'] },
@@ -2056,6 +2055,7 @@ for(var uidx = 1; uidx <= maxwan_num; ++uidx) {
 		{ title: '<% translate("MTU"); %>', multi: [
 			{ name: 'wan'+u+'_mtu_enable', type: 'select', options: [['0', '<% translate("Default"); %>'],['1','<% translate("Manual"); %>']], value: nvram['wan'+u+'_mtu_enable'] },
 			{ name: 'f_wan'+u+'_mtu', type: 'text', maxlen: 4, size: 6, value: nvram['wan'+u+'_mtu'] } ] },
+		{ title: '<% translate("Use DHCP"); %>', name: 'f_wan'+u+'_pptp_dhcp', type: 'checkbox',  suffix: ' <small>(<% translate("check in case PPTP/L2TP/PPPoE connection with DHCP MAN"); %>)</small>', value: (nvram['wan'+u+'_pptp_dhcp'] == 1) },
 		{ title: '<% translate("Single Line MLPPP"); %>', name: 'f_wan'+u+'_ppp_mlppp', type: 'checkbox', value: (nvram['wan'+u+'_ppp_mlppp'] == 1) },
 		{ title: '<% translate("Route Modem IP"); %>', name: 'wan'+u+'_modem_ipaddr', type: 'text', maxlen: 15, size: 17, suffix: ' <i>(<% translate("must be in different subnet to router"); %>, 0.0.0.0 <% translate("to disable"); %>)</i>', value: nvram['wan'+u+'_modem_ipaddr'] },
 		{ title: '<% translate("Watchdog Mode"); %>', name: 'wan'+u+'_ckmtd', type: 'select', options: [['1','<% translate("Ping"); %>'],['2','<% translate("Traceroute"); %>']], value: nvram['wan'+u+'_ckmtd'] },

@@ -5,8 +5,7 @@ SRC=`pwd`/release/src-rt-6.x.4708
 # TOOLCHAIN:
 #
 sudo ln -sf $SRC/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3 /opt/hndtools-arm-linux-2.6.36-uclibc-4.5.3
-#sudo mkdir -p /projects/hnd/tools/linux
-#sudo ln -sf $SRC/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3 /projects/hnd/tools/linux/hndtools-arm-linux-2.6.36-uclibc-4.5.3
+export PATH=$PATH:/opt/hndtools-arm-linux-2.6.36-uclibc-4.5.3/bin
 
 # SuSE x64 32bit libs for toolchain
 # sudo zypper install libelf1-32bit
@@ -15,7 +14,6 @@ sudo ln -sf $SRC/toolchains/hndtools-arm-linux-2.6.36-uclibc-4.5.3 /opt/hndtools
 # Ubuntu 14.04 LTS x64 32bit libs for toolchain
 # sudo apt-get install libelf1:i386 zlib1g:i386
 
-export PATH=$PATH:/opt/hndtools-arm-linux-2.6.36-uclibc-4.5.3/bin
 export LANG=C
 export LC_ALL=en_US.UTF-8
 cd $SRC
@@ -23,8 +21,8 @@ cd $SRC
 # git pull
 
 ### VERSION
-VER="135-ML"
-export BUILDNR="0135"
+VER="136-ML"
+export BUILDNR="0136"
 EXTENDNO=`git rev-parse --verify HEAD --short`
 # 1337
 echo "1336" > linux/linux-2.6/.version

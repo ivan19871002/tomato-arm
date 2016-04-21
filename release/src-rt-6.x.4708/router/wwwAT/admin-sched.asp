@@ -83,13 +83,13 @@ No part of this file may be used without permission.
 					{ name: key + 'every', type: 'text', maxlen: 10, size: 10, value: (v[2] < 0) ? -v[2] : 30,
 						prefix: ' ', suffix: ' <small id="_' + key + 'mins"><i><% translate("minutes"); %></i></small>' } ] },
 				{ title: '<% translate("Days"); %>', multi: [
-					{ name: key + 'sun', type: 'checkbox', suffix: ' <% translate("Sun"); %> &nbsp; ', value: w & 1 },
 					{ name: key + 'mon', type: 'checkbox', suffix: ' <% translate("Mon"); %> &nbsp; ', value: w & 2 },
 					{ name: key + 'tue', type: 'checkbox', suffix: ' <% translate("Tue"); %> &nbsp; ', value: w & 4 },
 					{ name: key + 'wed', type: 'checkbox', suffix: ' <% translate("Wed"); %> &nbsp; ', value: w & 8 },
 					{ name: key + 'thu', type: 'checkbox', suffix: ' <% translate("Thu"); %> &nbsp; ', value: w & 16 },
 					{ name: key + 'fri', type: 'checkbox', suffix: ' <% translate("Fri"); %> &nbsp; ', value: w & 32 },
-					{ name: key + 'sat', type: 'checkbox', suffix: ' <% translate("Sat"); %> &nbsp; &nbsp;', value: w & 64 },
+					{ name: key + 'sat', type: 'checkbox', suffix: ' <% translate("Sat"); %> &nbsp; ', value: w & 64 },
+					{ name: key + 'sun', type: 'checkbox', suffix: ' <% translate("Sun"); %> &nbsp;&nbsp; ', value: w & 1 },
 					{ name: key + 'everyday', type: 'checkbox', suffix: ' <% translate("Everyday"); %>', value: (w & 0x7F) == 0x7F } ] }
 			];
 

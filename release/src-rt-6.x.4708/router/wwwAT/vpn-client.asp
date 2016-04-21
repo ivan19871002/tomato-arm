@@ -431,7 +431,7 @@ No part of this file may be used without permission.
 				htmlOut += ('</div>');
 				htmlOut += ('<div id=\''+t+'-advanced\'>');
 				htmlOut += createFormFields([
-					{ title: '<% translate("Poll Interval"); %>', name: 'vpn_'+t+'_poll', type: 'text', maxlen: 4, size: 5, value: eval( 'nvram.vpn_'+t+'_poll' ), suffix: '&nbsp;<% translate("minutes"); %>, <small>(0 <% translate("to disable"); %>)</small>' },
+					{ title: '<% translate("Poll Interval"); %>', name: 'vpn_'+t+'_poll', type: 'text', maxlen: 4, size: 5, value: eval( 'nvram.vpn_'+t+'_poll' ), suffix: '&nbsp;<% translate("minutes"); %> <small>(0 <% translate("to disable"); %>)</small>' },
 					{ title: '<% translate("Redirect Internet traffic"); %>', multi: [
 						{ name: 'f_vpn_'+t+'_rgw', type: 'checkbox', value: eval( 'nvram.vpn_'+t+'_rgw' ) != 0 },
 						{ name: 'vpn_'+t+'_gw', type: 'text', maxlen: 15, size: 17, value: eval( 'nvram.vpn_'+t+'_gw' ), prefix: '<span id=\''+t+'_gateway\'> Gateway:&nbsp', suffix: '</span>'} ] },

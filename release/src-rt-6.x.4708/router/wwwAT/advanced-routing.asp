@@ -12,7 +12,6 @@ No part of this file may be used without permission.
 		// <% activeroutes(); %>
 
 		var ara = new TomatoGrid();
-
 		ara.setup = function() {
 			var i, a;
 			this.init('ara-grid', 'sort');
@@ -36,6 +35,7 @@ No part of this file may be used without permission.
 				this.insertData(-1, [a[1],a[2],a[3],a[4],a[0]]);
 			}
 		}
+
 		var ars = new TomatoGrid();
 		ars.verifyFields = function(row, quiet) {
 			var f = fields.getAll(row);
@@ -46,9 +46,9 @@ No part of this file may be used without permission.
 			this.init('ars-grid', '', 20, [
 				{ type: 'text', maxlen: 15 }, { type: 'text', maxlen: 15 }, { type: 'text', maxlen: 15 },
 				{ type: 'text', maxlen: 3 }, { type: 'select', options: [['LAN','<% translate("LAN"); %>'],['LAN1','<% translate("LAN2"); %>'],['LAN2','<% translate("LAN3"); %>'],['LAN3','<% translate("LAN4"); %>'],['WAN','<% translate("WAN"); %>'],['MAN','<% translate("MAN"); %>'],['WAN2','<% translate("WAN2"); %>'],['MAN2','<% translate("MAN2"); %>']
-/* MULTIWAN-BEGIN */
-					,['WAN3','<% translate("WAN3"); %>'],['MAN3','<% translate("MAN3"); %>'],['WAN4','<% translate("WAN4"); %>'],['MAN4','<% translate("MAN4"); %>']
-/* MULTIWAN-END */
+				/* MULTIWAN-BEGIN */
+				,['WAN3','<% translate("WAN3"); %>'],['MAN3','<% translate("MAN3"); %>'],['WAN4','<% translate("WAN4"); %>'],['MAN4','<% translate("MAN4"); %>']
+				/* MULTIWAN-END */
 				] }, { type: 'text', maxlen: 32 }]);
 			this.headerSet(['<% translate("Destination"); %>', '<% translate("Gateway"); %>', '<% translate("Subnet Mask"); %>', '<% translate("Metric"); %>', '<% translate("Interface"); %>','<% translate("Description"); %>']);
 			var routes = nvram.routes_static.split('>');

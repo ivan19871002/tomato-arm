@@ -132,7 +132,7 @@ No part of this file may be used without permission.
 							value: (nvram.dhcpd_slt < 1) ? nvram.dhcpd_slt : 1 },
 						{ name: 'f_dhcpd_slt', type: 'text', maxlen: 5, size: 8, prefix: '<span id="_dhcpd_sltman"> ', suffix: 'minutes</span>',
 							value: (nvram.dhcpd_slt >= 1) ? nvram.dhcpd_slt : 3600 } ] },
-					{ title: '<% translate("Announce IPv6 on LAN"); %>  (SLAAC)', name: 'f_ipv6_radvd', type: 'checkbox', value: nvram.ipv6_radvd == '1' },
+					{ title: '<% translate("Announce IPv6 on LAN"); %> (SLAAC)', name: 'f_ipv6_radvd', type: 'checkbox', value: nvram.ipv6_radvd == '1' },
 					{ title: '<% translate("Announce IPv6 on LAN"); %> (DHCP)', name: 'f_ipv6_dhcpd', type: 'checkbox', value: nvram.ipv6_dhcpd == '1' },
 					{ title: '<% translate("Mute dhcpv4 logging"); %>', name: 'f_dnsmasq_q4', type: 'checkbox', value: (nvram.dnsmasq_q & 1) },
 					{ title: '<% translate("Mute dhcpv6 logging"); %>', name: 'f_dnsmasq_q6', type: 'checkbox', value: (nvram.dnsmasq_q & 2) },

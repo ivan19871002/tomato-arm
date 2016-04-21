@@ -54,9 +54,8 @@ No part of this file may be used without permission.
 			/* LINUX26-END */
 		];
 
-		var dowNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-
-		//
+		// array MUST be in English
+		var dowNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 		var cg = new TomatoGrid();
 
@@ -426,13 +425,14 @@ No part of this file may be used without permission.
 							{ name: 'f_sched_begin', type: 'select', options: tm, value: (rule[2] < 0) ? 0 : rule[2], suffix: ' - ' },
 							{ name: 'f_sched_end', type: 'select', options: tm, value: (rule[3] < 0) ? 0 : rule[3] } ] },
 						{ title: '<% translate("Days"); %>', indent: 2, multi: [
-							{ name: 'f_sched_sun', type: 'checkbox', suffix: ' Sun &nbsp; ', value: (rule[4] & 1) },
-							{ name: 'f_sched_mon', type: 'checkbox', suffix: ' Mon &nbsp; ', value: (rule[4] & (1 << 1)) },
-							{ name: 'f_sched_tue', type: 'checkbox', suffix: ' Tue &nbsp; ', value: (rule[4] & (1 << 2)) },
-							{ name: 'f_sched_wed', type: 'checkbox', suffix: ' Wed &nbsp; ', value: (rule[4] & (1 << 3)) },
-							{ name: 'f_sched_thu', type: 'checkbox', suffix: ' Thu &nbsp; ', value: (rule[4] & (1 << 4)) },
-							{ name: 'f_sched_fri', type: 'checkbox', suffix: ' Fri &nbsp; ', value: (rule[4] & (1 << 5)) },
-							{ name: 'f_sched_sat', type: 'checkbox', suffix: ' Sat', value: (rule[4] & (1 << 6)) } ] },
+							{ name: 'f_sched_mon', type: 'checkbox', suffix: ' <% translate("Mon"); %> &nbsp; ', value: (rule[4] & (1 << 1)) },
+							{ name: 'f_sched_tue', type: 'checkbox', suffix: ' <% translate("Tue"); %> &nbsp; ', value: (rule[4] & (1 << 2)) },
+							{ name: 'f_sched_wed', type: 'checkbox', suffix: ' <% translate("Wed"); %> &nbsp; ', value: (rule[4] & (1 << 3)) },
+							{ name: 'f_sched_thu', type: 'checkbox', suffix: ' <% translate("Thu"); %> &nbsp; ', value: (rule[4] & (1 << 4)) },
+							{ name: 'f_sched_fri', type: 'checkbox', suffix: ' <% translate("Fri"); %> &nbsp; ', value: (rule[4] & (1 << 5)) },
+							{ name: 'f_sched_sat', type: 'checkbox', suffix: ' <% translate("Sat"); %> &nbsp; ', value: (rule[4] & (1 << 6)) },
+							{ name: 'f_sched_sun', type: 'checkbox', suffix: ' <% translate("Sun"); %> &nbsp; ', value: (rule[4] & 1) }
+							] },
 						{ title: '<% translate("Type"); %>', name: 'f_type', id: 'rt_norm', type: 'radio', suffix: ' <% translate("Normal Access Restriction"); %>', value: (rule[5] != '~') },
 						{ title: '', name: 'f_type', id: 'rt_wl', type: 'radio', suffix: ' <% translate("Disable Wireless"); %>', value: (rule[5] == '~') },
 						{ title: '<% translate("Applies To"); %>', name: 'f_comp_all', type: 'select', options: [[0,'<% translate("All Computers / Devices"); %>'],[1,'<% translate("The Following"); %>...'],[2,'<% translate("All Except"); %>...']], value: 0 },

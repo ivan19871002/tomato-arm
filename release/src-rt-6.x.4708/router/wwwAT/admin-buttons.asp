@@ -18,8 +18,7 @@ No part of this file may be used without permission.
 
 		function verifyFields(focused, quiet)
 		{
-			var a = !E('_f_stealth_mode').checked;
-			E('_f_stealth_iled').disabled = a;
+			E('_f_stealth_iled').disabled = !E('_f_stealth_mode').checked;
 			return 1;
 		}
 
@@ -47,6 +46,8 @@ No part of this file may be used without permission.
 				E('save-button').disabled = 1;
 				return;
 			}
+
+			E('_f_stealth_iled').disabled = !E('_f_stealth_mode').checked;
 
 			if (brau) E('braudiv').style.display = '';
 			E('sesdiv').style.display = '';

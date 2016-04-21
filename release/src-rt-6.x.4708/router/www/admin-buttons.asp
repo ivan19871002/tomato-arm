@@ -37,8 +37,7 @@ var wham = features('wham');
 
 function verifyFields(focused, quiet)
 {
-	var a = !E('_f_stealth_mode').checked;
-	E('_f_stealth_iled').disabled = a;
+	E('_f_stealth_iled').disabled = !E('_f_stealth_mode').checked;
 	return 1;
 }
 
@@ -65,6 +64,8 @@ function earlyInit()
 		E('save-button').disabled = 1;
 		return;
 	}
+
+	E('_f_stealth_iled').disabled = !E('_f_stealth_mode').checked;
 
 	if (brau) E('braudiv').style.display = '';
 	E('sesdiv').style.display = '';

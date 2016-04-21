@@ -224,9 +224,9 @@ No part of this file may be used without permission.
 					REMOVE-END */
 					{ title: '<% translate("Inactive Rules Cleaning"); %>', name: 'f_upnp_clean', type: 'checkbox', value: (nvram.upnp_clean == '1') },
 					{ title: '<% translate("Cleaning Interval"); %>', indent: 2, name: 'upnp_clean_interval', type: 'text', maxlen: 5, size: 7,
-						suffix: ' <small><% translate("seconds"); %></small>', value: nvram.upnp_clean_interval },
+						suffix: ' <% translate("seconds"); %>', value: nvram.upnp_clean_interval },
 					{ title: '<% translate("Cleaning Threshold"); %>', indent: 2, name: 'upnp_clean_threshold', type: 'text', maxlen: 4, size: 7,
-						suffix: ' <small><% translate("redirections"); %></small>', value: nvram.upnp_clean_threshold },
+						suffix: ' <% translate("redirections"); %>', value: nvram.upnp_clean_threshold },
 					{ title: '<% translate("Secure Mode"); %>', name: 'f_upnp_secure', type: 'checkbox',
 						suffix: ' &nbsp; <small>(<% translate("when enabled, UPnP clients are allowed to add mappings only to their IP"); %>)</small>',
 						value: (nvram.upnp_secure == '1') },

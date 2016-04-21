@@ -29,7 +29,7 @@ No part of this file may be used without permission.
 
 			var s = comma(MAX(Math.floor((bandwidth * rate) / 100), 1));
 			if (ceil > 0) s += ' - ' + MAX(Math.round((bandwidth * ceil) / 100), 1);
-			return s + ' <small><% translate("kbit/s"); %></small>';
+			return s + ' <% translate("kbit/s"); %>';
 		}
 
 		function toggleFiltersVisibility(){
@@ -231,7 +231,7 @@ No part of this file may be used without permission.
 				f = [];
 				for (var uidx = 1; uidx <= nvram.mwan_num; ++uidx){
 					var u = (uidx >1) ? uidx : '';
-					f.push({ title: 'WAN'+u+'<br><% translate("Max Bandwidth Limit"); %>', name: 'wan'+u+'_qos_obw', type: 'text', maxlen: 6, size: 8, suffix: ' <small><% translate("kbit/s"); %></small>', value: nvram['wan'+u+'_qos_obw'] });
+					f.push({ title: 'WAN'+u+'<br><% translate("Max Bandwidth Limit"); %>', name: 'wan'+u+'_qos_obw', type: 'text', maxlen: 6, size: 8, suffix: ' <% translate("kbit/s"); %>', value: nvram['wan'+u+'_qos_obw'] });
 				}
 				j = 0;
 				for (i = 0; i < 10; ++i) {
@@ -255,7 +255,7 @@ No part of this file may be used without permission.
 				f = [];
 				for (var uidx = 1; uidx <= nvram.mwan_num; ++uidx){
 					var u = (uidx >1) ? uidx : '';
-					f.push({ title: 'WAN'+u+'<br><% translate("Max Bandwidth Limit"); %>', name: 'wan'+u+'_qos_ibw', type: 'text', maxlen: 6, size: 8, suffix: ' <small><% translate("kbit/s"); %></small>', value: nvram['wan'+u+'_qos_ibw'] });
+					f.push({ title: 'WAN'+u+'<br><% translate("Max Bandwidth Limit"); %>', name: 'wan'+u+'_qos_ibw', type: 'text', maxlen: 6, size: 8, suffix: ' <% translate("kbit/s"); %>', value: nvram['wan'+u+'_qos_ibw'] });
 				}
 				for (i = 0; i < 10; ++i)
 				{

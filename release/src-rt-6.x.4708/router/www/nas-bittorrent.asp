@@ -314,7 +314,7 @@ createFieldTable('', [
 ]);
 </script>
 	<ul>
-		<li><b><% translate("Enable torrent client"); %></b> - <% translate("Caution! - If your router only has 32MB of RAM, you'll have to use swap"); %>.
+		<li><b><% translate("Enable torrent client"); %></b> - <% translate("Caution!"); %> - <% translate("If your router has only 32MB of RAM, you'll have to use swap"); %>.
 		<li><b><% translate("Transmission binary path"); %></b> <% translate("Path to the directory containing transmission-daemon etc"); %>.
 		<li><b><% translate("Keep alive"); %></b> - <% translate("If enabled, transmission-daemon will be checked at the specified interval and will re-launch after a crash"); %>.
 		<li><b><% translate("Listening port"); %></b> - <% translate("Port used for torrent client. Make sure this port is not in use"); %>.

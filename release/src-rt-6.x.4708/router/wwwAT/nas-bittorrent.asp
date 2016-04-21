@@ -285,8 +285,8 @@ No part of this file may be used without permission.
 							{ name: 'bt_binary_custom', type: 'text', maxlen: 40, size: 40, value: nvram.bt_binary_custom }
 						] },
 						{ title: '<% translate("Keep alive"); %>', name: 'f_bt_check', type: 'checkbox', value: nvram.bt_check == '1', suffix: ' *' },
-						{ title: '<% translate("Check alive every"); %>', indent: 2, name: 'bt_check_time', type: 'text', maxlen: 5, size: 7, value: nvram.bt_check_time, suffix: ' <small><% translate("minutes"); %> (<% translate("range"); %>: 1 - 55; <% translate("default"); %>: 15)</small>' },
-						{ title: '<% translate("Delay at startup"); %>', name: 'bt_sleep', type: 'text', maxlen: 5, size: 7, value: nvram.bt_sleep, suffix: ' <small><% translate("seconds"); %> (<% translate("range"); %>: 1 - 60; <% translate("default"); %>: 10)</small>' },
+						{ title: '<% translate("Check alive every"); %>', indent: 2, name: 'bt_check_time', type: 'text', maxlen: 5, size: 7, value: nvram.bt_check_time, suffix: ' <% translate("minutes"); %> <small>(<% translate("range"); %>: 1 - 55; <% translate("default"); %>: 15)</small>' },
+						{ title: '<% translate("Delay at startup"); %>', name: 'bt_sleep', type: 'text', maxlen: 5, size: 7, value: nvram.bt_sleep, suffix: ' <% translate("seconds"); %> <small>(<% translate("range"); %>: 1 - 60; <% translate("default"); %>: 10)</small>' },
 						{ title: '<% translate("Listening port"); %>', name: 'bt_port', type: 'text', maxlen: 5, size: 7, value: nvram.bt_port, suffix: '*' },
 						{ title: '<% translate("Download directory"); %>', name: 'bt_dir', type: 'text', maxlen: 40, size: 40, value: nvram.bt_dir },
 						{ title: '<% translate("Use .incomplete/"); %>', indent: 2, name: 'f_bt_incomplete', type: 'checkbox', value: nvram.bt_incomplete == '1' }
@@ -294,7 +294,7 @@ No part of this file may be used without permission.
 				</script>
 				<h4><% translate("Notes"); %></h4>
 				<ul>
-					<li><b><% translate("Enable torrent client"); %></b> - <% translate("Caution! - If your router only has 32MB of RAM, you'll have to use swap"); %>.
+					<li><b><% translate("Enable torrent client"); %></b> - <% translate("Caution!"); %> - <% translate("If your router has only 32MB of RAM, you'll have to use swap"); %>.
 					<li><b><% translate("Transmission binary path"); %></b> <% translate("Path to the directory containing transmission-daemon etc"); %>.
 					<li><b><% translate("Keep alive"); %></b> - <% translate("If enabled, transmission-daemon will be checked at the specified interval and will re-launch after a crash"); %>.
 					<li><b><% translate("Listening port"); %></b> - <% translate("Port used for torrent client. Make sure this port is not in use"); %>.
@@ -334,16 +334,16 @@ No part of this file may be used without permission.
 					$('.limitsgui').forms([
 						{ title: '<% translate("Download limit"); %>', multi: [
 							{ name: 'f_bt_dl_enable', type: 'checkbox', value: nvram.bt_dl_enable == '1', suffix: '  ' },
-							{ name: 'bt_dl', type: 'text', maxlen: 10, size: 7, value: nvram.bt_dl, suffix: ' <small>kB/s</small>' } ] },
+							{ name: 'bt_dl', type: 'text', maxlen: 10, size: 7, value: nvram.bt_dl, suffix: ' <% translate("KB/s"); %>' } ] },
 						{ title: '<% translate("Upload limit"); %>', multi: [
 							{ name: 'f_bt_ul_enable', type: 'checkbox', value: nvram.bt_ul_enable == '1', suffix: '  ' },
-							{ name: 'bt_ul', type: 'text', maxlen: 10, size: 7, value: nvram.bt_ul, suffix: ' <small>kB/s</small>' } ] },
+							{ name: 'bt_ul', type: 'text', maxlen: 10, size: 7, value: nvram.bt_ul, suffix: ' <% translate("KB/s"); %>' } ] },
 						{ title: '<% translate("Stop seeding at ratio"); %>', multi: [
 							{ name: 'f_bt_ratio_enable', type: 'checkbox', value: nvram.bt_ratio_enable == '1', suffix: '  ' },
 							{ name: 'bt_ratio', type: 'select', options: [['0.0000','0.0'],['0.1000','0.1'],['0.2000','0.2'],['0.5000','0.5'],['1.0000','1.0'],['1.5000','1.5'],['2.0000','2.0'],['2.5000','2.5'],['3.0000','3.0']], value: nvram.bt_ratio } ] },
 						{ title: '<% translate("Stop seeding if idle for"); %>', multi: [
 							{ name: 'f_bt_ratio_idle_enable', type: 'checkbox', value: nvram.bt_ratio_idle_enable == '1', suffix: '  ' },
-							{ name: 'bt_ratio_idle', type: 'text', maxlen: 10, size: 7, value: nvram.bt_ratio_idle, suffix: ' <small><% translate("minutes"); %> (<% translate("range"); %>: 1 - 55; <% translate("default"); %>: 30)</small>' } ] },
+							{ name: 'bt_ratio_idle', type: 'text', maxlen: 10, size: 7, value: nvram.bt_ratio_idle, suffix: ' <% translate("minutes"); %> <small>(<% translate("range"); %>: 1 - 55; <% translate("default"); %>: 30)</small>' } ] },
 						{ title: '<% translate("Global peer limit"); %>', name: 'bt_peer_limit_global', type: 'text', maxlen: 10, size: 7, value: nvram.bt_peer_limit_global, suffix: ' <small>(<% translate("range"); %>: 10 - 1000; <% translate("default"); %>: 150)</small>' },
 						{ title: '<% translate("Peer limit per torrent"); %>', name: 'bt_peer_limit_per_torrent', type: 'text', maxlen: 10, size: 7, value: nvram.bt_peer_limit_per_torrent, suffix: ' <small>(<% translate("range"); %>: 1 - 200; <% translate("default"); %>: 30)</small>' },
 						{ title: '<% translate("Upload slots per torrent"); %>', name: 'bt_ul_slot_per_torrent', type: 'text', maxlen: 10, size: 7, value: nvram.bt_ul_slot_per_torrent, suffix: ' <small>(<% translate("range"); %>: 1 - 50; <% translate("default"); %>: 10)</small>' }

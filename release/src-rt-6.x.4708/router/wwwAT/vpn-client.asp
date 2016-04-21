@@ -431,7 +431,7 @@ No part of this file may be used without permission.
 				htmlOut += ('</div>');
 				htmlOut += ('<div id=\''+t+'-advanced\'>');
 				htmlOut += createFormFields([
-					{ title: '<% translate("Poll Interval"); %>', name: 'vpn_'+t+'_poll', type: 'text', maxlen: 4, size: 5, value: eval( 'nvram.vpn_'+t+'_poll' ), suffix: '&nbsp;<small>(<% translate("in minutes"); %>, 0 <% translate("to disable"); %>)</small>' },
+					{ title: '<% translate("Poll Interval"); %>', name: 'vpn_'+t+'_poll', type: 'text', maxlen: 4, size: 5, value: eval( 'nvram.vpn_'+t+'_poll' ), suffix: '&nbsp;<% translate("minutes"); %>, <small>(0 <% translate("to disable"); %>)</small>' },
 					{ title: '<% translate("Redirect Internet traffic"); %>', multi: [
 						{ name: 'f_vpn_'+t+'_rgw', type: 'checkbox', value: eval( 'nvram.vpn_'+t+'_rgw' ) != 0 },
 						{ name: 'vpn_'+t+'_gw', type: 'text', maxlen: 15, size: 17, value: eval( 'nvram.vpn_'+t+'_gw' ), prefix: '<span id=\''+t+'_gateway\'> Gateway:&nbsp', suffix: '</span>'} ] },
@@ -440,9 +440,9 @@ No part of this file may be used without permission.
 					{ title: '<% translate("Encryption cipher"); %>', name: 'vpn_'+t+'_cipher', type: 'select', options: ciphers, value: eval( 'nvram.vpn_'+t+'_cipher' ) },
 					{ title: '<% translate("Compression"); %>', name: 'vpn_'+t+'_comp', type: 'select', options: [ ['-1','<% translate("Disabled"); %>'], ['no','<% translate("None"); %>'], ['yes','<% translate("Enabled"); %>'], ['adaptive','<% translate("Adaptive"); %>'] ], value: eval( 'nvram.vpn_'+t+'_comp' ) },
 					{ title: '<% translate("TLS Renegotiation Time"); %>', name: 'vpn_'+t+'_reneg', type: 'text', maxlen: 10, size: 7, value: eval( 'nvram.vpn_'+t+'_reneg' ),
-						suffix: '&nbsp;<small>(<% translate("in seconds, -1 for default"); %>)</small>' },
+						suffix: '&nbsp;<% translate("seconds"); %> <small>(-1 <% translate("for default"); %>)</small>' },
 					{ title: '<% translate("Connection retry"); %>', name: 'vpn_'+t+'_retry', type: 'text', maxlen: 5, size: 7, value: eval( 'nvram.vpn_'+t+'_retry' ),
-						suffix: '&nbsp;<small>(<% translate("in seconds; -1 for infinite"); %>)</small>' },
+						suffix: '&nbsp;<% translate("seconds"); %> <small>(-1 <% translate("for infinite"); %>)</small>' },
 					{ title: '<% translate("Verify server certificate"); %> (tls-remote)', multi: [
 						{ name: 'f_vpn_'+t+'_tlsremote', type: 'checkbox', value: eval( 'nvram.vpn_'+t+'_tlsremote' ) != 0 },
 						{ name: 'vpn_'+t+'_cn', type: 'text', maxlen: 64, size: 54,
@@ -460,7 +460,7 @@ No part of this file may be used without permission.
 					htmlOut += ('<ul>');
 						htmlOut += ('<li><b><% translate("Type"); %> -> <% translate("From Source IP"); %></b> - <% translate("Ex"); %>: "1.2.3.4" <% translate("or"); %> "1.2.3.0/24".');
 						htmlOut += ('<li><b><% translate("Type"); %> -> <% translate("To Destination IP"); %></b> - <% translate("Ex"); %>: "1.2.3.4" <% translate("or"); %> "1.2.3.0/24".');
-						htmlOut += ('<li><b><% translate("Type"); %> -> <% translate("To Domain"); %></b> - <% translate("Ex"); %>: "domain.com". <% translate("Please enter one domain per line"); %>');
+						htmlOut += ('<li><b><% translate("Type"); %> -> <% translate("To Domain"); %></b> - <% translate("Ex"); %>: "domain.com". <% translate("Please enter one domain per line"); %>.');
 					htmlOut += ('</ul>');
 				    htmlOut += ('</div>');
 				htmlOut += ('</div>');

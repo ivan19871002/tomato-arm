@@ -527,7 +527,7 @@ No part of this file may be used without permission.
 					htmlOut += '</div>';
 					htmlOut += '<div id=\''+t+'-advanced\'>';
 					htmlOut += createFormFields([
-						{ title: '<% translate("Poll Interval"); %>', name: 'vpn_'+t+'_poll', type: 'text', maxlen: 4, size: 5, value: eval( 'nvram.vpn_'+t+'_poll' ), suffix: '&nbsp;<small>(<% translate("in minutes"); %>, 0 <% translate("to disable"); %>)</small>' },
+						{ title: '<% translate("Poll Interval"); %>', name: 'vpn_'+t+'_poll', type: 'text', maxlen: 4, size: 5, value: eval( 'nvram.vpn_'+t+'_poll' ), suffix: '&nbsp;<% translate("minutes"); %> <small>(0 <% translate("to disable"); %>)</small>' },
 						{ title: '<% translate("Push LAN to clients"); %>', name: 'f_vpn_'+t+'_plan', type: 'checkbox', value: eval( 'nvram.vpn_'+t+'_plan' ) != 0 },
 						{ title: '<% translate("Direct clients to<br>redirect Internet traffic"); %>', name: 'f_vpn_'+t+'_rgw', type: 'checkbox', value: eval( 'nvram.vpn_'+t+'_rgw' ) != 0 },
 						{ title: '<% translate("Respond to DNS"); %>', name: 'f_vpn_'+t+'_dns', type: 'checkbox', value: nvram.vpn_server_dns.indexOf(''+(i+1)) >= 0 },
@@ -535,7 +535,7 @@ No part of this file may be used without permission.
 						{ title: '<% translate("Encryption cipher"); %>', name: 'vpn_'+t+'_cipher', type: 'select', options: ciphers, value: eval( 'nvram.vpn_'+t+'_cipher' ) },
 						{ title: '<% translate("Compression"); %>', name: 'vpn_'+t+'_comp', type: 'select', options: [ ['-1','<% translate("Disabled"); %>'], ['no','<% translate("None"); %>'], ['yes','<% translate("Enabled"); %>'], ['adaptive','<% translate("Adaptive"); %>'] ], value: eval( 'nvram.vpn_'+t+'_comp' ) },
 						{ title: '<% translate("TLS Renegotiation Time"); %>', name: 'vpn_'+t+'_reneg', type: 'text', maxlen: 10, size: 7, value: eval( 'nvram.vpn_'+t+'_reneg' ),
-							suffix: '&nbsp;<small>(<% translate("in seconds"); %>, -1 <% translate("for default"); %>)</small>' },
+							suffix: '&nbsp;<% translate("seconds"); %> <small>(-1 <% translate("for default"); %>)</small>' },
 						{ title: '<% translate("Manage Client-Specific Options"); %>', name: 'f_vpn_'+t+'_ccd', type: 'checkbox', value: eval( 'nvram.vpn_'+t+'_ccd' ) != 0 },
 						{ title: '<% translate("Allow Client<->Client"); %>', name: 'f_vpn_'+t+'_c2c', type: 'checkbox', value: eval( 'nvram.vpn_'+t+'_c2c' ) != 0 },
 						{ title: '<% translate("Allow Only These Clients"); %>', name: 'f_vpn_'+t+'_ccd_excl', type: 'checkbox', value: eval( 'nvram.vpn_'+t+'_ccd_excl' ) != 0 },

@@ -149,7 +149,7 @@ No part of this file may be used without permission.
 
 				$('#router-log').forms([
 					{ title: '<% translate("Log Internally"); %>', name: 'f_log_file', type: 'checkbox', value: nvram.log_file == 1 },
-					{ title: '<% translate("Max size before rotate"); %>', name: 'log_file_size', type: 'text', maxlen: 5, size: 6, value: nvram.log_file_size || 50, suffix: ' <small>KB</small>' },
+					{ title: '<% translate("Max size before rotate"); %>', name: 'log_file_size', type: 'text', maxlen: 5, size: 6, value: nvram.log_file_size || 50, suffix: ' <% translate("KB"); %>' },
 					{ title: '<% translate("Number of rotated logs to keep"); %>', name: 'log_file_keep', type: 'text', maxlen: 2, size: 3, value: nvram.log_file_keep || 1 },
 					{ title: '<% translate("Custom Log File Path"); %>', multi: [
 						{ name: 'f_log_file_custom', type: 'checkbox', value: nvram.log_file_custom == 1, suffix: '  ' },

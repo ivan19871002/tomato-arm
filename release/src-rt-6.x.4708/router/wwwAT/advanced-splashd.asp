@@ -106,7 +106,7 @@ No part of this file may be used without permission.
 	</script>
 
 	<div class="box">
-		<div class="heading">Captive Portal Management Settings</div>
+		<div class="heading"><% translate("Captive Portal Management"); %></div>
 		<div class="content">
 			<form id="_fom" method="post" action="tomato.cgi">
 				<input type="hidden" name="_nextpage" value="/#advanced-splashd.asp">
@@ -120,67 +120,67 @@ No part of this file may be used without permission.
 						/* VLAN-BEGIN */
 						{ title: '<% translate("Interface"); %>', multi: [
 							{ name: 'NC_BridgeLAN', type: 'select', options: [
-								['br0','LAN (br0)*'],
-								['br1','LAN1 (br1)'],
-								['br2','LAN2 (br2)'],
-								['br3','LAN3 (br3)']
+								['br0','<% translate("LAN"); %> (br0)*'],
+								['br1','<% translate("LAN2"); %> (br1)'],
+								['br2','<% translate("LAN3"); %> (br2)'],
+								['br3','<% translate("LAN4"); %> (br3)']
 								], value: nvram.NC_BridgeLAN, suffix: ' <small>* default</small> ' } ] },
 						/* VLAN-END */
 						{ title: '<% translate("Gateway Name"); %>', name: 'NC_GatewayName', type: 'text', maxlen: 255, size: 34, value: nvram.NC_GatewayName },
 						{ title: '<% translate("Captive Site Forwarding"); %>', name: 'f_NC_ForcedRedirect', type: 'checkbox', value: (nvram.NC_ForcedRedirect == '1') },
 						{ title: '<% translate("Home Page"); %>', name: 'NC_HomePage', type: 'text', maxlen: 255, size: 34, value: nvram.NC_HomePage },
 						{ title: '<% translate("Welcome html Path"); %>', name: 'NC_DocumentRoot', type: 'text', maxlen: 255, size: 20, value: nvram.NC_DocumentRoot, suffix: '<span>&nbsp;/splash.html</span>' },
-						{ title: 'Login Timeout', name: 'NC_LoginTimeout', type: 'text', maxlen: 8, size: 4, value: nvram.NC_LoginTimeout, suffix: ' <small>seconds</small>' },
-						{ title: '<% translate("Idle Timeout"); %>', name: 'NC_IdleTimeout', type: 'text', maxlen: 8, size: 4, value: nvram.NC_IdleTimeout, suffix: ' <small>seconds (0 - unlimited)</small>' },
+						{ title: '<% translate("Login Timeout"); %>', name: 'NC_LoginTimeout', type: 'text', maxlen: 8, size: 4, value: nvram.NC_LoginTimeout, suffix: ' <% translate("seconds"); %>' },
+						{ title: '<% translate("Idle Timeout"); %>', name: 'NC_IdleTimeout', type: 'text', maxlen: 8, size: 4, value: nvram.NC_IdleTimeout, suffix: ' <% translate("seconds"); %> <small>(0 - <% translate("unlimited"); %>)</small>' },
 						{ title: '<% translate("Max Missed ARP"); %>', name: 'NC_MaxMissedARP', type: 'text', maxlen: 10, size: 2, value: nvram.NC_MaxMissedARP },
 						null,
 						{ title: '<% translate("Log Info Level"); %>', name: 'NC_Verbosity', type: 'text', maxlen: 10, size: 2, value: nvram.NC_Verbosity },
 						{ title: '<% translate("Gateway Port"); %>', name: 'NC_GatewayPort', type: 'text', maxlen: 10, size: 7, value: fixPort(nvram.NC_GatewayPort, 5280) },
 						{ title: '<% translate("Excluded Ports to be redirected"); %>', name: 'NC_ExcludePorts', type: 'text', maxlen: 255, size: 34, value: nvram.NC_ExcludePorts },
 						{ title: '<% translate("Included Ports to be redirected"); %>', name: 'NC_IncludePorts', type: 'text', maxlen: 255, size: 34, value: nvram.NC_IncludePorts },
-						{ title: 'Excluded URLs', name: 'NC_AllowedWebHosts', type: 'text', maxlen: 255, size: 34, value: nvram.NC_AllowedWebHosts },
+						{ title: '<% translate("Excluded URLs"); %>', name: 'NC_AllowedWebHosts', type: 'text', maxlen: 255, size: 34, value: nvram.NC_AllowedWebHosts },
 						{ title: '<% translate("MAC Address Whitelist"); %>', name: 'NC_MACWhiteList', type: 'text', maxlen: 255, size: 34, value: nvram.NC_MACWhiteList }
 					]);
 				</script>
 			</form>
 
 
-			<h4>Customized splash file</h4>
+			<h4><% translate("Customized Splash File"); %></h4>
 			<div class="section" id="upload-section">
 				<form id="upload-form" method="post" action="uploadsplash.cgi?_http_id=<% nv(http_id); %>" enctype="multipart/form-data">
-					<fieldset><label class="col-sm-3 control-left-label" for="upload-name">Custom splash file</label>
+					<fieldset><label class="col-sm-3 control-left-label" for="upload-name"><% translate("Custom splash file"); %></label>
 						<div class="col-sm-9">
 							<input class="uploadfile" type="file" size="40" id="upload-name" name="upload_name">
-							<button type="button" name="f_upload_button" id="upload-button" value="Upload" onclick="uploadButton()" class="btn btn-danger">Upload <i class="icon-upload"></i></button>
+							<button type="button" name="f_upload_button" id="upload-button" value="Upload" onclick="uploadButton()" class="btn btn-danger"><% translate("Upload"); %> <i class="icon-upload"></i></button>
 						</div>
 					</fieldset>
 				</form>
 			</div>
 			<hr>
-			<h5>User Guide </h5>
+			<h5><% translate("User Guide"); %></h5>
 			<div class="section" id="sesdivnotes">
 				<ul>
-					<li><b> Enable function</b> - The router will show a Welcome banner when a client attempts to access the Internet.<br>
-					<li><b> Interface:</b> - Select one of the bridges on which the Captive Portal will listen.<br>
-					<li><b> Gateway name</b> - The name of the Gateway appearing in the welcome banner<br>
-					<li><b> Gateway port</b> - The port number of the gateway. Default=5280.<br>
-					<li><b> Captive Site Forwarding</b> - When active, a "Home Page" will appear after you click "Agree" in the Welcome banner.<br>
-					<li><b> Home page</b> - The URL for the "Home Page" mentioned above is located.<br>
-					<li><b> Welcome html Path</b> - The location where the Welcome banner is stored<br>
-					<li><b> Login Timeout</b> - The client can use the internet until this time expires. Default=3600sec.<br>
-					<li><b> Idle Timeout</b> - How often the ARP cache will be checked (seconds). Default=0.<br>
-					<li><b> Max Missed ARP</b> - Number of lost ARP before considering the client has leaved the connection. Default = 5<br>
-					<li><b> Log Info Level</b> - Verbosity level for log messages from this module, Level 0=Silent, 10=Verbose, (Default=2).<br>
+					<li><b><% translate("Enable Function"); %></b> - <% translate("The router will show a Welcome banner when a client attempts to access the Internet"); %>.<br>
+					<li><b><% translate("Interface"); %>:</b> - <% translate("Select one of the bridges on which the Captive Portal will listen"); %>.<br>
+					<li><b><% translate("Gateway Name"); %></b> - <% translate("The name of the Gateway appearing in the welcome banner"); %>.<br>
+					<li><b><% translate("Gateway Port"); %></b> - <% translate("The port number of the gateway"); %>. <% translate("Default"); %> 5280.<br>
+					<li><b><% translate("Captive Site Forwarding"); %></b> - <% translate("When active, a 'Home Page' will appear after you click 'Agree' in the Welcome banner"); %>.<br>
+					<li><b><% translate("Home Page"); %></b> - <% translate("The URL for the 'Home Page' mentioned above is located"); %>.<br>
+					<li><b><% translate("Welcome html Path"); %></b> - <% translate("The location where the Welcome banner is stored"); %><br>
+					<li><b><% translate("Login Timeout"); %></b> - <% translate("The client can use the internet until this time expires"); %>. <% translate("Default"); %> 3600 <% translate("seconds"); %> (1 <% translate("hour"); %>).<br>
+					<li><b><% translate("Idle Timeout"); %></b> - <% translate("How often the ARP cache will be checked"); %> (<% translate("seconds"); %>). <% translate("Default"); %> 0.<br>
+					<li><b><% translate("Max Missed ARP"); %></b> - <% translate("Number of lost ARP before considering the client has leaved the connection"); %>. <% translate("Default"); %> 5.<br>
+					<li><b><% translate("Log Info Level"); %></b> - <% translate("Verbosity level for log messages from this module, Level"); %> 0=<% translate("Silent"); %>, 10=<% translate("Verbose"); %> (<% translate("Default"); %> 2).<br>
 
-					<li><b> Included ports</b> - TCP ports to allow access to after login, all others will be denied.<br>
-					<li><b> Excluded ports</b> - TCP ports to denied access to after login, all others will be allowed.<br>
-					Leave a blank space between each port number. Use only one of these two options to avoid conflicts.<br>
+					<li><b><% translate("Included ports"); %></b> - <% translate("TCP ports to allow access to after login, all others will be denied"); %>.<br>
+					<li><b><% translate("Excluded ports"); %></b> - <% translate("TCP ports to denied access to after login, all others will be allowed"); %>.<br>
+					<% translate("Leave a blank space between each port number. Use only one of these two options to avoid conflicts"); %>.<br>
 
-					<li><b> Excluded URLs</b> - URLs that can be accessed without the Welcome banner screen appearing. When you set allowed url"s also leave a blank space between each url. i.e; http://www.google.com http://www.google.es<br>
-					<li><b> MAC address whitelist</b> - MAC addresses excluded from the portal. Leave a blank space between each MAC Address, i.e; 11:22:33:44:55:66 11:22:33:44:55:67<br>
-					<li><b> Customized Splash File Path</b> - Here you can upload your personal Welcome banner that will overwrite the default one.<br>
+					<li><b><% translate("Excluded URLs"); %></b> - <% translate("URLs that can be accessed without the Welcome banner screen appearing. When you set allowed url's also leave a blank space between each url. i.e;"); %> http://www.google.com http://www.google.es<br>
+					<li><b><% translate("MAC Address Whitelist"); %></b> - <% translate("MAC addresses excluded from the portal. Leave a blank space between each MAC Address, i.e;"); %> 11:22:33:44:55:66 11:22:33:44:55:67<br>
+					<li><b><% translate("Customized Splash File"); %></b> - <% translate("Here you can upload your personal Welcome banner that will overwrite the default one"); %>.<br><br>
 					<span style="color:red">
-						When the client"s lease has expired, he must enter the Splash page again to get a new lease. No warning is given, therefore you may wish to give a long lease time to avoid problems.
+						<% translate("When the client's lease has expired, he must enter the Splash page again to get a new lease. No warning is given, therefore you may wish to give a long lease time to avoid problems."); %>
 					</span>
 				</ul>
 			</div>

@@ -323,7 +323,7 @@ No part of this file may be used without permission.
 				<div id="svg-1" class="embedGraph"></div>
 
 				<table id="secondTable">
-					<tr><td class="color" style="height:1em; margin-right: 5px;"></td><td class="title">&nbsp;</td><td class="thead count">kbit/s</td><td class="thead count">KB/s</td><td class="thead pct">Rate</td></tr>
+					<tr><td class="color" style="height:1em; margin-right: 5px;"></td><td class="title">&nbsp;</td><td class="thead count"><% translate("kbit/s"); %></td><td class="thead count"><% translate("KB/s"); %></td><td class="thead pct"><% translate("Rate"); %></td></tr>
 					<tr><td>&nbsp;</td><td class="total"><% translate("Total"); %></a></td><td id="bocnt-total" class="total count"></td><td id="bocntx-total" class="total count"></td><td id="rateout" class="total pct"></td></tr>
 				</table>
 
@@ -346,7 +346,7 @@ No part of this file may be used without permission.
 				<div id="svg-2" class="embedGraph"></div>
 
 				<table id="thirdTable">
-					<tr><td class="color" style="height:1em; margin-right: 5px;"></td><td class="title">&nbsp;</td><td class="thead count">kbit/s</td><td class="thead count">KB/s</td><td class="thead pct">Rate</td></tr>
+					<tr><td class="color" style="height:1em; margin-right: 5px;"></td><td class="title">&nbsp;</td><td class="thead count"><% translate("kbit/s"); %></td><td class="thead count"><% translate("KB/s"); %></td><td class="thead pct"><% translate("Rate"); %></td></tr>
 					<tr><td>&nbsp;</td><td class="total"><% translate("Total"); %></a></td><td id="bicnt-total" class="total count"></td><td id="bicntx-total" class="total count"></td><td id="ratein" class="total pct"></td></tr>
 				</table>
 

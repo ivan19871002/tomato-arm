@@ -168,7 +168,7 @@ No part of this file may be used without permission.
 
 				<hr>
 				<ul>
-					<li><b><% translate("Enable MySQL server"); %></b> - <% translate("Caution! - If your router only has 32MB of RAM, you'll have to use swap"); %>.
+					<li><b><% translate("Enable MySQL server"); %></b> - <% translate("Caution!"); %> - <% translate("If your router has only 32MB of RAM, you'll have to use swap"); %>.
 					<li><b><% translate("MySQL binary path"); %></b> - <% translate("Path to the directory containing mysqld etc. Not include program name"); %> "/mysqld"
 					<li><b><% translate("Keep alive"); %></b> - <% translate("If enabled, mysqld will be checked at the specified interval and will re-launch after a crash"); %>.
 					<li><b><% translate("Data and tmp dir."); %></b> - <% translate("Attention! Must not use NAND for datadir and tmpdir"); %>.
@@ -190,8 +190,8 @@ No part of this file may be used without permission.
 					{ name: 'mysql_binary_custom', type: 'text', maxlen: 40, size: 40, value: nvram.mysql_binary_custom , suffix: ' <small><% translate("Not include"); %> "/mysqld"</small>' }
 				] },
 				{ title: '<% translate("Keep alive"); %>', name: 'f_mysql_check', type: 'checkbox', value: nvram.mysql_check == 1, suffix: ' <small>*</small>' },
-				{ title: '<% translate("Check alive every"); %>', indent: 2, name: 'mysql_check_time', type: 'text', maxlen: 5, size: 7, value: nvram.mysql_check_time, suffix: ' <small><% translate("minutes"); %> (<% translate("range"); %>: 1 - 55; <% translate("default"); %>: 1)</small>' },
-				{ title: '<% translate("Delay at startup"); %>', name: 'mysql_sleep', type: 'text', maxlen: 5, size: 7, value: nvram.mysql_sleep, suffix: ' <small><% translate("seconds"); %> (<% translate("range"); %>: 1 - 60; <% translate("default"); %>: 2)</small>' },
+				{ title: '<% translate("Check alive every"); %>', indent: 2, name: 'mysql_check_time', type: 'text', maxlen: 5, size: 7, value: nvram.mysql_check_time, suffix: ' <% translate("minutes"); %> <small>(<% translate("range"); %>: 1 - 55; <% translate("default"); %>: 1)</small>' },
+				{ title: '<% translate("Delay at startup"); %>', name: 'mysql_sleep', type: 'text', maxlen: 5, size: 7, value: nvram.mysql_sleep, suffix: ' <% translate("seconds"); %> <small>(<% translate("range"); %>: 1 - 60; <% translate("default"); %>: 2)</small>' },
 				{ title: '<% translate("MySQL listen port"); %>', name: 'mysql_port', type: 'text', maxlen: 5, size: 7, value: nvram.mysql_port, suffix: ' <small> <% translate("default"); %>: 3306</small>' },
 				{ title: '<% translate("Allow Anyhost to access"); %>', name: 'f_mysql_allow_anyhost', type: 'checkbox', value: nvram.mysql_allow_anyhost == 1, suffix: ' <small><% translate("Allowed any hosts to access database server"); %>.</small>' },
 				{ title: '<% translate("Re-init priv. table"); %>', name: 'f_mysql_init_priv', type: 'checkbox', value: nvram.mysql_init_priv== 1, suffix: ' <small><% translate("If checked, privileges table will be forced to re-initialize by mysql_install_db"); %>.</small>' },
@@ -222,15 +222,15 @@ No part of this file may be used without permission.
 
 		<script type="text/javascript">
 			$('#mysql-advanced-set').forms([
-				{ title: '<% translate("Key buffer"); %>', name: 'mysql_key_buffer', type: 'text', maxlen: 10, size: 10, value: nvram.mysql_key_buffer, suffix: ' <small>MB (<% translate("range"); %>: 1 - 1024; <% translate("default"); %>: 8)</small>' },
-				{ title: '<% translate("Max allowed packet"); %>', name: 'mysql_max_allowed_packet', type: 'text', maxlen: 10, size: 10, value: nvram.mysql_max_allowed_packet, suffix: ' <small>MB (<% translate("range"); %>: 1 - 1024; <% translate("default"); %>: 4)</small>' },
-				{ title: '<% translate("Thread stack"); %>', name: 'mysql_thread_stack', type: 'text', maxlen: 10, size: 10, value: nvram.mysql_thread_stack, suffix: ' <small>KB (<% translate("range"); %>: 1 - 1024000; <% translate("default"); %>: 192)</small>' },
+				{ title: '<% translate("Key buffer"); %>', name: 'mysql_key_buffer', type: 'text', maxlen: 10, size: 10, value: nvram.mysql_key_buffer, suffix: ' <% translate("MB"); %> <small>(<% translate("range"); %>: 1 - 1024; <% translate("default"); %>: 8)</small>' },
+				{ title: '<% translate("Max allowed packet"); %>', name: 'mysql_max_allowed_packet', type: 'text', maxlen: 10, size: 10, value: nvram.mysql_max_allowed_packet, suffix: ' <% translate("MB"); %> <small>(<% translate("range"); %>: 1 - 1024; <% translate("default"); %>: 4)</small>' },
+				{ title: '<% translate("Thread stack"); %>', name: 'mysql_thread_stack', type: 'text', maxlen: 10, size: 10, value: nvram.mysql_thread_stack, suffix: ' <% translate("KB"); %> <small>(<% translate("range"); %>: 1 - 1024000; <% translate("default"); %>: 192)</small>' },
 				{ title: '<% translate("Thread cache size"); %>', name: 'mysql_thread_cache_size', type: 'text', maxlen: 10, size: 10, value: nvram.mysql_thread_cache_size, suffix: ' <small>(<% translate("range"); %>: 1 - 999999; <% translate("default"); %>: 8)</small>' },
 				{ title: '<% translate("Table open cache"); %>', name: 'mysql_table_open_cache', type: 'text', maxlen: 10, size: 10, value: nvram.mysql_table_open_cache, suffix: ' <small>(<% translate("range"); %>: 1 - 999999; <% translate("default"); %>: 4)</small>' },
-				{ title: '<% translate("Query cache size"); %>', name: 'mysql_query_cache_size', type: 'text', maxlen: 10, size: 10, value: nvram.mysql_query_cache_size, suffix: ' <small>MB (<% translate("range"); %>: 0 - 1024; <% translate("default"); %>: 16)</small>' },
-				{ title: '<% translate("Sort buffer size"); %>', name: 'mysql_sort_buffer_size', type: 'text', maxlen: 10, size: 10, value: nvram.mysql_sort_buffer_size, suffix: ' <small>KB (<% translate("range"); %>: 0 - 1024000; <% translate("default"); %>: 128)</small>' },
-				{ title: '<% translate("Read buffer size"); %>', name: 'mysql_read_buffer_size', type: 'text', maxlen: 10, size: 10, value: nvram.mysql_read_buffer_size, suffix: ' <small>KB (<% translate("range"); %>: 0 - 1024000; <% translate("default"); %>: 128)</small>' },
-				{ title: '<% translate("Read rand buffer size"); %>', name: 'mysql_read_rnd_buffer_size', type: 'text', maxlen: 10, size: 10, value: nvram.mysql_read_rnd_buffer_size, suffix: ' <small>KB (<% translate("range"); %>: 1 - 1024000; <% translate("default"); %>: 256)</small>' },
+				{ title: '<% translate("Query cache size"); %>', name: 'mysql_query_cache_size', type: 'text', maxlen: 10, size: 10, value: nvram.mysql_query_cache_size, suffix: ' <% translate("MB"); %> <small>(<% translate("range"); %>: 0 - 1024; <% translate("default"); %>: 16)</small>' },
+				{ title: '<% translate("Sort buffer size"); %>', name: 'mysql_sort_buffer_size', type: 'text', maxlen: 10, size: 10, value: nvram.mysql_sort_buffer_size, suffix: ' <% translate("KB"); %> <small>(<% translate("range"); %>: 0 - 1024000; <% translate("default"); %>: 128)</small>' },
+				{ title: '<% translate("Read buffer size"); %>', name: 'mysql_read_buffer_size', type: 'text', maxlen: 10, size: 10, value: nvram.mysql_read_buffer_size, suffix: ' <% translate("KB"); %> <small>(<% translate("range"); %>: 0 - 1024000; <% translate("default"); %>: 128)</small>' },
+				{ title: '<% translate("Read rand buffer size"); %>', name: 'mysql_read_rnd_buffer_size', type: 'text', maxlen: 10, size: 10, value: nvram.mysql_read_rnd_buffer_size, suffix: ' <% translate("KB"); %> <small>(<% translate("range"); %>: 1 - 1024000; <% translate("default"); %>: 256)</small>' },
 				{ title: '<% translate("Max connections"); %>', name: 'mysql_max_connections', type: 'text', maxlen: 10, size: 10, value: nvram.mysql_max_connections, suffix: ' <small>(<% translate("range"); %>: 0 - 999999; <% translate("default"); %>: 1000)</small>' },
 				{ title: '<% translate("MySQL server custom config."); %>', name: 'mysql_server_custom', type: 'textarea', value: nvram.mysql_server_custom, style: 'width: 100%; height: 80px;' }
 			]);

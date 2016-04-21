@@ -208,11 +208,11 @@ function verifyFields(focused, quiet)
 
 	// Element Verification
 	if (E('_tinc_name').value == "" && E('_f_tinc_wanup').checked) {
-		ferror.set(E('_tinc_name'), "<% translate("Host Name is required when 'Start With WAN' is checked"); %>.", quiet); return 0 ; }
+		ferror.set(E('_tinc_name'), "<% translate("Host Name is required when Start With WAN is checked"); %>.", quiet); return 0 ; }
 	else {  ferror.clear(E('_tinc_name')) }
 
 	if (E('_tinc_private_ed25519').value == "" && E('_tinc_custom').value == "" && E('_f_tinc_wanup').checked) {
-		ferror.set(E('_tinc_private_ed25519'), "<% translate("Ed25519 Private Key is required when 'Start With WAN' is checked"); %>.", quiet); return 0 ; }
+		ferror.set(E('_tinc_private_ed25519'), "<% translate("Ed25519 Private Key is required when Start With WAN is checked"); %>.", quiet); return 0 ; }
 	else {  ferror.clear(E('_tinc_private_ed25519')) }
 
 	if (!v_netmask('_tinc_vpn_netmask', quiet)) return 0;
@@ -230,7 +230,7 @@ function verifyFields(focused, quiet)
 	}
 
 	if (!hostdefined && E('_f_tinc_wanup').checked) {
-		ferror.set(E('_tinc_name'), "<% translate("Host Name"); %> \"" + E('_tinc_name').value + "\" <% translate("must be defined in the hosts area when 'Start With WAN' is checked"); %>.", quiet); return 0 ; }
+		ferror.set(E('_tinc_name'), "<% translate("Host Name"); %> \"" + E('_tinc_name').value + "\" <% translate("must be defined in the hosts area when Start With WAN is checked"); %>.", quiet); return 0 ; }
 	else {  ferror.clear(E('_tinc_name')) };
 
 	return 1;

@@ -213,7 +213,7 @@ createFieldTable('', [
 ]);
 </script>
 	<ul>
-		<li><b><% translate("Enable MySQL server"); %></b> - <% translate("Caution! - If your router only has 32MB of RAM, you'll have to use swap"); %>.
+		<li><b><% translate("Enable MySQL server"); %></b> - <% translate("Caution!"); %> - <% translate("If your router has only 32MB of RAM, you'll have to use swap"); %>.
 		<li><b><% translate("MySQL binary path"); %></b> - <% translate("Path to the directory containing mysqld etc. Not include program name"); %> "/mysqld"
 		<li><b><% translate("Keep alive"); %></b> - <% translate("If enabled, mysqld will be checked at the specified interval and will re-launch after a crash"); %>.
 		<li><b><% translate("Data and tmp dir."); %></b> - <% translate("Attention! Must not use NAND for datadir and tmpdir"); %>.

@@ -143,12 +143,12 @@ function init()
 createFieldTable('', [
 	{ title: '<% translate("Enable Function"); %>', name: 'f_NC_enable', type: 'checkbox', value: nvram.NC_enable == '1' },
 	{ title: '<% translate("Interface"); %>', multi: [
-		{ name: '<% translate("NC_BridgeLAN"); %>', type: 'select', options: [
-			['br0','LAN (br0)*'],
-			['br1','LAN1 (br1)'],
-			['br2','LAN2 (br2)'],
-			['br3','LAN3 (br3)']
-			], value: nvram.NC_BridgeLAN, suffix: ' <small>* <% translate("default"); %></small> ' } ] },
+		{ name: 'NC_BridgeLAN', type: 'select', options: [
+			['br0','<% translate("LAN"); %> (br0)*'],
+			['br1','<% translate("LAN2"); %> (br1)'],
+			['br2','<% translate("LAN3"); %> (br2)'],
+			['br3','<% translate("LAN4"); %> (br3)']
+			], value: nvram.NC_BridgeLAN, suffix: ' * <small><% translate("default"); %></small> ' } ] },
 	{ title: '<% translate("Gateway Name"); %>', name: 'NC_GatewayName', type: 'text', maxlen: 255, size: 34, value: nvram.NC_GatewayName },
 	{ title: '<% translate("Captive Site Forwarding"); %>', name: 'f_NC_ForcedRedirect', type: 'checkbox', value: (nvram.NC_ForcedRedirect == '1') },
 	{ title: '<% translate("Home Page"); %>', name: 'NC_HomePage', type: 'text', maxlen: 255, size: 34, value: nvram.NC_HomePage },
@@ -168,7 +168,7 @@ createFieldTable('', [
 </form>
 </div>
 <br>
-<div class='section-title'><% translate("Customized Splash File Path"); %></div>
+<div class='section-title'><% translate("Customized Splash File"); %></div>
 <div class='section' id='upload-section'>
  <form id='upload-form' method='post' action='uploadsplash.cgi?_http_id=<% nv(http_id); %>' encType='multipart/form-data'>
  <input type='file' size='40' id='upload-name' name='upload_name'>
@@ -178,23 +178,23 @@ createFieldTable('', [
 </div>
 <hr>
 <span style='color:blue'>
-<b><% translate("Captive Portal. User Guide"); %>.</b><br>
+<b><% translate("User Guide"); %>.</b><br>
 <br>
 <b>*- <% translate("Enable function"); %>:</b> <% translate("When you tick and save the router will show a Welcome Banner when a computer access the Internet"); %>.<br>
 <b>*- <% translate("Interface"); %>:</b> <% translate("Select one of the bridges on which Captive Portal will listen"); %>.<br>
-<b>*- <% translate("Gateway name"); %>:</b> <% translate("The name of the Gateway appearing in the welcome banner"); %><br>
+<b>*- <% translate("Gateway Name"); %>:</b> <% translate("The name of the Gateway appearing in the welcome banner"); %><br>
 <b>*- <% translate("Captive Site Forwarding"); %>:</b> <% translate("When active, the 'Home Page' (read next line) will appear after you Agree in Welcome Banner"); %>.<br>
-<b>*- <% translate("Home page"); %>:</b> <% translate("The URL that will appear after you Agree the Welcome Banner"); %>.<br>
+<b>*- <% translate("Home Page"); %>:</b> <% translate("The URL that will appear after you Agree the Welcome Banner"); %>.<br>
 <b>*- <% translate("Welcome html Path"); %>:</b> <% translate("The location where the Welcome banner is located"); %><br>
-<b>*- <% translate("Logged Timeout"); %>:</b> <% translate("During this period of time no Welcome banner will appear when you access to the device. Default"); %>=3600 <% translate("sec.(1 Hour)"); %>.<br>
-<b>*- <% translate("Idle Timeout"); %>:</b> <% translate("Expired time where you can't access the device again.Default value"); %>=0.<br>
-<b>*- <% translate("Max Missed ARP"); %>:</b> <% translate("Number of lost ARP before considering the client has leaved the connection. Default"); %> = 5<br>
-<b>*- <% translate("Log Info Level"); %>:</b> <% translate("Messages from this module stored internally for better trace. Level"); %> 0=<% translate("Silent"); %>, 10=<% translate("Parrot"); %>, 2=<% translate("Default"); %>.<br>
+<b>*- <% translate("Logged Timeout"); %>:</b> <% translate("During this period of time no Welcome banner will appear when you access to the device"); %>. <% translate("Default"); %>=3600 <% translate("seconds"); %> (1 <% translate("hour"); %>).<br>
+<b>*- <% translate("Idle Timeout"); %>:</b> <% translate("Expired time where you can't access the device again"); %>. <% translate("Default"); %>=0.<br>
+<b>*- <% translate("Max Missed ARP"); %>:</b> <% translate("Number of lost ARP before considering the client has leaved the connection"); %>. <% translate("Default"); %>=5.<br>
+<b>*- <% translate("Log Info Level"); %>:</b> <% translate("Messages from this module stored internally for better trace. Level"); %> 0=<% translate("Silent"); %>, 10=<% translate("Verbose"); %>, 2=<% translate("Default"); %>.<br>
 <b>*- <% translate("Gateway Port"); %>:</b> <% translate("Port to be used by the Captive Portal for page redirection. Port 1 to 65534. Default"); %>=5280.<br>
-<b>*- <% translate("Excluded/Included ports to be redirected"); %>:</b> <% translate("When setting any port (included or excluded) leave a blank space between each port number, i.e"); %>; 25 110 4662 4672. <% translate("Use prefereable one of the two option to avoid conflicts"); %>.<br>
-<b>*- <% translate("URL excluded off the portal"); %>:</b> <% translate("URL that will be accessed without Welcome banner screen appearing. When you set allowed url's also leave a blank space between each url. i.e"); %>; http://www.google.com http://www.google.es<br>
-<b>*- <% translate("MAC address whitelist"); %>:</b> <% translate("MAC addresses excluded of the feature. Leave a blank space between each MAC Address, i.e"); %>; 11:22:33:44:55:66 11:22:33:44:55:67<br>
-<b>*- <% translate("Customized Splash File Path"); %>:</b> <% translate("Here you can upload your personal Welcome banner that will overwrite the default one"); %>.<br><br>
+<b>*- <% translate("Excluded/Included ports to be redirected"); %>:</b> <% translate("When setting any port (included or excluded) leave a blank space between each port number, i.e;"); %> 25 110 4662 4672. <% translate("Use prefereable one of the two option to avoid conflicts"); %>.<br>
+<b>*- <% translate("URL excluded off the portal"); %>:</b> <% translate("URLs that can be accessed without the Welcome banner screen appearing. When you set allowed url's also leave a blank space between each url. i.e;"); %> http://www.google.com http://www.google.es<br>
+<b>*- <% translate("MAC address whitelist"); %>:</b> <% translate("MAC addresses excluded from the portal. Leave a blank space between each MAC Address, i.e;"); %> 11:22:33:44:55:66 11:22:33:44:55:67<br>
+<b>*- <% translate("Customized Splash File"); %>:</b> <% translate("Here you can upload your personal Welcome banner that will overwrite the default one"); %>.<br><br>
 </span>
 <br>
 <span style='color:red'>

@@ -124,7 +124,7 @@ No part of this file may be used without permission.
 						options: [['0', '<% translate("Disable"); %> *'],['1','<% translate("Enable"); %>'],['2','<% translate("Preemption"); %>']],
 						value: nvram['wl'+u+'_btc_mode'] },
 					{ title: '<% translate("Distance / ACK Timing"); %>', name: 'f_wl'+u+'_distance', type: 'text', maxlen: 5, size: 7,
-						suffix: ' <small><% translate("meters"); %></small>&nbsp;&nbsp;<small>(<% translate("range"); %>: 0 - 99999; 0 = <% translate("use default"); %>)</small>',
+						suffix: ' <% translate("meters"); %>&nbsp;&nbsp;<small>(<% translate("range"); %>: 0 - 99999; 0 = <% translate("use default"); %>)</small>',
 						value: (nvram['wl'+u+'_distance'] == '') ? '0' : nvram['wl'+u+'_distance'] },
 					{ title: '<% translate("DTIM Interval"); %>', name: 'wl'+u+'_dtim', type: 'text', maxlen: 3, size: 5,
 						suffix: ' <small>(<% translate("range"); %>: 1 - 255; <% translate("default"); %>: 1)</small>', value: nvram['wl'+u+'_dtim'] },
@@ -156,8 +156,8 @@ No part of this file may be used without permission.
 						value: nvram['wl'+u+'_txant'] },
 					{ title: '<% translate("Transmit Power"); %>', name: 'wl'+u+'_txpwr', type: 'text', maxlen: 3, size: 5,
 						suffix: hp ?
-						' <small>mW (before amplification)</small>&nbsp;&nbsp;<small>(<% translate("range"); %>: 1 - 251; <% translate("default"); %>: 10)</small>' :
-						' <small>mW</small>&nbsp;&nbsp;<small>(<% translate("range"); %>: 0 - 400, <% translate("actual max depends on Country selected; use 0 for hardware default"); %>)</small>',
+						' <% translate("mW"); %> (<% translate("before amplification"); %>)&nbsp;&nbsp;<small>(<% translate("range"); %>: 1 - 251; <% translate("default"); %>: 10)</small>' :
+						' <% translate("mW"); %>&nbsp;&nbsp;<small>(<% translate("range"); %>: 0 - 400, <% translate("actual max depends on Country selected; use 0 for hardware default"); %>)</small>',
 						value: nvram['wl'+u+'_txpwr'] },
 					{ title: '<% translate("Transmission Rate"); %>', name: 'wl'+u+'_rate', type: 'select',
 						options: [['0','<% translate("Auto"); %> *'],['1000000','1 Mbps'],['2000000','2 Mbps'],['5500000','5.5 Mbps'],['6000000','6 Mbps'],['9000000','9 Mbps'],['11000000','11 Mbps'],['12000000','12 Mbps'],['18000000','18 Mbps'],['24000000','24 Mbps'],['36000000','36 Mbps'],['48000000','48 Mbps'],['54000000','54 Mbps']],

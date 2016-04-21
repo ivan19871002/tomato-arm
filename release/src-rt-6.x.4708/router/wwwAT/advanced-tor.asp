@@ -159,7 +159,7 @@ No part of this file may be used without permission.
 						<li><b><% translate("Enable TOR"); %></b> - <% translate("Be patient. Starting the TOR client can take from several seconds to several minutes"); %>.
 						<li><b><% translate("Selected IP`s"); %></b> - <% translate("ex"); %>: 1.2.3.4,1.1.0/24,1.2.3.1-1.2.3.4
 						<li><b><% translate("HTTP Only"); %></b> - <% translate("Only connections to destination port 80 are redirected to TOR"); %>.
-						<li><b><% translate("Selected Ports"); %></b> - <% translate("ex"); %>: <% translate("one port"); %> (80), <% translate("few ports"); %> (80,443,8888), <% translate("range of ports"); %> (80:88), <% translate("mix"); %> (80,8000:9000,9999)						<li><span style="color: red;"><% translate("Caution!"); %></span> - <% translate("If your router only has 32MB of RAM, you'll have to use swap"); %>.
+						<li><b><% translate("Selected Ports"); %></b> - <% translate("ex"); %>: <% translate("one port"); %> (80), <% translate("few ports"); %> (80,443,8888), <% translate("range of ports"); %> (80:88), <% translate("mix"); %> (80,8000:9000,9999)						<li><span style="color: red;"><% translate("Caution!"); %></span> - <% translate("If your router has only 32MB of RAM, you'll have to use swap"); %>.
 					</ul>
 				</div>
 			</div>

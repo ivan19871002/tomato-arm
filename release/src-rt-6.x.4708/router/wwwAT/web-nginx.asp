@@ -142,7 +142,7 @@ No part of this file may be used without permission.
 				options: [['root','<% translate("Root"); %>'],['nobody','<% translate("Nobody"); %>']], value: nvram.nginx_user },
 			{ title: '<% translate("Keep Config Files"); %>', name: 'f_nginx_keepconf', type: 'checkbox', value: nvram.nginx_keepconf == '1' },
 			{ title: '<% translate("Web Server Port"); %>', name: 'nginx_port', type: 'text', maxlen: 5, size: 7, value: fixPort(nvram.nginx_port, 85), suffix: '<small> <% translate("default"); %>: 85</small>' },
-			{ title: '<% translate("Upload file size limit"); %>', name: 'nginx_upload', type: 'text', maxlen: 5, size: 7, value: nvram.nginx_upload, suffix: '<small> MB</small>'},
+			{ title: '<% translate("Upload file size limit"); %>', name: 'nginx_upload', type: 'text', maxlen: 5, size: 7, value: nvram.nginx_upload, suffix: '<% translate("MB"); %>'},
 			{ title: '<% translate("Allow Remote Access"); %>', name: 'f_nginx_remote', type: 'checkbox', value: nvram.nginx_remote == '1' },
 			{ title: '<% translate("Web Server Name"); %>', name: 'nginx_fqdn', type: 'text', maxlen: 255, size: 20, value: nvram.nginx_fqdn },
 			{ title: '<% translate("Server Root Path"); %>', name: 'nginx_docroot', type: 'text', maxlen: 255, size: 40, value: nvram.nginx_docroot, suffix: '<small>&nbsp;/index.html / index.htm / index.php</small>' },

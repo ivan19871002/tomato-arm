@@ -41,7 +41,7 @@ int led_main(int argc, char *argv[])
 	for (j = 1; j < argc; j += 2) {
 		a = argv[j];
 		for (i = 0; i < LED_COUNT; ++i) {
-			if (strncmp(led_names[i], a, 2) == 0) break;
+			if (strncmp(led_names[i], a, 2) == 0) break; // this doesn't work if USB3 LED defined and USB LED doesn't
 		}
 		a = argv[j + 1];
 		if ((i >= LED_COUNT) || ((strcmp(a, "on") != 0) && (strcmp(a, "off") != 0))) help();

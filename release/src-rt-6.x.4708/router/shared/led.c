@@ -226,7 +226,7 @@ int do_led(int which, int mode)
 	static int r7000[]      = {  13, 255,   255,  255,  255,  -15,  255,   -17, -18,   12};
 	static int dir868[]     = { 255, 255,     3,  255,  255,   -0,  255,   255, 255,  255};
 	static int ea6700[]     = {  255, 255,   -6,   -6,  255,  255,  255,   255, 255,  255};
-	static int ws880[]      = {   0, 255,   -12,  255,  255,    6,    1,   255,  14,    6};
+	static int ws880[]      = {   0, 255,   -12,  255,  255,    6,    1,   14,  14,    6};
 	static int ea6900[]     = { 255, 255,     8,  255,  255,    6,  255,   255, 255,  255};
 	static int r1d[]        = { 255, 255,   255,  255,  255,    1,   -8,   255, 255,  255};
 	static int wzr1750[]    = { 255, 255,   255,  255,  255,   -5,  255,   255, 255,  255};
@@ -240,6 +240,16 @@ int do_led(int which, int mode)
 	int ret = 255;
 
 	if ((which < 0) || (which >= LED_COUNT)) return ret;
+
+	// stealth mode
+	if (nvram_match("stealth_mode", "1")) {
+		// do OFF all LEDs first if enabled?
+
+		if (nvram_match("stealth_iled", "1") && which == LED_WHITE)
+			{} // don't disable INTERNET LED
+		else
+			return ret;
+	}
 
 	switch (nvram_match("led_override", "1") ? MODEL_UNKNOWN : get_model()) {
 	case MODEL_WRT54G:

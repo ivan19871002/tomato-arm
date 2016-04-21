@@ -758,6 +758,8 @@ struct nvram_tuple router_defaults[] = {
 	{ "cstats_bak",			"0"				, 0 },
 
 // advanced-buttons
+	{ "stealth_mode",		"0"				, 0 },	// Stealth Mode switch (no LEDs)
+	{ "stealth_iled",		"0"				, 0 },	// Exclude INTERNET LED in SM
 	{ "sesx_led",			"0"				, 0 },
 	{ "sesx_b0",			"1"				, 0 },
 	{ "sesx_b1",			"4"				, 0 },

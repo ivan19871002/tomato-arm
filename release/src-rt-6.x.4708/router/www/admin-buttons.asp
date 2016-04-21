@@ -28,7 +28,7 @@ textarea {
 <script type='text/javascript' src='debug.js'></script>
 
 <script type='text/javascript'>
-//	<% nvram("sesx_led,sesx_b0,sesx_b1,sesx_b2,sesx_b3,sesx_script,script_brau,t_model,t_features"); %>
+//	<% nvram("stealth_mode,stealth_iled,sesx_led,sesx_b0,sesx_b1,sesx_b2,sesx_b3,sesx_script,script_brau,t_model,t_features"); %>
 
 var ses = features('ses');
 var brau = features('brau');
@@ -37,6 +37,8 @@ var wham = features('wham');
 
 function verifyFields(focused, quiet)
 {
+	var a = !E('_f_stealth_mode').checked;
+	E('_f_stealth_iled').disabled = a;
 	return 1;
 }
 
@@ -52,6 +54,8 @@ function save()
 	if (fom._led2.checked) n |= 4;
 	if (fom._led3.checked) n |= 8;
 	fom.sesx_led.value = n;
+	fom.stealth_mode.value = E('_f_stealth_mode').checked ? 1 : 0;
+	fom.stealth_iled.value = E('_f_stealth_iled').checked ? 1 : 0;
 	form.submit(fom, 1);
 }
 
@@ -83,6 +87,8 @@ function earlyInit()
 
 <input type='hidden' name='_nextpage' value='admin-buttons.asp'>
 <input type='hidden' name='sesx_led' value='0'>
+<input type="hidden" name="stealth_mode" value="0">
+<input type="hidden" name="stealth_iled" value="0">
 
 <div id='sesdiv' style='display:none'>
 <div class='section-title'><% translate("SES/WPS/AOSS Button"); %></div>
@@ -111,6 +117,18 @@ createFieldTable('', [
 <script type='text/javascript'>
 createFieldTable('', [
 	{ title: '<% translate("Custom Script"); %>', indent: 2, name: 'script_brau', type: 'textarea', value: nvram.script_brau }
+]);
+</script>
+</div>
+</div>
+
+<div id='stealthdiv' style=''>
+<div class='section-title'><% translate("Stealth Mode"); %></div>
+<div class='section'>
+<script type='text/javascript'>
+createFieldTable('', [
+	{ title: '<% translate("Enable Stealth Mode"); %>', name: 'f_stealth_mode', type: 'checkbox', value: (nvram.stealth_mode == 1), suffix: '&nbsp;<small>(<% translate("reboot required to turn off LEDs"); %>)</small>' },
+	{ title: '<% translate("Exclude INTERNET LED"); %>', name: 'f_stealth_iled', type: 'checkbox', value: (nvram.stealth_iled == 1) },
 ]);
 </script>
 </div>

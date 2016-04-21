@@ -1467,7 +1467,7 @@ LAN Access admin module by Augusto Bott
 						{ title: '<% translate("Shared Key"); %>', indent: 2, name: 'wl'+u+'_radius_key', type: 'password', maxlen: 80, size: 32, peekaboo: 1,
 							suffix: ' <button class="btn" type="button" id="_f_wl'+u+'_psk_random2" value="<% translate("Random"); %>" onclick="random_psk(\'_wl'+u+'_radius_key\')"><% translate("Random"); %></button>',
 							value: eval('nvram["wl'+u+'_radius_key"]') },
-						{ title: '<% translate("Group Key Renewal"); %>', indent: 2, name: 'wl'+u+'_wpa_gtk_rekey', type: 'text', maxlen: 4, size: 6, suffix: ' <i>(<% translate("seconds"); %>)</i>',
+						{ title: '<% translate("Group Key Renewal"); %>', indent: 2, name: 'wl'+u+'_wpa_gtk_rekey', type: 'text', maxlen: 4, size: 6, suffix: ' <% translate("seconds"); %>',
 							value: eval('nvram["wl'+u+'_wpa_gtk_rekey"]') || '3600' },
 						{ title: '<% translate("Radius Server"); %>', indent: 2, multi: [
 							{ name: 'wl'+u+'_radius_ipaddr', type: 'text', maxlen: 15, size: 17, value: eval('nvram["wl'+u+'_radius_ipaddr"]') },

@@ -124,7 +124,7 @@ No part of this file may be used without permission.
 								['br1','<% translate("LAN2"); %> (br1)'],
 								['br2','<% translate("LAN3"); %> (br2)'],
 								['br3','<% translate("LAN4"); %> (br3)']
-								], value: nvram.NC_BridgeLAN, suffix: ' <small>* default</small> ' } ] },
+								], value: nvram.NC_BridgeLAN, suffix: ' <small> * <% translate("default"); %></small> ' } ] },
 						/* VLAN-END */
 						{ title: '<% translate("Gateway Name"); %>', name: 'NC_GatewayName', type: 'text', maxlen: 255, size: 34, value: nvram.NC_GatewayName },
 						{ title: '<% translate("Captive Site Forwarding"); %>', name: 'f_NC_ForcedRedirect', type: 'checkbox', value: (nvram.NC_ForcedRedirect == '1') },

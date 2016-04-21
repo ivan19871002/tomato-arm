@@ -205,7 +205,7 @@ No part of this file may be used without permission.
 			<div class="heading"><% translate("FTP Server Configuration"); %></div>
 			<div class="content">
 				<div id="ftpconf"></div>
-				<small style="color: red"><% translate("Note"); %>: <% translate("Avoid using this option when FTP server is enabled for WAN. IT PROVIDES FULL ACCESS TO THE ROUTER FILE SYSTEM"); %>!</small>
+				<small style="color: red"> * <% translate("Note"); %>: <% translate("Avoid using this option when FTP server is enabled for WAN. IT PROVIDES FULL ACCESS TO THE ROUTER FILE SYSTEM"); %>!</small>
 				<script type="text/javascript">
 					$('#ftpconf').forms([
 						{ title: '<% translate("Enable FTP Server"); %>', name: 'ftp_enable', type: 'select',
@@ -213,12 +213,12 @@ No part of this file may be used without permission.
 							value: nvram.ftp_enable },
 						{ title: '<% translate("FTP Port"); %>', indent: 2, name: 'ftp_port', type: 'text', maxlen: 5, size: 7, value: fixPort(nvram.ftp_port, 21) },
 						{ title: '<% translate("Allowed Remote<br>Address(es)"); %>', indent: 2, name: 'f_ftp_sip', type: 'text', maxlen: 512, size: 64, value: nvram.ftp_sip,
-							suffix: '<br><small>(optional; ex"); %>: "1.1.1.1", "1.1.1.0/24", "1.1.1.1 - 2.2.2.2" or "me.example.com")</small>' },
+							suffix: '<br><small>(<% translate("optional"); %>; <% translate("ex"); %>: "1.1.1.1", "1.1.1.0/24", "1.1.1.1 - 2.2.2.2" <% translate("or"); %> "me.example.com")</small>' },
 						{ title: '<% translate("Anonymous Users Access"); %>', name: 'ftp_anonymous', type: 'select',
 							options: [['0','<% translate("Disabled"); %>'],['1','<% translate("Read/Write"); %>'],['2','<% translate("Read Only"); %>'],['3','<% translate("Write Only"); %>']],
 							value: nvram.ftp_anonymous },
 						{ title: '<% translate("Allow Admin Login"); %> *', name: 'f_ftp_super', type: 'checkbox',
-							suffix: ' <small><% translate("Allows users to connect with admin account"); %>.</small>',
+							suffix: ' <small><% translate("Allows users to connect with admin account"); %></small>',
 							value: nvram.ftp_super == 1 },
 						{ title: '<% translate("Log FTP requests and responses"); %>', name: 'f_log_ftp', type: 'checkbox',
 							value: nvram.log_ftp == 1 }

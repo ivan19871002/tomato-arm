@@ -181,15 +181,15 @@ No part of this file may be used without permission.
 			refresh_usb_disk();
 
 			$('#mysql-basic-set').forms([
-				{ title: '<% translate("Enable MySQL server"); %>', name: 'f_mysql_enable', type: 'checkbox', value: nvram.mysql_enable == 1, suffix: ' <small>*</small>' },
+				{ title: '<% translate("Enable MySQL server"); %>', name: 'f_mysql_enable', type: 'checkbox', value: nvram.mysql_enable == 1, suffix: ' * ' },
 				{ title: '<% translate("MySQL binary path"); %>', multi: [
 					{ name: 'mysql_binary', type: 'select', options: [
 						['internal','<% translate("Internal"); %> (/usr/bin)'],
 						['optware','Optware (/opt/bin)'],
-						['custom','<% translate("Custom"); %>'] ], value: nvram.mysql_binary, suffix: ' <small>*</small> ' },
+						['custom','<% translate("Custom"); %>'] ], value: nvram.mysql_binary, suffix: ' * ' },
 					{ name: 'mysql_binary_custom', type: 'text', maxlen: 40, size: 40, value: nvram.mysql_binary_custom , suffix: ' <small><% translate("Not include"); %> "/mysqld"</small>' }
 				] },
-				{ title: '<% translate("Keep alive"); %>', name: 'f_mysql_check', type: 'checkbox', value: nvram.mysql_check == 1, suffix: ' <small>*</small>' },
+				{ title: '<% translate("Keep alive"); %>', name: 'f_mysql_check', type: 'checkbox', value: nvram.mysql_check == 1, suffix: ' * ' },
 				{ title: '<% translate("Check alive every"); %>', indent: 2, name: 'mysql_check_time', type: 'text', maxlen: 5, size: 7, value: nvram.mysql_check_time, suffix: ' <% translate("minutes"); %> <small>(<% translate("range"); %>: 1 - 55; <% translate("default"); %>: 1)</small>' },
 				{ title: '<% translate("Delay at startup"); %>', name: 'mysql_sleep', type: 'text', maxlen: 5, size: 7, value: nvram.mysql_sleep, suffix: ' <% translate("seconds"); %> <small>(<% translate("range"); %>: 1 - 60; <% translate("default"); %>: 2)</small>' },
 				{ title: '<% translate("MySQL listen port"); %>', name: 'mysql_port', type: 'text', maxlen: 5, size: 7, value: nvram.mysql_port, suffix: ' <small> <% translate("default"); %>: 3306</small>' },

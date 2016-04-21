@@ -366,7 +366,7 @@ createFieldTable('', [
 	null,
 	{ title: '<% translate("Assigned / Routed Prefix"); %>', name: 'f_ipv6_prefix', type: 'text', maxlen: 46, size: 48, value: nvram.ipv6_prefix },
 	{ title: '<% translate("6rd Routed Prefix"); %>', name: 'ipv6_6rd_prefix', type: 'text', maxlen: 46, size: 48, value: nvram.ipv6_6rd_prefix },
-	{ title: '<% translate("6rd Prefix Length"); %>', name: 'ipv6_6rd_prefix_length', type: 'text', maxlen: 3, size: 5, value: nvram.ipv6_6rd_prefix_length, suffix: ' <small>(<% translate("Usually"); %> 32)</small>' },
+	{ title: '<% translate("6rd Prefix Length"); %>', name: 'ipv6_6rd_prefix_length', type: 'text', maxlen: 3, size: 5, value: nvram.ipv6_6rd_prefix_length, suffix: ' <small>(<% translate("usually"); %> 32)</small>' },
 	{ title: '<% translate("Prefix Length"); %>', name: 'f_ipv6_prefix_length', type: 'text', maxlen: 3, size: 5, value: nvram.ipv6_prefix_length },
 	{ title: '<% translate("Request PD Only"); %>', name: 'f_ipv6_pdonly', type: 'checkbox', value: (nvram.ipv6_pdonly != '0') },
 	{ title: '<% translate("Router IPv6 Address"); %>', multi: [

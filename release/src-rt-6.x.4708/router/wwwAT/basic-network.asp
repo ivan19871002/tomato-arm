@@ -2001,7 +2001,7 @@ No part of this file may be used without permission.
 														/* MULTIWAN-BEGIN */
 														,['3','3 WAN'],['4','4 WAN']
 														/* MULTIWAN-END */
-					], value: nvram.mwan_num, suffix: ' - <% translate("Please configure"); %> <a href="#advanced-vlan.asp"><b>VLAN</b></a>' },
+					], value: nvram.mwan_num, suffix: ' &mdash; <% translate("Please configure"); %> <a href="#advanced-vlan.asp"><b>VLAN</b></a>' },
 				{ title: '<% translate("Check connections every"); %>', name: 'mwan_cktime', type: 'select', options: [
 					['0','<% translate("Disabled"); %>'],['60','1 <% translate("minute"); %>'],['120','2 <% translate("minutes"); %>'],['180','3 <% translate("minutes"); %>'],['300','5 <% translate("minutes"); %>'],
 					['600','10 <% translate("minutes"); %>'],['900','15 <% translate("minutes"); %>'],['1800','30 <% translate("minutes"); %>'],['3600','1 <% translate("hour"); %>']],
@@ -2089,7 +2089,7 @@ No part of this file may be used without permission.
 						{ title: '<% translate("Use DHCP"); %>', name: 'f_wan'+u+'_pptp_dhcp', type: 'checkbox', suffix: ' <small>(<% translate("check in case PPTP/L2TP/PPPoE connection with DHCP MAN"); %>)</small>', value: (nvram['wan'+u+'_pptp_dhcp'] == 1) },
 						{ title: '<% translate("Single Line MLPPP"); %>', name: 'f_wan'+u+'_ppp_mlppp', type: 'checkbox', value: (nvram['wan'+u+'_ppp_mlppp'] == 1) },
 						{ title: '<% translate("Route Modem IP"); %>', name: 'wan'+u+'_modem_ipaddr', type: 'text', maxlen: 15, size: 17, suffix: ' <small>(<% translate("must be in different subnet to router"); %>, 0.0.0.0 <% translate("to disable"); %>)</small>', value: nvram['wan'+u+'_modem_ipaddr'] },
-						{ title: '<% translate("Watchdog Mode"); %>', name: 'wan'+u+'_ckmtd', type: 'select', options: [['1','<% translate("Ping"); %>'],['2','<% translate("Traceroute"); %> *']], value: nvram['wan'+u+'_ckmtd'], suffix: ' <small>(<% translate("default"); %>: <% translate("Traceroute"); %>; <% translate("Use Ping only when Traceroute is not working correctly"); %></small>'  },
+						{ title: '<% translate("Watchdog Mode"); %>', name: 'wan'+u+'_ckmtd', type: 'select', options: [['1','<% translate("Ping"); %>'],['2','<% translate("Traceroute"); %> *']], value: nvram['wan'+u+'_ckmtd'], suffix: ' <small>(<% translate("default"); %>: <% translate("Traceroute"); %>; <% translate("Use Ping only when Traceroute is not working correctly"); %>)</small>'  },
 						{ title: '<% translate("Bridge WAN port to primary LAN"); %> (br0)', name: 'f_wan'+u+'_islan', type: 'checkbox', value: (nvram['wan'+u+'_islan'] == 1) }
 						];	// form
 

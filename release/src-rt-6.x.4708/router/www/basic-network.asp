@@ -1986,11 +1986,11 @@ createFieldTable('', [
 /* MULTIWAN-BEGIN */
 										    ,['3','3 <% translate("WAN"); %>'],['4','4 <% translate("WAN"); %>']
 /* MULTIWAN-END */
-		], value: nvram.mwan_num, suffix: ' <small><% translate("Please configure"); %> <a href="advanced-vlan.asp">VLAN</a></small>' },
+		], value: nvram.mwan_num, suffix: ' &mdash; <% translate("Please configure"); %> <a href="advanced-vlan.asp">VLAN</a>' },
 	{ title: '<% translate("Check connections every"); %>', name: 'mwan_cktime', type: 'select', options: [
 		['0','<% translate("Disabled"); %>'],['60','1 <% translate("minute"); %>'],['120','2 <% translate("minutes"); %>'],['180','3 <% translate("minutes"); %>'],['300','5 <% translate("minutes"); %>'],
 		['600','10 <% translate("minutes"); %>'],['900','15 <% translate("minutes"); %>'],['1800','30 <% translate("minutes"); %>'],['3600','1 <% translate("hour"); %>']],
-		suffix: ' <small>(<% translate("when the network conditions poor, try use long detection period"); %>)</small>',
+		suffix: ' <small><i>(<% translate("when the network conditions poor, try use long detection period"); %>)</i></small>',
 		value: nvram.mwan_cktime },
 	{ title: '<% translate("Target"); %> 1', indent: 2, name: 'f_mwan_ckdst_1', type: 'text', maxlen: 30, size: 30, value: ckdst[0] || ''},
 	{ title: '<% translate("Target"); %> 2', indent: 2, name: 'f_mwan_ckdst_2', type: 'text', maxlen: 30, size: 30, value: ckdst[1] || ''}
@@ -2025,11 +2025,11 @@ for(var uidx = 1; uidx <= maxwan_num; ++uidx) {
 			value: nvram['wan'+u+'_proto'] },
 		{ title: '<% translate("Wireless Client Mode"); %>', name: 'wan'+u+'_sta', type: 'select', options: sta_list, value: nvram['wan'+u+'_sta'] },
 		{ title: '<% translate("Modem device"); %>', name: 'wan'+u+'_modem_dev', type: 'select', options: [['ttyUSB0', '/dev/ttyUSB0'],['ttyUSB1', '/dev/ttyUSB1'],['ttyUSB2', '/dev/ttyUSB2'],['ttyUSB3', '/dev/ttyUSB3'],['ttyUSB4', '/dev/ttyUSB4'],['ttyUSB5', '/dev/ttyUSB5'],['ttyUSB6', '/dev/ttyUSB6'],['ttyACM0', '/dev/ttyACM0']], value: nvram['wan'+u+'_modem_dev'] },
-		{ title: '<% translate("Load Balance Weight"); %>', name: 'wan'+u+'_weight', type: 'text', maxlen: 3, size: 8, value: nvram['wan'+u+'_weight'], suffix: ' <i>(<% translate("Failover"); %>: 0; <% translate("Load balancing"); %>: 1 - 256)</i>' },
-		{ title: '<% translate("PIN Code"); %>', name: 'wan'+u+'_modem_pin', type: 'text', maxlen: 6, size: 8, value: nvram['wan'+u+'_modem_pin'], suffix: ' <i><% translate("Advised to turn off PIN Code"); %></i>' },
+		{ title: '<% translate("Load Balance Weight"); %>', name: 'wan'+u+'_weight', type: 'text', maxlen: 3, size: 8, value: nvram['wan'+u+'_weight'], suffix: ' <small><i>(<% translate("Failover"); %>: 0; <% translate("Load balancing"); %>: 1 - 256)</i></small>' },
+		{ title: '<% translate("PIN Code"); %>', name: 'wan'+u+'_modem_pin', type: 'text', maxlen: 6, size: 8, value: nvram['wan'+u+'_modem_pin'], suffix: ' <small><i><% translate("Advised to turn off PIN Code"); %></i></small>' },
 		{ title: '<% translate("Modem init string"); %>', name: 'wan'+u+'_modem_init', type: 'text', maxlen: 25, size: 32, value: nvram['wan'+u+'_modem_init'] },
 		{ title: '<% translate("APN"); %>', name: 'wan'+u+'_modem_apn', type: 'text', maxlen: 25, size: 32, value: nvram['wan'+u+'_modem_apn'] },
-		{ title: '<% translate("Network Type"); %>', name: 'wan'+u+'_modem_speed', type: 'select', options: [['00', '<% translate("Auto"); %>'],['030201', '<% translate("4G/3G/2G"); %>'],['0302', '<% translate("4G/3G only"); %>'],['03', '<% translate("4G only"); %>'],['02', '<% translate("3G only"); %>']], value: nvram['wan'+u+'_modem_speed'], suffix: ' <i><% translate("works only with non-Hilink modems"); %></i>' },
+		{ title: '<% translate("Network Type"); %>', name: 'wan'+u+'_modem_speed', type: 'select', options: [['00', '<% translate("Auto"); %>'],['030201', '<% translate("4G/3G/2G"); %>'],['0302', '<% translate("4G/3G only"); %>'],['03', '<% translate("4G only"); %>'],['02', '<% translate("3G only"); %>']], value: nvram['wan'+u+'_modem_speed'], suffix: ' <small><i><% translate("works only with non-Hilink modems"); %></i></small>' },
 		{ title: '<% translate("Username"); %>', name: 'wan'+u+'_ppp_username', type: 'text', maxlen: 60, size: 64, value: nvram['wan'+u+'_ppp_username'] },
 		{ title: '<% translate("Password"); %>', name: 'wan'+u+'_ppp_passwd', type: 'password', maxlen: 60, size: 64, peekaboo: 1, value: nvram['wan'+u+'_ppp_passwd'] },
 		{ title: '<% translate("Service Name"); %>', name: 'wan'+u+'_ppp_service', type: 'text', maxlen: 50, size: 64, value: nvram['wan'+u+'_ppp_service'] },
@@ -2044,21 +2044,21 @@ for(var uidx = 1; uidx <= maxwan_num; ++uidx) {
 		{ title: '<% translate("DNS"); %> 2', indent: 2, name: 'f_wan'+u+'_dns_2', type: 'text', maxlen: 15, size: 17, value: dns[1] || '0.0.0.0' },
 		{ title: '<% translate("Connect Mode"); %>', name: 'wan'+u+'_ppp_demand', type: 'select', options: [['1', '<% translate("Connect On Demand"); %>'],['0', '<% translate("Keep Alive"); %>']],
 			value: nvram['wan'+u+'_ppp_demand'] },
-		{ title: '<% translate("Max Idle Time"); %>', indent: 2, name: 'wan'+u+'_ppp_idletime', type: 'text', maxlen: 5, size: 7, suffix: ' <i>(<% translate("minutes"); %>)</i>',
+		{ title: '<% translate("Max Idle Time"); %>', indent: 2, name: 'wan'+u+'_ppp_idletime', type: 'text', maxlen: 5, size: 7, suffix: ' <% translate("minutes"); %>',
 			value: nvram['wan'+u+'_ppp_idletime'] },
-		{ title: '<% translate("Redial Interval"); %>', indent: 2, name: 'wan'+u+'_ppp_redialperiod', type: 'text', maxlen: 5, size: 7, suffix: ' <i>(<% translate("seconds"); %>)</i>',
+		{ title: '<% translate("Redial Interval"); %>', indent: 2, name: 'wan'+u+'_ppp_redialperiod', type: 'text', maxlen: 5, size: 7, suffix: ' <% translate("seconds"); %>',
 			value: nvram['wan'+u+'_ppp_redialperiod'] },
-		{ title: '<% translate("LCP Echo Interval"); %>', indent: 2, name: 'wan'+u+'_pppoe_lei', type: 'text', maxlen: 5, size: 7, suffix: ' <i><% translate("seconds"); %> (<% translate("range"); %>: 1 - 60; <% translate("default"); %>: 10)</i>',
+		{ title: '<% translate("LCP Echo Interval"); %>', indent: 2, name: 'wan'+u+'_pppoe_lei', type: 'text', maxlen: 5, size: 7, suffix: ' <% translate("seconds"); %> <small><i>(<% translate("range"); %>: 1 - 60; <% translate("default"); %>: 10)</i></small>',
 			value: nvram['wan'+u+'_pppoe_lei'] },
-		{ title: '<% translate("LCP Echo Link fail limit"); %>', indent: 2, name: 'wan'+u+'_pppoe_lef', type: 'text', maxlen: 5, size: 7, suffix: ' <i>(<% translate("range"); %>: 1 - 10; <% translate("default"); %>: 5)</i>',
+		{ title: '<% translate("LCP Echo Link fail limit"); %>', indent: 2, name: 'wan'+u+'_pppoe_lef', type: 'text', maxlen: 5, size: 7, suffix: ' <small><i>(<% translate("range"); %>: 1 - 10; <% translate("default"); %>: 5)</i></small>',
 			value: nvram['wan'+u+'_pppoe_lef'] },
 		{ title: '<% translate("MTU"); %>', multi: [
 			{ name: 'wan'+u+'_mtu_enable', type: 'select', options: [['0', '<% translate("Default"); %>'],['1','<% translate("Manual"); %>']], value: nvram['wan'+u+'_mtu_enable'] },
 			{ name: 'f_wan'+u+'_mtu', type: 'text', maxlen: 4, size: 6, value: nvram['wan'+u+'_mtu'] } ] },
-		{ title: '<% translate("Use DHCP"); %>', name: 'f_wan'+u+'_pptp_dhcp', type: 'checkbox',  suffix: ' <small>(<% translate("check in case PPTP/L2TP/PPPoE connection with DHCP MAN"); %>)</small>', value: (nvram['wan'+u+'_pptp_dhcp'] == 1) },
+		{ title: '<% translate("Use DHCP"); %>', name: 'f_wan'+u+'_pptp_dhcp', type: 'checkbox',  suffix: ' <small><i>(<% translate("check in case PPTP/L2TP/PPPoE connection with DHCP MAN"); %>)</i></small>', value: (nvram['wan'+u+'_pptp_dhcp'] == 1) },
 		{ title: '<% translate("Single Line MLPPP"); %>', name: 'f_wan'+u+'_ppp_mlppp', type: 'checkbox', value: (nvram['wan'+u+'_ppp_mlppp'] == 1) },
-		{ title: '<% translate("Route Modem IP"); %>', name: 'wan'+u+'_modem_ipaddr', type: 'text', maxlen: 15, size: 17, suffix: ' <i>(<% translate("must be in different subnet to router"); %>, 0.0.0.0 <% translate("to disable"); %>)</i>', value: nvram['wan'+u+'_modem_ipaddr'] },
-		{ title: '<% translate("Watchdog Mode"); %>', name: 'wan'+u+'_ckmtd', type: 'select', options: [['1','<% translate("Ping"); %>'],['2','<% translate("Traceroute"); %>']], value: nvram['wan'+u+'_ckmtd'] },
+		{ title: '<% translate("Route Modem IP"); %>', name: 'wan'+u+'_modem_ipaddr', type: 'text', maxlen: 15, size: 17, suffix: ' <small><i>(<% translate("must be in different subnet to router"); %>, 0.0.0.0 <% translate("to disable"); %>)</i></small>', value: nvram['wan'+u+'_modem_ipaddr'] },
+		{ title: '<% translate("Watchdog Mode"); %>', name: 'wan'+u+'_ckmtd', type: 'select', options: [['1','<% translate("Ping"); %>'],['2','<% translate("Traceroute"); %> *']], value: nvram['wan'+u+'_ckmtd'], suffix: ' <small><i>(<% translate("default"); %>: <% translate("Traceroute"); %>; <% translate("Use Ping only when Traceroute is not working correctly"); %>)</i></small>' },
 		{ title: '<% translate("Bridge WAN port to primary LAN"); %> (br0)', name: 'f_wan'+u+'_islan', type: 'checkbox', value: (nvram['wan'+u+'_islan'] == 1) }
 	]);
 	W('</div>');
@@ -2079,10 +2079,10 @@ dns = nvram.wan_dns.split(/\s+/);
 REMOVE-END */
 createFieldTable('', [
 	{ title: '<% translate("Default Gateway"); %>', name: 'lan_gateway', type: 'text', maxlen: 15, size: 17, value: nvram.lan_gateway },
-	{ title: '<% translate("Static DNS"); %>', suffix: '&nbsp; <i>(<% translate("IP"); %>:<% translate("port"); %>)</i>', name: 'f_dns_1', type: 'text', maxlen: 21, size: 25, value: dns[0] || '0.0.0.0' },
+	{ title: '<% translate("Static DNS"); %>', suffix: '&nbsp; <small><i>(<% translate("IP"); %>:<% translate("port"); %>)</i></small>', name: 'f_dns_1', type: 'text', maxlen: 21, size: 25, value: dns[0] || '0.0.0.0' },
 	{ title: '', name: 'f_dns_2', type: 'text', maxlen: 21, size: 25, value: dns[1] || '0.0.0.0' },
 /* DNSSEC-BEGIN */
-	{ title: '<% translate("Enable DNSSEC"); %>', name: 'f_dnssec_enable', type: 'checkbox', suffix: ' <i>(<% translate("must be supported by the upstream nameservers"); %>)</i>', value: (nvram.dnssec_enable == 1) },
+	{ title: '<% translate("Enable DNSSEC"); %>', name: 'f_dnssec_enable', type: 'checkbox', suffix: ' <small><i>(<% translate("must be supported by the upstream nameservers"); %>)</i></small>', value: (nvram.dnssec_enable == 1) },
 /* DNSSEC-END */
 /* DNSCRYPT-BEGIN */
 	{ title: '<% translate("Use dnscrypt-proxy"); %>', name: 'f_dnscrypt_proxy', type: 'checkbox', value: (nvram.dnscrypt_proxy == 1) },
@@ -2095,7 +2095,7 @@ createFieldTable('', [
 	{ title: '<% translate("Local Port"); %>', indent: 2, name: 'dnscrypt_port', type: 'text', maxlen: 5, size: 7, value: nvram.dnscrypt_port },
 	{ title: '<% translate("Log Level"); %>', indent: 2, name: 'dnscrypt_log', type: 'text', maxlen: 2, size: 5, value: nvram.dnscrypt_log },
 /* DNSCRYPT-END */
-	{ title: '<% translate("WINS"); %> <i>(<% translate("for DHCP"); %>)</i>', name: 'wan_wins', type: 'text', maxlen: 15, size: 17, value: nvram.wan_wins }
+	{ title: '<% translate("WINS"); %> <small><i>(<% translate("for DHCP"); %>)</i></small>', name: 'wan_wins', type: 'text', maxlen: 15, size: 17, value: nvram.wan_wins }
 ]);
 </script>
 </div>
@@ -2176,7 +2176,7 @@ if (wl_sunit(uidx)<0) {
 		{ title: '<% translate("Shared Key"); %>', indent: 2, name: 'wl'+u+'_radius_key', type: 'password', maxlen: 80, size: 32, peekaboo: 1,
 			suffix: ' <input type="button" id="_f_wl'+u+'_psk_random2" value="<% translate("Random"); %>" onclick="random_psk(\'_wl'+u+'_radius_key\')">',
 			value: eval('nvram.wl'+u+'_radius_key') },
-		{ title: '<% translate("Group Key Renewal"); %>', indent: 2, name: 'wl'+u+'_wpa_gtk_rekey', type: 'text', maxlen: 4, size: 6, suffix: ' <i>(<% translate("seconds"); %>)</i>',
+		{ title: '<% translate("Group Key Renewal"); %>', indent: 2, name: 'wl'+u+'_wpa_gtk_rekey', type: 'text', maxlen: 4, size: 6, suffix: ' <% translate("seconds"); %>',
 			value: eval('nvram.wl'+u+'_wpa_gtk_rekey') },
 		{ title: '<% translate("Radius Server"); %>', indent: 2, multi: [
 			{ name: 'wl'+u+'_radius_ipaddr', type: 'text', maxlen: 15, size: 17, value: eval('nvram.wl'+u+'_radius_ipaddr') },

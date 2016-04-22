@@ -24,9 +24,9 @@ cd $SRC
 # git pull
 
 ### VERSION
-VER="136-ML"
+VER="136"
 export BUILDNR="0136"
-EXTENDNO=`git rev-parse --verify HEAD --short`
+EXTENDNO="ML-"`git rev-parse --verify HEAD --short`
 # 1337
 echo "1336" > linux/linux-2.6/.version
 

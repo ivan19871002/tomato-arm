@@ -97,7 +97,7 @@ No part of this file may be used without permission.
 			<div class="content"></div>
 			<script type="text/javascript">
 				$('#stealthdiv .content').forms([
-					{ title: '<% translate("Enable Stealth Mode"); %>', name: 'f_stealth_mode', type: 'checkbox', value: (nvram.stealth_mode == 1), suffix: '&nbsp;<small>(<% translate("reboot required to turn off LEDs"); %>)</small>' },
+					{ title: '<% translate("Disable all LEDs"); %>', name: 'f_stealth_mode', type: 'checkbox', value: (nvram.stealth_mode == 1), suffix: '&nbsp;<small>(<% translate("reboot required to turn off LEDs"); %>)</small>' },
 					{ title: '<% translate("Exclude INTERNET LED"); %>', name: 'f_stealth_iled', type: 'checkbox', value: (nvram.stealth_iled == 1) },
 				]);
 			</script>

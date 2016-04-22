@@ -2180,9 +2180,9 @@ Chinese=Китайский
 uncheck in case PPPoE connection without DHCP MAN=отключите для PPPoE соединения без DHCP MAN
 check in case PPTP/L2TP/PPPoE connection with DHCP MAN=включите для PPTP/L2TP/PPPoE соединения c DHCP MAN
 Stealth Mode=Ночной режим
-Enable Stealth Mode=Включить ночной режим
+Disable all LEDs=Отключить все индикаторы
 Exclude INTERNET LED=Не отключать индикатор «Интернет»
-reboot required to turn off LEDs=для отключения индкаторов требуется перезагрузка
+reboot required to turn off LEDs=для отключения индкаторов требуется перезагрузка роутера
 To activate the PHP support (php-cgi) tick and save this screen=Для включения PHP отметьте этот параметр и сохраните изменения
 To activate the Web Server tick and save this screen=Для включения WEB-сервера отметьте этот параметр и сохраните изменения
 

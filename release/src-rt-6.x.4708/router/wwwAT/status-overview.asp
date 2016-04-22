@@ -25,12 +25,12 @@
 			var refTimer, wl_ifaces = {}, ajaxLoadingState = false, gui_version = "<% version(0); %>", lastjiffiestotal = 0, lastjiffiesidle = 0, lastjiffiesusage = 100;
 			$(document).ready(function() {
 				// Attempt match
-				match_regex = gui_version.match(/^1\.28\.0*(\d*).?(\w*) (.*)/);
+				match_regex = gui_version.match(/^1\.28\.0*(\d*).?(\w*).(\w*).(\w*).(.*)/);
 				// Check matches
 				if ( match_regex == null || match_regex[1] == null ) {
 					gui_version = '<% translate("More Info"); %>'
 				} else {
-					gui_version = 'v' + match_regex[1] + ' ' + match_regex[2];
+					gui_version = 'v' + match_regex[1] + ' ' + match_regex[2] + ' ' + match_regex[3];
 				}
 
 				// Write version & initiate GUI functions & binds

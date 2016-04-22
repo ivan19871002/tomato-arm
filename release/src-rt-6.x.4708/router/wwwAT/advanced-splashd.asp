@@ -120,7 +120,7 @@ No part of this file may be used without permission.
 						/* VLAN-BEGIN */
 						{ title: '<% translate("Interface"); %>', multi: [
 							{ name: 'NC_BridgeLAN', type: 'select', options: [
-								['br0','<% translate("LAN"); %> (br0)*'],
+								['br0','<% translate("LAN"); %> (br0) *'],
 								['br1','<% translate("LAN2"); %> (br1)'],
 								['br2','<% translate("LAN3"); %> (br2)'],
 								['br3','<% translate("LAN4"); %> (br3)']
@@ -130,12 +130,12 @@ No part of this file may be used without permission.
 						{ title: '<% translate("Captive Site Forwarding"); %>', name: 'f_NC_ForcedRedirect', type: 'checkbox', value: (nvram.NC_ForcedRedirect == '1') },
 						{ title: '<% translate("Home Page"); %>', name: 'NC_HomePage', type: 'text', maxlen: 255, size: 34, value: nvram.NC_HomePage },
 						{ title: '<% translate("Welcome html Path"); %>', name: 'NC_DocumentRoot', type: 'text', maxlen: 255, size: 20, value: nvram.NC_DocumentRoot, suffix: '<span>&nbsp;/splash.html</span>' },
-						{ title: '<% translate("Login Timeout"); %>', name: 'NC_LoginTimeout', type: 'text', maxlen: 8, size: 4, value: nvram.NC_LoginTimeout, suffix: ' <% translate("seconds"); %>' },
+						{ title: '<% translate("Login Timeout"); %>', name: 'NC_LoginTimeout', type: 'text', maxlen: 8, size: 4, value: nvram.NC_LoginTimeout, suffix: ' <% translate("seconds"); %> <small>(<% translate("default"); %>: 3600 <% translate("seconds"); %> <% translate("or"); %> 1 <% translate("hour"); %>)</small>' },
 						{ title: '<% translate("Idle Timeout"); %>', name: 'NC_IdleTimeout', type: 'text', maxlen: 8, size: 4, value: nvram.NC_IdleTimeout, suffix: ' <% translate("seconds"); %> <small>(0 - <% translate("unlimited"); %>)</small>' },
-						{ title: '<% translate("Max Missed ARP"); %>', name: 'NC_MaxMissedARP', type: 'text', maxlen: 10, size: 2, value: nvram.NC_MaxMissedARP },
+						{ title: '<% translate("Max Missed ARP"); %>', name: 'NC_MaxMissedARP', type: 'text', maxlen: 10, size: 2, value: nvram.NC_MaxMissedARP, suffix: ' <small>(<% translate("default"); %>: 5)</small>' },
 						null,
-						{ title: '<% translate("Log Info Level"); %>', name: 'NC_Verbosity', type: 'text', maxlen: 10, size: 2, value: nvram.NC_Verbosity },
-						{ title: '<% translate("Gateway Port"); %>', name: 'NC_GatewayPort', type: 'text', maxlen: 10, size: 7, value: fixPort(nvram.NC_GatewayPort, 5280) },
+						{ title: '<% translate("Log Info Level"); %>', name: 'NC_Verbosity', type: 'text', maxlen: 10, size: 2, value: nvram.NC_Verbosity,  suffix: ' <small>(<% translate("default"); %>: 2)</small>' },
+						{ title: '<% translate("Gateway Port"); %>', name: 'NC_GatewayPort', type: 'text', maxlen: 10, size: 7, value: fixPort(nvram.NC_GatewayPort, 5280), suffix: ' <small>(<% translate("default"); %> 5280)</small>' },
 						{ title: '<% translate("Excluded Ports to be redirected"); %>', name: 'NC_ExcludePorts', type: 'text', maxlen: 255, size: 34, value: nvram.NC_ExcludePorts },
 						{ title: '<% translate("Included Ports to be redirected"); %>', name: 'NC_IncludePorts', type: 'text', maxlen: 255, size: 34, value: nvram.NC_IncludePorts },
 						{ title: '<% translate("Excluded URLs"); %>', name: 'NC_AllowedWebHosts', type: 'text', maxlen: 255, size: 34, value: nvram.NC_AllowedWebHosts },
@@ -163,14 +163,14 @@ No part of this file may be used without permission.
 					<li><b><% translate("Enable Function"); %></b> - <% translate("The router will show a Welcome banner when a client attempts to access the Internet"); %>.<br>
 					<li><b><% translate("Interface"); %>:</b> - <% translate("Select one of the bridges on which the Captive Portal will listen"); %>.<br>
 					<li><b><% translate("Gateway Name"); %></b> - <% translate("The name of the Gateway appearing in the welcome banner"); %>.<br>
-					<li><b><% translate("Gateway Port"); %></b> - <% translate("The port number of the gateway"); %>. <% translate("Default"); %> 5280.<br>
+					<li><b><% translate("Gateway Port"); %></b> - <% translate("The port number of the gateway"); %>.<br>
 					<li><b><% translate("Captive Site Forwarding"); %></b> - <% translate("When active, a 'Home Page' will appear after you click 'Agree' in the Welcome banner"); %>.<br>
 					<li><b><% translate("Home Page"); %></b> - <% translate("The URL for the 'Home Page' mentioned above is located"); %>.<br>
 					<li><b><% translate("Welcome html Path"); %></b> - <% translate("The location where the Welcome banner is stored"); %><br>
-					<li><b><% translate("Login Timeout"); %></b> - <% translate("The client can use the internet until this time expires"); %>. <% translate("Default"); %> 3600 <% translate("seconds"); %> (1 <% translate("hour"); %>).<br>
-					<li><b><% translate("Idle Timeout"); %></b> - <% translate("How often the ARP cache will be checked"); %> (<% translate("seconds"); %>). <% translate("Default"); %> 0.<br>
-					<li><b><% translate("Max Missed ARP"); %></b> - <% translate("Number of lost ARP before considering the client has leaved the connection"); %>. <% translate("Default"); %> 5.<br>
-					<li><b><% translate("Log Info Level"); %></b> - <% translate("Verbosity level for log messages from this module, Level"); %> 0=<% translate("Silent"); %>, 10=<% translate("Verbose"); %> (<% translate("Default"); %> 2).<br>
+					<li><b><% translate("Login Timeout"); %></b> - <% translate("The client can use the internet until this time expires"); %>.<br>
+					<li><b><% translate("Idle Timeout"); %></b> - <% translate("How often the ARP cache will be checked"); %> (<% translate("seconds"); %>)<br>
+					<li><b><% translate("Max Missed ARP"); %></b> - <% translate("Number of lost ARP before considering the client has leaved the connection"); %>.<br>
+					<li><b><% translate("Log Info Level"); %></b> - <% translate("Verbosity level for log messages from this module, Level"); %> 0=<% translate("Silent"); %>, 10=<% translate("Verbose"); %>.<br>
 
 					<li><b><% translate("Included ports"); %></b> - <% translate("TCP ports to allow access to after login, all others will be denied"); %>.<br>
 					<li><b><% translate("Excluded ports"); %></b> - <% translate("TCP ports to denied access to after login, all others will be allowed"); %>.<br>

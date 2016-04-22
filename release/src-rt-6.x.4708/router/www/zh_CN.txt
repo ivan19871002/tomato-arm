@@ -1802,7 +1802,6 @@ Use user-entered gateway if WAN is disabled=如果WAN被禁用则使用用户指
 Use WAN IP Address=使用WAN口的IP地址
 Using QoS=使用Qos
 usually=通常
-Usually=通常为
 Valid range=有效范围
 Value=值
 Value cannot contain=值不能包含

@@ -35,7 +35,7 @@ sudo ln -sf /usr/lib/libmpc.so.3 /usr/lib/libmpc.so.2
 ```
 On Ubuntu x64:
 ```
-sudo apt-get install libelf1:i386 zlib1g:i386
+sudo apt-get install libelf1:i386 zlib1g:i386 lib32stdc++6
 ```
 Essential packages required to build firmware:
 ```

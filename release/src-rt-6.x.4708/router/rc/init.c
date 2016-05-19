@@ -2372,7 +2372,8 @@ static int init_nvram(void)
 #endif
 		if (!nvram_match("t_fix1", (char *)name)) {
 			nvram_set("boot_wait", "on");
-			nvram_set("wait_time", "10");
+			nvram_set("wait_time", "10");	// failsafe for default R1D CFE
+			nvram_set("uart_en", "1");	// failsafe for default R1D CFE
 			nvram_set("router_name", "X-R1D");
 
 			nvram_set("vlan1hwname", "et0");

@@ -90,8 +90,8 @@ switch(nvram['t_model_name']) { //Added by Tvlz, June 2014, ARM March 2015
 	case 'Cisco Linksys EA6700':
 	case 'Xiaomi MiWiFi':
 		COL_P0N = '0';
-		COL_P1N = '1';
-		COL_P2N = '2';
+		COL_P1N = '2';
+		COL_P2N = '1';
 		COL_P3N = '3';
 		COL_P4N = '4';
 	break;

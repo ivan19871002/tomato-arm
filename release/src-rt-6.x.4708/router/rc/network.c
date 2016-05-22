@@ -689,14 +689,13 @@ void start_wl(void)
 					if (nvram_get_int(wl_nvname("radio", unit, 0))) {
 						if (unit == 0) {
 							led(LED_WLAN, LED_ON);
+							killall("blink", SIGKILL); /* ugly way to be uniq (or there will be many blinks on wl unit restarts...) */
 							if (nvram_get_int("blink_wl"))
-								killall("blink", SIGKILL); /* ugly way to be uniq (or there will be many...) */
 								eval("blink", ifname, "wlan", "20", "1000000");
-						}
-						else{
-							 led(LED_5G, LED_ON);
-							 if (nvram_get_int("blink_wl"))
-							 	eval("blink", ifname, "5g", "20", "1000000");
+						} else {
+							led(LED_5G, LED_ON);
+							if (nvram_get_int("blink_wl"))
+								eval("blink", ifname, "5g", "20", "1000000");
 						}
 					}
 #endif	// CONFIG_BCMWL5

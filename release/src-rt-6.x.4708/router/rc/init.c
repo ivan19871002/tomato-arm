@@ -284,7 +284,11 @@ static void shutdn(int rb)
 	sleep(1);
 	sync();
 
-	umount("/jffs");	// may hang if not
+	// umount("/jffs");	// may hang if not
+	// routers without JFFS will never reboot
+	// with above call on presseed reset,
+	// let's try eval code here
+	eval("umount", "-f", "/jffs");
 	sleep(1);
 
 	if (rb != -1) {

@@ -100,13 +100,13 @@ static void set_lan_hostname(const char *wan_hostname)
 	if ((f = fopen("/etc/hosts", "w"))) {
 		fprintf(f, "127.0.0.1  localhost\n");
 		if ((s = nvram_get("lan_ipaddr")) && (*s))
-			fprintf(f, "%s  %s %s-lan\n", s, nvram_safe_get("lan_hostname"), nvram_safe_get("lan_hostname"));
+			fprintf(f, "%s  %s %s.%s\n", s, nvram_safe_get("lan_hostname"), nvram_safe_get("lan_hostname"), strcmp(nvram_safe_get("lan_domain"),"") ? nvram_safe_get("lan_domain") : "lan");
 		if ((s = nvram_get("lan1_ipaddr")) && (*s) && (strcmp(s,"") != 0))
-			fprintf(f, "%s  %s-lan1\n", s, nvram_safe_get("lan_hostname"));
+			fprintf(f, "%s  %s.lan2\n", s, nvram_safe_get("lan_hostname"));
 		if ((s = nvram_get("lan2_ipaddr")) && (*s) && (strcmp(s,"") != 0))
-			fprintf(f, "%s  %s-lan2\n", s, nvram_safe_get("lan_hostname"));
+			fprintf(f, "%s  %s.lan3\n", s, nvram_safe_get("lan_hostname"));
 		if ((s = nvram_get("lan3_ipaddr")) && (*s) && (strcmp(s,"") != 0))
-			fprintf(f, "%s  %s-lan3\n", s, nvram_safe_get("lan_hostname"));
+			fprintf(f, "%s  %s.lan4\n", s, nvram_safe_get("lan_hostname"));
 #ifdef TCONFIG_IPV6
 		if (ipv6_enabled()) {
 			fprintf(f, "::1  localhost\n");

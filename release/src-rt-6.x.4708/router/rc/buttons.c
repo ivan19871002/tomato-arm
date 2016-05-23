@@ -213,7 +213,7 @@ int buttons_main(int argc, char *argv[])
 		break;
 	case MODEL_R1D:
 		reset_mask = 1 << 17;
- 		ses_led = LED_AOSS;
+ //		ses_led = LED_AOSS;
  		break;
 	case MODEL_W1800R:
 		reset_mask = 1 << 14;
@@ -366,13 +366,32 @@ int buttons_main(int argc, char *argv[])
 			count = 0;
 			do {
 				sleep(1);
-				if (++count == 3) led(LED_DIAG, 1);
+				if (++count == 5) {
+					led(LED_DIAG, 1);
+					usleep(500000);
+					led(LED_DIAG, 0);
+					usleep(500000);
+					led(LED_DIAG, 1);
+					usleep(500000);
+					led(LED_DIAG, 0);
+					usleep(500000);
+					led(LED_DIAG, 1);
+					usleep(500000);
+					led(LED_DIAG, 0);
+					usleep(500000);
+					led(LED_DIAG, 1);
+					usleep(500000);
+					led(LED_DIAG, 0);
+					usleep(500000);
+					led(LED_DIAG, 1);
+				}
 			} while (((gpio = _gpio_read(gf)) != ~0) && ((gpio & reset_mask) == reset_pushed));
 
 #ifdef DEBUG_TEST
 			cprintf("reset count = %d\n", count);
 #else
-			if (count >= 3) {
+			if (count >= 5) {
+				syslog(LOG_INFO, "Reset pushed steady. Count was %d. Clear NVRAM and reboot.", count);
 				eval("mtd-erase2", "nvram");
 				//nvram_set("restore_defaults", "1");
 				//nvram_commit();
@@ -381,6 +400,7 @@ int buttons_main(int argc, char *argv[])
 			}
 			else {
 				led(LED_DIAG, 1);
+				syslog(LOG_INFO, "Reset pushed. Router will reboot.");
 				set_action(ACT_REBOOT);
 				kill(1, SIGTERM);
 			}

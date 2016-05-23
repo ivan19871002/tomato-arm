@@ -384,6 +384,7 @@ int buttons_main(int argc, char *argv[])
 					led(LED_DIAG, 0);
 					usleep(500000);
 					led(LED_DIAG, 1);
+					usleep(500000);
 				}
 			} while (((gpio = _gpio_read(gf)) != ~0) && ((gpio & reset_mask) == reset_pushed));
 

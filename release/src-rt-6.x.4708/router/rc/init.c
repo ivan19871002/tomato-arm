@@ -2379,6 +2379,8 @@ static int init_nvram(void)
 			nvram_set("wait_time", "10");	// failsafe for default R1D CFE
 			nvram_set("uart_en", "1");	// failsafe for default R1D CFE
 			nvram_set("router_name", "X-R1D");
+			nvram_set("lan_hostname", "MiWiFi");
+			nvram_set("wan_hostname", "MiWiFi");
 
 			nvram_set("vlan1hwname", "et0");
 			nvram_set("vlan2hwname", "et0");

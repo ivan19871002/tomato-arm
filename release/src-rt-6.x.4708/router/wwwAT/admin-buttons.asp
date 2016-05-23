@@ -43,7 +43,7 @@ No part of this file may be used without permission.
 		function earlyInit()
 		{
 			if ((!brau) && (!ses)) {
-				E('save-button').disabled = 1;
+			//	E('save-button').disabled = 1;	// anyway allow LED control in case No SES
 				return;
 			}
 
@@ -117,7 +117,7 @@ No part of this file may be used without permission.
 		</div>
 
 		<script type="text/javascript">
-			if ((!ses) && (!brau)) $('#leddiv').after('<div class="alert"><% translate("This feature is not supported on this router"); %>.</div>');
+			if ((!ses) && (!brau)) $('#leddiv').after('<div class="alert alert-warning icon"><% translate("This feature is not supported on this router"); %>.</div>');
 		</script>
 
 		<button type="button" value="<% translate("Save"); %>" id="save-button" onclick="save()" class="btn btn-primary"><% translate("Save"); %> <i class="icon-check"></i></button>

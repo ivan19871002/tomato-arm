@@ -61,7 +61,7 @@ function save()
 function earlyInit()
 {
 	if ((!brau) && (!ses)) {
-		E('save-button').disabled = 1;
+	//	E('save-button').disabled = 1; 	// anyway allow LED control in case No SES
 		return;
 	}
 

@@ -27,6 +27,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+//#include <syslog.h>
 #include <signal.h>
 #include <sys/time.h>
 #include <unistd.h>
@@ -37,12 +38,14 @@
 
 //#define DEBUG
 
+//#define dbG(fmt, args...) syslog(LOG_DEBUG, fmt, ##args) // redirect console to syslog
+
 #define FAN_NORMAL_PERIOD	5 * 1000	/* microsecond */
-#define TEMP_MAX		94.000
-#define TEMP_3			88.000
-#define TEMP_2			82.000
-#define TEMP_1			76.000
-#define TEMP_MIN		70.000
+#define TEMP_MAX		84.000		/* note: this not degrees */
+#define TEMP_3			78.000		/* actual degrees math is */
+#define TEMP_2			72.000		/* Celsius: val / 2 + 20, */
+#define TEMP_1			66.000		/* 66.000 = 53 C          */
+#define TEMP_MIN		60.000		/* 60.000 = 50 C          */
 #define TEMP_H			3.000
 
 #define max(a,b)  (((a) > (b)) ? (a) : (b))
@@ -52,8 +55,8 @@ static int count = -2;
 static int status = -1;
 static int duty_cycle = 0;
 static int status_old = 0;
-static double tempavg_24 = 0.000;
-static double tempavg_50 = 0.000;
+static double tempavg_1 = 0.000;
+static double tempavg_2 = 0.000;
 static double tempavg_max = 0.000;
 static struct itimerval itv;
 static int count_timer = 0;
@@ -103,51 +106,56 @@ phy_tempsense_mon()
 	char buf2[WLC_IOCTL_SMLEN];
 	char w[32];
 	int ret;
+	unsigned int r0 = 60;	// fake val r0, in case interface is down
 	unsigned int *ret_int = NULL;
 	unsigned int *ret_int2 = NULL;
 
 	strcpy(buf, "phy_tempsense");
 	strcpy(buf2, "phy_tempsense");
 
-	if ((ret = wl_ioctl("eth1", WLC_GET_VAR, buf, sizeof(buf))))
-		return ret;
-
-	if ((ret = wl_ioctl("eth2", WLC_GET_VAR, buf2, sizeof(buf2))))
-		return ret;
-
-	ret_int = (unsigned int *)buf;
-	ret_int2 = (unsigned int *)buf2;
-
-	if (count == -2)
-	{
-		count++;
-		tempavg_24 = *ret_int;
-		tempavg_50 = *ret_int2;
-	}
-	else
-	{
-		tempavg_24 = (tempavg_24 * 4 + *ret_int) / 5;
-		tempavg_50 = (tempavg_50 * 4 + *ret_int2) / 5;
-	}
-#if 0
-	tempavg_max = (((tempavg_24) > (tempavg_50)) ? (tempavg_24) : (tempavg_50));
-#else
-	tempavg_max = (tempavg_24 + tempavg_50) / 2;
-#endif
+	if ((ret = wl_ioctl("eth1", WLC_GET_VAR, buf, sizeof(buf))) == 0)
+		ret_int = (unsigned int *)buf;
+	else {
 #ifdef DEBUG
-	dbG("phy_tempsense 2.4G: %d (%.3f), 5G: %d (%.3f), Max: %.3f\n", 
-		*ret_int, tempavg_24, *ret_int2, tempavg_50, tempavg_max);
+		dbG("phy_tempsense_mon: eth1 return code: %d. Does interface ON?", ret);
+#endif
+		ret_int = &r0;	// fake val r0
+	}
+
+	if ((ret = wl_ioctl("eth2", WLC_GET_VAR, buf2, sizeof(buf2))) == 0)
+		ret_int2 = (unsigned int *)buf2;
+	else {
+#ifdef DEBUG
+		dbG("phy_tempsense_mon: eth2 return code: %d. Does interface ON?", ret);
+#endif
+		ret_int2 = &r0;	// fake val r0
+	}
+
+	if (count == -2) {
+		count++;
+		tempavg_1 = *ret_int;
+		tempavg_2 = *ret_int2;
+	} else {
+		tempavg_1 = (tempavg_1 * 4 + *ret_int) / 5;
+		tempavg_2 = (tempavg_2 * 4 + *ret_int2) / 5;
+	}
+#if 1	// use highest, not average val (better in case only one radio enabled)
+	tempavg_max = (((tempavg_1) > (tempavg_2)) ? (tempavg_1) : (tempavg_2));
+#else
+	tempavg_max = (tempavg_1 + tempavg_2) / 2;
+#endif
+
+#ifdef DEBUG
+	dbG("phy_tempsense_mon: eth1: %d (%.3f), eth2: %d (%.3f), Max: %.3f\n",
+		*ret_int, tempavg_1, *ret_int2, tempavg_2, tempavg_max);
 #endif
 	duty_cycle = nvram_get_int("fanctrl_dutycycle");
 	if ((duty_cycle < 0) || (duty_cycle > 5))
 		duty_cycle = 0;
 
-	if (duty_cycle && (tempavg_max < TEMP_MAX))
-	{
+	if (duty_cycle && (tempavg_max < TEMP_MAX)) {
 		base = duty_cycle;
-	}
-	else
-	{
+	} else {
 		if (tempavg_max < TEMP_MIN - TEMP_H)
 			base = 1;
 		else
@@ -171,6 +179,9 @@ phy_tempsense_mon()
 		nvram_set("fanctrl_dutycycle_ex", "5");
 	} else {
 		sprintf(w, "%d", base - 1);
+#ifdef DEBUG
+		dbG("phy_tempsense_mon: nvram set fanctrl_dutycycle_ex=%s", w);
+#endif
 		nvram_set("fanctrl_dutycycle_ex", w);
 	}
 
@@ -193,6 +204,9 @@ phy_tempsense(int sig)
 
 	if (status != status_old)
 	{
+#ifdef DEBUG
+		dbG("phy_tempsense: %.3f, fan status changed to: %d\n", tempavg_max, status);
+#endif
 		if (status)
 			led(LED_BRIDGE, LED_ON);
 		else

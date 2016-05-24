@@ -13,8 +13,9 @@ PROFILE=$1
 if /usr/bin/[ "$PROFILE" == "init" ]; then
 sed -i "/mymotd/d" /root/.profile
 /bin/echo "/usr/sbin/mymotd" >> /root/.profile
-else
 
+else
+#
 # Function calculates number of bit in a netmask
 #
 mask2cidr() {
@@ -97,7 +98,7 @@ fi
 if /usr/bin/[ "$WAN1" == "1" ]; then 
     WAN1_MASK=`/bin/nvram get wan_netmask`
     WAN1_NUMBITS=$(mask2cidr $WAN1_MASK)
-    /bin/echo " WAN1: `/bin/nvram get wan_ipaddr`/$WAN1_NUMBITS @ `/bin/nvram get wan_hwaddr`"
+    /bin/echo " WAN : `/bin/nvram get wan_ipaddr`/$WAN1_NUMBITS @ `/bin/nvram get wan_hwaddr`"
 fi
 if /usr/bin/[ "$WAN2" == "1" ]; then 
     WAN2_MASK=`/bin/nvram get wan2_netmask`
@@ -120,17 +121,17 @@ fi
 if /usr/bin/[ "$LAN1" == "1" ]; then 
     LAN1_MASK=`/bin/nvram get lan1_netmask`
     LAN1_NUMBITS=$(mask2cidr $LAN1_MASK)
-    /bin/echo " LAN1: `/bin/nvram get lan1_ipaddr`/$LAN1_NUMBITS @ DHCP: `/bin/nvram get dhcpd1_startip` - `/bin/nvram get dhcpd1_endip`";
+    /bin/echo " LAN2: `/bin/nvram get lan1_ipaddr`/$LAN1_NUMBITS @ DHCP: `/bin/nvram get dhcpd1_startip` - `/bin/nvram get dhcpd1_endip`";
 fi
 if /usr/bin/[ "$LAN2" == "1" ]; then 
     LAN2_MASK=`/bin/nvram get lan2_netmask`
     LAN2_NUMBITS=$(mask2cidr $LAN2_MASK)
-    /bin/echo " LAN2: `/bin/nvram get lan2_ipaddr`/$LAN2_NUMBITS @ DHCP: `/bin/nvram get dhcpd2_startip` - `/bin/nvram get dhcpd2_endip`";
+    /bin/echo " LAN3: `/bin/nvram get lan2_ipaddr`/$LAN2_NUMBITS @ DHCP: `/bin/nvram get dhcpd2_startip` - `/bin/nvram get dhcpd2_endip`";
 fi
 if /usr/bin/[ "$LAN3" == "1" ]; then 
     LAN3_MASK=`/bin/nvram get lan3_netmask`
     LAN3_NUMBITS=$(mask2cidr $LAN3_MASK)
-    /bin/echo " LAN3: `/bin/nvram get lan3_ipaddr`/$LAN3_NUMBITS @ DHCP: `/bin/nvram get dhcpd3_startip` - `/bin/nvram get dhcpd3_endip`";
+    /bin/echo " LAN4: `/bin/nvram get lan3_ipaddr`/$LAN3_NUMBITS @ DHCP: `/bin/nvram get dhcpd3_startip` - `/bin/nvram get dhcpd3_endip`";
 fi
 GETCH=`/bin/nvram get wl0_channel`
 if /usr/bin/[ "$GETCH" == 0 ]; then CH="auto"; else CH=$GETCH; fi

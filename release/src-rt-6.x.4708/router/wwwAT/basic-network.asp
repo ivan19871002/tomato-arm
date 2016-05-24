@@ -1649,7 +1649,7 @@ No part of this file may be used without permission.
 
 			var a, b, c;
 			var i;
-			var u, uidx, wmode, sm2, wradio;
+			var u, uidx, widx, wmode, sm2, wradio;
 			var curr_mwan_num = E('_mwan_num').value;
 
 			if (!verifyFields(null, false)) return;
@@ -1673,8 +1673,8 @@ No part of this file may be used without permission.
 					else E('_wl'+u+'_mode').value = wmode;
 
 					if (wmode == 'wet') {
-						for (uidx = 1; uidx <= maxwan_num; ++uidx) {
-							var v = (uidx>1) ? uidx : '';
+						for (widx = 1; widx <= maxwan_num; ++widx) {
+							var v = (widx>1) ? widx : '';
 							E('_wan'+v+'_proto').value = 'disabled';
 						}
 						/* REMOVE-BEGIN */

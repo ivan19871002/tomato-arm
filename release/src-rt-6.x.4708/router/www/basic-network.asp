@@ -1642,7 +1642,7 @@ function save()
 
 	var a, b, c;
 	var i;
-	var u, uidx, wmode, sm2, wradio;
+	var u, uidx, widx, wmode, sm2, wradio;
 	var curr_mwan_num = E('_mwan_num').value;
 
 	if (!verifyFields(null, false)) return;
@@ -1663,8 +1663,8 @@ function save()
 			else E('_wl'+u+'_mode').value = wmode;
 
 			if (wmode == 'wet') {
-				for (wan_uidx = 1; wan_uidx <= maxwan_num; ++wan_uidx) {
-					var v = (wan_uidx>1) ? wan_uidx : '';
+				for (widx = 1; widx <= maxwan_num; ++widx) {
+					var v = (widx>1) ? widx : '';
 					E('_wan'+v+'_proto').value = 'disabled';
 				}
 /* REMOVE-BEGIN */

@@ -2773,11 +2773,12 @@ ipset/stamp-h1: libmnl
 	LDFLAGS="-ffunction-sections -fdata-sections -Wl,--gc-sections" \
 	libmnl_CFLAGS="-I$(TOP)/libmnl/staged/usr/include" \
 	libmnl_LIBS="-L$(TOP)/libmnl/staged/usr/lib -lmnl" \
-	$(CONFIGURE) --prefix=/usr --with-kmod=no
+	$(CONFIGURE) --prefix=/usr --with-kmod=yes --with-kbuild=$(LINUXDIR)
 	touch ipset/stamp-h1
 
 ipset: ipset/stamp-h1
 	$(MAKE) -C ipset
+	$(MAKE) -C ipset modules
 
 ipset-install: ipset
 	install -D ipset/src/ipset $(INSTALLDIR)/ipset/usr/sbin/ipset
@@ -2788,9 +2789,19 @@ ipset-install: ipset
 	cd $(INSTALLDIR)/ipset/usr/lib/ && \
 		ln -sf libipset.so.3.6.0 libipset.so.3 && \
 		ln -sf libipset.so.3.6.0 libipset.so
+	# ipset kernel modules install, alt path INSTALL_MOD_PATH=$(TARGETDIR)
+	# this fail on depmod, but modules copied to lib/modules/{kernelversion}/extra directory
+	-@$(MAKE) -C ipset modules_install INSTALL_MOD_PATH=$(INSTALLDIR)/ipset
+	# !!TB: find a proper way to install modules to fs, path must not be hardcoded here 
+	-@mkdir -p $(INSTALLDIR)/ipset/lib/modules/2.6.36.4brcmarm/kernel
+	# relocate from extra to kernel/net dir (to overwrite old ones from kernel itself)
+	-@mv -f $(INSTALLDIR)/ipset/lib/modules/*/extra $(INSTALLDIR)/ipset/lib/modules/2.6.36.4brcmarm/kernel/net
+	# strip ipset modules
+	-@find $(INSTALLDIR)/ipset/lib/modules -name *.*o -exec $(STRIP) --strip-debug -x -R .comment -R .note -R .pdr -R .mdebug.abi32 -R .note.gnu.build-id -R .gnu.attributes -R .reginfo {} \;
 
 ipset-clean:
 	-@$(MAKE) -C ipset clean
+	-@$(MAKE) -C ipset modules_clean
 	-@rm -rf ipset/Makefile ipset/stamp-h1
 
 libjson-c/stamp-h1:

@@ -276,7 +276,7 @@ main(int argc, char **argv)
 				puts(name);
 			size = sizeof(struct nvram_header) + (int) name - (int) buf;
 			if (**argv != 'd')
-				fprintf(stderr, "size: %d bytes (%d left)\n",
+				fprintf(stderr, "NVRAM size: %d bytes (%d left)\n",
 				        size, MAX_NVRAM_SPACE - size);
 		} //else
 		//	usage();

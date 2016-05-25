@@ -613,6 +613,12 @@ void clear_resolv(void)
 #ifdef TCONFIG_FANCTRL
 static pid_t pid_phy_tempsense = -1;
 
+void stop_phy_tempsense()
+{
+	pid_phy_tempsense = -1;
+	killall_tk("phy_tempsense");
+}
+
 void start_phy_tempsense()
 {
 	stop_phy_tempsense();
@@ -621,11 +627,6 @@ void start_phy_tempsense()
 	_eval(phy_tempsense_argv, NULL, 0, &pid_phy_tempsense);
 }
 
-void stop_phy_tempsense()
-{
-	pid_phy_tempsense = -1;
-	killall_tk("phy_tempsense");
-}
 #endif
 
 #ifdef TCONFIG_IPV6

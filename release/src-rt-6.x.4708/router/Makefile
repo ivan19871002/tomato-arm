@@ -2844,17 +2844,18 @@ comgt-clean:
 	-@$(MAKE) -C comgt clean
 
 smartmontools/stamp-h1:
-	cd smartmontools-6.3 && CC=$(CC) AR=$(AR) RANLIB=$(RANLIB) LD=$(LD) \
+	cd smartmontools && CC=$(CC) AR=$(AR) RANLIB=$(RANLIB) LD=$(LD) \
 	LDFLAGS="-static" \
 	$(CONFIGURE) --prefix=/usr
-	@touch smartmontools-6.3/stamp-h1
+	@touch smartmontools/stamp-h1
 smartmontools: smartmontools/stamp-h1
-	@$(MAKE) -C smartmontools-6.3
+	@$(SEP)
+	@$(MAKE) -C smartmontools
 smartmontools-clean:
-	-@$(MAKE) -C smartmontools-6.3 clean
-	@rm -f smartmontools-6.3/stamp-h1
+	-@$(MAKE) -C smartmontools clean
+	@rm -f smartmontools/stamp-h1
 smartmontools-install:
-	install -D smartmontools-6.3/smartctl $(INSTALLDIR)/smartmontools/usr/sbin/smartctl
+	install -D smartmontools/smartctl $(INSTALLDIR)/smartmontools/usr/sbin/smartctl
 	$(STRIP) $(INSTALLDIR)/smartmontools/usr/sbin/smartctl
 
 #

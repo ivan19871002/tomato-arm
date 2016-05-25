@@ -45,5 +45,5 @@ echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 echo "NOTE! Max fw size is 15990384 bytes"
 echo "Double check it before actual flash"
 echo "or you can break the router and you"
-echo "will need to reprogram CFE on it."
+echo "will need to reprogram it's flash."
 

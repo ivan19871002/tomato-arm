@@ -2856,7 +2856,7 @@ smartmontools: smartmontools/stamp-h1
 smartmontools-clean:
 	-@$(MAKE) -C smartmontools clean
 	@rm -f smartmontools/stamp-h1
-smartmontools-install:
+smartmontools-install: smartmontools
 	install -D smartmontools/smartctl $(INSTALLDIR)/smartmontools/usr/sbin/smartctl
 	$(STRIP) $(INSTALLDIR)/smartmontools/usr/sbin/smartctl
 
@@ -2864,9 +2864,8 @@ hfsprogs:
 	@$(SEP)
 	@$(MAKE) -C hfsprogs all
 hfsprogs-clean:
-	-@$(MAKE) -C hfsprogs clean
-	@rm -f hfsprogs/stamp-h1
-hfsprogs-install:
+	-@$(MAKE) -C hfsprogs mkclean
+hfsprogs-install: hfsprogs
 	@$(MAKE) -C hfsprogs romfs
 
 #

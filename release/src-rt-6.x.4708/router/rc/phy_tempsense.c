@@ -27,7 +27,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#include <syslog.h>
+#include <syslog.h>
 #include <signal.h>
 #include <sys/time.h>
 #include <unistd.h>
@@ -46,7 +46,7 @@
 #define TEMP_2			72.000		/* Celsius: val / 2 + 20, */
 #define TEMP_1			66.000		/* 66.000 = 53 C          */
 #define TEMP_MIN		60.000		/* 60.000 = 50 C          */
-#define TEMP_H			3.000		/* temp delta             */
+#define TEMP_H			3.000		/* temp delta */
 
 #define max(a,b)  (((a) > (b)) ? (a) : (b))
 #define min(a,b)  (((a) < (b)) ? (a) : (b))
@@ -106,7 +106,7 @@ phy_tempsense_mon()
 	char buf2[WLC_IOCTL_SMLEN];
 	char w[32];
 	int ret, t_min, t_1, t_2, t_3, t_max;
-	unsigned int r0 = 60;	// fake val r0, in case interface is down
+	unsigned int r0 = TEMP_MIN;	// fake val r0, in case interface is down
 	unsigned int *ret_int = NULL;
 	unsigned int *ret_int2 = NULL;
 
@@ -159,10 +159,10 @@ phy_tempsense_mon()
 	t_3 = (nvram_get_int("fanctrl_t4") ? ((nvram_get_int("fanctrl_t4") - 20) * 2) : TEMP_3);
 	t_max = (nvram_get_int("fanctrl_t5") ? ((nvram_get_int("fanctrl_t5") - 20) * 2) : TEMP_MAX);
 	// some failsafe checks (revert to defaults on wrong / incomplete user settings)
-	if (t_1 < t_min) { t_min = TEMP_MIN; t_1 = TEMP_1; }
-	if (t_2 < t_1) t_2 = TEMP_2;
-	if (t_3 < t_2) t_3 = TEMP_3;
-	if (t_max < t_3) t_max = TEMP_MAX;
+	if ((t_1 <= t_min) || (t_min < 0)) { t_min = TEMP_MIN; t_1 = TEMP_1; }
+	if (t_2 <= t_1) t_2 = TEMP_2;
+	if (t_3 <= t_2) t_3 = TEMP_3;
+	if (t_max <= t_3) t_max = TEMP_MAX;
 
 	if (duty_cycle && (tempavg_max < t_max)) {
 		base = duty_cycle;
@@ -261,6 +261,7 @@ phy_tempsense_main(int argc, char *argv[])
 	FILE *fp;
 	sigset_t sigs_to_catch;
 	char w[32];
+	int t1,t2,t3,t4,t5;
 
 	/* write pid */
 	if ((fp = fopen("/var/run/phy_tempsense.pid", "w")) != NULL)
@@ -286,7 +287,21 @@ phy_tempsense_main(int argc, char *argv[])
 	duty_cycle = nvram_get_int("fanctrl_dutycycle");
 	if ((duty_cycle < 0) || (duty_cycle > 4))
 		duty_cycle = 0;
-
+	// note user about fan control in syslog
+	if (duty_cycle)
+		syslog(LOG_INFO,"Use manual mode for fan control, duty_cycle = %d", duty_cycle);
+	else {
+		t1 = (nvram_get_int("fanctrl_t1") ? nvram_get_int("fanctrl_t1") : TEMP_MIN / 2 + 20);
+		t2 = (nvram_get_int("fanctrl_t2") ? nvram_get_int("fanctrl_t2") : TEMP_1 / 2 + 20);
+		t3 = (nvram_get_int("fanctrl_t3") ? nvram_get_int("fanctrl_t3") : TEMP_2 / 2 + 20);
+		t4 = (nvram_get_int("fanctrl_t4") ? nvram_get_int("fanctrl_t4") : TEMP_3 / 2 + 20);
+		t5 = (nvram_get_int("fanctrl_t5") ? nvram_get_int("fanctrl_t5") : TEMP_MAX / 2 + 20);
+		if ((t2 <= t1) || (t1 < 20)) { t1 = TEMP_MIN / 2 + 20; t2 = TEMP_1 / 2 + 20; }
+		if (t3 <= t2) t3 = TEMP_2 / 2 + 20;
+		if (t4 <= t3) t4 = TEMP_3 / 2 + 20;
+		if (t5 <= t4) t5 = TEMP_MAX / 2 + 20;
+		syslog(LOG_INFO,"Auto mode, used temps: %d %d %d %d %d", t1, t2, t3, t4, t5);
+	}
 #ifdef DEBUG
 	dbG("\nduty cycle: %d\n", duty_cycle);
 #endif

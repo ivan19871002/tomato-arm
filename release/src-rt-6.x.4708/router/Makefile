@@ -106,6 +106,8 @@ obj-$(TCONFIG_USB) += p910nd
 obj-$(TCONFIG_USB) += comgt
 obj-$(TCONFIG_USB) += uqmi
 
+obj-$(TCONFIG_HFS) += hfsprogs
+
 obj-$(TCONFIG_UPS) += apcupsd
 
 ifeq ($(CONFIG_LINUX26),y)
@@ -2857,6 +2859,15 @@ smartmontools-clean:
 smartmontools-install:
 	install -D smartmontools/smartctl $(INSTALLDIR)/smartmontools/usr/sbin/smartctl
 	$(STRIP) $(INSTALLDIR)/smartmontools/usr/sbin/smartctl
+
+hfsprogs:
+	@$(SEP)
+	@$(MAKE) -C hfsprogs all
+hfsprogs-clean:
+	-@$(MAKE) -C hfsprogs clean
+	@rm -f hfsprogs/stamp-h1
+hfsprogs-install:
+	@$(MAKE) -C hfsprogs romfs
 
 #
 # Generic rules

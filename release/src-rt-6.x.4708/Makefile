@@ -957,10 +957,6 @@ endef
 obsolete:
 	@( sed -i "s/# CONFIG_JFFS2_LZO is not set/CONFIG_JFFS2_LZO=y/g" $(1); )
 	@( sed -i "s/# CONFIG_JFFS2_RUBIN is not set/CONFIG_JFFS2_RUBIN=y/g" $(1); )
-	if [ "$(HFS)" = "y" ]; then \
-		sed -i "s/# CONFIG_HFS_FS is not set/CONFIG_HFS_FS=m/g" $(1); \
-		sed -i "s/# CONFIG_HFSPLUS_FS is not set/CONFIG_HFSPLUS_FS=m/g" $(1); \
-	fi; \
 
 bin:
 ifeq ($(B),)

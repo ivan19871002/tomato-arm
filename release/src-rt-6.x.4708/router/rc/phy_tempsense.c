@@ -46,7 +46,7 @@
 #define TEMP_2			72.000		/* Celsius: val / 2 + 20, */
 #define TEMP_1			66.000		/* 66.000 = 53 C          */
 #define TEMP_MIN		60.000		/* 60.000 = 50 C          */
-#define TEMP_H			3.000
+#define TEMP_H			3.000		/* temp delta             */
 
 #define max(a,b)  (((a) > (b)) ? (a) : (b))
 #define min(a,b)  (((a) < (b)) ? (a) : (b))
@@ -105,7 +105,7 @@ phy_tempsense_mon()
 	char buf[WLC_IOCTL_SMLEN];
 	char buf2[WLC_IOCTL_SMLEN];
 	char w[32];
-	int ret;
+	int ret, t_min, t_1, t_2, t_3, t_max;
 	unsigned int r0 = 60;	// fake val r0, in case interface is down
 	unsigned int *ret_int = NULL;
 	unsigned int *ret_int2 = NULL;
@@ -152,27 +152,44 @@ phy_tempsense_mon()
 	duty_cycle = nvram_get_int("fanctrl_dutycycle");
 	if ((duty_cycle < 0) || (duty_cycle > 5))
 		duty_cycle = 0;
+	// allow user redefine values via nvram (all values must be set in that case)
+	t_min = (nvram_get_int("fanctrl_t1") ? ((nvram_get_int("fanctrl_t1") - 20) * 2) : TEMP_MIN);
+	t_1 = (nvram_get_int("fanctrl_t2") ? ((nvram_get_int("fanctrl_t2") - 20) * 2) : TEMP_1);
+	t_2 = (nvram_get_int("fanctrl_t3") ? ((nvram_get_int("fanctrl_t3") - 20) * 2) : TEMP_2);
+	t_3 = (nvram_get_int("fanctrl_t4") ? ((nvram_get_int("fanctrl_t4") - 20) * 2) : TEMP_3);
+	t_max = (nvram_get_int("fanctrl_t5") ? ((nvram_get_int("fanctrl_t5") - 20) * 2) : TEMP_MAX);
+	// some failsafe checks (revert to defaults on wrong / incomplete user settings)
+	if (t_1 < t_min) { t_min = TEMP_MIN; t_1 = TEMP_1; }
+	if (t_2 < t_1) t_2 = TEMP_2;
+	if (t_3 < t_2) t_3 = TEMP_3;
+	if (t_max < t_3) t_max = TEMP_MAX;
 
-	if (duty_cycle && (tempavg_max < TEMP_MAX)) {
+	if (duty_cycle && (tempavg_max < t_max)) {
 		base = duty_cycle;
+#ifdef DEBUG
+		dbG("phy_tempsense_mon: manual mode, duty_cycle=%d", duty_cycle);
+#endif
 	} else {
-		if (tempavg_max < TEMP_MIN - TEMP_H)
+		if (tempavg_max < t_min - TEMP_H)
 			base = 1;
 		else
-		if ((tempavg_max > TEMP_MIN) && (tempavg_max < TEMP_1 - TEMP_H))
+		if ((tempavg_max > t_min) && (tempavg_max < t_1 - TEMP_H))
 			base = 2;
 		else
-		if ((tempavg_max > TEMP_1) && (tempavg_max < TEMP_2 - TEMP_H))
+		if ((tempavg_max > t_1) && (tempavg_max < t_2 - TEMP_H))
 			base = 3;
 		else
-		if ((tempavg_max > TEMP_2) && (tempavg_max < TEMP_3 - TEMP_H))
+		if ((tempavg_max > t_2) && (tempavg_max < t_3 - TEMP_H))
 			base = 4;
 		else
-		if ((tempavg_max > TEMP_3) && (tempavg_max < TEMP_MAX - TEMP_H))
+		if ((tempavg_max > t_3) && (tempavg_max < t_max - TEMP_H))
 			base = 5;
 		else
-		if (tempavg_max > TEMP_MAX)
+		if (tempavg_max > t_max)
 			base = 0;
+#ifdef DEBUG
+		dbG("phy_tempsense_mon: auto mode (%d), t_min: %d, t_1: %d, t_2: %d, t_3: %d, t_max: %d", base, t_min, t_1, t_2, t_3, t_max);
+#endif
 	}
 
 	if (!base) {

@@ -112,7 +112,7 @@ wlg.setup = function() {
 		{ type: 'checkbox', prefix: '<div class="centered">', suffix: '</div>' },
 		{ type: 'text', maxlen: 32, size: 34, prefix: '<div class="centered">', suffix: '</div>' },
 		{ type: 'select', options: wl_modes_available , prefix: '<div class="centered">', suffix: '</div>' },
-		{ type: 'select', options: [[0,'LAN (br0)'],[1,'LAN1  (br1)'],[2,'LAN2 (br2)'],[3,'LAN3 (br3)'],[4,'none']] }
+		{ type: 'select', options: [[0,'<% translate("LAN"); %> (br0)'],[1,'<% translate("LAN2"); %> (br1)'],[2,'<% translate("LAN3"); %> (br2)'],[3,'<% translate("LAN4"); %> (br3)'],[4,'<% translate("none"); %>']] }
 	]);
 
 	this.headerSet(['<% translate("Interface"); %>', '<% translate("Enabled"); %>', '<% translate("SSID"); %>', '<% translate("Mode"); %>', '<% translate("Bridge"); %>']);
@@ -239,10 +239,10 @@ wlg.dataToView = function(data) {
 	ssid = data[2];
 
 	return ([ifname,
-			(data[1] == 1) ? 'Yes' : 'No',
-			ssid || '<small><i>(unset)</i></small>',
-			wmo[data[3]] || '<small><i>(unset)</i></small>',
-			['LAN (br0)', 'LAN1 (br1)', 'LAN2 (br2)', 'LAN3 (br3)', '<% translate("none"); %>' ][data[4]]
+			(data[1] == 1) ? '<% translate("Yes"); %>' : '<% translate("No"); %>',
+			ssid || '<small><i>(<% translate("unset"); %>)</i></small>',
+			wmo[data[3]] || '<small><i>(<% translate("unset"); %>)</i></small>',
+			['<% translate("LAN"); %> (br0)', '<% translate("LAN1"); %> (br1)', '<% translate("LAN2"); %> (br2)', '<% translate("LAN3"); %> (br3)', '<% translate("none"); %>' ][data[4]]
 			]);
 }
 

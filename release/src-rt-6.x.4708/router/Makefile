@@ -2515,6 +2515,15 @@ e2fsprogs: e2fsprogs/stamp-h1
 	@$(SEP)
 	$(MAKE) -C e2fsprogs $(PARALLEL_BUILD)
 
+e2fsprogs-install: e2fsprogs
+	@$(SEP)
+	install -D e2fsprogs/staged/sbin/fsck.ext4 $(INSTALLDIR)/e2fsprogs/sbin/fsck.ext4
+	install -D e2fsprogs/staged/sbin/mkfs.ext4 $(INSTALLDIR)/e2fsprogs/sbin/mkfs.ext4
+	install -D e2fsprogs/staged/sbin/tune2fs $(INSTALLDIR)/e2fsprogs/sbin/tune2fs
+	$(STRIP) $(INSTALLDIR)/e2fsprogs/sbin/fsck.ext4
+	$(STRIP) $(INSTALLDIR)/e2fsprogs/sbin/mkfs.ext4
+	$(STRIP) $(INSTALLDIR)/e2fsprogs/sbin/tune2fs
+
 e2fsprogs-clean:
 	-@$(MAKE) -C e2fsprogs clean
 	@rm -f e2fsprogs/stamp-h1

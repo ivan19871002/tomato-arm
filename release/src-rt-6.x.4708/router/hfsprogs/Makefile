@@ -68,7 +68,7 @@ romfs:
 ifeq ($(TCONFIG_HFS),y)
 	install -D $(THISDIR)/$(SRC_NAME)/fsck_hfs.tproj/fsck_hfs $(INSTALLDIR)/hfsprogs/sbin/fsck_hfs
 	$(STRIP) $(INSTALLDIR)/hfsprogs/sbin/fsck_hfs
-#	$(ROMFSINST) -s fsck_hfs /sbin/fsck.hfs
+	cd $(INSTALLDIR)/hfsprogs/sbin && ln -sf fsck_hfs fsck.hfs
 ifneq ($(NO_MKTOOLS),y)
 	install -D $(THISDIR)/$(SRC_NAME)/newfs_hfs.tproj/newfs_hfs $(INSTALLDIR)/hfsprogs/sbin/newfs_hfs
 	$(STRIP) $(INSTALLDIR)/hfsprogs/sbin/newfs_hfs

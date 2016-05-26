@@ -238,7 +238,6 @@ int do_led(int which, int mode)
 	char s[16];
 	int n;
 	int b = 255, c = 255;
-	int imode = 0;
 	int ret = 255;
 
 	if ((which < 0) || (which >= LED_COUNT)) return ret;
@@ -492,15 +491,15 @@ int do_led(int which, int mode)
 	case MODEL_R1D: // power led gpio: -1 - red, -2 - orange, -3 - blue
 		if (which == LED_WHITE) {
 			// blue / orange switch
-			b = (mode) ?  3 :-2; // 2nd led must be defined with inverted value
-			c = (mode) ? -2 : 3;
+			b = (mode) ?  3 :-2;
+			c = (mode) ?  2 : 3;
 /*			// blue / red switch
 			b = (mode) ?  3 :-1;
-			c = (mode) ? -1 : 3;
+			c = (mode) ?  1 : 3;
 		} else if (which == LED_DIAG) {
-			// red / orange switch
-			b = (mode) ?  1 : 2; // +2 means don't turn orange led back when off
-			c = (mode) ? -2 : 1;
+			// red / orange switch (don't turn orange led back when off)
+			b = (mode) ?  1 : 2;
+			c = (mode) ?  2 :-1;
 */		} else
 			b = r1d[which];
 		break;
@@ -544,36 +543,26 @@ int do_led(int which, int mode)
 		return ret;
 	}
 
-	ret = b;
-	if (mode != LED_PROBE) imode = mode; // store MODE for C LED here
-//	dbG("### MODE:%d (0 = OFF, 1 = ON) ### LED B:%d, LED C:%d", mode, b, c);
+	ret = b; // for gpio -2 and -3: [1] 3|-2(1), [2+] 3|2(1) || [3] 2|3(0), [4+] -2|3(0), [5] 2|-3(0), [6] -2|-3(0)
 	if (b < 0) {
 		if (b == -99) b = 0; // -0 substitute
-			else b = -b;
-//		dbG("### M1:%d (will be applied) B:%d, Direct GPIO", mode, b);
-	} else if (mode != LED_PROBE) {
-		mode = !mode; // handle inverted GPIOs
-//		dbG("### M1:%d (will be applied) B:%d, Inverted GPIO", mode, b);
+		else b = -b;	// [4] 2|3(0), [6] 2|-3(0)
+	}
+	else if (mode != LED_PROBE) {
+		mode = !mode;	// [1] 3|-2(0), [2] 3|2(0), [3] 2|3(1), [5]2|-3(1)
 	}
 
 SET:
 	if (b < 16) {
 		if (mode != LED_PROBE) {
-			gpio_write(1 << b, mode);
-//			dbG("### GPIOWRITE(B), GPIO: %d, VAL: %d", b, mode);
+			gpio_write(1 << b, mode);	// [1] 3(0), [2] 3(0), [3] 2(1), [4] 2(0), [5] 2(1), [6] 2(0)
 
-			// 2nd color LED
 			if (c < 0) {
-				mode = imode; // (use imode here as inverted B mode can override initial mode val)
-//				dbG("### M2:%d (will be applied) C: %d, Direct GPIO", mode, c);
-				if (c == -99) c = 0; // -0 substitute
-				else c = -c;
-			} else {
-				mode = !imode; // handle inverted GPIOs (use imode here as inverted B mode can override it)
-//				dbG("### M2:%d (will be applied) C: %d, Inverted GPIO", mode, c);
+				if (c == -99) c = 0;
+				else c = -c;	// [1] 2(0), [5] 3(1), [6] 3(0)
 			}
-			if (c < 16) gpio_write(1 << c, mode);
-//			dbG("### GPIOWRITE(C), GPIO: %d, VAL: %d", c, mode);
+			else mode = !mode;	// [2] 2(1), [3] 3(0), [4] 3(1)
+			if (c < 16) gpio_write(1 << c, mode);	// [1] 2(0), [2] 2(1), [3] 3(0), [4] 3(1), [5] 3(1), [6] 3(0)
 		}
 	}
 

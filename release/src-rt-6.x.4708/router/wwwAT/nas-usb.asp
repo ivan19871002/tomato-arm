@@ -196,7 +196,7 @@ No part of this file may be used without permission.
 			E('_f_audio').disabled = b;
 			E('_f_storage').disabled = b;
 
-			E('_f_ext3').disabled = b || a;
+//			E('_f_ext3').disabled = b || a;
 			E('_f_ext4').disabled = b || a;
 			E('_f_fat').disabled = b || a;
 			/* LINUX26-BEGIN */
@@ -240,7 +240,7 @@ No part of this file may be used without permission.
 			fom.usb_printer.value = E('_f_print').checked ? 1 : 0;
 			fom.usb_audio.value = E('_f_audio').checked ? 1 : 0;
 			fom.usb_printer_bidirect.value = E('_f_bprint').checked ? 1 : 0;
-			fom.usb_fs_ext3.value = E('_f_ext3').checked ? 1 : 0;
+//			fom.usb_fs_ext3.value = E('_f_ext3').checked ? 1 : 0;
 			fom.usb_fs_ext4.value = E('_f_ext4').checked ? 1 : 0;
 			fom.usb_fs_fat.value = E('_f_fat').checked ? 1 : 0;
 			/* EXFAT-BEGIN */
@@ -280,7 +280,9 @@ No part of this file may be used without permission.
 		<input type="hidden" name="usb_printer">
 		<input type="hidden" name="usb_audio">
 		<input type="hidden" name="usb_printer_bidirect">
+		<!-- REMOVE-BEGIN
 		<input type="hidden" name="usb_fs_ext3">
+		REMOVE-END -->
 		<input type='hidden' name='usb_fs_ext4'>
 		<input type="hidden" name="usb_fs_fat">
 		/* EXFAT-BEGIN */
@@ -319,8 +321,10 @@ No part of this file may be used without permission.
 						{ title: '<% translate("USB Audio Support"); %>', name: 'f_audio', type: 'checkbox', value: nvram.usb_audio == 1 },
 						{ title: '<% translate("USB Storage Support"); %>', name: 'f_storage', type: 'checkbox', value: nvram.usb_storage == 1 },
 						{ title: '<% translate("File Systems Support"); %>', indent: 2, multi: [
-							{ suffix: '&nbsp; Ext2 / Ext3 &nbsp;&nbsp;&nbsp;', name: 'f_ext3', type: 'checkbox', value: nvram.usb_fs_ext3 == 1 },
-							{ suffix: '&nbsp; Ext4 &nbsp;&nbsp;&nbsp;', name: 'f_ext4', type: 'checkbox', value: nvram.usb_fs_ext4 == 1 },
+							/* REMOVE-BEGIN
+							//{ suffix: '&nbsp; Ext2 / Ext3 &nbsp;&nbsp;&nbsp;', name: 'f_ext3', type: 'checkbox', value: nvram.usb_fs_ext3 == 1 },
+							REMOVE-END */
+							{ suffix: '&nbsp; Ext2 / Ext3 / Ext4 &nbsp;&nbsp;&nbsp;', name: 'f_ext4', type: 'checkbox', value: nvram.usb_fs_ext4 == 1 },
 							/* NTFS-BEGIN */
 							{ suffix: '&nbsp; NTFS &nbsp;&nbsp;&nbsp;', name: 'f_ntfs', type: 'checkbox', value: nvram.usb_fs_ntfs == 1 },
 							/* NTFS-END */

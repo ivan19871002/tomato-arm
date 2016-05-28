@@ -272,7 +272,7 @@ function verifyFields(focused, quiet)
 /* MICROSD-END */
 /* LINUX26-END */
 
-	E('_f_ext3').disabled = b || a;
+//	E('_f_ext3').disabled = b || a;
 	E('_f_ext4').disabled = b || a;
 	E('_f_fat').disabled = b || a;
 /* LINUX26-BEGIN */
@@ -324,7 +324,7 @@ function save()
 /* MICROSD-END */
 /* LINUX26-END */
 
-	fom.usb_fs_ext3.value = E('_f_ext3').checked ? 1 : 0;
+//	fom.usb_fs_ext3.value = E('_f_ext3').checked ? 1 : 0;
 	fom.usb_fs_ext4.value = E('_f_ext4').checked ? 1 : 0;
 	fom.usb_fs_fat.value = E('_f_fat').checked ? 1 : 0;
 /* EXFAT-BEGIN */
@@ -415,8 +415,10 @@ createFieldTable('', [
 		{ title: '<% translate("USB Audio Support"); %>', name: 'f_audio', type: 'checkbox', value: nvram.usb_audio == 1 },
 	{ title: '<% translate("USB Storage Support"); %>', name: 'f_storage', type: 'checkbox', value: nvram.usb_storage == 1 },
 		{ title: '<% translate("File Systems Support"); %>', indent: 2, multi: [
-			{ suffix: '&nbsp; Ext2 / Ext3 &nbsp;&nbsp;&nbsp;', name: 'f_ext3', type: 'checkbox', value: nvram.usb_fs_ext3 == 1 },
-			{ suffix: '&nbsp; Ext4 &nbsp;&nbsp;&nbsp;', name: 'f_ext4', type: 'checkbox', value: nvram.usb_fs_ext4 == 1 },
+/* REMOVE-BEGIN
+//			{ suffix: '&nbsp; Ext2 / Ext3 &nbsp;&nbsp;&nbsp;', name: 'f_ext3', type: 'checkbox', value: nvram.usb_fs_ext3 == 1 },
+REMOVE-END */
+			{ suffix: '&nbsp; Ext2 / Ext3 / Ext4 &nbsp;&nbsp;&nbsp;', name: 'f_ext4', type: 'checkbox', value: nvram.usb_fs_ext4 == 1 },
 /* NTFS-BEGIN */
 			{ suffix: '&nbsp; NTFS &nbsp;&nbsp;&nbsp;', name: 'f_ntfs', type: 'checkbox', value: nvram.usb_fs_ntfs == 1 },
 /* NTFS-END */

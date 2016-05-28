@@ -946,6 +946,14 @@ define KernelConfig
 		sed -i "s/# CONFIG_HFSPLUS_FS is not set/CONFIG_HFSPLUS_FS=m/g" $(1); \
 	fi; \
 	sed -i "/CONFIG_FAILSAFE_UPGRADE/d" $(1); \
+	sed -i "/CONFIG_EXT2_/d" $(1); \
+	sed -i "/CONFIG_EXT3_/d" $(1); \
+	sed -i "/CONFIG_EXT4_/d" $(1); \
+	echo "# CONFIG_EXT2_FS is not set" >>$(1); \
+	echo "# CONFIG_EXT3_FS is not set" >>$(1); \
+	echo "CONFIG_EXT4_FS=m" >>$(1); \
+	echo "CONFIG_EXT4_USE_FOR_EXT23=y" >>$(1); \
+	echo "CONFIG_EXT4_FS_XATTR=y" >>$(1); \
 	if [ "$(FAILSAFE_UPGRADE)" = "y" ]; then \
 		echo "CONFIG_FAILSAFE_UPGRADE=y" >>$(1); \
 	else \
@@ -957,6 +965,13 @@ endef
 obsolete:
 	@( sed -i "s/# CONFIG_JFFS2_LZO is not set/CONFIG_JFFS2_LZO=y/g" $(1); )
 	@( sed -i "s/# CONFIG_JFFS2_RUBIN is not set/CONFIG_JFFS2_RUBIN=y/g" $(1); )
+
+#	# no ext4 automount in Tomato? ext4 driver cover them all and even space saver:
+#	# CONFIG_EXT2_FS is not set
+#	# CONFIG_EXT3_FS is not set
+#	CONFIG_EXT4_FS=m
+#	CONFIG_EXT4_USE_FOR_EXT23=y
+#	CONFIG_EXT4_FS_XATTR=y
 
 bin:
 ifeq ($(B),)

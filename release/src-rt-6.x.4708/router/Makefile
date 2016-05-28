@@ -2508,7 +2508,7 @@ portmap-install: portmap
 e2fsprogs/stamp-h1:
 	cd e2fsprogs && \
 	CFLAGS="-Os -Wall $(EXTRACFLAGS)" \
-	$(CONFIGURE) --prefix=$(TOP)/e2fsprogs/staged --enable-shared --enable-static
+	$(CONFIGURE) --prefix=$(TOP)/e2fsprogs/staged --enable-libblkid --enable-symlink-build --disable-defrag --disable-nls --without-libiconv-prefix --without-libintl-prefix
 	touch e2fsprogs/stamp-h1
 
 e2fsprogs: e2fsprogs/stamp-h1
@@ -2516,13 +2516,18 @@ e2fsprogs: e2fsprogs/stamp-h1
 	$(MAKE) -C e2fsprogs $(PARALLEL_BUILD)
 
 e2fsprogs-install: e2fsprogs
-	@$(SEP)
-	install -D e2fsprogs/staged/sbin/fsck.ext4 $(INSTALLDIR)/e2fsprogs/sbin/fsck.ext4
-	install -D e2fsprogs/staged/sbin/mkfs.ext4 $(INSTALLDIR)/e2fsprogs/sbin/mkfs.ext4
-	install -D e2fsprogs/staged/sbin/tune2fs $(INSTALLDIR)/e2fsprogs/sbin/tune2fs
-	$(STRIP) $(INSTALLDIR)/e2fsprogs/sbin/fsck.ext4
-	$(STRIP) $(INSTALLDIR)/e2fsprogs/sbin/mkfs.ext4
-	$(STRIP) $(INSTALLDIR)/e2fsprogs/sbin/tune2fs
+	-@install -D e2fsprogs/e2fsck/e2fsck $(INSTALLDIR)/e2fsprogs/sbin/e2fsck
+	-@install -D e2fsprogs/misc/mke2fs $(INSTALLDIR)/e2fsprogs/sbin/mke2fs
+	-@install -D e2fsprogs/misc/tune2fs $(INSTALLDIR)/e2fsprogs/sbin/tune2fs
+	-@cd $(INSTALLDIR)/e2fsprogs/sbin && ln -sf e2fsck fsck.ext2
+	-@cd $(INSTALLDIR)/e2fsprogs/sbin && ln -sf e2fsck fsck.ext3
+	-@cd $(INSTALLDIR)/e2fsprogs/sbin && ln -sf e2fsck fsck.ext4
+	-@cd $(INSTALLDIR)/e2fsprogs/sbin && ln -sf mke2fs mkfs.ext2
+	-@cd $(INSTALLDIR)/e2fsprogs/sbin && ln -sf mke2fs mkfs.ext3
+	-@cd $(INSTALLDIR)/e2fsprogs/sbin && ln -sf mke2fs mkfs.ext4
+	-@$(STRIP) $(INSTALLDIR)/e2fsprogs/sbin/e2fsck
+	-@$(STRIP) $(INSTALLDIR)/e2fsprogs/sbin/mke2fs
+	-@$(STRIP) $(INSTALLDIR)/e2fsprogs/sbin/tune2fs
 
 e2fsprogs-clean:
 	-@$(MAKE) -C e2fsprogs clean

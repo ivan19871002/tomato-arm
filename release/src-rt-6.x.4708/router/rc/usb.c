@@ -161,7 +161,7 @@ void start_usb(void)
 			modprobe(SD_MOD);
 			modprobe(USBSTORAGE_MOD);
 
-			if (nvram_get_int("usb_fs_ext4")) {
+			if (nvram_get_int("usb_fs_ext3") || nvram_get_int("usb_fs_ext4")) {
 #ifdef LINUX26
 				modprobe("mbcache");	// used by ext4
 #endif
@@ -170,15 +170,15 @@ void start_usb(void)
 				modprobe("ext4");
 			}
 
-			if (nvram_get_int("usb_fs_ext3")) {
+//			if (nvram_get_int("usb_fs_ext3")) {
 #ifdef LINUX26
-				modprobe("mbcache");	// used by ext2/ext3
+//				modprobe("mbcache");	// used by ext2/ext3
 #endif
 				/* insert ext3 first so that lazy mount tries ext3 before ext2 */
-				modprobe("jbd");
-				modprobe("ext3");
-				modprobe("ext2");
-			}
+//				modprobe("jbd");
+//				modprobe("ext3");
+//				modprobe("ext2");
+//			}
 
 			if (nvram_get_int("usb_fs_fat")) {
 				modprobe("fat");
@@ -351,9 +351,9 @@ void stop_usb(void)
 		remove_storage_main(0);
 
 		// Stop storage services
-		modprobe_r("ext2");
-		modprobe_r("ext3");
-		modprobe_r("jbd");
+//		modprobe_r("ext2");
+//		modprobe_r("ext3");
+//		modprobe_r("jbd");
 		modprobe_r("ext4");
 		modprobe_r("jbd2");
 		modprobe_r("crc16");
@@ -513,7 +513,7 @@ int mount_r(char *mnt_dev, char *mnt_dir, char *type)
 			/* not a mountable partition */
 			flags = 0;
 		}
-		else if (strcmp(type, "ext2") == 0 || strcmp(type, "ext3") == 0) {
+		else if (strcmp(type, "ext2") == 0 || strcmp(type, "ext3") == 0 || strcmp(type, "ext4") == 0) {
 			if (nvram_invmatch("usb_ext_opt", ""))
 				sprintf(options, nvram_safe_get("usb_ext_opt"));
 		}

@@ -430,6 +430,33 @@ extern int volume_id_probe_exfat();
 #endif
 extern int volume_id_probe_linux_swap();
 
+/* magic for ext2/3/4 detection */
+int check_magic(char *buf, char *magic){
+	if(!strncmp(magic, "ext3_chk", 8)){
+		if(!((*buf)&4))
+			return 0;
+		if(*(buf+4) >= 0x40)
+			return 0;
+		if(*(buf+8) >= 8)
+			return 0;
+		return 1;
+	}
+ 
+	if(!strncmp(magic, "ext4_chk", 8)){
+		if(!((*buf)&4))
+			return 0;
+		if(*(buf+4) > 0x3F)
+			return 1;
+		if(*(buf+4) >= 0x40)
+			return 0;
+		if(*(buf+8) <= 7)
+			return 0;
+		return 1;
+	}
+
+	return 0;
+}
+
 /* Put the label in *label and uuid in *uuid.
  * Return fstype if determined.
  */
@@ -450,14 +477,36 @@ char *find_label_or_uuid(char *dev_name, char *label, char *uuid)
 		fstype = "swap";
 	else if (!id.error && volume_id_probe_vfat(&id) == 0)
 		fstype = "vfat";
-	else if (!id.error && volume_id_probe_ext(&id) == 0)
-		fstype = ((id.sbbuf[0x460] & 0x0008 /* JOURNAL_DEV */) != 0 ||
-		          (id.sbbuf[0x45c] & 0x0004 /* HAS_JOURNAL */) != 0) ? "ext3" : "ext2";
-	else if (!id.error && volume_id_probe_ntfs(&id) == 0)
+	/* detect ext2/3/4 */
+	else if (!id.error && volume_id_probe_ext(&id) == 0) {
+//		fstype = ((id.sbbuf[0x460] & 0x0008 /* JOURNAL_DEV */) != 0 ||
+//		          (id.sbbuf[0x45c] & 0x0004 /* HAS_JOURNAL */) != 0) ? "ext3" : "ext2";
+
+	if (id.sbbuf[0x438] == 0x53 && id.sbbuf[0x439] == 0xEF) {
+		if(check_magic((char *) &id.sbbuf[0x45c], "ext3_chk"))
+			fstype = "ext3";
+		else if(check_magic((char *) &id.sbbuf[0x45c], "ext4_chk"))
+			fstype = "ext4";
+		else
+			fstype = "ext2";
+	}
+	/* detect ntfs */
+	} else if (!id.error && volume_id_probe_ntfs(&id) == 0)
 		fstype = "ntfs";
 #ifdef HFS
+	/* detect hfs */
 	else if (!id.error && volume_id_probe_hfs_hfsplus(&id) == 0)
-		fstype = "hfsplus";
+//		fstype = "hfsplus";
+	if (id.sbbuf[1024] == 0x48) {
+		if (!memcmp(id.sbbuf+1032, "HFSJ", 4)) {
+			if(id.sbbuf[1025] == 0x58) // with case-sensitive
+				fstype = "hfsplus";
+			else
+				fstype = "hfsplus";
+		}
+		else
+			fstype = "hfs";
+	}
 #endif
 #ifdef EXFAT
 	else if (!id.error && volume_id_probe_exfat(&id) == 0)

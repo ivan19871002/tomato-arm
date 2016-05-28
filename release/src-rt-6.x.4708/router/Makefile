@@ -2759,13 +2759,14 @@ mdadm-clean:
 	-@$(MAKE) -C mdadm clean
 
 libmnl/stamp-h1:
-	cd $(TOP)/libmnl && aclocal && CC=$(CC) STRIP=$(STRIP) \
+	cd $(TOP)/libmnl && aclocal && autoreconf && CC=$(CC) STRIP=$(STRIP) \
 	CFLAGS="-Os -Wall $(EXTRACFLAGS) -ffunction-sections -fdata-sections" \
 	LDFLAGS="-ffunction-sections -fdata-sections -Wl,--gc-sections" \
 	$(CONFIGURE) --prefix=/usr
 	touch libmnl/stamp-h1
 
 libmnl: libmnl/stamp-h1
+	@$(SEP)
 	$(MAKE) -C libmnl
 	$(MAKE) -C libmnl DESTDIR=$(TOP)/libmnl/staged install
 
@@ -2793,6 +2794,7 @@ ipset/stamp-h1: libmnl
 	touch ipset/stamp-h1
 
 ipset: ipset/stamp-h1
+	@$(SEP)
 	$(MAKE) -C ipset
 	$(MAKE) -C ipset modules
 
@@ -2812,6 +2814,8 @@ ipset-install: ipset
 	-@mkdir -p $(INSTALLDIR)/ipset/lib/modules/2.6.36.4brcmarm/kernel
 	# relocate from extra to kernel/net dir (to overwrite old ones from kernel itself)
 	-@mv -f $(INSTALLDIR)/ipset/lib/modules/*/extra $(INSTALLDIR)/ipset/lib/modules/2.6.36.4brcmarm/kernel/net
+	# remove unneeded modules stuff
+	-@rm $(INSTALLDIR)/ipset/lib/modules/2.6.36.4brcmarm/modules.*
 	# strip ipset modules
 	-@find $(INSTALLDIR)/ipset/lib/modules -name *.*o -exec $(STRIP) --strip-debug -x -R .comment -R .note -R .pdr -R .mdebug.abi32 -R .note.gnu.build-id -R .gnu.attributes -R .reginfo {} \;
 
@@ -2878,7 +2882,7 @@ hfsprogs:
 	@$(SEP)
 	@$(MAKE) -C hfsprogs all
 hfsprogs-clean:
-	-@$(MAKE) -C hfsprogs mkclean
+	-@$(MAKE) -C hfsprogs clean
 hfsprogs-install: hfsprogs
 	@$(MAKE) -C hfsprogs romfs
 

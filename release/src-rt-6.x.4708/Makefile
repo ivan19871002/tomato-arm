@@ -624,9 +624,9 @@ define BusyboxOptions
 	if [ "$(USB)" = "USB" ]; then \
 		if [ "$(USBEXTRAS)" = "y" ]; then \
 			sed -i "/CONFIG_E2FSCK/d" $(1); \
-			echo "CONFIG_E2FSCK=y" >>$(1); \
+			echo "CONFIG_E2FSCK=n" >>$(1); \
 			sed -i "/CONFIG_MKE2FS/d" $(1); \
-			echo "CONFIG_MKE2FS=y" >>$(1); \
+			echo "CONFIG_MKE2FS=n" >>$(1); \
 			sed -i "/CONFIG_FDISK/d" $(1); \
 			echo "CONFIG_FDISK=y" >>$(1); \
 			sed -i "/CONFIG_FEATURE_FDISK_WRITABLE/d" $(1); \
@@ -640,9 +640,9 @@ define BusyboxOptions
 			sed -i "/CONFIG_FSYNC/d" $(1); \
 			echo "CONFIG_FSYNC=y" >>$(1); \
 			sed -i "/CONFIG_TUNE2FS/d" $(1); \
-			echo "CONFIG_TUNE2FS=y" >>$(1); \
+			echo "CONFIG_TUNE2FS=n" >>$(1); \
 			sed -i "/CONFIG_E2LABEL/d" $(1); \
-			echo "CONFIG_E2LABEL=y" >>$(1); \
+			echo "CONFIG_E2LABEL=n" >>$(1); \
 			if [ "$(HFS)" = "y" ]; then \
 			echo "CONFIG_FEATURE_VOLUMEID_HFS=y" >>$(1); \
 			fi; \

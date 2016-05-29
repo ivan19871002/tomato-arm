@@ -43,6 +43,14 @@ INSTALL = install
 
 CFLAGS += -I$(TOP)/shared
 
+# TOMATO icon
+CFLAGS += -DTOMATO
+
+# XIAOMI icon
+ifeq ($(XIAOMI),y)
+CFLAGS += -DXIAOMI
+endif
+
 INSTALLPREFIX ?= $(DESTDIR)/usr
 SBININSTALLDIR = $(INSTALLPREFIX)/sbin
 ETCINSTALLDIR = $(DESTDIR)/etc

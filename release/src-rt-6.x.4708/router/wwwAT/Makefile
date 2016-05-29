@@ -1,8 +1,8 @@
 include ../common.mak
 
-# BRANDING (0 to disable)
-HUAWEI = 1
-XIAOMI = 0
+# BRANDING
+# HUAWEI = n/y
+# XIAOMI = n/y
 
 all:
 
@@ -251,7 +251,7 @@ endif
 	done
 
 # WS880 Branding
-ifneq ($(HUAWEI),1)
+ifneq ($(HUAWEI),y)
 	sed -i $(INSTALLDIR)/www-at/status-overview.asp -e "/HUAWEI-BEGIN/,/HUAWEI-END/d"
 else
 	cd $(INSTALLDIR)/www-at && \
@@ -260,7 +260,7 @@ else
 endif
 
 # Xiaomi Branding
-ifneq ($(XIAOMI),1)
+ifneq ($(XIAOMI),y)
 	sed -i $(INSTALLDIR)/www-at/status-overview.asp -e "/XIAOMI-BEGIN/,/XIAOMI-END/d"
 else
 	cd $(INSTALLDIR)/www-at && \

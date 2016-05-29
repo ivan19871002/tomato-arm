@@ -30,10 +30,6 @@ EXTENDNO="ML-"`git rev-parse --verify HEAD --short`
 # 1337
 echo "1336" > linux/linux-2.6/.version
 
-# UNBRANDING
-sed -i "s|HUAWEI = 1|HUAWEI = 0|" $SRC/router/wwwAT/Makefile
-sed -i "s|XIAOMI = 1|XIAOMI = 0|" $SRC/router/wwwAT/Makefile
-
 # CLEAN
 make clean
 
@@ -42,11 +38,13 @@ make clean
 #
 
 # Huawei build
+# export HUAWEI=y
 # make V1=$VER- V2=$EXTENDNO ws880e	# VPN
 # make V1=$VER- V2=$EXTENDNO ws880z	# AIO
 # make V1=$VER- V2=$EXTENDNO ws880zz	# AIO Custom (no NGINX and SNMP)
 
 # Xiaomi build
+# export XIAOMI=y
 # make V1=$VER- V2=$EXTENDNO r1dz	# AIO Custom EX
 
 # Netgear r7000 initial build

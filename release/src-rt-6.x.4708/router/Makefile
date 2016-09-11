@@ -291,6 +291,8 @@ endif
 
 obj-y += wanuptime
 
+#obj-y += ipmitool
+
 # SATA
 ifeq ($(TCONFIG_SMARTCTL),y)
 obj-y += smartmontools
@@ -420,7 +422,6 @@ install package: $(obj-install) $(LINUXDIR)/.config
 	@$(SEP)
 
 	install -d $(TARGETDIR)
-
 
 # kernel modules
 	$(MAKE) -C $(LINUXDIR) modules_install \
@@ -1278,7 +1279,6 @@ dhcpv6-clean:
 	-@$(MAKE) -C dhcpv6 clean
 	@rm -f dhcpv6/Makefile dhcpv6/stamp-h1
 
-
 p910nd:
 samba:
 samba3:
@@ -1298,11 +1298,9 @@ vlan-install:
 	$(MAKE) -C vlan CROSS=$(CROSS_COMPILE) INSTALLDIR=$(INSTALLDIR) install	# STRIPTOOL=$(STRIP)
 	$(STRIP) $(INSTALLDIR)/vlan/usr/sbin/vconfig
 
-
 pptp-client-install:
 	install -D pptp-client/pptp $(INSTALLDIR)/pptp-client/usr/sbin/pptp
 	$(STRIP) $(INSTALLDIR)/pptp-client/usr/sbin/pptp
-
 
 accel-pptp: pppd accel-pptp/Makefile
 	@$(MAKE) -C accel-pptp
@@ -2885,6 +2883,40 @@ hfsprogs-clean:
 	-@$(MAKE) -C hfsprogs clean
 hfsprogs-install: hfsprogs
 	@$(MAKE) -C hfsprogs romfs
+
+ipmitool/stamp-h1:
+	cd ipmitool-1.8.16 && CC=$(CC) AR=$(AR) RANLIB=$(RANLIB) LD=$(LD) \
+	CFLAGS="-I$(TOP)/openssl/include" \
+	LDFLAGS="-L$(TOP)/openssl" \
+	LIBS="-lstdc++" \
+	$(CONFIGURE) \
+		--prefix=/usr \
+		--enable-static \
+		--with-kerneldir=$(LINUXDIR)/include \
+		--with-pic \
+		--with-gnu-ld
+#		--enable-internal-md5
+	@touch ipmitool-1.8.16/stamp-h1
+
+ipmitool: ipmitool/stamp-h1
+	@$(SEP)
+	@$(MAKE) -C ipmitool-1.8.16
+
+ipmitool-clean:
+	@$(MAKE) -C ipmitool-1.8.16 clean
+	@rm -f ipmitool-1.8.16/stamp-h1
+
+ipmitool-install:
+
+#	install -d $(INSTALLDIR)/ipmitool/usr/bin
+#	install -D ipmitool-1.8.16/ipmitool $(INSTALLDIR)/ipmitool/usr/bin/ipmitool
+
+	$(MAKE) -C ipmitool-1.8.16 DESTDIR=$(INSTALLDIR)/ipmitool install-strip
+#	$(MAKE) -C ipmitool-1.8.16 DESTDIR=$(INSTALLDIR)/ipmitool install-exec
+#	$(MAKE) -C ipmitool-1.8.16 DESTDIR=$(INSTALLDIR)/ipmitool install-data
+	@rm -rf $(INSTALLDIR)/ipmitool/usr/share/man
+
+	$(STRIP) $(INSTALLDIR)/ipmitool/usr/bin/ipmitool
 
 #
 # Generic rules

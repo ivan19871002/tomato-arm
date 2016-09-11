@@ -324,7 +324,9 @@ function save()
 /* MICROSD-END */
 /* LINUX26-END */
 
+/* REMOVE-BEGIN
 //	fom.usb_fs_ext3.value = E('_f_ext3').checked ? 1 : 0;
+REMOVE-END */
 	fom.usb_fs_ext4.value = E('_f_ext4').checked ? 1 : 0;
 	fom.usb_fs_fat.value = E('_f_fat').checked ? 1 : 0;
 /* EXFAT-BEGIN */
@@ -378,7 +380,9 @@ function submit_complete()
 <input type="hidden" name="usb_audio">
 <input type='hidden' name='usb_printer'>
 <input type='hidden' name='usb_printer_bidirect'>
-<input type='hidden' name='usb_fs_ext3'>
+/* REMOVE-BEGIN
+<!--input type='hidden' name='usb_fs_ext3'-->
+REMOVE-END */
 <input type='hidden' name='usb_fs_ext4'>
 <input type='hidden' name='usb_fs_fat'>
 /* EXFAT-BEGIN */

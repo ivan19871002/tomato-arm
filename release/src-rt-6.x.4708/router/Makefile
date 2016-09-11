@@ -134,11 +134,11 @@ endif
 endif
 
 ifeq ($(TCONFIG_SAMBASRV),y)
-ifeq ($(TCONFIG_SAMBA3),y)
-NEED_SAMBA3 = y
-else
-NEED_SAMBA2 = y
-endif
+ ifeq ($(TCONFIG_SAMBA3),y)
+  NEED_SAMBA3 = y
+ else
+  NEED_SAMBA2 = y
+ endif
 endif
 
 ifeq ($(TCONFIG_IPV6),y)

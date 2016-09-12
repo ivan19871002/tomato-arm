@@ -152,8 +152,8 @@ No part of this file may be used without permission.
 							p = parts[k];
 							if (p) {
 								desc = desc + '<br><% translate("Partition"); %> \'' + p[0] + '\'' + (p[3] != '' ? ' ' + p[3] : '') +
-								((p[5] != 0) ? ' (' + doScaleSize((p[5] - p[6]), 0) + 
-									((p[1] == 1) ? ' <% translate("of"); %> ' + doScaleSize(p[5], 0) + ' <% translate("used"); %>' : '') +
+								((p[5] != 0) ? ' (' + doScaleSize((p[5], 0) + 
+								((p[1] == 1) ? ' <% translate("of"); %> ' + doScaleSize(p[6], 0) + ' <% translate("free"); %>' : '') +
 									')' : '') + ' <% translate("is"); %> ' +
 								((p[1] != 0) ? '' : '<% translate("not"); %> ') + ((p[3] == '<% translate("swap"); %>') ? '<% translate("active"); %>' : '<% translate("mounted"); %>') +
 								((p[2] != '') ? ' <% translate("on"); %> ' + p[2] : '');
@@ -196,9 +196,9 @@ No part of this file may be used without permission.
 			E('_f_audio').disabled = b;
 			E('_f_storage').disabled = b;
 
-//			E('_f_ext3').disabled = b || a;
 			E('_f_ext4').disabled = b || a;
 			E('_f_fat').disabled = b || a;
+			E('_f_exfat').disabled = b || a;
 			/* LINUX26-BEGIN */
 			E('_f_idle_enable').disabled = b || a;
 			E('_f_usb_3g').disabled = b;
@@ -240,12 +240,9 @@ No part of this file may be used without permission.
 			fom.usb_printer.value = E('_f_print').checked ? 1 : 0;
 			fom.usb_audio.value = E('_f_audio').checked ? 1 : 0;
 			fom.usb_printer_bidirect.value = E('_f_bprint').checked ? 1 : 0;
-//			fom.usb_fs_ext3.value = E('_f_ext3').checked ? 1 : 0;
 			fom.usb_fs_ext4.value = E('_f_ext4').checked ? 1 : 0;
 			fom.usb_fs_fat.value = E('_f_fat').checked ? 1 : 0;
-			/* EXFAT-BEGIN */
-			fom.usb_fs_fat.value = E('_f_exfat').checked ? 1 : 0;
-			/* EXFAT-END */
+			fom.usb_fs_exfat.value = E('_f_exfat').checked ? 1 : 0;
 			/* NTFS-BEGIN */
 			fom.usb_fs_ntfs.value = E('_f_ntfs').checked ? 1 : 0;
 			/* NTFS-END */
@@ -280,14 +277,9 @@ No part of this file may be used without permission.
 		<input type="hidden" name="usb_printer">
 		<input type="hidden" name="usb_audio">
 		<input type="hidden" name="usb_printer_bidirect">
-		<!-- REMOVE-BEGIN
-		<input type="hidden" name="usb_fs_ext3">
-		REMOVE-END -->
 		<input type='hidden' name='usb_fs_ext4'>
 		<input type="hidden" name="usb_fs_fat">
-		/* EXFAT-BEGIN */
 		<input type="hidden" name="usb_fs_exfat">
-		/* EXFAT-END */
 		/* NTFS-BEGIN */
 		<input type="hidden" name="usb_fs_ntfs">
 		/* NTFS-END */
@@ -321,17 +313,12 @@ No part of this file may be used without permission.
 						{ title: '<% translate("USB Audio Support"); %>', name: 'f_audio', type: 'checkbox', value: nvram.usb_audio == 1 },
 						{ title: '<% translate("USB Storage Support"); %>', name: 'f_storage', type: 'checkbox', value: nvram.usb_storage == 1 },
 						{ title: '<% translate("File Systems Support"); %>', indent: 2, multi: [
-							/* REMOVE-BEGIN
-							//{ suffix: '&nbsp; Ext2 / Ext3 &nbsp;&nbsp;&nbsp;', name: 'f_ext3', type: 'checkbox', value: nvram.usb_fs_ext3 == 1 },
-							REMOVE-END */
 							{ suffix: '&nbsp; Ext2 / Ext3 / Ext4 &nbsp;&nbsp;&nbsp;', name: 'f_ext4', type: 'checkbox', value: nvram.usb_fs_ext4 == 1 },
 							/* NTFS-BEGIN */
 							{ suffix: '&nbsp; NTFS &nbsp;&nbsp;&nbsp;', name: 'f_ntfs', type: 'checkbox', value: nvram.usb_fs_ntfs == 1 },
 							/* NTFS-END */
-							{ suffix: '&nbsp; FAT &nbsp;', name: 'f_fat', type: 'checkbox', value: nvram.usb_fs_fat == 1 }
-							/* EXFAT-BEGIN */
-							,{ suffix: '&nbsp; ExFAT &nbsp;', name: 'f_exfat', type: 'checkbox', value: nvram.usb_fs_exfat == 1 }
-							/* EXFAT-END */
+							{ suffix: '&nbsp; FAT &nbsp;', name: 'f_fat', type: 'checkbox', value: nvram.usb_fs_fat == 1 },
+							{ suffix: '&nbsp; ExFAT &nbsp;', name: 'f_exfat', type: 'checkbox', value: nvram.usb_fs_exfat == 1 }
 							/* HFS-BEGIN */
 							,{ suffix: '&nbsp; HFS / HFS+ &nbsp;', name: 'f_hfs', type: 'checkbox', value: nvram.usb_fs_hfs == 1 }
 							/* HFS-END */

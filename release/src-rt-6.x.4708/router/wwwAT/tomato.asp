@@ -2431,6 +2431,7 @@ function navi()
 			'<% translate("Conntrack/Netfilter"); %>':	'advanced-ctnf.asp',
 			'<% translate("DHCP/DNS"); %>':			'advanced-dhcpdns.asp',
 			'<% translate("Firewall"); %>':			'advanced-firewall.asp',
+			'<% translate("Adblock"); %>':			'advanced-adblock.asp',
 			/* NOCAT-BEGIN */
 			'<% translate("Captive Portal"); %>':		'advanced-splashd.asp',
 			/* NOCAT-END */

@@ -253,7 +253,7 @@ createFieldTable('', [
 		['YAKT-9YAKST,M3.5.0,M10.5.0/3','UTC+09:00 Russia, Yakutsk'],
 		['ACST-9:30ACDT,M10.1.0/2,M4.1.0/3', 'UTC+09:30 South Australia'],
 		['ACST-9:30', 'UTC+09:30 Darwin'],
-		['UTC-10','UTC+10:00 Guam, Russia'],
+		['UTC-10','UTC+10:00 Russia, Vladivostok, Guam'],
 		['AEST-10AEDT,M10.1.0,M4.1.0/3', 'UTC+10:00 Australia'],
 		['AEST-10', 'UTC+10:00 Brisbane'],
 		['UTC-11','UTC+11:00 Solomon Islands'],

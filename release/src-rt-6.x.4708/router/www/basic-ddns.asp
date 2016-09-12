@@ -380,10 +380,10 @@ createFieldTable('', [
 	{ title: '<% translate("IP address"); %>', name: 'f_ddnsx_ip', type: 'select',
 		options: [
 			['wan', '<% translate("Use WAN IP Address"); %> ' + ddnsx_ip + ' (<% translate("recommended"); %>)'],
-			['wan2', '<% translate("Use WAN2 IP Address); %> ' + ddnsx2_ip ],
+			['wan2', '<% translate("Use WAN2 IP Address"); %> ' + ddnsx2_ip ],
 /* MULTIWAN-BEGIN */
-			['wan3', '<% translate("Use WAN3 IP Address); %> ' + ddnsx3_ip ],
-			['wan4', '<% translate("Use WAN4 IP Address); %> ' + ddnsx4_ip ],
+			['wan3', '<% translate("Use WAN3 IP Address"); %> ' + ddnsx3_ip ],
+			['wan4', '<% translate("Use WAN4 IP Address"); %> ' + ddnsx4_ip ],
 /* MULTIWAN-END */
 			['@', '<% translate("Use External IP Address Checker (every 10 minutes)"); %>'],
 			['0.0.0.0', '<% translate("Offline"); %> (0.0.0.0)'],

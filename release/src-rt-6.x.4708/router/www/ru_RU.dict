@@ -477,7 +477,10 @@ Invalid hash or URL=Недопустимый хэш или URL
 DDNS update is running. Please refresh after a few seconds=Производтся обновление DDNS，обновите старницу через несколько секунд
 Dynamic DNS=Динамический DNS
 IP address=IP-адрес
-Use WAN IP Address=Использовать WAN IP-адрес
+Use WAN IP Address=Использовать IP-адрес WAN
+Use WAN2 IP Address=Использовать IP-адрес WAN2
+Use WAN3 IP Address=Использовать IP-адрес WAN3
+Use WAN4 IP Address=Использовать IP-адрес WAN4
 Use External IP Address Checker (every 10 minutes)=Использовать внешний скрипт проверки IP (каждые 10 минут)
 Offline=Офлайн
 Custom IP Address=Пользоват. IP-адрес
@@ -1236,11 +1239,13 @@ One and only one VID can be used for=Только один VID может быт
 If you notice that the order of the Lan Ports are incorrectly mapped=Если порядок портов не соотвествует фактическому
 Unknown Port Mapping Using Default=Неизвестное устройство
 Please Follow these Instructions to get it corrected=Информация для исправления
+Please Follow this Link for Instructions to get it corrected=перейдите по ссылке для получения информации по исправлению
 please follow this link for instructions to get it corrected=перейдите по ссылке для получения информации по исправлению
 Include Router Brand/Model=Укажите модель роутера
 Results from=вывод команды
 VLANs section only=в разделе VLANs
 Port Numbers on Router Case (Left -> Right viewed from Front)=номера портов на роутере (слева направо)
+Port Numbers on BACK of Router Case (Left -> Right viewed from Front)=номера портов на роутере (слева направо)
 Bridge WLAN to=Подключить WLAN к
 Unique identifier of a VLAN=Уникальный идентификатор VLAN
 Which ethernet ports on the router should be members of this VLAN=Какой из портов роутера должен содержать данный VLAN
@@ -2185,7 +2190,27 @@ Exclude INTERNET LED=Не отключать индикатор «Интерне
 reboot required to turn off LEDs=для отключения индкаторов требуется перезагрузка роутера
 To activate the PHP support (php-cgi) tick and save this screen=Для включения PHP отметьте этот параметр и сохраните изменения
 To activate the Web Server tick and save this screen=Для включения WEB-сервера отметьте этот параметр и сохраните изменения
+Adblock=AdBlock
+Adblock Settings=Настройки AdBlock
+All queries to dnsmasq will be logged to syslog=Все запросы к dnsmasq будут записаны в журнал
+Autoupdate will be launch on 1:00AM every day=Авоотбнвление ежедневно в 1 ночи
+Blacklist Custom=Свой черный список
+Blacklists=Списки блокировки
+Blacklisted domains=Имена в черном списке
+Blacklist URL=URL черного списка
+Custom List=Свой список
+Whitelist=Белый список
+Whitelisted domains=Имена в белом списке
+Correct file format: 0.0.0.0 domain.com or 127.0.0.1 domain.com, one domain per line=Правильный формат: 0.0.0.0 microsoft.com or 127.0.0.1 porno.net, один домен на строку
+Debug=Отладка
+Debug Mode=Режим отладки
+IPv6 IPSec Passthrough=Пропуск IPv6 IPSec
+Optional, space separated: domain1.com domain2.com domain3.com=Опционально, список разделённый пробелами: domain1.ru domain2.com domain3.net
+MAC address whitelist=Белый список MAC-адресов
 
+
+
+#######################
 ### ADVANCED TOMATO ###
 Login Timeout=Длительность сесии
 Select one of the bridges on which the Captive Portal will listen=Укажите мост, на котором будет использоваться Портал

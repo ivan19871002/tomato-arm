@@ -660,6 +660,7 @@ Forwarded Ports are the WAN to LAN ports that are opened if the 'trigger' is act
 Forward only if from this address. Ex=如来自此地址则转发，例如
 Fragmentation Threshold=分段阈值
 Frame Burst=帧突发
+free=空闲
 Free Memory=空闲内存
 Frequent saving to NVRAM or JFFS2 is not recommended. Continue anyway?=不建议频繁地写NVRAM或JFFS2，继续吗
 Fri=周五
@@ -1714,7 +1715,6 @@ USB support integration and GUI=USB支持集成和GUI
 Use alternate NAS startup=使用备用NAS启动
 Use alternate NAS startup sequence=使用备用NAS启动序列
 Use as DNS=当作DNS使用
-used=已使用
 use default=使用默认
 Use Default=使用默认
 Use DHCP=使用DHCP

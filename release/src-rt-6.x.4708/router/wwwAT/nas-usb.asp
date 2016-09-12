@@ -152,8 +152,8 @@ No part of this file may be used without permission.
 							p = parts[k];
 							if (p) {
 								desc = desc + '<br><% translate("Partition"); %> \'' + p[0] + '\'' + (p[3] != '' ? ' ' + p[3] : '') +
-								((p[5] != 0) ? ' (' + doScaleSize(p[6], 0) +
-									((p[1] == 1) ? ' / ' + doScaleSize(p[5], 0) +
+								((p[5] != 0) ? ' (' + doScaleSize(p[5], 0) +
+									((p[1] == 1) ? ' / ' + doScaleSize(p[6], 0) +
 									' <% translate("free"); %>' : '') +
 									')' : '') + ' <% translate("is"); %> ' +
 								((p[1] != 0) ? '' : '<% translate("not"); %> ') + ((p[3] == '<% translate("swap"); %>') ? '<% translate("active"); %>' : '<% translate("mounted"); %>') +

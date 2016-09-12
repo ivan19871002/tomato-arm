@@ -29,8 +29,6 @@ echo "1336" > linux/linux-2.6/.version
 
 # BRANDING
 export XIAOMI=y
-#sed -i "s|HUAWEI = 1|HUAWEI = 0|" $SRC/router/wwwAT/Makefile
-#sed -i "s|XIAOMI = 0|XIAOMI = 1|" $SRC/router/wwwAT/Makefile
 
 # CLEAN
 make clean

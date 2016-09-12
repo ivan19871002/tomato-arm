@@ -587,6 +587,7 @@ static int init_vlan_ports(void)
 		dirty |= check_nv("vlan2ports", "4 5");
 		break;
 	case MODEL_R7000:
+	case MODEL_R6400:
 	case MODEL_RTN18U:
 	case MODEL_RTAC68U:
 	case MODEL_WS880:
@@ -779,6 +780,7 @@ static void check_bootnv(void)
 #endif
 #ifdef CONFIG_BCMWL6
 	case MODEL_R7000:
+	case MODEL_R6400:
 	case MODEL_R6250:
 	case MODEL_R6300v2:
 		nvram_unset("et1macaddr");
@@ -1534,10 +1536,13 @@ static int init_nvram(void)
 
 	case MODEL_R6250:
 	case MODEL_R6300v2:
+	case MODEL_R6400:
 	case MODEL_R7000:
 		mfr = "Netgear";
 		if(nvram_match("board_id", "U12H245T00_NETGEAR")) //R6250
 			name = "R6250";
+		else if(nvram_match("board_id", "U12H332T00_NETGEAR")) //R6400
+			name = "R6400";
 		else
 			name = model == MODEL_R7000 ? "R7000" : "R6300v2"; //R7000 or R6300v2
 
@@ -1637,7 +1642,7 @@ static int init_nvram(void)
 			nvram_set("pci/1/1/pdoffset80ma1", "0");
 			nvram_set("pci/1/1/pdoffset80ma2", "0");
 			nvram_set("pci/1/1/regrev", "66");
-			nvram_set("pci/1/1/rpcal2g", "0xfaf7");
+			nvram_set("pci/1/1/rpcal2g", "0xefb");
 			nvram_set("pci/1/1/rxgainerr2ga0", "63");
 			nvram_set("pci/1/1/rxgainerr2ga1", "31");
 			nvram_set("pci/1/1/rxgainerr2ga2", "31");
@@ -1741,10 +1746,10 @@ static int init_nvram(void)
 			nvram_set("pci/2/1/rawtempsense", "0x1ff");
 			nvram_set("pci/2/1/regrev", "66");
 			nvram_set("pci/2/1/rpcal2g", "0");
-			nvram_set("pci/2/1/rpcal5gb0", "0x7d09");
-			nvram_set("pci/2/1/rpcal5gb1", "0x8a08");
-			nvram_set("pci/2/1/rpcal5gb2", "0x7dfe");
-			nvram_set("pci/2/1/rpcal5gb3", "0x9612");
+			nvram_set("pci/2/1/rpcal5gb0", "0x7c0c");
+			nvram_set("pci/2/1/rpcal5gb1", "0x880a");
+			nvram_set("pci/2/1/rpcal5gb2", "0x7b04");
+			nvram_set("pci/2/1/rpcal5gb3", "0x8c12");
 			nvram_set("pci/2/1/rxchain", "7");
 			nvram_set("pci/2/1/rxgainerr2ga0", "63");
 			nvram_set("pci/2/1/rxgainerr2ga1", "31");
@@ -4340,6 +4345,7 @@ int init_main(int argc, char *argv[])
 			start_vlan();
 			start_lan();
 			start_arpbind();
+			mwan_state_files();
 			start_wan(BOOT);
 			start_services();
 			start_wl();

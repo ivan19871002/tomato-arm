@@ -47,7 +47,7 @@ textarea {
 
 <script type='text/javascript'>
 
-//	<% nvram("usb_enable,usb_uhci,usb_ohci,usb_usb2,usb_usb3,usb_mmc,usb_storage,usb_printer,usb_printer_bidirect,usb_audio,usb_automount,usb_fs_ext3,usb_fs_ext4,usb_fs_fat,usb_fs_exfat,usb_fs_ntfs,usb_ntfs_driver,usb_fs_hfs,usb_hfs_driver,script_usbmount,script_usbumount,script_usbhotplug,idle_enable,usb_3g"); %>
+//	<% nvram("usb_enable,usb_uhci,usb_ohci,usb_usb2,usb_usb3,usb_mmc,usb_storage,usb_printer,usb_printer_bidirect,usb_audio,usb_automount,usb_fs_ext4,usb_fs_fat,usb_fs_exfat,usb_fs_ntfs,usb_ntfs_driver,usb_fs_hfs,usb_hfs_driver,script_usbmount,script_usbumount,script_usbhotplug,idle_enable,usb_3g"); %>
 //	<% usbdevices(); %>
 
 list = [];
@@ -272,9 +272,9 @@ function verifyFields(focused, quiet)
 /* MICROSD-END */
 /* LINUX26-END */
 
-//	E('_f_ext3').disabled = b || a;
 	E('_f_ext4').disabled = b || a;
 	E('_f_fat').disabled = b || a;
+	E('_f_exfat').disabled = b || a;
 /* LINUX26-BEGIN */
 	E('_f_idle_enable').disabled = b || a;
 	E('_f_usb_3g').disabled = b;
@@ -324,14 +324,9 @@ function save()
 /* MICROSD-END */
 /* LINUX26-END */
 
-/* REMOVE-BEGIN
-//	fom.usb_fs_ext3.value = E('_f_ext3').checked ? 1 : 0;
-REMOVE-END */
 	fom.usb_fs_ext4.value = E('_f_ext4').checked ? 1 : 0;
 	fom.usb_fs_fat.value = E('_f_fat').checked ? 1 : 0;
-/* EXFAT-BEGIN */
 	fom.usb_fs_exfat.value = E('_f_exfat').checked ? 1 : 0;
-/* EXFAT-END */
 /* NTFS-BEGIN */
 	fom.usb_fs_ntfs.value = E('_f_ntfs').checked ? 1 : 0;
 /* NTFS-END */
@@ -380,14 +375,9 @@ function submit_complete()
 <input type="hidden" name="usb_audio">
 <input type='hidden' name='usb_printer'>
 <input type='hidden' name='usb_printer_bidirect'>
-/* REMOVE-BEGIN
-<!--input type='hidden' name='usb_fs_ext3'-->
-REMOVE-END */
 <input type='hidden' name='usb_fs_ext4'>
 <input type='hidden' name='usb_fs_fat'>
-/* EXFAT-BEGIN */
 <input type='hidden' name='usb_fs_exfat'>
-/* EXFAT-END */
 /* NTFS-BEGIN */
 <input type='hidden' name='usb_fs_ntfs'>
 /* NTFS-END */
@@ -419,17 +409,12 @@ createFieldTable('', [
 		{ title: '<% translate("USB Audio Support"); %>', name: 'f_audio', type: 'checkbox', value: nvram.usb_audio == 1 },
 	{ title: '<% translate("USB Storage Support"); %>', name: 'f_storage', type: 'checkbox', value: nvram.usb_storage == 1 },
 		{ title: '<% translate("File Systems Support"); %>', indent: 2, multi: [
-/* REMOVE-BEGIN
-//			{ suffix: '&nbsp; Ext2 / Ext3 &nbsp;&nbsp;&nbsp;', name: 'f_ext3', type: 'checkbox', value: nvram.usb_fs_ext3 == 1 },
-REMOVE-END */
 			{ suffix: '&nbsp; Ext2 / Ext3 / Ext4 &nbsp;&nbsp;&nbsp;', name: 'f_ext4', type: 'checkbox', value: nvram.usb_fs_ext4 == 1 },
 /* NTFS-BEGIN */
 			{ suffix: '&nbsp; NTFS &nbsp;&nbsp;&nbsp;', name: 'f_ntfs', type: 'checkbox', value: nvram.usb_fs_ntfs == 1 },
 /* NTFS-END */
 			{ suffix: '&nbsp; FAT &nbsp;', name: 'f_fat', type: 'checkbox', value: nvram.usb_fs_fat == 1 }
-/* EXFAT-BEGIN */
 			,{ suffix: '&nbsp; ExFAT &nbsp;', name: 'f_exfat', type: 'checkbox', value: nvram.usb_fs_exfat == 1 }
-/* EXFAT-END */
 /* HFS-BEGIN */
 			,{ suffix: '&nbsp; HFS / HFS+ &nbsp;', name: 'f_hfs', type: 'checkbox', value: nvram.usb_fs_hfs == 1 }
 /* HFS-END */

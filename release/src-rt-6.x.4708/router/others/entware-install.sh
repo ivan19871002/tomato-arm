@@ -26,20 +26,20 @@ URL=http://pkg.entware.net/binaries/$CURARCH/installer
 wget $URL/opkg -O /opt/bin/opkg
 chmod +x /opt/bin/opkg
 wget $URL/opkg.conf -O /opt/etc/opkg.conf
-wget $URL/ld-2.22.so -O /opt/lib/ld-2.22.so
-wget $URL/libc-2.22.so -O/opt/lib/libc-2.22.so
-wget $URL/libgcc_s.so.1 -O /opt/lib/libgcc_s.so.1
+wget $URL/ld-2.23.so -O /opt/lib/ld-2.23.so
+wget $URL/libc-2.23.so -O/opt/lib/libc-2.23.so
+wget $URL/libgcc_s.so.1.2.23 -O /opt/lib/libgcc_s.so.1
 cd /opt/lib
-chmod +x ld-2.22.so
-ln -s ld-2.22.so $DLOADER
-ln -s libc-2.22.so libc.so.6
+chmod +x ld-2.23.so
+ln -s ld-2.23.so $DLOADER
+ln -s libc-2.23.so libc.so.6
 
 echo "Info: Basic packages installation..."
 /opt/bin/opkg update
 /opt/bin/opkg install entware-opt
 if [ ! -f /opt/usr/lib/locale/locale-archive ]
 then
-        wget http://pkg.entware.net/binaries/other/locale-archive -O /opt/usr/lib/locale/locale-archive
+        wget http://pkg.entware.net/binaries/other/locale-archive.2.23 -O /opt/usr/lib/locale/locale-archive
 fi
 
 echo "Info: Congratulations!"

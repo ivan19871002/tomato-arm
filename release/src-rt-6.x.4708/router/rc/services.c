@@ -113,9 +113,6 @@ void start_dnsmasq()
 	fprintf(f,
 		"pid-file=/var/run/dnsmasq.pid\n");
 	
-	fprintf(f,
-		"cache-size=4096\n");
-	
 	if (((nv = nvram_get("wan_domain")) != NULL) || ((nv = nvram_get("wan_get_domain")) != NULL)) {
 		if (*nv) fprintf(f, "domain=%s\n", nv);
 	}
@@ -430,6 +427,14 @@ void start_dnsmasq()
 		fprintf(f, "dhcp-authoritative\n");
 	}
 
+	if (nvram_match("dnsmasq_debug", "1")) {
+		fprintf(f, "log-queries\n");
+	}
+
+	if ((nvram_get_int("adblock_enable")) && (f_exists("/etc/dnsmasq.adblock"))) {
+		fprintf(f, "conf-file=/etc/dnsmasq.adblock\n");
+	}
+
 #ifdef TCONFIG_DNSSEC
 	if (nvram_match("dnssec_enable", "1")) {
 		fprintf(f, "conf-file=/etc/trust-anchors.conf\n"
@@ -506,7 +511,6 @@ void start_dnsmasq()
 
 	fappend(f, "/etc/dnsmasq.custom");
 	fappend(f, "/etc/dnsmasq.ipset");
-
 	//
 
 	fclose(f);
@@ -519,7 +523,7 @@ void start_dnsmasq()
 	TRACE_PT("run dnsmasq\n");
 
 	// Default to some values we like, but allow the user to override them.
-	eval("dnsmasq", "-c", "1500", "--log-async");
+	eval("dnsmasq", "-c", "4096", "--log-async");
 
 	if (!nvram_contains_word("debug_norestart", "dnsmasq")) {
 		pid_dnsmasq = -2;
@@ -628,6 +632,16 @@ void start_phy_tempsense()
 }
 
 #endif
+
+void start_adblock()
+{
+	xstart("/usr/sbin/adblock");
+}
+
+void stop_adblock()
+{
+	xstart("/usr/sbin/adblock", "stop");
+}
 
 #ifdef TCONFIG_IPV6
 static int write_ipv6_dns_servers(FILE *f, const char *prefix, char *dns, const char *suffix, int once)
@@ -2498,8 +2512,15 @@ void start_services(void)
 	start_phy_tempsense();
 #endif
 
-	if (get_model() == MODEL_R7000) {
-		//enable WAN port led
+	if ((get_model() == MODEL_R6400)) {
+		//activate WAN port led
+		//leave only white color
+		//system("gpio disable 6"); // orange
+		system("gpio disable 7"); // white
+	}
+
+	if ((get_model() == MODEL_R7000)) {
+		//activate WAN port led
 		system("/usr/sbin/et robowr 0x0 0x10 0x3000");
 		system("/usr/sbin/et robowr 0x0 0x12 0x78");
 		system("/usr/sbin/et robowr 0x0 0x14 0x01");
@@ -2632,6 +2653,12 @@ TOP:
 			dns_to_resolv();
 			start_dnsmasq();
 		}
+		goto CLEAR;
+	}
+
+	if (strcmp(service, "adblock") == 0) {
+		if (action & A_STOP) stop_adblock();
+		if (action & A_START) start_adblock();
 		goto CLEAR;
 	}
 

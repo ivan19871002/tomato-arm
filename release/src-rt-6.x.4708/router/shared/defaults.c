@@ -274,6 +274,7 @@ struct nvram_tuple router_defaults[] = {
 	{ "ipv6_6rd_ipv4masklen",	"0"				, 0 },	// 6RD IPv4 mask length (0-30) checkme
 	{ "ipv6_vlan",			"0"				, 0 },	// Enable IPv6 on 1=LAN1 2=LAN2 4=LAN3
 	{ "ipv6_pdonly",		"0"				, 0 },	// Request DHCPv6 Prefix Delegation Only
+	{ "ipv6_ipsec",			"1"				, 0 },	// Enable Incoming IPv6 IPSec
 #endif
 
 #ifdef RTCONFIG_FANCTRL
@@ -483,6 +484,7 @@ struct nvram_tuple router_defaults[] = {
 // basic-ddns
 	{ "ddnsx0",			""				, 0 },
 	{ "ddnsx1",			""				, 0 },
+	{ "ddnsx_ip",			"wan"				, 0 },
 	{ "ddnsx0_cache",		""				, 0 },
 	{ "ddnsx1_cache",		""				, 0 },
 	{ "ddnsx_save",			"1"				, 0 },
@@ -531,6 +533,12 @@ struct nvram_tuple router_defaults[] = {
 	{ "nf_h323",			"1"				, 0 },
 	{ "nf_ftp",			"1"				, 0 },
 
+// advanced-adblock
+	{ "adblock_enable",		"0"				, 0 },
+	{ "adblock_blacklist",		"1<http://winhelp2002.mvps.org/hosts.txt<>1<http://adaway.org/hosts.txt<>1<http://hosts-file.net/ad_servers.txt<>1<http://www.malwaredomainlist.com/hostslist/hosts.txt<>1<http://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&mimetype=plaintext<>0<http://someonewhocares.org/hosts/zero/hosts<>0<https://raw.githubusercontent.com/WindowsLies/BlockWindows/master/hosts<Windows 10>0<http://sysctl.org/cameleon/hosts<>0<http://adblock.gjtech.net/?format=hostfile<>0<http://hostsfile.mine.nu/Hosts<very large list>0<https://raw.github.com/notracking/hosts-blocklists/master/hostnames.txt<very large list>" , 0 },
+	{ "adblock_blacklist_custom",	""				, 0 },
+	{ "adblock_whitelist",		""				, 0 },
+
 // advanced-mac
 	{ "wan_mac",			""				, 0 },
 	{ "wl_macaddr",			""				, 0 },
@@ -558,6 +566,7 @@ struct nvram_tuple router_defaults[] = {
 	{ "dhcpc_minpkt",		"1"				, 0 },
 	{ "dhcpc_custom",		""				, 0 },
 	{ "dns_norebind",		"1"				, 0 },
+	{ "dnsmasq_debug",		"0"				, 0 },
 	{ "dnsmasq_custom",		""				, 0 },
 	{ "dnsmasq_static_only",	"0"				, 0 },
 	{ "dnsmasq_q",			"0"				, 0 }, 	//Bit0=quiet-dhcp, 1=dhcp6, 2=ra
@@ -853,6 +862,7 @@ struct nvram_tuple router_defaults[] = {
 	{ "usb_fs_ext3",		"1"				, 0 },
 	{ "usb_fs_ext4",		"1"				, 0 },
 	{ "usb_fs_fat",			"1"				, 0 },
+	{ "usb_fs_exfat",		"1"				, 0 },
 #ifdef TCONFIG_NTFS
 	{ "usb_fs_ntfs",		"1"				, 0 },
 #ifdef TCONFIG_TUXERA
@@ -1085,6 +1095,7 @@ struct nvram_tuple router_defaults[] = {
 	{ "vpn_client1_key",      ""              , 0 },
 	{ "vpn_client1_br",       "br0"           , 0 },
 	{ "vpn_client1_nopull",   "0"             , 0 },
+	{ "vpn_client1_nobind",   "1"             , 0 },
 	{ "vpn_client1_route",    "0"             , 0 },
 	{ "vpn_client1_routing_val", ""           , 0 },
 	{ "vpn_client2_poll",     "0"             , 0 },
@@ -1115,6 +1126,7 @@ struct nvram_tuple router_defaults[] = {
 	{ "vpn_client2_key",      ""              , 0 },
 	{ "vpn_client2_br",       "br0"           , 0 },
 	{ "vpn_client2_nopull",   "0"             , 0 },
+	{ "vpn_client2_nobind",   "1"             , 0 },
 	{ "vpn_client2_route",    "0"             , 0 },
 	{ "vpn_client2_routing_val", ""           , 0 },
 #endif	// vpn

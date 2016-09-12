@@ -425,13 +425,12 @@ extern int volume_id_probe_ntfs();
 #ifdef HFS
 extern int volume_id_probe_hfs_hfsplus();
 #endif
-#ifdef EXFAT
 extern int volume_id_probe_exfat();
-#endif
 extern int volume_id_probe_linux_swap();
 
 /* magic for ext2/3/4 detection */
 int check_magic(char *buf, char *magic){
+
 	if(!strncmp(magic, "ext3_chk", 8)){
 		if(!((*buf)&4))
 			return 0;
@@ -441,7 +440,7 @@ int check_magic(char *buf, char *magic){
 			return 0;
 		return 1;
 	}
- 
+
 	if(!strncmp(magic, "ext4_chk", 8)){
 		if(!((*buf)&4))
 			return 0;
@@ -508,10 +507,9 @@ char *find_label_or_uuid(char *dev_name, char *label, char *uuid)
 			fstype = "hfs";
 	}
 #endif
-#ifdef EXFAT
+	//!oneleft
 	else if (!id.error && volume_id_probe_exfat(&id) == 0)
 		fstype = "exfat";
-#endif
 	else if (!id.error)
 		fstype = "unknown";
 

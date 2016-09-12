@@ -79,9 +79,27 @@ obj-y += ntpc
 obj-y += rstats
 obj-y += cstats
 obj-y += udpxy
+
+ifneq ($(TCONFIG_TOR)$(TCONFIG_MEDIA_SERVER)$(TCONFIG_BBT),)
+obj-y += zlib
+endif
+ifneq ($(TCONFIG_HTTPS)$(TCONFIG_BBT)$(TCONFIG_NGINX),)
+obj-y += openssl
+endif
+ifneq ($(TCONFIG_TOR)$(TCONFIG_NFS)$(TCONFIG_BBT),)
+obj-y += libevent
+endif
+ifneq ($(TCONFIG_MEDIA_SERVER)$(TCONFIG_NGINX),)
+obj-y += sqlite
+endif
+ifneq ($(TCONFIG_NGINX)$(TCONFIG_NANO),)
+obj-y += libncurses
+endif
+ifneq ($(TCONFIG_USB)$(TCONFIG_NFS),)
+obj-y += e2fsprogs
+endif
+
 obj-$(TCONFIG_TOR) += tor
-obj-$(TCONFIG_TOR) += libevent
-obj-$(TCONFIG_TOR) += zlib
 obj-$(TCONFIG_DNSCRYPT) += libsodium
 obj-$(TCONFIG_DNSCRYPT) += dnscrypt
 obj-$(TCONFIG_SNMP) += snmp
@@ -93,8 +111,6 @@ obj-y += mdu
 obj-$(TCONFIG_RAID) += mdadm
 
 obj-$(TCONFIG_NFS) += portmap
-obj-$(TCONFIG_NFS) += e2fsprogs
-obj-$(TCONFIG_NFS) += libevent
 obj-$(TCONFIG_NFS) += libnfsidmap
 obj-$(TCONFIG_NFS) += nfs-utils
 
@@ -187,8 +203,6 @@ obj-$(TCONFIG_EBTABLES) += ebtables
 #obj-$(TCONFIG_IPV6) += radvd
 obj-$(TCONFIG_IPV6) += dhcpv6
 
-obj-$(TCONFIG_MEDIA_SERVER) += zlib
-obj-$(TCONFIG_MEDIA_SERVER) += sqlite
 obj-$(TCONFIG_MEDIA_SERVER) += ffmpeg
 obj-$(TCONFIG_MEDIA_SERVER) += libiconv
 obj-$(TCONFIG_MEDIA_SERVER) += libogg
@@ -214,7 +228,6 @@ obj-$(CONFIG_LINUX26) += ipset
 obj-$(TCONFIG_L2TP) += xl2tpd
 obj-$(TCONFIG_PPTP) += accel-pptp
 obj-$(TCONFIG_PPTPD) += pptpd
-obj-$(TCONFIG_HTTPS) += openssl
 obj-$(TCONFIG_SSH) += dropbear
 #obj-$(TCONFIG_ZEBRA) += zebra
 #	obj-$(TCONFIG_IPP2P) += ipp2p
@@ -236,12 +249,9 @@ ADDITIONAL_MODULES += --with-ipv6
 endif
 endif
 endif
-obj-$(TCONFIG_NGINX) += libncurses
 obj-$(TCONFIG_NGINX) += mysql
-obj-$(TCONFIG_NGINX) += openssl
 obj-$(TCONFIG_NGINX) += spawn-fcgi
 obj-$(TCONFIG_NGINX) += pcre
-obj-$(TCONFIG_NGINX) += sqlite
 obj-$(TCONFIG_NGINX) += libiconv
 obj-$(TCONFIG_NGINX) += libxml2
 obj-$(TCONFIG_NGINX) += libpng
@@ -249,44 +259,19 @@ obj-$(TCONFIG_NGINX) += jpeg
 obj-$(TCONFIG_NGINX) += php
 obj-$(TCONFIG_NGINX) += nginx
 
-obj-$(TCONFIG_NANO) += libncurses
 obj-$(TCONFIG_NANO) += nano
 
-obj-$(TCONFIG_BBT) += openssl
-obj-$(TCONFIG_BBT) += libevent
 obj-$(TCONFIG_BBT) += libcurl
 obj-$(TCONFIG_BBT) += transmission
 obj-$(TCONFIG_BT) += btgui
-obj-$(TCONFIG_BBT) += zlib
-#obj-$(TCONFIG_BBT) += libiconv
 
 obj-$(CONFIG_LINUX26) += hotplug2
 obj-$(CONFIG_LINUX26) += udevtrigger
 
-ifeq ($(TCONFIG_OPENVPN),y)
-  export FULL_OPENSSL := y
-else
-  ifeq ($(TCONFIG_FTP_SSL),y)
+ifneq ($(TCONFIG_OPENVPN)$(TCONFIG_FTP_SSL)$(TCONFIG_BBT)$(TCONFIG_TOR)$(TCONFIG_TINC),)
     export FULL_OPENSSL := y
-  else
-    ifeq ($(TCONFIG_BBT),y)
-      export FULL_OPENSSL := y
-    else
-      ifeq ($(TCONFIG_TOR),y)
-        export FULL_OPENSSL := y
-      else
-        ifeq ($(TCONFIG_TOR),y)
-          export FULL_OPENSSL := y
-        else
-          ifeq ($(TCONFIG_TINC),y)
-            export FULL_OPENSSL := y
-          else
-            FULL_OPENSSL :=
-          endif
-        endif
-      endif
-    endif
-  endif
+else
+    FULL_OPENSSL :=
 endif
 
 obj-y += wanuptime
@@ -461,6 +446,7 @@ endif
 	cd $(TARGETDIR)/lib/modules/*/kernel/fs && mv jbd/* . && rm -rf jbd || true
 	cd $(TARGETDIR)/lib/modules/*/kernel/fs && mv jbd2/* . && rm -rf jbd2 || true
 	cd $(TARGETDIR)/lib/modules/*/kernel/fs && mv fat/* . && rm -rf fat || true
+	cd $(TARGETDIR)/lib/modules/*/kernel/fs && mv exfat/* . && rm -rf exfat || true
 	cd $(TARGETDIR)/lib/modules/*/kernel/fs && mv jfs/* . && rm -rf jfs || true
 	cd $(TARGETDIR)/lib/modules/*/kernel/fs && mv vfat/* . && rm -rf vfat || true
 	cd $(TARGETDIR)/lib/modules/*/kernel/fs && mv msdos/* . && rm -rf msdos || true
@@ -673,6 +659,7 @@ endif
 	$(if $(TCONFIG_USB),@cp -f,@mv) $(TARGETDIR)/lib/modules/*/kernel/fs/mbcache.*o $(PLATFORMDIR)/extras/ || true
 	$(if $(TCONFIG_USB),@cp -f,$(if $(TCONFIG_SDHC),@cp -f,@mv)) $(TARGETDIR)/lib/modules/*/kernel/fs/fat.*o $(PLATFORMDIR)/extras/ || true
 	$(if $(TCONFIG_USB),@cp -f,$(if $(TCONFIG_SDHC),@cp -f,@mv)) $(TARGETDIR)/lib/modules/*/kernel/fs/vfat.*o $(PLATFORMDIR)/extras/ || true
+	$(if $(TCONFIG_USB),@cp -f,@mv) $(TARGETDIR)/lib/modules/*/kernel/fs/exfat.*o $(PLATFORMDIR)/extras/ || true
 	$(if $(TCONFIG_USB),@cp -f,@mv) $(TARGETDIR)/lib/modules/*/kernel/fs/msdos.*o $(PLATFORMDIR)/extras/ || true
 	$(if $(TCONFIG_USB),@cp -f,@mv) $(TARGETDIR)/lib/modules/*/kernel/fs/fuse.*o $(PLATFORMDIR)/extras/ || true
 	$(if $(TCONFIG_HFS),@cp -f,@mv) $(TARGETDIR)/lib/modules/*/kernel/fs/hfs.*o $(PLATFORMDIR)/extras/ || true
@@ -891,7 +878,7 @@ openssl/stamp-h1:
 	cd openssl && \
 	./Configure $(HOSTCONFIG) --openssldir=/etc --cross-compile-prefix=' ' \
 	-ffunction-sections -fdata-sections -Wl,--gc-sections \
-	shared $(OPENSSL_CIPHERS) no-ssl2 no-ssl3 \
+	shared $(OPENSSL_CIPHERS) \
 	no-sha0 no-smime no-camellia no-krb5 no-rmd160 no-ripemd \
 	no-seed no-capieng no-gms no-gmp no-rfc3779 \
 	no-err no-hw no-jpake \
@@ -973,7 +960,7 @@ nettle/stamp-h1: gmp
 	CPPFLAGS="-I$(TOP)/gmp" \
 	CFLAGS="-Os -Wall $(EXTRACFLAGS) -fPIC -ffunction-sections -fdata-sections" \
 	LDFLAGS="-L$(TOP)/gmp/.libs -ffunction-sections -fdata-sections -Wl,--gc-sections -fPIC" \
-	$(CONFIGURE) prefix=$(TOP)/nettle
+	$(CONFIGURE) prefix=$(TOP)/nettle --disable-documentation
 	@touch nettle/stamp-h1
 
 nettle: nettle/stamp-h1
@@ -1216,6 +1203,8 @@ libusb10: libusb10/Makefile
 libusb10-install: libusb10
 	install -D libusb10/libusb/.libs/libusb-1.0.so $(INSTALLDIR)/libusb10/usr/lib/libusb-1.0.so
 	$(STRIP) $(INSTALLDIR)/libusb10/usr/lib/*.so
+	cd $(INSTALLDIR)/libusb10/usr/lib && \
+		ln -sf libusb-1.0.so libusb-1.0.so.0
 
 libusb10-clean:
 	-@$(MAKE) -C $@ clean
@@ -1857,7 +1846,7 @@ ebtables-clean:
 
 #Roadkill
 spawn-fcgi/stamp-h1:
-	cd spawn-fcgi && CC=$(CC) \
+	cd spawn-fcgi && autoreconf && CC=$(CC) \
 	CFLAGS="-Os -Wall $(EXTRACFLAGS) -ffunction-sections -fdata-sections" \
 	LDFLAGS="-ffunction-sections -fdata-sections -Wl,--gc-sections -fPIC" \
 	ac_cv_func_malloc_0_nonnull=yes \
@@ -2158,19 +2147,19 @@ libncurses-install: libncurses
 	install -D -m 0644 libncurses/staged/usr/share/terminfo/v/vt220 $(INSTALLDIR)/libncurses/usr/share/terminfo/v
 	install -D -m 0644 libncurses/staged/usr/share/terminfo/x/xterm $(INSTALLDIR)/libncurses/usr/share/terminfo/x
 	cd $(INSTALLDIR)/libncurses/usr/lib && ln -sf ../share/terminfo terminfo
-	install libncurses/lib/libncurses.so.5.9 $(INSTALLDIR)/libncurses/usr/lib/libncurses.so.5
-	$(STRIP) $(INSTALLDIR)/libncurses/usr/lib/libncurses.so.5
-	install libncurses/lib/libpanel.so.5.9 $(INSTALLDIR)/libncurses/usr/lib/libpanel.so.5
-	$(STRIP) $(INSTALLDIR)/libncurses/usr/lib/libpanel.so.5
-	install libncurses/lib/libform.so.5.9 $(INSTALLDIR)/libncurses/usr/lib/libform.so.5
-	$(STRIP) $(INSTALLDIR)/libncurses/usr/lib/libform.so.5
-	install libncurses/lib/libmenu.so.5.9 $(INSTALLDIR)/libncurses/usr/lib/libmenu.so.5
-	$(STRIP) $(INSTALLDIR)/libncurses/usr/lib/libmenu.so.5
+	install libncurses/lib/libncurses.so.6.0 $(INSTALLDIR)/libncurses/usr/lib/libncurses.so.6
+	$(STRIP) $(INSTALLDIR)/libncurses/usr/lib/libncurses.so.6
+	install libncurses/lib/libpanel.so.6.0 $(INSTALLDIR)/libncurses/usr/lib/libpanel.so.6
+	$(STRIP) $(INSTALLDIR)/libncurses/usr/lib/libpanel.so.6
+	install libncurses/lib/libform.so.6.0 $(INSTALLDIR)/libncurses/usr/lib/libform.so.6
+	$(STRIP) $(INSTALLDIR)/libncurses/usr/lib/libform.so.6
+	install libncurses/lib/libmenu.so.6.0 $(INSTALLDIR)/libncurses/usr/lib/libmenu.so.6
+	$(STRIP) $(INSTALLDIR)/libncurses/usr/lib/libmenu.so.6
 	cd $(INSTALLDIR)/libncurses/usr/lib/ && \
-		ln -sf libncurses.so.5 libncurses.so && \
-		ln -sf libpanel.so.5 libpanel.so && \
-		ln -sf libform.so.5 libform.so && \
-		ln -sf libmenu.so.5 libmenu.so
+		ln -sf libncurses.so.6 libncurses.so && \
+		ln -sf libpanel.so.6 libpanel.so && \
+		ln -sf libform.so.6 libform.so && \
+		ln -sf libmenu.so.6 libmenu.so
 
 mysql/stamp-h1: openssl zlib libncurses
 	@$(SEP)
@@ -2284,7 +2273,7 @@ openvpn/.conf: openssl lzo
 	$(CONFIGURE) --prefix= \
 	--with-crypto-library=openssl \
 	--disable-debug --disable-plugin-auth-pam --disable-plugin-down-root --with-plugindir=/lib --enable-management --disable-small \
-	--disable-selinux --disable-socks --enable-password-save \
+	--disable-selinux --disable-socks \
 	OPENSSL_SSL_CFLAGS="-I$(TOP)/openssl/include" \
 	OPENSSL_SSL_LIBS="-L$(TOP)/openssl -lssl" \
 	ac_cv_lib_resolv_gethostbyname=no
@@ -2335,7 +2324,7 @@ libcurl/stamp-h1: zlib openssl
 		--enable-file --enable-ftp --enable-http --enable-ipv6 --enable-tftp \
 		--disable-nls --disable-ares --disable-dict --disable-debug --disable-gopher \
 		--disable-ldap --disable-manual --disable-telnet --disable-verbose \
-		--with-random="/dev/urandom" --with-ssl="$(TOP)/openssl" \
+		--with-random="/dev/urandom" --with-ssl="$(TOP)/openssl/ssl" \
 		--without-gnutls --without-krb4 --without-libidn \
 		--with-linux-headers=$(LINUXDIR)/include \
 		OPENSSL_CFLAGS="-I$(TOP)/openssl/include" \
@@ -2356,11 +2345,11 @@ libcurl-install: libcurl
 	install -D libcurl/src/.libs/curl $(INSTALLDIR)/libcurl/usr/sbin/curl
 	$(STRIP) -s $(INSTALLDIR)/libcurl/usr/sbin/curl
 	install -d $(INSTALLDIR)/libcurl/usr/lib
-	install -D libcurl/lib/.libs/libcurl.so.4.3.0 $(INSTALLDIR)/libcurl/usr/lib/libcurl.so.4.3.0
-	$(STRIP) -s $(INSTALLDIR)/libcurl/usr/lib/libcurl.so.4.3.0
+	install -D libcurl/lib/.libs/libcurl.so.4.4.0 $(INSTALLDIR)/libcurl/usr/lib/libcurl.so.4.4.0
+	$(STRIP) -s $(INSTALLDIR)/libcurl/usr/lib/libcurl.so.4.4.0
 	cd $(INSTALLDIR)/libcurl/usr/lib/ && \
-		ln -sf libcurl.so.4.3.0 libcurl.so.4 && \
-		ln -sf libcurl.so.4.3.0 libcurl.so
+		ln -sf libcurl.so.4.4.0 libcurl.so.4 && \
+		ln -sf libcurl.so.4.4.0 libcurl.so
 
 libevent/stamp-h1:
 	cd libevent && CC=$(CC) \
@@ -2514,18 +2503,21 @@ e2fsprogs: e2fsprogs/stamp-h1
 	$(MAKE) -C e2fsprogs $(PARALLEL_BUILD)
 
 e2fsprogs-install: e2fsprogs
-	-@install -D e2fsprogs/e2fsck/e2fsck $(INSTALLDIR)/e2fsprogs/sbin/e2fsck
-	-@install -D e2fsprogs/misc/mke2fs $(INSTALLDIR)/e2fsprogs/sbin/mke2fs
-	-@install -D e2fsprogs/misc/tune2fs $(INSTALLDIR)/e2fsprogs/sbin/tune2fs
-	-@cd $(INSTALLDIR)/e2fsprogs/sbin && ln -sf e2fsck fsck.ext2
-	-@cd $(INSTALLDIR)/e2fsprogs/sbin && ln -sf e2fsck fsck.ext3
-	-@cd $(INSTALLDIR)/e2fsprogs/sbin && ln -sf e2fsck fsck.ext4
-	-@cd $(INSTALLDIR)/e2fsprogs/sbin && ln -sf mke2fs mkfs.ext2
-	-@cd $(INSTALLDIR)/e2fsprogs/sbin && ln -sf mke2fs mkfs.ext3
-	-@cd $(INSTALLDIR)/e2fsprogs/sbin && ln -sf mke2fs mkfs.ext4
-	-@$(STRIP) $(INSTALLDIR)/e2fsprogs/sbin/e2fsck
-	-@$(STRIP) $(INSTALLDIR)/e2fsprogs/sbin/mke2fs
-	-@$(STRIP) $(INSTALLDIR)/e2fsprogs/sbin/tune2fs
+	cp e2fsprogs/misc/mke2fs.conf $(INSTALLDIR)/rom/rom/etc/mke2fs.conf
+	install -d $(INSTALLDIR)/e2fsprogs/sbin
+	install -D e2fsprogs/e2fsck/e2fsck $(INSTALLDIR)/e2fsprogs/sbin/e2fsck
+	install -D e2fsprogs/misc/mke2fs $(INSTALLDIR)/e2fsprogs/sbin/mke2fs
+	install -D e2fsprogs/misc/tune2fs $(INSTALLDIR)/e2fsprogs/sbin/tune2fs
+	$(STRIP) -s $(INSTALLDIR)/e2fsprogs/sbin/e2fsck
+	$(STRIP) -s $(INSTALLDIR)/e2fsprogs/sbin/mke2fs
+	$(STRIP) -s $(INSTALLDIR)/e2fsprogs/sbin/tune2fs
+	cd $(INSTALLDIR)/e2fsprogs/sbin/ && \
+		ln -sf e2fsck fsck.ext2 && \
+		ln -sf e2fsck fsck.ext3 && \
+		ln -sf e2fsck fsck.ext4 && \
+		ln -sf mke2fs mkfs.ext2 && \
+		ln -sf mke2fs mkfs.ext3 && \
+		ln -sf mke2fs mkfs.ext4
 
 e2fsprogs-clean:
 	-@$(MAKE) -C e2fsprogs clean
@@ -2679,11 +2671,11 @@ libsodium: libsodium/stamp-h1
 
 libsodium-install: libsodium
 	install -d $(INSTALLDIR)/libsodium/usr/lib
-	install -D libsodium/src/libsodium/.libs/libsodium.so.18.0.1 $(INSTALLDIR)/libsodium/usr/lib/libsodium.so.18.0.1
-	$(STRIP) -s $(INSTALLDIR)/libsodium/usr/lib/libsodium.so.18.0.1
+	install -D libsodium/src/libsodium/.libs/libsodium.so.18.1.0 $(INSTALLDIR)/libsodium/usr/lib/libsodium.so.18.1.0
+	$(STRIP) -s $(INSTALLDIR)/libsodium/usr/lib/libsodium.so.18.1.0
 	cd $(INSTALLDIR)/libsodium/usr/lib/ && \
-		ln -sf libsodium.so.18.0.1 libsodium.so.18 && \
-		ln -sf libsodium.so.18.0.1 libsodium.so
+		ln -sf libsodium.so.18.1.0 libsodium.so.18 && \
+		ln -sf libsodium.so.18.1.0 libsodium.so
 
 libsodium-clean:
 	-$(MAKE) -C libsodium clean

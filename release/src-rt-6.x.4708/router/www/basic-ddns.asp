@@ -375,11 +375,16 @@ function init()
 <div class='section'>
 <script type='text/javascript'>
 s = nvram.ddnsx_ip;
-a = (s != '') && (s.indexOf('@') != 0) && (s != '0.0.0.0') && (s != '1.1.1.1') && (s != '10.1.1.1');
+a = (s != '') && (s != 'wan') && (s != 'wan2') && (s != 'wan3') && (s != 'wan4') && (s.indexOf('@') != 0) && (s != '0.0.0.0') && (s != '1.1.1.1') && (s != '10.1.1.1');
 createFieldTable('', [
 	{ title: '<% translate("IP address"); %>', name: 'f_ddnsx_ip', type: 'select',
 		options: [
-			['', '<% translate("Use WAN IP Address"); %> ' + ddnsx_ip + ' (<% translate("recommended"); %>)'],
+			['wan', '<% translate("Use WAN IP Address"); %> ' + ddnsx_ip + ' (<% translate("recommended"); %>)'],
+			['wan2', '<% translate("Use WAN2 IP Address); %> ' + ddnsx2_ip ],
+/* MULTIWAN-BEGIN */
+			['wan3', '<% translate("Use WAN3 IP Address); %> ' + ddnsx3_ip ],
+			['wan4', '<% translate("Use WAN4 IP Address); %> ' + ddnsx4_ip ],
+/* MULTIWAN-END */
 			['@', '<% translate("Use External IP Address Checker (every 10 minutes)"); %>'],
 			['0.0.0.0', '<% translate("Offline"); %> (0.0.0.0)'],
 			['1.1.1.1', '<% translate("Offline"); %> (1.1.1.1)'],

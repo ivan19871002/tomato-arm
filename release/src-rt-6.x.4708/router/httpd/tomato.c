@@ -848,6 +848,7 @@ static const nvset_t nvset_list[] = {
 	{ "ipv6_6rd_ipv4masklen",	V_RANGE(0, 32)			},
 	{ "ipv6_vlan",			V_RANGE(0, 7)			},	// Enable IPv6 on 1=LAN1 2=LAN2 4=LAN3
 	{ "ipv6_pdonly",		V_01				},	// Request DHCPv6 Prefix Delegation Only
+	{ "ipv6_ipsec",			V_01				},	// Enable Incoming IPv6 IPSec
 #endif
 
 // basic-wfilter
@@ -881,6 +882,7 @@ static const nvset_t nvset_list[] = {
 	{ "dhcpc_minpkt",		V_01				},
 	{ "dhcpc_custom",		V_LENGTH(0, 80)			},
 	{ "dns_norebind",		V_01				},
+	{ "dnsmasq_debug",		V_01				},
 	{ "dnsmasq_custom",		V_TEXT(0, 2048)			},
 	{ "dnsmasq_q",			V_RANGE(0,7)			}, //bitfield quiet bit0=dhcp, 1=dhcp6, 2=ra
 //	{ "dnsmasq_norw",		V_01				},
@@ -911,6 +913,12 @@ static const nvset_t nvset_list[] = {
 	{ "emf_rtport_entry",		V_NONE				},
 	{ "emf_enable",			V_01				},
 #endif
+
+// advanced-adblock
+	{ "adblock_enable",		V_01				},
+	{ "adblock_blacklist",		V_LENGTH(0, 4096)		},
+	{ "adblock_blacklist_custom",	V_LENGTH(0, 4096)		},
+	{ "adblock_whitelist",		V_LENGTH(0, 4096)		},
 
 // advanced-misc
 	{ "wait_time",			V_RANGE(0, 30)		},
@@ -1271,6 +1279,7 @@ static const nvset_t nvset_list[] = {
 	{ "usb_fs_ext3",		V_01				},
 	{ "usb_fs_ext4",		V_01				},
 	{ "usb_fs_fat",			V_01				},
+	{ "usb_fs_exfat",		V_01				},
 #ifdef TCONFIG_NTFS
 	{ "usb_fs_ntfs",		V_01				},
 	{ "usb_ntfs_driver",		V_LENGTH(0, 10)			},

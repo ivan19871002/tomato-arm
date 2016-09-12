@@ -89,7 +89,7 @@ adblockg.setup = function()
 		{ type: 'text', maxlen: 90 },
 		{ type: 'text', maxlen: 40 }
 	]);
-	this.headerSet(['On', 'Blacklist URL', 'Description']);
+	this.headerSet(['<% translate("On"); %>', '<% translate("Blacklist URL"); %>', '<% translate("Description"); %>']);
 	var s = nvram.adblock_blacklist.split('>');
 	for (var i = 0; i < s.length; ++i) {
 		var t = s[i].split('<');
@@ -139,48 +139,48 @@ function init()
 <input type='hidden' name='dnsmasq_debug'>
 <input type='hidden' name='adblock_blacklist'>
 
-<div class='section-title'>Adblock Settings</div>
+<div class='section-title'><% translate("Adblock Settings"); %></div>
 <div class='section'>
 	<script type='text/javascript'>
 	createFieldTable('', [
-		{ title: 'Enable', name: 'f_adblock_enable', type: 'checkbox', value: nvram.adblock_enable != '0' },
-		{ title: 'Debug Mode', indent: 2, name: 'f_dnsmasq_debug', type: 'checkbox', value: nvram.dnsmasq_debug == '1' }
+		{ title: '<% translate("Enable"); %>', name: 'f_adblock_enable', type: 'checkbox', value: nvram.adblock_enable != '0' },
+		{ title: '<% translate("Debug Mode"); %>', indent: 2, name: 'f_dnsmasq_debug', type: 'checkbox', value: nvram.dnsmasq_debug == '1' }
 	]);
 	</script>
 </div>
 
-<div class='section-title'>Blacklist URL</div>
+<div class='section-title'><% translate("Blacklist URL"); %></div>
 <div class='section'>
 	<table class='tomato-grid' cellspacing=1 id='adblockg-grid'></table>
 	<script type='text/javascript'>adblockg.setup();</script>
 </div>
 
-<div class='section-title'>Blacklist Custom</div>
+<div class='section-title'><% translate("Blacklist Custom"); %></div>
 <div class='section'>
 	<script type='text/javascript'>
 	createFieldTable('', [
-		{ title: 'Blacklisted domains', name: 'adblock_blacklist_custom', type: 'textarea', value: nvram.adblock_blacklist_custom }
+		{ title: '<% translate("Blacklisted domains"); %>', name: 'adblock_blacklist_custom', type: 'textarea', value: nvram.adblock_blacklist_custom }
 	]);
 	</script>
 </div>
 
-<div class='section-title'>Whitelist</div>
+<div class='section-title'><% translate("Whitelist"); %></div>
 <div class='section'>
 	<script type='text/javascript'>
 	createFieldTable('', [
-		{ title: 'Whitelisted domains', name: 'adblock_whitelist', type: 'textarea', value: nvram.adblock_whitelist }
+		{ title: '<% translate("Whitelisted domains"); %>', name: 'adblock_whitelist', type: 'textarea', value: nvram.adblock_whitelist }
 	]);
 	</script>
 </div>
 
-<div class='section-title'>Notes</div>
+<div class='section-title'><% translate("Notes"); %></div>
 <div class='section'>
     <ul>
-	<li><b>Adblock</b> - Autoupdate will be launch on 1:00AM every day
-	<li><b>Debug Mode</b> - All queries to dnsmasq will be logged to syslog
-	<li><b>Blacklist URL</b> - Correct file format: 0.0.0.0 domain.com or 127.0.0.1 domain.com, one domain per line
-	<li><b>Blacklist Custom</b> - Optional, space separated: domain1.com domain2.com domain3.com
-	<li><b>Whitelist</b> - Optional, space separated: domain1.com domain2.com domain3.com
+	<li><b><% translate("Adblock"); %></b> - <% translate("Autoupdate will be launch on 1:00AM every day"); %>
+	<li><b><% translate("Debug Mode"); %></b> - <% translate("All queries to dnsmasq will be logged to syslog"); %>
+	<li><b><% translate("Blacklist URL"); %></b> - <% translate("Correct file format: 0.0.0.0 domain.com or 127.0.0.1 domain.com, one domain per line"); %>
+	<li><b><% translate("Blacklist Custom"); %></b> - <% translate("Optional, space separated: domain1.com domain2.com domain3.com"); %>
+	<li><b><% translate("Whitelist"); %></b> - <% translate("Optional, space separated: domain1.com domain2.com domain3.com"); %>
     </ul>
 </div>
 
@@ -189,8 +189,8 @@ function init()
 </td></tr>
 <tr><td id='footer' colspan=2>
 	<span id='footer-msg'></span>
-	<input type='button' value='Save' id='save-button' onclick='save()'>
-	<input type='button' value='Cancel' id='cancel-button' onclick='reloadPage();'>
+	<input type='button' value='<% translate("Save"); %>' id='save-button' onclick='save()'>
+	<input type='button' value='<% translate("Cancel"); %>' id='cancel-button' onclick='reloadPage();'>
 </td></tr>
 </table>
 </form>

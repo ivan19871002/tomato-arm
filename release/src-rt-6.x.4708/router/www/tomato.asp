@@ -2452,6 +2452,7 @@ function navi()
 			['<% translate("Conntrack / Netfilter"); %>',	'ctnf.asp'],
 			['<% translate("DHCP / DNS"); %>',		'dhcpdns.asp'],
 			['<% translate("Firewall"); %>',		'firewall.asp'],
+			['<% translate("Adblock"); %>',			'adblock.asp'],
 			['<% translate("MAC Address"); %>',		'mac.asp'],
 			['<% translate("Miscellaneous"); %>',	'misc.asp'],
 			['<% translate("Routing"); %>',			'routing.asp'],

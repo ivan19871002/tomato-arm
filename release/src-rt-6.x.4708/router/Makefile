@@ -2399,7 +2399,13 @@ libiconv-install: libiconv
 		ln -sf libiconv.so.2.5.1 libiconv.so
 
 transmission/stamp-h1: openssl libcurl libevent zlib
-	cd transmission && CC=$(CC) STRIP=$(STRIP) \
+	cd transmission && \
+	# http://trac.transmissionbt.com/ticket/4324 \
+	sed -i -e 's|noinst\(_PROGRAMS = $(TESTS)\)|check\1|' libtransmission/Makefile.am && \
+	# Prevent m4_copy error when running aclocal \
+	# m4_copy: won't overwrite defined macro: glib_DEFUN \
+	rm -f m4/glib-gettext.m4 && \
+		CC=$(CC) STRIP=$(STRIP) \
 		autoreconf && \
 		CFLAGS="-Os -Wall -fno-delete-null-pointer-checks -funit-at-a-time \
 			--param large-function-growth=800 --param max-inline-insns-single=3000 \

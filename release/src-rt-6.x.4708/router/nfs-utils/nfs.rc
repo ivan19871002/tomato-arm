@@ -20,8 +20,10 @@ else
 
     if [ ! -d /var/lib/nfs ]; then
         mkdir -p /var/lib/nfs
+        mkdir -p /var/lib/nfs/sm
         touch /var/lib/nfs/etab
         touch /var/lib/nfs/rmtab
+        touch /var/lib/nfs/xtab
     fi
 
 

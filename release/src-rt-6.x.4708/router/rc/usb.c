@@ -158,22 +158,12 @@ void start_usb(void)
 
 			if (nvram_get_int("usb_fs_ext3") || nvram_get_int("usb_fs_ext4")) {
 #ifdef LINUX26
-				modprobe("mbcache");	// used by ext4
+				modprobe("mbcache");	// used by ext2/3/4
 #endif
 				modprobe("jbd2");
 				modprobe("crc16");
 				modprobe("ext4");
 			}
-
-			/* if (nvram_get_int("usb_fs_ext3")) {
-#ifdef LINUX26
-//				modprobe("mbcache");	// used by ext2/ext3
-#endif
-				// insert ext3 first so that lazy mount tries ext3 before ext2
-				modprobe("jbd");
-				modprobe("ext3");
-				modprobe("ext2");
-			} */
 
 			if (nvram_get_int("usb_fs_fat")) {
 				modprobe("fat");
@@ -186,13 +176,13 @@ void start_usb(void)
 			}
 
 #if defined(TCONFIG_UFSDA) || defined(TCONFIG_UFSDN)
-			if (nvram_get_int("usb_fs_ntfs")) {
+			if (nvram_get_int("usb_fs_ntfs") && nvram_match("usb_ntfs_driver", "paragon")) {
 				modprobe("ufsd");
 			}
 #endif
 
 #if defined(TCONFIG_TUXERA)
-			if (nvram_get_int("usb_fs_ntfs")) {
+			if (nvram_get_int("usb_fs_ntfs") && nvram_match("usb_ntfs_driver", "tuxera")) {
 				modprobe("tntfs");
 			}
 #endif
@@ -351,9 +341,6 @@ void stop_usb(void)
 		remove_storage_main(0);
 
 		// Stop storage services
-//		modprobe_r("ext2");
-//		modprobe_r("ext3");
-//		modprobe_r("jbd");
 		modprobe_r("ext4");
 		modprobe_r("jbd2");
 		modprobe_r("crc16");
@@ -467,7 +454,7 @@ void stop_usb(void)
 	else if (get_model() == MODEL_DIR868L) {
 		xstart("gpio", "disable", "10");
 	}
-	else if (get_model() == MODEL_WS880) { // WS880 - power off USB port
+	else if (get_model() == MODEL_WS880) {
 		xstart("gpio", "disable", "7");
 	}
 	else if (get_model() == MODEL_R1D || get_model() == MODEL_R6400) {
@@ -551,20 +538,13 @@ int mount_r(char *mnt_dev, char *mnt_dir, char *type)
 		else if (strcmp(type, "hfs") == 0 || strcmp(type, "hfsplus") == 0) {
 			if (nvram_get_int("usb_fs_hfs")) {
 				if( nvram_match( "usb_hfs_driver", "kernel" )) {
-					/* options for kernel hfs/hfs+ (force rw mount) */
-					sprintf(options + strlen(options), "rw,force" + (options[0] ? 0 : 1));
+					/* options for kernel hfs/hfs+ driver (force rw mount on journalled fs) */
+					sprintf(options, "force");
 				}
 #ifdef TCONFIG_TUXERA_HFS
 				else if( nvram_match( "usb_hfs_driver", "tuxera" )) {
 					/* override fs fype */
 					type = "thfsplus";
-				}
-#endif
-#if defined(TCONFIG_UFSDA) || defined(TCONFIG_UFSDN)
-				else if( nvram_match( "usb_ntfs_driver", "paragon" )) {
-					sprintf(options + strlen(options), "force" + (options[0] ? 0 : 1));
-					/* override fs fype */
-					type = "ufsd";
 				}
 #endif
 			}
@@ -582,6 +562,9 @@ int mount_r(char *mnt_dev, char *mnt_dir, char *type)
 
 			/* mount it, finally */
 			ret = mount(mnt_dev, mnt_dir, type, flags, options[0] ? options : "");
+			syslog(LOG_DEBUG, "# mount # type: %s, options: %s, mnt_dev: %s, mnt_dir: %s",
+			type, strlen(options) ? options : "none", mnt_dev, mnt_dir);
+			syslog(LOG_DEBUG, "# mount # return code: %d", ret);
 
 #ifdef TCONFIG_NTFS
 			/* try ntfs-3g in case it's installed */
@@ -590,36 +573,60 @@ int mount_r(char *mnt_dev, char *mnt_dir, char *type)
 				if (nvram_get_int("usb_fs_ntfs")) {
 					if( nvram_match( "usb_ntfs_driver", "ntfs3g" )) {
 						ret = eval("ntfs-3g", "-o", options, mnt_dev, mnt_dir);
+						syslog(LOG_DEBUG, "mount cmd: mtfs-3g -o %s %s %s, return: %d",
+						options, mnt_dev, mnt_dir, ret);
 					}
 #if defined(TCONFIG_UFSDA) || defined(TCONFIG_UFSDN)
 					else if( nvram_match( "usb_ntfs_driver", "paragon" )) {
 						ret = eval("mount", "-t", "ufsd", "-o", options, "-o", "force", mnt_dev, mnt_dir);
+						syslog(LOG_DEBUG, "mount cmd: mount -t ufsd -o %s -o force %s %s, return: %d",
+						options, mnt_dev, mnt_dir, ret);
 					}
 #endif
 #ifdef TCONFIG_TUXERA
 					else if( nvram_match( "usb_ntfs_driver", "tuxera" )) {
 						ret = eval("mount", "-t", "tntfs", "-o", options, mnt_dev, mnt_dir);
+						syslog(LOG_DEBUG, "mount cmd: mount -t tntfs -o %s %s %s, return: %d",
+						options, mnt_dev, mnt_dir, ret);
 					}
 #endif
 				}
 			}
 #endif // ifdef TCONFIG_NTFS
 
+#ifdef TCONFIG_HFS	// try rw mount for kernel HFS driver (guess fs)
+			if (ret != 0 && (strncmp(type, "hfs", 3) == 0)) {
+				eval("fsck.hfs", "-p", mnt_dev); // check/fix if not cleanly unmounted
+				ret = eval("mount", "-o", "rw,force,noatime,nodev", mnt_dev, mnt_dir);
+				syslog(LOG_DEBUG, "mount cmd: mount -o rw,force,noatime,nodev %s %s, return: %d",
+				mnt_dev, mnt_dir, ret);
+			}
+#endif // ifdef TCONFIG_HFS
+
+
 #ifdef TCONFIG_TEXFAT
 			if (ret != 0 && strncmp(type, "exfat", "") == 0) {
 				if (nvram_get_int("usb_fs_exfat")) {
+						/* override fs type */
 						ret = eval("mount", "-t", "texfat", mnt_dev, mnt_dir);
+						syslog(LOG_DEBUG, "mount cmd: mount -t textfat %s %s, return: %d",
+						mnt_dev, mnt_dir, ret);
 				}
 			}
 #endif // ifdef TCONFIG_TEXFAT
 
-			if (ret != 0) /* give it another try - guess fs */
+			if (ret != 0) { /* give it another try - guess fs */
 				ret = eval("mount", "-o", "noatime,nodev", mnt_dev, mnt_dir);
-
+				syslog(LOG_DEBUG, "mount cmd (guess fs): mount -o noatime,nodev %s %s, return: %d",
+				mnt_dev, mnt_dir, ret);
+			}
 			if (ret == 0) {
 				syslog(LOG_INFO, "USB %s%s fs at %s mounted on %s",
 					type, (flags & MS_RDONLY) ? " (ro)" : "", mnt_dev, mnt_dir);
 				return (flags & MS_RDONLY) ? MOUNT_VAL_RONLY : MOUNT_VAL_RW;
+			} else {
+				syslog(LOG_INFO, "USB %s%s fs at %s failed to mount on %s",
+					type, (flags & MS_RDONLY) ? " (ro)" : "", mnt_dev, mnt_dir);
 			}
 
 			if (dir_made) {
@@ -838,18 +845,23 @@ int mount_partition(char *dev_name, int host_num, char *dsc_name, char *pt_name,
 	static char *swp_argv[] = { "swapon", "-a", NULL };
 	struct mntent *mnt;
 
-	if ((type = find_label_or_uuid(dev_name, the_label, uuid)) == NULL)
+	if ((type = find_label_or_uuid(dev_name, the_label, uuid)) == NULL) {
+		syslog(LOG_DEBUG, "mount_partition: find_label_or_uuid return NULL for %s", dev_name);
 		return 0;
+	}
 
 	if (f_exists("/etc/fstab")) {
+		//syslog(LOG_DEBUG, "# checking /etc/fstab...");
 		if (strcmp(type, "swap") == 0) {
+			syslog(LOG_DEBUG, "swap partition, skip mount, do swapon -a instead (add swap to fstab)");
 			_eval(swp_argv, NULL, 0, NULL);
 			return 0;
 		}
 
-		if (mount_r(dev_name, NULL, NULL) == MOUNT_VAL_EXIST)
+		if (mount_r(dev_name, NULL, NULL) == MOUNT_VAL_EXIST) {
+			syslog(LOG_DEBUG, "partition already mounted");
 			return 0;
-
+		}
 		if ((mnt = mount_fstab(dev_name, type, the_label, uuid))) {
 			strcpy(mountpoint, mnt->mnt_dir);
 			ret = MOUNT_VAL_RW;
@@ -863,12 +875,14 @@ int mount_partition(char *dev_name, int host_num, char *dsc_name, char *pt_name,
 				*p = '_';
 		}
 		sprintf(mountpoint, "%s/%s", MOUNT_ROOT, the_label);
+		//syslog(LOG_DEBUG, "# trying mount by label %s with type %s...", the_label, type);
 		if ((ret = mount_r(dev_name, mountpoint, type)))
 			goto done;
 	}
 
 	/* Can't mount to /mnt/LABEL, so try mounting to /mnt/discDN_PN */
 	sprintf(mountpoint, "%s/%s", MOUNT_ROOT, pt_name);
+	//syslog(LOG_DEBUG, "# trying mount %s to %s with type %s...", dev_name, mountpoint, type);
 	ret = mount_r(dev_name, mountpoint, type);
 done:
 	if (ret == MOUNT_VAL_RONLY || ret == MOUNT_VAL_RW)
